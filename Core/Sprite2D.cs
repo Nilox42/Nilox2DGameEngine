@@ -128,8 +128,10 @@ namespace Nilox2DGameEngine.Core
             return null;
         }
         #endregion
-        
-
+        //
+        //
+        //
+        #region Editor
         public void setSelected(bool selecred0)
         {
             if (selecred0 == true)
@@ -143,7 +145,7 @@ namespace Nilox2DGameEngine.Core
                 fetchimage();
             }
         }
-
+        #endregion
 
 
 
