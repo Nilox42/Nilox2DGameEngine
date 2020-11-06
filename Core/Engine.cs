@@ -22,7 +22,7 @@ namespace Nilox2DGameEngine.Core
     }
     #endregion
     //
-    //
+    //---------------------------------------------------------------------------------------------------------------------------------------
     //
     #region Engine
     public abstract class Engine
