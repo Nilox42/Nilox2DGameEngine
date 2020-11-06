@@ -97,7 +97,6 @@ namespace Nilox2DGameEngine.Core
         #region Functions
         public void LoadImagesfromDirectory(string directory0)
         {
-
             string dir = directory0;
             foreach (string s in Directory.GetFiles(dir))
             {
