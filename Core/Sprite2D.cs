@@ -32,8 +32,6 @@ namespace Nilox2DGameEngine.Core
             this.isleveleditor = isleveleditor0;
             this.LB = LB;
 
-            fetchimage();
-
             if (isleveleditor == false)
             {
                 Log.Info($"[SPRITE2D]({name}) - Has been registered!");
@@ -56,9 +54,15 @@ namespace Nilox2DGameEngine.Core
                     }
                     else
                     {
-                        Log.Error("[SPRITE2D  -  E]  -  Imige NAME:" + name + "  could not be found!!");
+                        
                     }
                 }
+                if (this.Sprite == null)
+                {
+                    Log.Error("[SPRITE2D  -  E]  -  Imige NAME:" + name + "  could not be found!!");
+                    Engine.UnRegisterSprite(this);
+                }
+
 
                 Log.Info($"[SPRITE2D]({name} +  X:{Position.X}  +  Y:{Position.Y} ) - Has been registered!");
                 //Engine.RegisterSprite(this);

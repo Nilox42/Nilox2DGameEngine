@@ -37,7 +37,7 @@ namespace Nilox2DGameEngine
         {
             BackgroundColor = Color.Black;
 
-            currentLevel = new Level("Overworld",this);
+            currentLevel = new Level("Test",this);
         }
 
         public override void OnDraw()
@@ -111,6 +111,33 @@ namespace Nilox2DGameEngine
             {
                 for (int j = 0; j < t.Map.GetLength(1); j++)
                 {
+                    //Add Sprite2D if i has the name "." with special parameters
+                    if (t.Map[j, i] == ".")
+                    {
+                        Sprite2D s = new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "o_tile15", "Background");
+                        s.fetchimage();
+                    }
+                    //Add sprite by name with normal perameters
+                    else
+                    {
+                        Sprite2D s = new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), t.Map[j, i], "");
+                        s.fetchimage();
+                    }
+                }
+            }
+
+            //Create the palyer Sprite2D 
+            player = new Sprite2D(spawnPosition, new Vector2(48, 48), "rocks1_7", "Player");
+            player.fetchimage();
+        }
+        /*
+        public void OLDLoadNewTile(Tile t)
+        {
+            Log.Info("[LOADING]:" + t.name);
+            for (int i = 0; i < t.Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < t.Map.GetLength(1); j++)
+                {
                     if (t.Map[j, i] == "g")
                     {
                         new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/o_tile22", "Collider");
@@ -133,9 +160,9 @@ namespace Nilox2DGameEngine
                     }
                 }
             }
-
             player = new Sprite2D(spawnPosition, new Vector2(48, 48), "Overworld/Objects/rocks1_7", "Player");
         }
+        */
 
         public void UnloadCurrentTile()
         {
