@@ -115,13 +115,11 @@ namespace Nilox2DGameEngine
                     if (t.Map[j, i] == ".")
                     {
                         Sprite2D s = new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "o_tile15", "Background");
-                        s.fetchimage();
                     }
                     //Add sprite by name with normal perameters
                     else
                     {
                         Sprite2D s = new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), t.Map[j, i], "");
-                        s.fetchimage();
                     }
                 }
             }

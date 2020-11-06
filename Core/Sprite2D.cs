@@ -13,6 +13,7 @@ namespace Nilox2DGameEngine.Core
 {
     public class Sprite2D
     {
+        #region Init
         public Vector2 Position = null;
         public Vector2 Scale = null;
         public string Tag = "";
@@ -32,17 +33,24 @@ namespace Nilox2DGameEngine.Core
             this.isleveleditor = isleveleditor0;
             this.LB = LB;
 
+            fetchimage();
+        }
+        public void DestroySelf()
+        {
             if (isleveleditor == false)
             {
-                Log.Info($"[SPRITE2D]({name}) - Has been registered!");
-                Engine.RegisterSprite(this);
+                Log.Info($"[SPRITE2D]({name} @  X:{Position.X}  Y:{Position.Y}) - Has been destroyed!");
+                Engine.UnRegisterSprite(this);
+            }
+            else
+            {
+                LB.allSprite2Ds.Remove(this);
             }
         }
 
-
         public void fetchimage()
         {
-            //Get image for normal Engine
+            //Get image for Engine
             if (isleveleditor == false)
             {
                 foreach (BaseImage bi in Engine.allimages)
@@ -52,21 +60,17 @@ namespace Nilox2DGameEngine.Core
                         this.Sprite = bi.image;
                         break;
                     }
-                    else
-                    {
-                        
-                    }
                 }
                 if (this.Sprite == null)
                 {
                     Log.Error("[SPRITE2D  -  E]  -  Imige NAME:" + name + "  could not be found!!");
-                    Engine.UnRegisterSprite(this);
+                    DestroySelf();
                 }
 
-
                 Log.Info($"[SPRITE2D]({name} +  X:{Position.X}  +  Y:{Position.Y} ) - Has been registered!");
-                //Engine.RegisterSprite(this);
+                Engine.RegisterSprite(this);
             }
+
             //get image from Level Builder
             if (isleveleditor == true)
             {
@@ -83,8 +87,11 @@ namespace Nilox2DGameEngine.Core
                 }
             }
         }
-
-
+        #endregion
+        //
+        //
+        //
+        #region Collision
         public bool IsCollidingWithSprite(Sprite2D a , Sprite2D b)
         {
             if (isleveleditor == false)
@@ -120,19 +127,8 @@ namespace Nilox2DGameEngine.Core
             }
             return null;
         }
-
-        public void DestroySelf()
-        {
-            if (isleveleditor == false)
-            {
-                Log.Info($"[SPRITE2D]({name} @  X:{Position.X}  Y:{Position.Y}) - Has been destroyed!");
-                Engine.UnRegisterSprite(this);
-            }
-            else
-            {
-                LB.allSprite2Ds.Remove(this);
-            }
-        }
+        #endregion
+        
 
         public void setSelected(bool selecred0)
         {
