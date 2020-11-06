@@ -53,7 +53,7 @@ namespace Nilox2DGameEngine.Core
         {
             foreach (string sl in allcontentlocations)
             {
-                LoadImagesfromDirectory(Application.StartupPath + sl);
+                NLoad.ImagesfromDirectory(Application.StartupPath + sl , allimages);
             }
 
             //Ser base varibles
@@ -95,29 +95,6 @@ namespace Nilox2DGameEngine.Core
         //
         //
         #region Functions
-        public void LoadImagesfromDirectory(string directory0)
-        {
-
-            string dir = directory0;
-            foreach (string s in Directory.GetFiles(dir))
-            {
-                string ext = Path.GetExtension(s);
-                if (ext == ".png")
-                {
-                    string name = Path.GetFileName(s);
-
-                    Image tmp = Image.FromFile(s);
-                    Bitmap sprite = new Bitmap(tmp);
-
-                    BaseImage b = new BaseImage(name,s,sprite);
-                }
-                else
-                {
-                    Log.Error("File is not a PNG");
-                }
-            }
-        }
-
         public static void RegisterShape(Shape2D shape)
         {
             AllShapes.Add(shape);
