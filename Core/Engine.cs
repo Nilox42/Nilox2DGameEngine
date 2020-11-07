@@ -43,7 +43,7 @@ namespace Nilox2DGameEngine.Core
         public static List<Sprite2D> AllSprites = new List<Sprite2D>();
         public static List<BaseImage> allimages = new List<BaseImage>();
 
-        public string[] allcontentlocations = { @"\Content\Default\" , @"\Content\Overworld\Tiles\" , @"\Content\Overworld\Objects\" };
+        public string[] allcontentlocations = { @"\Content\Default\" , @"\Content\Overworld\Tiles\" , @"\Content\Overworld\Objects\" , @"\Content\Player\" };
 
         //Camera varibles
         public Vector2 CameraPostition = new Vector2(0, 0);

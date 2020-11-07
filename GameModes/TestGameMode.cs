@@ -94,6 +94,7 @@ namespace Nilox2DGameEngine
             if (e.KeyCode == Keys.S) { down = true; }
             if (e.KeyCode == Keys.D) { right = true; }
             if (e.KeyCode == Keys.A) { left = true; }
+            if (e.KeyCode == Keys.Space) {  }
         }
 
         public override void KeyUp(KeyEventArgs e)
@@ -102,6 +103,7 @@ namespace Nilox2DGameEngine
             if (e.KeyCode == Keys.S) { down = false; }
             if (e.KeyCode == Keys.D) { right = false; }
             if (e.KeyCode == Keys.A) { left = false; }
+            if (e.KeyCode == Keys.Space) {  }
         }
 
         public void LoadNewTile(Tile t)
@@ -125,7 +127,7 @@ namespace Nilox2DGameEngine
             }
 
             //Create the palyer Sprite2D 
-            player = new Sprite2D(spawnPosition, new Vector2(48, 48), "rocks1_7", "Player");
+            player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "Player");
             player.fetchimage();
         }
         /*
