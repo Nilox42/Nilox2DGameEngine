@@ -39,6 +39,11 @@ namespace Nilox2DGameEngine.Editor
         public Label lb_tilesize;
         private Button bt_saveto;
         public TextBox tb_saveto;
+        private TextBox textBox1;
+        private TextBox tb_tilename;
+        private Label lb_tilename;
+        private Button bt_settilesize;
+        private Button bt_settilename;
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         public Builder(LevelEditor LB0)
@@ -67,6 +72,11 @@ namespace Nilox2DGameEngine.Editor
             this.lb_tilesize = new System.Windows.Forms.Label();
             this.bt_saveto = new System.Windows.Forms.Button();
             this.tb_saveto = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_tilename = new System.Windows.Forms.TextBox();
+            this.lb_tilename = new System.Windows.Forms.Label();
+            this.bt_settilesize = new System.Windows.Forms.Button();
+            this.bt_settilename = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nud_index)).BeginInit();
             this.SuspendLayout();
             // 
@@ -197,14 +207,15 @@ namespace Nilox2DGameEngine.Editor
             // 
             // tb_name
             // 
-            this.tb_name.Location = new System.Drawing.Point(454, 374);
+            this.tb_name.Location = new System.Drawing.Point(306, 473);
             this.tb_name.Name = "tb_name";
-            this.tb_name.Size = new System.Drawing.Size(146, 20);
+            this.tb_name.Size = new System.Drawing.Size(134, 20);
             this.tb_name.TabIndex = 13;
+            this.tb_name.TextChanged += new System.EventHandler(this.tb_name_TextChanged);
             // 
             // bt_new
             // 
-            this.bt_new.Location = new System.Drawing.Point(745, 363);
+            this.bt_new.Location = new System.Drawing.Point(923, 363);
             this.bt_new.Name = "bt_new";
             this.bt_new.Size = new System.Drawing.Size(75, 40);
             this.bt_new.TabIndex = 14;
@@ -215,15 +226,15 @@ namespace Nilox2DGameEngine.Editor
             // lb_tilesize
             // 
             this.lb_tilesize.AutoSize = true;
-            this.lb_tilesize.Location = new System.Drawing.Point(494, 439);
+            this.lb_tilesize.Location = new System.Drawing.Point(507, 363);
             this.lb_tilesize.Name = "lb_tilesize";
-            this.lb_tilesize.Size = new System.Drawing.Size(35, 13);
+            this.lb_tilesize.Size = new System.Drawing.Size(62, 13);
             this.lb_tilesize.TabIndex = 15;
-            this.lb_tilesize.Text = "label1";
+            this.lb_tilesize.Text = "Tilesize: XX";
             // 
             // bt_saveto
             // 
-            this.bt_saveto.Location = new System.Drawing.Point(745, 409);
+            this.bt_saveto.Location = new System.Drawing.Point(923, 409);
             this.bt_saveto.Name = "bt_saveto";
             this.bt_saveto.Size = new System.Drawing.Size(75, 40);
             this.bt_saveto.TabIndex = 16;
@@ -233,14 +244,60 @@ namespace Nilox2DGameEngine.Editor
             // 
             // tb_saveto
             // 
-            this.tb_saveto.Location = new System.Drawing.Point(826, 420);
+            this.tb_saveto.Location = new System.Drawing.Point(1004, 420);
             this.tb_saveto.Name = "tb_saveto";
             this.tb_saveto.Size = new System.Drawing.Size(146, 20);
             this.tb_saveto.TabIndex = 17;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(624, 360);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(144, 20);
+            this.textBox1.TabIndex = 18;
+            // 
+            // tb_tilename
+            // 
+            this.tb_tilename.Location = new System.Drawing.Point(624, 387);
+            this.tb_tilename.Name = "tb_tilename";
+            this.tb_tilename.Size = new System.Drawing.Size(144, 20);
+            this.tb_tilename.TabIndex = 19;
+            // 
+            // lb_tilename
+            // 
+            this.lb_tilename.AutoSize = true;
+            this.lb_tilename.Location = new System.Drawing.Point(507, 390);
+            this.lb_tilename.Name = "lb_tilename";
+            this.lb_tilename.Size = new System.Drawing.Size(66, 13);
+            this.lb_tilename.TabIndex = 20;
+            this.lb_tilename.Text = "Tilename: \"\"";
+            // 
+            // bt_settilesize
+            // 
+            this.bt_settilesize.Location = new System.Drawing.Point(785, 360);
+            this.bt_settilesize.Name = "bt_settilesize";
+            this.bt_settilesize.Size = new System.Drawing.Size(75, 20);
+            this.bt_settilesize.TabIndex = 21;
+            this.bt_settilesize.Text = "Set";
+            this.bt_settilesize.UseVisualStyleBackColor = true;
+            // 
+            // bt_settilename
+            // 
+            this.bt_settilename.Location = new System.Drawing.Point(785, 387);
+            this.bt_settilename.Name = "bt_settilename";
+            this.bt_settilename.Size = new System.Drawing.Size(75, 20);
+            this.bt_settilename.TabIndex = 22;
+            this.bt_settilename.Text = "Set";
+            this.bt_settilename.UseVisualStyleBackColor = true;
+            // 
             // Builder
             // 
-            this.ClientSize = new System.Drawing.Size(984, 461);
+            this.ClientSize = new System.Drawing.Size(1162, 505);
+            this.Controls.Add(this.bt_settilename);
+            this.Controls.Add(this.bt_settilesize);
+            this.Controls.Add(this.lb_tilename);
+            this.Controls.Add(this.tb_tilename);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.tb_saveto);
             this.Controls.Add(this.bt_saveto);
             this.Controls.Add(this.lb_tilesize);
@@ -428,6 +485,11 @@ namespace Nilox2DGameEngine.Editor
         private void bt_saveto_Click(object sender, EventArgs e)
         {
             LB.savecurrent(tb_saveto.Text);
+        }
+
+        private void tb_name_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
     //
