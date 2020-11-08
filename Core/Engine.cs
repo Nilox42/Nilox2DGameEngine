@@ -167,6 +167,10 @@ namespace Nilox2DGameEngine.Core
             {
                 foreach (Sprite2D sprite in AllSprites)
                 {
+                    if (sprite.Po)
+                    {
+
+                    }
                     g.DrawImage(sprite.Sprite, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
                 }
             }
