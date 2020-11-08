@@ -31,7 +31,7 @@ namespace Nilox2DGameEngine.Core
         //Windwo varibles
         private Vector2 ScreenSize = Vector2.Zero();
         private string Title = "Error";
-        private Canvas Window = null;
+        public static Canvas Window = null;
         public Color BackgroundColor = Color.Gray;
 
         //Engine varibles
@@ -46,7 +46,7 @@ namespace Nilox2DGameEngine.Core
         public string[] allcontentlocations = { @"\Content\Default\" , @"\Content\Overworld\Tiles\" , @"\Content\Overworld\Objects\" , @"\Content\Player\" };
 
         //Camera varibles
-        public Vector2 CameraPostition = new Vector2(0, 0);
+        public static Vector2 CameraPostition = new Vector2(0, 0);
         public float CameraAngle = 0f;
 
         public Engine(Vector2 ScreenSize0, string Title)
@@ -167,11 +167,10 @@ namespace Nilox2DGameEngine.Core
             {
                 foreach (Sprite2D sprite in AllSprites)
                 {
-                    if (sprite.Po)
+                    if (sprite.isonScreen())
                     {
-
+                        g.DrawImage(sprite.Sprite, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
                     }
-                    g.DrawImage(sprite.Sprite, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
                 }
             }
             catch

@@ -127,6 +127,23 @@ namespace Nilox2DGameEngine.Core
             }
             return null;
         }
+
+        public bool isonScreen()
+        {
+            bool res = false;
+            Vector2 cp = Engine.CameraPostition;
+            Vector2 cs = new Vector2(Engine.Window.Width ,Engine.Window.Height);
+
+            if (this.Position.X < cp.X          + cs.X &&
+                this.Position.X + this.Scale.X  > cp.X &&
+                this.Position.Y < cp.Y          + cs.Y &&
+                this.Position.Y + this.Scale.Y  > cp.Y   )
+            {
+                res = true;
+            }
+
+            return res;
+        }
         #endregion
         //
         //
