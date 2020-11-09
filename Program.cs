@@ -15,14 +15,17 @@ namespace Nilox2DGameEngine
 {
     class Program
     {
+        //Import Dll´s to be able to Hide the Console
         [DllImport("kernel32.dll")]
         static extern IntPtr GetConsoleWindow();
 
         [DllImport("user32.dll")]
         static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
+
         static void Main(string[] args)
         {
+
             LevelEditor levelBuilder = null;
             TestGameMode test = null;
 
@@ -90,6 +93,8 @@ namespace Nilox2DGameEngine
             goto a;
             b:
             Console.WriteLine("END");
+
         }
+
     }
 }
