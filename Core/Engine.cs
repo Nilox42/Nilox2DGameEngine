@@ -13,7 +13,7 @@ namespace Nilox2DGameEngine.Core
 {
     #region Canvas
     //Custom Window to draw to 
-    class Canvas : Form
+    public class Canvas : Form
     {
         public Canvas()
         {
@@ -167,8 +167,13 @@ namespace Nilox2DGameEngine.Core
             {
                 foreach (Sprite2D sprite in AllSprites)
                 {
-                    if (sprite.isonScreen())
+                    //Check if Sprite is on screen and only draw it if it is
+                    if (sprite.Position.X < CameraPostition.X   + Window.Width      &&
+                        sprite.Position.X + sprite.Scale.X      > CameraPostition.X &&
+                        sprite.Position.Y < CameraPostition.Y   + Window.Height     &&
+                        sprite.Position.Y + sprite.Scale.Y      > CameraPostition.Y    )
                     {
+                        //Draw Sprite
                         g.DrawImage(sprite.Sprite, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
                     }
                 }
