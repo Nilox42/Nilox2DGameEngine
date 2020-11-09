@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nilox2DGameEngine.Editor;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,11 @@ namespace Nilox2DGameEngine.MainMenu
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

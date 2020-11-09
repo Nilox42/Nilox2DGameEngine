@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 
 using Nilox2DGameEngine.Editor;
 using Nilox2DGameEngine.Util;
+using Nilox2DGameEngine.MainMenu;
 
 namespace Nilox2DGameEngine
 {
@@ -24,6 +25,8 @@ namespace Nilox2DGameEngine
         {
             LevelEditor levelBuilder = null;
             TestGameMode test = null;
+
+            MainMenuForm MMF = null;
 
             var handle = GetConsoleWindow();
 
@@ -45,6 +48,17 @@ namespace Nilox2DGameEngine
 
             switch (Console.ReadLine())
             {
+                //Game
+                case "main":
+                    //ShowWindow(handle, SW_HIDE);
+                    MMF = new MainMenuForm();
+                    Application.Run(MMF);
+                    break;
+                case "0":
+                    //ShowWindow(handle, SW_HIDE);
+                    MMF = new MainMenuForm();
+                    Application.Run(MMF);
+                    break;
                 //Game
                 case "game":
                     //ShowWindow(handle, SW_HIDE);
