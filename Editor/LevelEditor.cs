@@ -211,7 +211,6 @@ namespace Nilox2DGameEngine.Editor
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(134, 20);
             this.tb_name.TabIndex = 13;
-            this.tb_name.TextChanged += new System.EventHandler(this.tb_name_TextChanged);
             // 
             // bt_new
             // 
@@ -486,11 +485,6 @@ namespace Nilox2DGameEngine.Editor
         {
             LB.savecurrent(tb_saveto.Text);
         }
-
-        private void tb_name_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
     //
 
@@ -502,7 +496,7 @@ namespace Nilox2DGameEngine.Editor
     public class LevelEditor 
     {
         #region Init Builder
-        private Vector2 ScreenSize = new Vector2(1025, 500);
+        private Vector2 ScreenSize = new Vector2(1178, 544);
         private string title = "Level Builder - ";
         public Builder Window = null;
 
@@ -608,7 +602,7 @@ namespace Nilox2DGameEngine.Editor
             allSprite2Ds.ElementAt(0).setSelected(true);
         }
 
-        public void NewLoadNewTile(Tile t)
+        public void NewLoadNewTile(Tile t , int selected = 0)
         {
             allSprite2Ds.Clear();
             Log.Info("[LOADING] - [Tile]:" + t.name);
@@ -624,7 +618,7 @@ namespace Nilox2DGameEngine.Editor
             }
             Window.lb_tilesize.Text = "Tilesize:" + t.TileSize;
 
-            allSprite2Ds.ElementAt(0).setSelected(true);
+            allSprite2Ds.ElementAt(selected).setSelected(true);
             Window.Refresh();
         }
 
@@ -743,7 +737,7 @@ namespace Nilox2DGameEngine.Editor
             if (exists == true)
             {
                 allTiles.ElementAt(selectedtile).Map[(int)location.Y, (int)location.X] = Window.tb_name.Text;
-                NewLoadNewTile(allTiles.ElementAt(selectedtile));
+                NewLoadNewTile(allTiles.ElementAt(selectedtile), selectedindex);
 
                 Log.Warning("Sprite at:   X:" + selectedVector.X + "  Y" + selectedVector.Y + "   swaped for:" + name);
                 Window.Refresh();
