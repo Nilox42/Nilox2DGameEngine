@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using Nilox2DGameEngine.Editor;
 using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.MainMenu;
+using Nilox2DGameEngine.Core;
 
 namespace Nilox2DGameEngine
 {
@@ -25,75 +26,32 @@ namespace Nilox2DGameEngine
 
         static void Main(string[] args)
         {
-
-            LevelEditor levelBuilder = null;
-            TestGameMode test = null;
-
-            MainMenuForm MMF = null;
-
+            #region Console Visibility
             var handle = GetConsoleWindow();
 
-           //const int SW_HIDE = 0;
+            const int SW_HIDE = 0;
             const int SW_SHOW = 5;
 
-        a:
             ShowWindow(handle,SW_SHOW);
+            #endregion
 
-            if (test != null)
+            Controller ctr = new Controller();
+
+            while (ctr != null)
             {
-                test = null;
+                string s = Console.ReadLine();
+                if(s != "" && s.Length < 7)
+                {
+                    ctr.executeCommand(s);
+                }
+                else
+                {
+                    Log.Error("[CONSOLE]  -  Line Empty or to long to be a command");
+                    Console.Beep();
+                }
             }
 
-            if (levelBuilder != null)
-            {
-                levelBuilder = null;
-            }
-
-            switch (Console.ReadLine())
-            {
-                //Game
-                case "main":
-                    //ShowWindow(handle, SW_HIDE);
-                    MMF = new MainMenuForm();
-                    Application.Run(MMF);
-                    break;
-                case "0":
-                    //ShowWindow(handle, SW_HIDE);
-                    MMF = new MainMenuForm();
-                    Application.Run(MMF);
-                    break;
-                //Game
-                case "game":
-                    //ShowWindow(handle, SW_HIDE);
-                    test = new TestGameMode();
-                    break;
-                case "1":
-                    //ShowWindow(handle, SW_HIDE);
-                    test = new TestGameMode();
-                    break;
-                //Editor
-                case "editor":
-                    //ShowWindow(handle, SW_HIDE);
-                    levelBuilder = new LevelEditor();
-                    break;
-                case "2":
-                    //ShowWindow(handle, SW_HIDE);
-                    levelBuilder = new LevelEditor();
-                    break;
-                //Stop
-                case "stop":
-                    goto b;
-                //Error
-                default:
-                    Log.Error("[COMMAND] Command not found!!");
-                    //ShowWindow(handle, SW_SHOW);
-                    break;
-            }
-    
-            goto a;
-            b:
             Console.WriteLine("END");
-
         }
 
     }
