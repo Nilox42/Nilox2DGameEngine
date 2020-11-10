@@ -8,5 +8,11 @@ namespace Nilox2DGameEngine.Core
 {
     class Controller
     {
+
+        public Controler()
+        {
+
+        }
+
     }
 }
