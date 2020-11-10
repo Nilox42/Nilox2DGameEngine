@@ -9,10 +9,11 @@ using System.Windows.Forms;
 
 using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.MainMenu;
+using System.Threading;
 
 namespace Nilox2DGameEngine.Core
 {
-    class Controller
+    public class Controller
     {
         LevelEditor levelEditor = null;
         TestGameMode GM = null;
@@ -33,31 +34,29 @@ namespace Nilox2DGameEngine.Core
             {
                 //Game
                 case "main":
-                    //ShowWindow(handle, SW_HIDE);
-                    MMF = new MainMenuForm();
-                    Application.Run(MMF);
+                    MMF = new MainMenuForm(this);
+                    Thread TMMF= new Thread( OpenMaiMenu());
                     break;
                 case "0":
-                    //ShowWindow(handle, SW_HIDE);
-                    MMF = new MainMenuForm();
-                    Application.Run(MMF);
+                    MMF = new MainMenuForm(this);
+                    MMF.Show();
                     break;
                 //Game
                 case "game":
-                    //ShowWindow(handle, SW_HIDE);
+                    MMF.Close();
+                    MMF.Dispose();
                     GM = new TestGameMode();
                     break;
                 case "1":
-                    //ShowWindow(handle, SW_HIDE);
+                    MMF.Close();
+                    MMF.Dispose();
                     GM = new TestGameMode();
                     break;
                 //Editor
                 case "editor":
-                    //ShowWindow(handle, SW_HIDE);
                     levelEditor = new LevelEditor();
                     break;
                 case "2":
-                    //ShowWindow(handle, SW_HIDE);
                     levelEditor = new LevelEditor();
                     break;
                 //Stop
@@ -67,8 +66,15 @@ namespace Nilox2DGameEngine.Core
                 //Error
                 default:
                     Log.Error("[COMMAND] Command not found!!");
-                    //ShowWindow(handle, SW_SHOW);
                     break;
+            }
+        }
+
+
+        void TMMF()
+        {
+            while (TMMF.IsAlive)
+            {
             }
         }
     }
