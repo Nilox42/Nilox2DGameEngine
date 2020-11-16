@@ -329,7 +329,7 @@ namespace Nilox2DGameEngine.Editor
             foreach (Sprite2D b0 in LB.allSprite2Ds)
             {
                 Vector2 a = new Vector2(Cursor.Position.X - DesktopLocation.X, Cursor.Position.Y - DesktopLocation.Y);
-                Vector2 b = new Vector2(b0.Position.X, b0.Position.Y + 15);
+                Vector2 b = new Vector2(b0.position.X, b0.position.Y + 15);
 
                 if (    a.X < b.X   + 48    &&
                         a.X + 0     > b.X   &&
@@ -559,7 +559,7 @@ namespace Nilox2DGameEngine.Editor
             {
                 try
                 {
-                    g.DrawImage(sprite.Sprite, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
+                    g.DrawImage(sprite.sprite, sprite.position.X, sprite.position.Y, sprite.scale.X, sprite.scale.Y);
                 }
                 catch
                 {
@@ -771,7 +771,7 @@ namespace Nilox2DGameEngine.Editor
                     Image tmp = Image.FromFile(s);
                     Bitmap sprite = new Bitmap(tmp);
 
-                    BaseImage b = new BaseImage(name, s, sprite);
+                    BaseImage b = new BaseImage(name,"", s, sprite);
 
                     allimages.Add(b);
                 }

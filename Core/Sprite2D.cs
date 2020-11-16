@@ -14,10 +14,10 @@ namespace Nilox2DGameEngine.Core
     public class Sprite2D
     {
         #region Init
-        public Vector2 Position = null;
-        public Vector2 Scale = null;
-        public string Tag = "";
-        public Bitmap Sprite = null;
+        public Vector2 position = null;
+        public Vector2 scale = null;
+        public string tag = "";
+        public Bitmap sprite = null;
 
         private LevelEditor LB = null;
         public string name = string.Empty;
@@ -26,10 +26,10 @@ namespace Nilox2DGameEngine.Core
 
         public Sprite2D(Vector2 Postition0, Vector2 Scale0, string name0 , string Tag0 , bool isleveleditor0 = false , LevelEditor LB = null)
         {
-            this.Position = Postition0;
-            this.Scale = Scale0;
+            this.position = Postition0;
+            this.scale = Scale0;
             this.name = name0;
-            this.Tag = Tag0;
+            this.tag = Tag0;
             this.isleveleditor = isleveleditor0;
             this.LB = LB;
 
@@ -39,7 +39,7 @@ namespace Nilox2DGameEngine.Core
         {
             if (isleveleditor == false)
             {
-                Log.Info($"[SPRITE2D]({name} @  X:{Position.X}  Y:{Position.Y}) - Has been destroyed!");
+                Log.Info($"[SPRITE2D]({name} @  X:{position.X}  Y:{position.Y}) - Has been destroyed!");
                 Engine.UnRegisterSprite(this);
             }
             else
@@ -57,17 +57,18 @@ namespace Nilox2DGameEngine.Core
                 {
                     if (bi.name == this.name)
                     {
-                        this.Sprite = bi.image;
+                        this.sprite = bi.image;
+                        this.tag = bi.tag;
                         break;
                     }
                 }
-                if (this.Sprite == null)
+                if (this.sprite == null)
                 {
                     Log.Error("[SPRITE2D  -  E]  -  Imige NAME:" + name + "  could not be found!!");
                     DestroySelf();
                 }
 
-                Log.Info($"[SPRITE2D]({name} +  X:{Position.X}  +  Y:{Position.Y} ) - Has been registered!");
+                Log.Info($"[SPRITE2D]({name} +  X:{position.X}  +  Y:{position.Y} ) - Has been registered!");
                 Engine.RegisterSprite(this);
             }
 
@@ -78,7 +79,7 @@ namespace Nilox2DGameEngine.Core
                 {
                     if (bi.name == this.name)
                     {
-                        this.Sprite = bi.image;
+                        this.sprite = bi.image;
                         break;
                     }
                     else
@@ -96,10 +97,10 @@ namespace Nilox2DGameEngine.Core
         {
             if (isleveleditor == false)
             {
-                if (a.Position.X < b.Position.X + b.Scale.X &&
-                    a.Position.X + b.Scale.X > b.Position.X &&
-                    a.Position.Y < b.Position.Y + b.Scale.Y &&
-                    a.Position.Y + b.Scale.Y > b.Position.Y)
+                if (a.position.X < b.position.X + b.scale.X &&
+                    a.position.X + b.scale.X > b.position.X &&
+                    a.position.Y < b.position.Y + b.scale.Y &&
+                    a.position.Y + b.scale.Y > b.position.Y)
                 {
                     return true;
                 }
@@ -113,12 +114,12 @@ namespace Nilox2DGameEngine.Core
             {
                 foreach (Sprite2D s in Engine.AllSprites)
                 {
-                    if (s.Tag == tag)
+                    if (s.tag == tag)
                     {
-                        if (this.Position.X < s.Position.X + s.Scale.X &&
-                            this.Position.X + this.Scale.X > s.Position.X &&
-                            this.Position.Y < s.Position.Y + s.Scale.Y &&
-                            this.Position.Y + this.Scale.Y > s.Position.Y)
+                        if (this.position.X < s.position.X + s.scale.X &&
+                            this.position.X + this.scale.X > s.position.X &&
+                            this.position.Y < s.position.Y + s.scale.Y &&
+                            this.position.Y + this.scale.Y > s.position.Y)
                         {
                             return s;
                         }
@@ -134,10 +135,10 @@ namespace Nilox2DGameEngine.Core
             Vector2 cp = Engine.CameraPostition;
             Vector2 cs = new Vector2(Engine.Window.Width ,Engine.Window.Height);
 
-            if (this.Position.X < cp.X          + cs.X &&
-                this.Position.X + this.Scale.X  > cp.X &&
-                this.Position.Y < cp.Y          + cs.Y &&
-                this.Position.Y + this.Scale.Y  > cp.Y   )
+            if (this.position.X < cp.X          + cs.X &&
+                this.position.X + this.scale.X  > cp.X &&
+                this.position.Y < cp.Y          + cs.Y &&
+                this.position.Y + this.scale.Y  > cp.Y   )
             {
                 res = true;
             }
@@ -155,7 +156,7 @@ namespace Nilox2DGameEngine.Core
             {
                 Image tmp = Image.FromFile("Content/Default/tile60.png");
                 Bitmap sprite = new Bitmap(tmp);
-                Sprite = sprite;
+                this.sprite = sprite;
             }
             else
             {

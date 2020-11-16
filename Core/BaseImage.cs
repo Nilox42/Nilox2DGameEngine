@@ -12,25 +12,29 @@ namespace Nilox2DGameEngine.Core
     {
         public string url = string.Empty;
         public string name = string.Empty;
+        public string tag = string.Empty;
 
         public Bitmap image = null;
 
-        public BaseImage(string name0 , string url0 , Bitmap image0 , bool isleveleditor = false)
+        public BaseImage(string name0 , string tag0  , string url0 , Bitmap image0 , bool isleveleditor = false)
         {
             name = name0;
             url = url0;
             image = image0;
+            tag = tag0;
+
+            if (tag == "")
+            {
+                tag = "________";
+            }
 
             if (isleveleditor == false)
             {
                 Engine.RegisterImage(this);
             }
-            else
-            {
+            
 
-            }
-
-            Log.Load("[BASEIMAGE]  {" + name + "} loaded from [" + url + "]");
+            Log.Load("[BASEIMAGE]  {" + name + "}   {" + tag + "} loaded from [" + url + "]");
         }
     }
 }

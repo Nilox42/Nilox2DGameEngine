@@ -23,7 +23,7 @@ namespace Nilox2DGameEngine.Core
 
         public Controller()
         {
-            executeCommand("0");
+           
         }
 
 
@@ -34,22 +34,18 @@ namespace Nilox2DGameEngine.Core
             {
                 //Game
                 case "main":
-                    MMF = new MainMenuForm(this);
-                    Thread TMMF= new Thread( OpenMaiMenu());
+                    
                     break;
                 case "0":
-                    MMF = new MainMenuForm(this);
-                    MMF.Show();
+                   
                     break;
                 //Game
                 case "game":
-                    MMF.Close();
-                    MMF.Dispose();
+                    
                     GM = new TestGameMode();
                     break;
                 case "1":
-                    MMF.Close();
-                    MMF.Dispose();
+                    
                     GM = new TestGameMode();
                     break;
                 //Editor
@@ -70,12 +66,5 @@ namespace Nilox2DGameEngine.Core
             }
         }
 
-
-        void TMMF()
-        {
-            while (TMMF.IsAlive)
-            {
-            }
-        }
     }
 }

@@ -51,12 +51,21 @@ namespace Nilox2DGameEngine.Util
                 string ext = Path.GetExtension(s);
                 if (ext == ".png")
                 {
-                    string name = Path.GetFileNameWithoutExtension(s);
+                    string name0 = Path.GetFileNameWithoutExtension(s);
+                    string[] name00 = name0.Split('§');
+
+                    string name = name00[0];
+
+                    string tag = "";
+                    if (name00.Length == 2)
+                    {
+                        tag = name00[1];
+                    }
 
                     Image tmp = Image.FromFile(s);
                     Bitmap sprite = new Bitmap(tmp);
 
-                    BaseImage b = new BaseImage(name, s, sprite);
+                    BaseImage b = new BaseImage(name, tag, s, sprite);
 
                     baseImages.Add(b);
                 }
