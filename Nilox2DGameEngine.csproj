@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character\Enemy.cs" />
+    <Compile Include="Character\Projectile.cs" />
     <Compile Include="Core\Controller.cs" />
     <Compile Include="Core\Engine.cs">
       <SubType>Form</SubType>

@@ -108,6 +108,7 @@ namespace Nilox2DGameEngine
 
         public void LoadNewTile(Tile t)
         {
+            //Map
             Log.Info("[LOADING]:" + t.name);
             for (int i = 0; i < t.Map.GetLength(0); i++)
             {
@@ -126,7 +127,10 @@ namespace Nilox2DGameEngine
                 }
             }
 
-            //Create the palyer Sprite2D 
+            //Enemys
+
+
+            //Player 
             player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "Player");
             player.fetchimage();
         }

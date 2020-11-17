@@ -8,33 +8,27 @@ using Nilox2DGameEngine.Util;
 
 namespace Nilox2DGameEngine.Character
 {
-    interface DamageInterface
+    class Projectile
     {
-        void TakeDamage(int damage0);
-    }
-
-
-    public class Enemy:DamageInterface
-    {
-        Sprite2D sprite = null;
+        Sprite2D sprite;
         Vector2 location = Vector2.Zero();
 
-        double health = 100;
+        Vector2 direction = Vector2.Zero();
+        int speed = 0;
 
-        public Enemy(Sprite2D sprite0 , Vector2 location0)
+        public Projectile(Sprite2D sprite0, Vector2 location0 , Vector2 direction0 , int speed0) 
         {
             sprite = sprite0;
             location = location0;
+            direction = direction0;
+            speed = speed0;
         }
 
-        public void TakeDamage(int damage0)
-        {
-            health = health - damage0;
-        }
-        
         public void move()
         {
-
+            Vector2 tomove = direction * speed; 
         }
+
+
     }
 }

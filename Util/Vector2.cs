@@ -14,42 +14,6 @@ namespace Nilox2DGameEngine.Util
 
         public float Y { get; set; }
 
-        #region Operatoren
-        public static Vector2 operator + (Vector2 v1, Vector2 v2)
-        {
-            return new Vector2(
-               v1.X + v2.X,
-               v1.Y + v2.Y);
-        }
-
-        public static Vector2 operator - (Vector2 v1, Vector2 v2)
-        {
-            return new Vector2(
-               v1.X + v2.X,
-               v1.Y + v2.Y);
-        }
-
-        public static bool operator < (Vector2 v1, Vector2 v2)
-        {
-            bool res = false;
-            if (v1.X < v2.X && v1.Y < v2.Y)
-            {
-                res = true;
-            }
-            return res;
-        }
-
-        public static bool operator > (Vector2 v1, Vector2 v2)
-        {
-            bool res = false;
-            if (v1.X > v2.X && v1.Y > v2.Y)
-            {
-                res = true;
-            }
-            return res;
-        }
-
-        #endregion
         public Vector2()
         {
             X = Zero().X;
@@ -66,5 +30,65 @@ namespace Nilox2DGameEngine.Util
         {
             return new Vector2(0,0);
         }
+
+
+        #region Operatoren
+        public static Vector2 operator +(Vector2 v1, Vector2 v2)
+        {
+            return new Vector2(
+               v1.X + v2.X,
+               v1.Y + v2.Y);
+        }
+
+        public static Vector2 operator -(Vector2 v1, Vector2 v2)
+        {
+            return new Vector2(
+               v1.X + v2.X,
+               v1.Y + v2.Y);
+        }
+
+        public static bool operator <(Vector2 v1, Vector2 v2)
+        {
+            bool res = false;
+            if (v1.X < v2.X && v1.Y < v2.Y)
+            {
+                res = true;
+            }
+            return res;
+        }
+
+        public static bool operator >(Vector2 v1, Vector2 v2)
+        {
+            bool res = false;
+            if (v1.X > v2.X && v1.Y > v2.Y)
+            {
+                res = true;
+            }
+            return res;
+        }
+
+        public static Vector2 operator *(Vector2 v1, Vector2 v2)
+        {
+            return new Vector2(
+               v1.X * v2.X,
+               v1.Y * v2.Y);
+
+        }
+        public static Vector2 operator *(Vector2 v1, int i)
+        {
+            return new Vector2(
+               v1.X * i,
+               v1.Y * i);
+
+        }
+
+        public static Vector2 operator /(Vector2 v1, Vector2 v2)
+        {
+            return new Vector2(
+               v1.X / v2.X,
+               v1.Y / v2.Y);
+
+        }
+        #endregion
     }
 }
