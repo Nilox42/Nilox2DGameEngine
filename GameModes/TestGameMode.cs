@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Nilox2DGameEngine.Map;
 using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.Core;
+using Nilox2DGameEngine.Character;
 
 namespace Nilox2DGameEngine
 {
@@ -26,6 +27,12 @@ namespace Nilox2DGameEngine
         private float maxspeed = 3;
         private Vector2 lastPos = Vector2.Zero();
         public Vector2 spawnPosition = new Vector2(50, 48 * 4);
+
+
+        public List<Enemy> enemies = new List<Enemy>();
+
+
+        int aitick = 0;
 
         public TestGameMode() : base(new Vector2(735,330), "Engine Demo") { }
         #endregion
@@ -47,33 +54,34 @@ namespace Nilox2DGameEngine
 
         public override void OnUpdate()
         {
+            //input
             if (up)
             {
-                player.position.Y -= maxspeed;
+                player.location.Y -= maxspeed;
             }
             if (down)
             {
-                player.position.Y += maxspeed;
+                player.location.Y += maxspeed;
             }
             if (left)
             {
-                player.position.X -= maxspeed;
+                player.location.X -= maxspeed;
             }
             if (right)
             {
-                player.position.X += maxspeed;
+                player.location.X += maxspeed;
             }
 
             //Collosion
             if (player.IsCollidingWithTag("collider") != null)
             {
-                player.position.X = lastPos.X;
-                player.position.Y = lastPos.Y;
+                player.location.X = lastPos.X;
+                player.location.Y = lastPos.Y;
             }
             else
             {
-                lastPos.X = player.position.X;
-                lastPos.Y = player.position.Y;
+                lastPos.X = player.location.X;
+                lastPos.Y = player.location.Y;
             }
 
             //Map Movement
@@ -86,6 +94,19 @@ namespace Nilox2DGameEngine
                 currentLevel.moveLeft();
             }
 
+            //Enemy Movement
+            if (aitick > 2)
+            {
+                foreach (Enemy e in enemies)
+                {
+                    e.move(player.location);
+                }
+                aitick = 0;
+            }
+            else
+            {
+                aitick++;
+            }
         }
 
         public override void KeyDown(KeyEventArgs e)
@@ -127,46 +148,13 @@ namespace Nilox2DGameEngine
                 }
             }
 
-            //Enemys
-
+            spawnenemie(new Vector2(200,200));
 
             //Player 
             player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "Player");
             player.fetchimage();
+
         }
-        /*
-        public void OLDLoadNewTile(Tile t)
-        {
-            Log.Info("[LOADING]:" + t.name);
-            for (int i = 0; i < t.Map.GetLength(0); i++)
-            {
-                for (int j = 0; j < t.Map.GetLength(1); j++)
-                {
-                    if (t.Map[j, i] == "g")
-                    {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/o_tile22", "Collider");
-                    }
-                    if (t.Map[j, i] == "w")
-                    {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/o_tile53", "Collider");
-                    }
-                    if (t.Map[j, i] == "s")
-                    {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/o_tile12", "BackGround");
-                    }
-                    if (t.Map[j, i] == "dr")
-                    {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Default/tile60", "DoorRight");
-                    }
-                    if (t.Map[j, i] == "dl")
-                    {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Default/tile60", "DoorLeft");
-                    }
-                }
-            }
-            player = new Sprite2D(spawnPosition, new Vector2(48, 48), "Overworld/Objects/rocks1_7", "Player");
-        }
-        */
 
         public void UnloadCurrentTile()
         {
@@ -181,7 +169,14 @@ namespace Nilox2DGameEngine
         #endregion
 
 
-
+        public void spawnenemie(Vector2 location)
+        {
+            Sprite2D s = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "");
+            s.fetchimage();
+        
+            Enemy e = new Enemy(s,location);
+            enemies.Add(e);
+        }
 
 
 

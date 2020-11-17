@@ -48,29 +48,29 @@ namespace Nilox2DGameEngine.Core
         {
             if (up)
             {
-                player.position.Y -= maxspeed;
+                player.location.Y -= maxspeed;
             }
             if (down)
             {
-                player.position.Y += maxspeed;
+                player.location.Y += maxspeed;
             }
             if (left)
             {
-                player.position.X -= maxspeed;
+                player.location.X -= maxspeed;
             }
             if (right)
             {
-                player.position.X += maxspeed;
+                player.location.X += maxspeed;
             }
             if (player.IsCollidingWithTag("Collider") != null)
             {
-                player.position.X = lastPos.X;
-                player.position.Y = lastPos.Y;
+                player.location.X = lastPos.X;
+                player.location.Y = lastPos.Y;
             }
             else
             {
-                lastPos.X = player.position.X;
-                lastPos.Y = player.position.Y;
+                lastPos.X = player.location.X;
+                lastPos.Y = player.location.Y;
             }
         }
 
