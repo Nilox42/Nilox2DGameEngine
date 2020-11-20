@@ -41,6 +41,8 @@ namespace Nilox2DGameEngine.Core
         //Engine lists
         public static List<Shape2D> AllShapes = new List<Shape2D>();
         public static List<Sprite2D> AllSprites = new List<Sprite2D>();
+        List<Sprite2D> AllSprites1 = new List<Sprite2D>();
+
         public static List<BaseImage> allimages = new List<BaseImage>();
 
         public string[] allcontentlocations = { @"\Content\Default\" , @"\Content\Overworld\Tiles\" , @"\Content\Overworld\Objects\" , @"\Content\Player\" };
@@ -162,25 +164,32 @@ namespace Nilox2DGameEngine.Core
                 g.FillRectangle(new SolidBrush(Color.Red), shape.Position.X, shape.Position.Y, shape.Scale.X, shape.Scale.Y);
             }
 
-            //Try because Memorie Leek i think
+
             try
             {
                 foreach (Sprite2D sprite in AllSprites)
                 {
                     //Check if Sprite is on screen and only draw it if it is
-                    if (sprite.location.X < CameraPostition.X   + Window.Width      &&
-                        sprite.location.X + sprite.scale.X      > CameraPostition.X &&
-                        sprite.location.Y < CameraPostition.Y   + Window.Height     &&
-                        sprite.location.Y + sprite.scale.Y      > CameraPostition.Y    )
+                    if (sprite.location.X < CameraPostition.X + Window.Width &&
+                        sprite.location.X + sprite.scale.X > CameraPostition.X &&
+                        sprite.location.Y < CameraPostition.Y + Window.Height &&
+                        sprite.location.Y + sprite.scale.Y > CameraPostition.Y)
                     {
-                        //Draw Sprite
-                        g.DrawImage(sprite.sprite, sprite.location.X, sprite.location.Y, sprite.scale.X, sprite.scale.Y);
+                        try
+                        {
+                            //Draw Sprite
+                            g.DrawImage(sprite.sprite, sprite.location.X, sprite.location.Y, sprite.scale.X, sprite.scale.Y);
+                        }
+                        catch
+                        {
+                            Log.Error("Failed to Draw sprite:" + sprite.name + "    " + sprite.location.ToString());
+                        }
                     }
                 }
             }
             catch
             {
-                Log.Error("[ENGINE][RENDERER] Faield to draw AllSprites in Frame [F:" + FrameCount.ToString() + "]");
+                Log.Error("Could not draw " + FrameCount);
             }
 
             ++FrameCount;

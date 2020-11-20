@@ -30,6 +30,7 @@ namespace Nilox2DGameEngine
 
 
         public List<Enemy> enemies = new List<Enemy>();
+        public List<Projectile> projectiles = new List<Projectile>();
 
 
         int aitick = 0;
@@ -94,19 +95,32 @@ namespace Nilox2DGameEngine
                 currentLevel.moveLeft();
             }
 
-            //Enemy Movement
+            //AI Movement
             if (aitick > 2)
             {
+                //Enemy Movement
                 foreach (Enemy e in enemies)
                 {
-                    e.move(player.location);
+                    e.move(new Vector2(200,200));
                 }
+
+
+                //ProjectileMovement
+                foreach (Projectile p in projectiles)
+                {
+                    p.move();
+                }
+
+
                 aitick = 0;
             }
             else
             {
                 aitick++;
             }
+
+            
+
         }
 
         public override void KeyDown(KeyEventArgs e)
@@ -174,11 +188,18 @@ namespace Nilox2DGameEngine
             Sprite2D s = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "");
             s.fetchimage();
         
-            Enemy e = new Enemy(s,location);
+            Enemy e = new Enemy(s,location,this);
             enemies.Add(e);
         }
 
+        public void spawnProjectile(Vector2 location)
+        {
+            Sprite2D s = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "");
+            s.fetchimage();
 
+            Projectile p = new Projectile(s, location, new Vector2(1,0) , 2) ;
+            projectiles.Add(p);
+        }
 
 
     }

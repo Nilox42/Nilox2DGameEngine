@@ -16,6 +16,10 @@ namespace Nilox2DGameEngine.Character
 
     public class Enemy:DamageInterface
     {
+        int index = 0;
+
+        TestGameMode tgm = null;
+
         Sprite2D sprite = null;
         Vector2 location = Vector2.Zero();
 
@@ -25,10 +29,11 @@ namespace Nilox2DGameEngine.Character
 
         Vector2 playerlocation = Vector2.Zero();
 
-        public Enemy(Sprite2D sprite0 , Vector2 location0)
+        public Enemy(Sprite2D sprite0 , Vector2 location0 , TestGameMode GM)
         {
             sprite = sprite0;
             location = location0;
+            tgm = GM;
         }
 
         private void updatesprite()
@@ -46,18 +51,22 @@ namespace Nilox2DGameEngine.Character
         
         public void move(Vector2 playerlocation0)
         {
-            playerlocation = playerlocation0;
-
-            Vector2 dir = playerlocation - location ;
-            dir = Vector2.Normalize(dir);
-
-            velocity = dir;
-
-            location = location + velocity;
+            location = location + 0.01;
 
             updatesprite();
 
-            Log.Normal(dir.ToString());
+            Shoot();
+        }
+
+
+        public void Shoot()
+        {
+            if (index > 120)
+            {
+                tgm.spawnProjectile(location);
+                index = 0;
+            }
+            index++;
         }
     }
 }

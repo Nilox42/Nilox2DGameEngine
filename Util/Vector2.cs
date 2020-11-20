@@ -85,6 +85,12 @@ namespace Nilox2DGameEngine.Util
                v1.X + v2.X,
                v1.Y + v2.Y);
         }
+        public static Vector2 operator + (Vector2 v1, double d)
+        {
+            return new Vector2(
+               v1.X + (float)d,
+               v1.Y + (float)d);
+        }
 
         public static Vector2 operator - (Vector2 v1, Vector2 v2)
         {

@@ -8,7 +8,7 @@ using Nilox2DGameEngine.Util;
 
 namespace Nilox2DGameEngine.Character
 {
-    class Projectile
+    public class Projectile
     {
         Sprite2D sprite;
         Vector2 location = Vector2.Zero();
@@ -23,10 +23,17 @@ namespace Nilox2DGameEngine.Character
             direction = direction0;
             speed = speed0;
         }
+        private void updatesprite()
+        {
+            sprite.location = location;
+        }
 
         public void move()
         {
-            Vector2 tomove = direction * speed; 
+            Vector2 tomove = direction * speed;
+            location = location + tomove;
+
+            updatesprite();
         }
 
 
