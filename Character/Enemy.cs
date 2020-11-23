@@ -27,7 +27,7 @@ namespace Nilox2DGameEngine.Character
 
         Vector2 velocity = new Vector2(2,2);
 
-        Vector2 playerlocation = Vector2.Zero();
+        //Vector2 playerlocation = Vector2.Zero();
 
         public Enemy(Sprite2D sprite0 , Vector2 location0 , TestGameMode GM)
         {
@@ -51,11 +51,15 @@ namespace Nilox2DGameEngine.Character
         
         public void move(Vector2 playerlocation0)
         {
-            location = location + 0.01;
+            /*
+            float y = Vector2.steigung(location, playerlocation0);
+            location = new Vector2(playerlocation0.X, y);
+            */
+
+            Vector2 place = location - playerlocation0;
+            location = location + place / -30;
 
             updatesprite();
-
-            Shoot();
         }
 
 

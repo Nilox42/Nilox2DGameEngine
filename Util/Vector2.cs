@@ -71,6 +71,23 @@ namespace Nilox2DGameEngine.Util
             return v;
         }
 
+        public static float steigung(Vector2 posEnemy, Vector2 posPlayer)
+        {
+            float deltaX = posEnemy.X - posPlayer.X;
+            float deltaY = posEnemy.Y - posPlayer.X;
+
+            if (deltaX <= 0)
+            {
+                deltaX = ((deltaX * deltaX) / deltaX);
+            }
+            if (deltaY <= 0)
+            {
+                deltaY = ((deltaY * deltaY) / deltaY);
+            }
+
+            return deltaY / deltaX;
+        }
+
         public override string ToString()
         {
             string s = "X:" + X + "Y:" + Y;

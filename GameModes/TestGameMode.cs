@@ -101,7 +101,7 @@ namespace Nilox2DGameEngine
                 //Enemy Movement
                 foreach (Enemy e in enemies)
                 {
-                    e.move(new Vector2(200,200));
+                    e.move(player.location);
                 }
 
 
@@ -162,11 +162,12 @@ namespace Nilox2DGameEngine
                 }
             }
 
-            spawnenemie(new Vector2(200,200));
 
             //Player 
             player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "Player");
             player.fetchimage();
+
+            spawnenemie(new Vector2(200, 200));
 
         }
 
