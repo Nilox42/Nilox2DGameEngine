@@ -15,9 +15,38 @@ namespace Nilox2DGameEngine.Core
     //Custom Window to draw to 
     public class Canvas : Form
     {
+        public ProgressBar pb_healthbar;
+
         public Canvas()
         {
             this.DoubleBuffered = true;
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            this.pb_healthbar = new System.Windows.Forms.ProgressBar();
+            this.SuspendLayout();
+            // 
+            // pb_healthbar
+            // 
+            this.pb_healthbar.BackColor = System.Drawing.Color.White;
+            this.pb_healthbar.ForeColor = System.Drawing.Color.Transparent;
+            this.pb_healthbar.Location = new System.Drawing.Point(12, 12);
+            this.pb_healthbar.Name = "pb_healthbar";
+            this.pb_healthbar.Size = new System.Drawing.Size(163, 23);
+            this.pb_healthbar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.pb_healthbar.TabIndex = 0;
+            this.pb_healthbar.Value = 90;
+            // 
+            // Canvas
+            // 
+            this.ClientSize = new System.Drawing.Size(834, 441);
+            this.Controls.Add(this.pb_healthbar);
+            this.Name = "Canvas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.ResumeLayout(false);
+
         }
     }
     #endregion

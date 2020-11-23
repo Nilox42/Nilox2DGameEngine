@@ -44,6 +44,7 @@ namespace Nilox2DGameEngine.Editor
         private Label lb_tilename;
         private Button bt_settilesize;
         private Button bt_settilename;
+        public PictureBox pb_selector;
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         public Builder(LevelEditor LB0)
@@ -54,6 +55,7 @@ namespace Nilox2DGameEngine.Editor
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Builder));
             this.bt_LoadLevel = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.FD = new System.Windows.Forms.FolderBrowserDialog();
@@ -77,7 +79,9 @@ namespace Nilox2DGameEngine.Editor
             this.lb_tilename = new System.Windows.Forms.Label();
             this.bt_settilesize = new System.Windows.Forms.Button();
             this.bt_settilename = new System.Windows.Forms.Button();
+            this.pb_selector = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.nud_index)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).BeginInit();
             this.SuspendLayout();
             // 
             // bt_LoadLevel
@@ -289,9 +293,20 @@ namespace Nilox2DGameEngine.Editor
             this.bt_settilename.Text = "Set";
             this.bt_settilename.UseVisualStyleBackColor = true;
             // 
+            // pb_selector
+            // 
+            this.pb_selector.BackColor = System.Drawing.Color.Transparent;
+            this.pb_selector.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb_selector.BackgroundImage")));
+            this.pb_selector.Location = new System.Drawing.Point(371, 309);
+            this.pb_selector.Name = "pb_selector";
+            this.pb_selector.Size = new System.Drawing.Size(48, 48);
+            this.pb_selector.TabIndex = 23;
+            this.pb_selector.TabStop = false;
+            // 
             // Builder
             // 
             this.ClientSize = new System.Drawing.Size(1162, 505);
+            this.Controls.Add(this.pb_selector);
             this.Controls.Add(this.bt_settilename);
             this.Controls.Add(this.bt_settilesize);
             this.Controls.Add(this.lb_tilename);
@@ -318,6 +333,7 @@ namespace Nilox2DGameEngine.Editor
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Builder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nud_index)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -647,13 +663,33 @@ namespace Nilox2DGameEngine.Editor
             if (dir > 0)
             {
                 ++selectedindex;
-                allSprite2Ds.ElementAt(selectedindex).setSelected(true);
+
+                //Check if out of bounds
+                if (selectedindex > allSprite2Ds.Count - 1)
+                {
+                    --selectedindex;
+                }
+
+                Window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
+                Window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
+
+                //allSprite2Ds.ElementAt(selectedindex).setSelected(true);
             }
             //move up
-            if (dir < 0 && selectedindex > 0)
+            if (dir < 0)
             {
                 --selectedindex;
-                allSprite2Ds.ElementAt(selectedindex).setSelected(true);
+
+                //Check if out of Bounds
+                if (selectedindex < 0)
+                {
+                    ++selectedindex;
+                }
+
+                Window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
+                Window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
+
+                //allSprite2Ds.ElementAt(selectedindex).setSelected(true);
             }
             Window.Refresh();
 
@@ -673,13 +709,34 @@ namespace Nilox2DGameEngine.Editor
             if (dir > 0)
             {
                 selectedindex = selectedindex + tilesize;
-                allSprite2Ds.ElementAt(selectedindex).setSelected(true);
+
+                //Check if out of Bounds
+                if (selectedindex > allSprite2Ds.Count - 1)
+                {
+                    selectedindex = selectedindex - tilesize;
+                }
+
+                Window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
+                Window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
+
+                //allSprite2Ds.ElementAt(selectedindex).setSelected(true);
             }
             //moveleft left
             if (dir < 0)
             {
                 selectedindex = selectedindex - tilesize;
-                allSprite2Ds.ElementAt(selectedindex).setSelected(true);
+
+                //check if out of bounds
+                if (selectedindex < 0)
+                {
+                    selectedindex = selectedindex + tilesize;
+                }
+
+                Window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
+                Window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
+
+
+                //allSprite2Ds.ElementAt(selectedindex).setSelected(true);
             }
             Window.Refresh();
 
@@ -754,34 +811,5 @@ namespace Nilox2DGameEngine.Editor
         } 
 
         #endregion
-        //
-        //
-        //
-        #region Loading
-        public void LoadImagesfromDirectory(string directory0)
-        {
-            string dir = directory0;
-            foreach (string s in Directory.GetFiles(dir))
-            {
-                string ext = Path.GetExtension(s);
-                if (ext == ".png")
-                {
-                    string name = Path.GetFileName(s);
-
-                    Image tmp = Image.FromFile(s);
-                    Bitmap sprite = new Bitmap(tmp);
-
-                    BaseImage b = new BaseImage(name,"", s, sprite);
-
-                    allimages.Add(b);
-                }
-                else
-                {
-                    Log.Error("File is not a PNG");
-                }
-            }
-        }
-        #endregion
-       
     }
 }

@@ -154,7 +154,7 @@ namespace Nilox2DGameEngine.Core
         {
             if (selecred0 == true)
             {
-                Image tmp = Image.FromFile("Content/Default/tile60.png");
+                Image tmp = Image.FromFile("Content/Default/tile60§door.png");
                 Bitmap sprite = new Bitmap(tmp);
                 this.sprite = sprite;
             }

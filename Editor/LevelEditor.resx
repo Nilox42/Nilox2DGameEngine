@@ -120,4 +120,15 @@
   <metadata name="FD.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>28, 13</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pb_selector.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAOVJREFUWEft2LENgzAQRmEEkkVBYXmCjMD+yzACNVVi+J8EESTXIB3FfQXCF8t+
+        FUWaZVnem3mem28pJf10r3EcueBS3cHbSc5ZR9yrHssFJ13XEaStvkopa1R9e0jQWqMUPd2pJ4J+U08z
+        TVN9MnOlHjBzRcprw8xVzVg/UaweI4IsEWSJIEsEWSLIEkGWCLJEkCWCLBFkiSBLBFkiyPK8oJTSMAys
+        XNWMiv9AmLkiRZi5IkWYuSJFmLkiRZi5IkWYuSJFmLki5Y9SCntvtX9sDvZh3/d5w/qgbVvOuNXlXWrI
+        OX8ACMFdMCkFMhAAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>
