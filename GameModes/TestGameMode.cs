@@ -101,7 +101,7 @@ namespace Nilox2DGameEngine
                 //Enemy Movement
                 foreach (Enemy e in enemies)
                 {
-                    e.move(player);
+                    e.aiTick(player);
                 }
 
 

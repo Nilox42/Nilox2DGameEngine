@@ -16,8 +16,6 @@ namespace Nilox2DGameEngine.Character
 
     public class Enemy:DamageInterface
     {
-        int index = 0;
-
         TestGameMode tgm = null;
 
         Sprite2D sprite = null;
@@ -28,7 +26,9 @@ namespace Nilox2DGameEngine.Character
 
         Vector2 velocity = new Vector2(2,2);
 
-        //Vector2 playerlocation = Vector2.Zero();
+
+        //AI
+        bool hastarget = true;
 
         public Enemy(Sprite2D sprite0 , Vector2 location0 , TestGameMode GM)
         {
@@ -50,9 +50,10 @@ namespace Nilox2DGameEngine.Character
             health = health - damage0;
         }
         
-        public void move(Sprite2D player0)
+        public void aiTick(Sprite2D player0)
         {
-            if(sprite.IsCollidingWithTag("collider") == null)
+            //Movement
+            if(sprite.IsCollidingWithTag("collider") == null && hastarget == true)
             {
                 Vector2 place = location - player0.location;
                 location = location + place / -30;
@@ -62,22 +63,19 @@ namespace Nilox2DGameEngine.Character
             }
             else
             {
-
                 location = lastlocation;
-
-                Log.Warning("Colliding");
+                hastarget = false;
             }
+
+            
+
+
         }
 
 
         public void Shoot()
         {
-            if (index > 120)
-            {
-                tgm.spawnProjectile(location);
-                index = 0;
-            }
-            index++;
+            tgm.spawnProjectile(location);
         }
     }
 }
