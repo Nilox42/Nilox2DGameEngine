@@ -22,6 +22,7 @@ namespace Nilox2DGameEngine.Character
 
         Sprite2D sprite = null;
         Vector2 location = Vector2.Zero();
+        Vector2 lastlocation = Vector2.Zero();
 
         double health = 100;
 
@@ -49,17 +50,23 @@ namespace Nilox2DGameEngine.Character
             health = health - damage0;
         }
         
-        public void move(Vector2 playerlocation0)
+        public void move(Sprite2D player0)
         {
-            /*
-            float y = Vector2.steigung(location, playerlocation0);
-            location = new Vector2(playerlocation0.X, y);
-            */
+            if(sprite.IsCollidingWithTag("collider") == null)
+            {
+                Vector2 place = location - player0.location;
+                location = location + place / -30;
 
-            Vector2 place = location - playerlocation0;
-            location = location + place / -30;
+                lastlocation = location;
+                updatesprite();
+            }
+            else
+            {
 
-            updatesprite();
+                location = lastlocation;
+
+                Log.Warning("Colliding");
+            }
         }
 
 

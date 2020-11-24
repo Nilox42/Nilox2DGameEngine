@@ -98,9 +98,9 @@ namespace Nilox2DGameEngine.Core
             if (isleveleditor == false)
             {
                 if (a.location.X < b.location.X + b.scale.X &&
-                    a.location.X + b.scale.X > b.location.X &&
+                    a.location.X + a.scale.X > b.location.X &&
                     a.location.Y < b.location.Y + b.scale.Y &&
-                    a.location.Y + b.scale.Y > b.location.Y)
+                    a.location.Y + a.scale.Y > b.location.Y)
                 {
                     return true;
                 }
