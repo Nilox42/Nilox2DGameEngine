@@ -56,8 +56,8 @@ namespace Nilox2DGameEngine.Character
             location = new Vector2(playerlocation0.X, y);
             */
 
-            Vector2 place = location - playerlocation0;
-            location = location + place / -30;
+            Vector2 place = location - (playerlocation0);
+            location = location + place / -25;
 
             updatesprite();
         }
