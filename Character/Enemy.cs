@@ -18,7 +18,7 @@ namespace Nilox2DGameEngine.Character
     {
         TestGameMode tgm = null;
 
-        Sprite2D sprite = null;
+        public Sprite2D sprite = null;
         Vector2 location = Vector2.Zero();
         Vector2 lastlocation = Vector2.Zero();
 
@@ -66,8 +66,11 @@ namespace Nilox2DGameEngine.Character
                 location = lastlocation;
                 hastarget = false;
             }
+            if (sprite.IsCollidingWithTag("player") == null && hastarget == true)
+            {
+                
+            }
 
-            
 
 
         }
@@ -76,6 +79,13 @@ namespace Nilox2DGameEngine.Character
         public void Shoot()
         {
             tgm.spawnProjectile(location);
+
+        }
+
+        public void destroyselft()
+        {
+            sprite.DestroySelf();
+            tgm.desroyEnemie(this);
         }
     }
 }

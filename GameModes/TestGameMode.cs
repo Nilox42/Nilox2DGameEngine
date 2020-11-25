@@ -104,13 +104,11 @@ namespace Nilox2DGameEngine
                     e.aiTick(player);
                 }
 
-
                 //ProjectileMovement
                 foreach (Projectile p in projectiles)
                 {
                     p.move();
                 }
-
 
                 aitick = 0;
             }
@@ -118,8 +116,6 @@ namespace Nilox2DGameEngine
             {
                 aitick++;
             }
-
-            
 
         }
 
@@ -164,7 +160,7 @@ namespace Nilox2DGameEngine
 
 
             //Player 
-            player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "Player");
+            player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player");
             player.fetchimage();
 
             spawnenemie(new Vector2(200, 200));
@@ -182,8 +178,10 @@ namespace Nilox2DGameEngine
             }
         }
         #endregion
-
-
+        //
+        // //
+        //
+        #region Actors
         public void spawnenemie(Vector2 location)
         {
             Sprite2D s = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "");
@@ -203,5 +201,12 @@ namespace Nilox2DGameEngine
         }
 
 
+        public void desroyEnemie(Enemy e)
+        {
+            e = null;
+            Log.Warning("[DESTROYED]  -  {" + e.sprite.name + "}");
+        }
+
+        #endregion
     }
 }

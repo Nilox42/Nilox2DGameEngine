@@ -24,14 +24,14 @@ namespace Nilox2DGameEngine.Core
 
         private bool isleveleditor = false;
 
-        public Sprite2D(Vector2 Postition0, Vector2 Scale0, string name0 , string Tag0 , bool isleveleditor0 = false , LevelEditor LB = null)
+        public Sprite2D(Vector2 Postition0, Vector2 Scale0, string name0, string Tag0, bool isleveleditor0 = false, LevelEditor LB0 = null)
         {
-            this.location = Postition0;
-            this.scale = Scale0;
-            this.name = name0;
-            this.tag = Tag0;
-            this.isleveleditor = isleveleditor0;
-            this.LB = LB;
+            location = Postition0;
+            scale = Scale0;
+            name = name0;
+            tag = Tag0;
+            isleveleditor = isleveleditor0;
+            LB = LB0;
 
             fetchimage();
         }
@@ -164,9 +164,6 @@ namespace Nilox2DGameEngine.Core
             }
         }
         #endregion
-
-
-
 
     }
 }
