@@ -96,27 +96,17 @@ namespace Nilox2DGameEngine
             }
 
             //AI Movement
-            if (aitick > 2)
+            //Enemy Movement
+            foreach (Enemy e in enemies)
             {
-                //Enemy Movement
-                foreach (Enemy e in enemies)
-                {
-                    e.aiTick(player);
-                }
-
-                //ProjectileMovement
-                foreach (Projectile p in projectiles)
-                {
-                    p.move();
-                }
-
-                aitick = 0;
-            }
-            else
-            {
-                aitick++;
+                e.aiTick(player);
             }
 
+            //ProjectileMovement
+            foreach (Projectile p in projectiles)
+            {
+                p.move();
+            }
         }
 
         public override void KeyDown(KeyEventArgs e)

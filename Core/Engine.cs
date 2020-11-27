@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.Threading;
 using Nilox2DGameEngine.Util;
@@ -15,6 +16,7 @@ namespace Nilox2DGameEngine.Core
     //Custom Window to draw to 
     public class Canvas : Form
     {
+        public Label lbfps;
         public ProgressBar pb_healthbar;
 
         public Canvas()
@@ -26,6 +28,7 @@ namespace Nilox2DGameEngine.Core
         private void InitializeComponent()
         {
             this.pb_healthbar = new System.Windows.Forms.ProgressBar();
+            this.lbfps = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pb_healthbar
@@ -39,13 +42,24 @@ namespace Nilox2DGameEngine.Core
             this.pb_healthbar.TabIndex = 0;
             this.pb_healthbar.Value = 90;
             // 
+            // lbfps
+            // 
+            this.lbfps.AutoSize = true;
+            this.lbfps.Location = new System.Drawing.Point(208, 21);
+            this.lbfps.Name = "lbfps";
+            this.lbfps.Size = new System.Drawing.Size(25, 13);
+            this.lbfps.TabIndex = 1;
+            this.lbfps.Text = "000";
+            // 
             // Canvas
             // 
             this.ClientSize = new System.Drawing.Size(834, 441);
+            this.Controls.Add(this.lbfps);
             this.Controls.Add(this.pb_healthbar);
             this.Name = "Canvas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
     }
@@ -53,7 +67,7 @@ namespace Nilox2DGameEngine.Core
     //
     //---------------------------------------------------------------------------------------------------------------------------------------
     //
-    #region Engine
+        #region Engine
     public abstract class Engine
     {
         #region Engine Init
@@ -72,9 +86,12 @@ namespace Nilox2DGameEngine.Core
         public static List<Sprite2D> AllSprites = new List<Sprite2D>();
         List<Sprite2D> AllSprites1 = new List<Sprite2D>();
 
+        //Lists all images that are used 
         public static List<BaseImage> allimages = new List<BaseImage>();
-
         public string[] allcontentlocations = { @"\Content\Default\" , @"\Content\Overworld\Tiles\" , @"\Content\Overworld\Objects\" , @"\Content\Player\" };
+
+        //FPS
+        Stopwatch stopwatch = new Stopwatch();
 
         //Camera varibles
         public static Vector2 CameraPostition = new Vector2(0, 0);
@@ -96,7 +113,7 @@ namespace Nilox2DGameEngine.Core
             Window = new Canvas();
             Window.Size = new Size((int)ScreenSize.X, (int)ScreenSize.Y);
             Window.Text = this.Title;
-            Window.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            Window.FormBorderStyle = FormBorderStyle.Sizable;
 
             Window.Paint += Renderer;
             Window.KeyDown += Window_KeyDown;
@@ -171,7 +188,7 @@ namespace Nilox2DGameEngine.Core
                     OnDraw();
                     Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
                     OnUpdate();
-                    Thread.Sleep(5);
+                    Thread.Sleep(10);
                 }
                 catch
                 {
@@ -238,6 +255,10 @@ namespace Nilox2DGameEngine.Core
         public abstract void KeyDown(KeyEventArgs e);
 
         public abstract void KeyUp(KeyEventArgs e);
+        #endregion
+        //
+        // //
+        //
         #endregion
     }
     #endregion
