@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Util;
 
@@ -26,6 +28,7 @@ namespace Nilox2DGameEngine.Character
 
         Vector2 velocity = new Vector2(2,2);
 
+        Timer sec = null;
 
         //AI
         bool hastarget = true;
@@ -35,13 +38,14 @@ namespace Nilox2DGameEngine.Character
             sprite = sprite0;
             location = location0;
             tgm = GM;
+
         }
+
 
         private void updatesprite()
         {
             sprite.location = location;
         }
-
 
 
 
@@ -70,16 +74,12 @@ namespace Nilox2DGameEngine.Character
             {
                 
             }
-
-
-
         }
 
 
         public void Shoot()
         {
             tgm.spawnProjectile(location);
-
         }
 
         public void destroyselft()

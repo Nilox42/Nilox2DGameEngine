@@ -67,7 +67,7 @@ namespace Nilox2DGameEngine.Core
     //
     //---------------------------------------------------------------------------------------------------------------------------------------
     //
-        #region Engine
+    #region Engine
     public abstract class Engine
     {
         #region Engine Init
@@ -88,7 +88,7 @@ namespace Nilox2DGameEngine.Core
 
         //Lists all images that are used 
         public static List<BaseImage> allimages = new List<BaseImage>();
-        public string[] allcontentlocations = { @"\Content\Default\" , @"\Content\Overworld\Tiles\" , @"\Content\Overworld\Objects\" , @"\Content\Player\" };
+        public string[] allcontentlocations = { @"\Content\Default\", @"\Content\Overworld\Tiles\", @"\Content\Overworld\Objects\", @"\Content\Player\" };
 
         //FPS
         Stopwatch stopwatch = new Stopwatch();
@@ -101,7 +101,7 @@ namespace Nilox2DGameEngine.Core
         {
             foreach (string sl in allcontentlocations)
             {
-                NLoad.ImagesfromDirectory(Application.StartupPath + sl , allimages);
+                NLoad.ImagesfromDirectory(Application.StartupPath + sl, allimages);
             }
 
             //Ser base varibles
@@ -260,6 +260,6 @@ namespace Nilox2DGameEngine.Core
         // //
         //
         #endregion
+
     }
-    #endregion
 }
