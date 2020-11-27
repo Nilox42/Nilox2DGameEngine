@@ -28,7 +28,7 @@ namespace Nilox2DGameEngine.Character
 
         Vector2 velocity = new Vector2(2,2);
 
-        Timer sec = null;
+        System.Timers.Timer sec = null;
 
         //AI
         bool hastarget = true;
@@ -39,15 +39,20 @@ namespace Nilox2DGameEngine.Character
             location = location0;
             tgm = GM;
 
+            sec = new System.Timers.Timer(5000);
+            sec.Elapsed += Sec_Elapsed;
+            sec.Start();
         }
 
+        private void Sec_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Shoot();
+        }
 
         private void updatesprite()
         {
             sprite.location = location;
         }
-
-
 
         public void TakeDamage(int damage0)
         {
@@ -84,7 +89,6 @@ namespace Nilox2DGameEngine.Character
 
         public void destroyselft()
         {
-            sprite.DestroySelf();
             tgm.desroyEnemie(this);
         }
     }

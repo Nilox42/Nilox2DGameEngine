@@ -186,15 +186,21 @@ namespace Nilox2DGameEngine
             Sprite2D s = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "");
             s.fetchimage();
 
-            Projectile p = new Projectile(s, location, new Vector2(1,0) , 2) ;
+            Projectile p = new Projectile(s, location, new Vector2(1,0), 2, this);
             projectiles.Add(p);
         }
 
 
         public void desroyEnemie(Enemy e)
         {
+            Log.Warning("[DESTROYED][ENEMY]  -  {" + e.sprite.name + "}");
             e = null;
-            Log.Warning("[DESTROYED]  -  {" + e.sprite.name + "}");
+        }
+
+        public void destroyProjectile(Projectile p)
+        {
+            Log.Warning("[DESTROYED][PROJECTILE]  -  {" + p.sprite.name + "}");
+            p = null;
         }
 
         #endregion

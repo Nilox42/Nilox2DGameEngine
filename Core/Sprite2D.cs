@@ -35,6 +35,7 @@ namespace Nilox2DGameEngine.Core
 
             fetchimage();
         }
+
         public void DestroySelf()
         {
             if (isleveleditor == false)
