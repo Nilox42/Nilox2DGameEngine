@@ -19,7 +19,7 @@ namespace Nilox2DGameEngine.Character
         int speed = 0;
 
         System.Timers.Timer sec = null;
-        double lifespan = 2;
+        double lifespan = 0.5;
 
 
 
@@ -38,6 +38,8 @@ namespace Nilox2DGameEngine.Character
 
         private void Sec_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            sec.Stop();
+            sec = null;
             this.Destroy(this);
         }
 
@@ -54,6 +56,8 @@ namespace Nilox2DGameEngine.Character
             updatesprite();
         }
 
+
+        #region Actor
         public override void Destroy(Actor w)
         {
             sprite.DestroySelf();
@@ -64,5 +68,6 @@ namespace Nilox2DGameEngine.Character
         {
             
         }
+        #endregion
     }
 }

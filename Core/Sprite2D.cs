@@ -40,7 +40,7 @@ namespace Nilox2DGameEngine.Core
         {
             if (isleveleditor == false)
             {
-                Log.Info($"[SPRITE2D]({name} @  X:{location.X}  Y:{location.Y}) - Has been destroyed!");
+                Log.Info($"[SPRITE2D][REMOVED]({name} @  X:{location.X}  Y:{location.Y}) - Has been destroyed!");
                 Engine.UnRegisterSprite(this);
             }
             else

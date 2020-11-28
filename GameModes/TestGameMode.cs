@@ -59,18 +59,22 @@ namespace Nilox2DGameEngine
             if (up)
             {
                 player.location.Y -= maxspeed;
+                updateCameraPosition(new Vector2(0,maxspeed));
             }
             if (down)
             {
                 player.location.Y += maxspeed;
+                updateCameraPosition(new Vector2(0, maxspeed * -1));
             }
             if (left)
             {
                 player.location.X -= maxspeed;
+                updateCameraPosition(new Vector2(maxspeed, 0));
             }
             if (right)
             {
                 player.location.X += maxspeed;
+                updateCameraPosition(new Vector2(maxspeed * -1, 0));
             }
 
             //Collosion
@@ -171,6 +175,15 @@ namespace Nilox2DGameEngine
         //
         // //
         //
+        #region
+        public void updateCameraPosition(Vector2 v)
+        {
+            Engine.CameraPostition = Engine.CameraPostition + v;
+        }
+        #endregion
+        //
+        // //
+        //
         #region Actors
         public void spawnenemie(Vector2 location)
         {
@@ -203,6 +216,6 @@ namespace Nilox2DGameEngine
             p = null;
         }
 
-        #endregion
+        #endregion Management
     }
 }
