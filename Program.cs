@@ -29,7 +29,7 @@ namespace Nilox2DGameEngine
             #region Console Visibility
             var handle = GetConsoleWindow();
 
-            const int SW_HIDE = 0;
+            //const int SW_HIDE = 0;
             const int SW_SHOW = 5;
 
             ShowWindow(handle,SW_SHOW);

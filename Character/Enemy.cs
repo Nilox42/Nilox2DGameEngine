@@ -25,7 +25,7 @@ namespace Nilox2DGameEngine.Character
 
         double health = 100;
 
-        float maxwalkspeed = 1;
+        double maxwalkspeed = 0.1;
         bool hastarget = true;
 
         //Vector2 playerlocation = Vector2.Zero();
@@ -47,7 +47,7 @@ namespace Nilox2DGameEngine.Character
 
         public void TakeDamage(int damage0)
         {
-            health = health - damage0;
+            health -= damage0;
         }
         
         public void aiTick(Sprite2D player0)
@@ -56,12 +56,14 @@ namespace Nilox2DGameEngine.Character
             //Movement
             if (sprite.IsCollidingWithTag("collider") == null && hastarget == true)
             {
-                Vector2 direction = Vector2.Normalize(location - player0.location);
+                if (Vector2.Lenght(location - player0.location) > 10)
+                {
+                    Vector2 direction = Vector2.Normalize(location - player0.location);
 
-                location = location + (direction * maxwalkspeed);
+                    location += (direction * maxwalkspeed * -1);
 
-
-                updatesprite();
+                    updatesprite();
+                }
             }
         }
 

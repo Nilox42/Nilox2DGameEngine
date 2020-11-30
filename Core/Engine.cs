@@ -128,9 +128,10 @@ namespace Nilox2DGameEngine.Core
         }
         #endregion
         //
-        //
+        // //
         //
         #region Input
+
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             KeyUp(e);
@@ -141,7 +142,7 @@ namespace Nilox2DGameEngine.Core
         }
         #endregion
         //
-        //
+        // //
         //
         #region Functions
         public static void RegisterShape(Shape2D shape)
@@ -152,6 +153,7 @@ namespace Nilox2DGameEngine.Core
         {
             allSprites.Add(sprite);
         }
+
         public static void RegisterImage(BaseImage image)
         {
             allimages.Add(image);
