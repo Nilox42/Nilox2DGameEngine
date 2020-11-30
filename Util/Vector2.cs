@@ -33,42 +33,9 @@ namespace Nilox2DGameEngine.Util
 
         public static Vector2 Normalize(Vector2 v0)
         {
-            Vector2 v = v0;
-            bool x = false;
-            bool y = false;
+            double distance = Math.Sqrt(v0.X * v0.X + v0.Y * v0.Y);
 
-            if (v.X < 0)
-            {
-                x = true;
-            }
-            if (v.Y < 0)
-            {
-                y = true;
-            }
-
-
-
-            if (v.X < v.Y)
-            {
-                v = v / v.X;
-            }
-            else
-            {
-                v = v / v.Y;
-            }
-
-
-
-            if (x)
-            {
-                v.X = v.X * -1;
-            }
-            if (y)
-            {
-                v.Y = v.Y * -1;
-            }
-
-            return v;
+            return new Vector2(v0.X / (float)distance, v0.Y / (float)distance);
         }
 
         public static float steigung(Vector2 posEnemy, Vector2 posPlayer)
@@ -148,7 +115,12 @@ namespace Nilox2DGameEngine.Util
             return new Vector2(
                v1.X * i,
                v1.Y * i);
-
+        }
+        public static Vector2 operator *(Vector2 v1, float i)
+        {
+            return new Vector2(
+               v1.X * i,
+               v1.Y * i);
         }
 
         public static Vector2 operator / (Vector2 v1, Vector2 v2)

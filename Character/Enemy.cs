@@ -25,7 +25,7 @@ namespace Nilox2DGameEngine.Character
 
         double health = 100;
 
-        Vector2 velocity = new Vector2(2,2);
+        float maxwalkspeed = 1;
 
         //Vector2 playerlocation = Vector2.Zero();
 
@@ -51,10 +51,19 @@ namespace Nilox2DGameEngine.Character
         
         public void move(Vector2 playerlocation0)
         {
+<<<<<<< HEAD
+            //Movement
+            if(sprite.IsCollidingWithTag("collider") == null && hastarget == true)
+            {
+                Vector2 direction = Vector2.Normalize(location - player0.location);
+
+                location = location + (direction * maxwalkspeed);
+=======
             /*
             float y = Vector2.steigung(location, playerlocation0);
             location = new Vector2(playerlocation0.X, y);
             */
+>>>>>>> bafe96dfec1fecefe42050b06398ae0af5e567bc
 
             Vector2 place = location - (playerlocation0);
             location = location + place / -25;
