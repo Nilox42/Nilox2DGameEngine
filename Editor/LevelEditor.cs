@@ -651,12 +651,14 @@ namespace Nilox2DGameEngine.Editor
         {
             Log.Info("[BUILDER] GUI Loaded");
 
+            LevelEditor lnkEditor = new LevelEditor();
 
+            lnkEditor.loadPictureBoxes();
 
         }
 
 
-        private void setPictureBoxes(int i, Bitmap bitmap)
+        public void setPictureBoxes(int i, Bitmap bitmap)
         {
             switch (i)
             {
@@ -886,13 +888,14 @@ namespace Nilox2DGameEngine.Editor
 
         #endregion
 
-        public void ladePictureBoxen()
+        public void loadPictureBoxes()
         {
             int i = 0;
 
-            foreach (var item in allimages)
+
+            foreach (BaseImage item in allimages)
             {
-                
+                Window.setPictureBoxes(i, item.image);
                 i++;
             }
         }
