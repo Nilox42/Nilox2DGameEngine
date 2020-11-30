@@ -651,9 +651,9 @@ namespace Nilox2DGameEngine.Editor
         {
             Log.Info("[BUILDER] GUI Loaded");
 
-            LevelEditor lnkEditor = new LevelEditor();
+            
 
-            lnkEditor.loadPictureBoxes();
+            
 
         }
 
