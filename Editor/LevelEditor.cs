@@ -45,6 +45,27 @@ namespace Nilox2DGameEngine.Editor
         private Button bt_settilesize;
         private Button bt_settilename;
         public PictureBox pb_selector;
+        private Panel panel1;
+        private PictureBox pb_20;
+        private PictureBox pb_19;
+        private PictureBox pb_18;
+        private PictureBox pb_17;
+        private PictureBox pb_16;
+        private PictureBox pb_15;
+        private PictureBox pb_10;
+        private PictureBox pb_14;
+        private PictureBox pb_13;
+        private PictureBox pb_12;
+        private PictureBox pb_11;
+        private PictureBox pb_5;
+        private PictureBox pb_6;
+        private PictureBox pb_7;
+        private PictureBox pb_8;
+        private PictureBox pb_9;
+        private PictureBox pb_2;
+        private PictureBox pb_3;
+        private PictureBox pb_4;
+        private PictureBox pb_1;
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         public Builder(LevelEditor LB0)
@@ -80,8 +101,50 @@ namespace Nilox2DGameEngine.Editor
             this.bt_settilesize = new System.Windows.Forms.Button();
             this.bt_settilename = new System.Windows.Forms.Button();
             this.pb_selector = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pb_1 = new System.Windows.Forms.PictureBox();
+            this.pb_4 = new System.Windows.Forms.PictureBox();
+            this.pb_3 = new System.Windows.Forms.PictureBox();
+            this.pb_2 = new System.Windows.Forms.PictureBox();
+            this.pb_9 = new System.Windows.Forms.PictureBox();
+            this.pb_8 = new System.Windows.Forms.PictureBox();
+            this.pb_7 = new System.Windows.Forms.PictureBox();
+            this.pb_6 = new System.Windows.Forms.PictureBox();
+            this.pb_5 = new System.Windows.Forms.PictureBox();
+            this.pb_11 = new System.Windows.Forms.PictureBox();
+            this.pb_12 = new System.Windows.Forms.PictureBox();
+            this.pb_13 = new System.Windows.Forms.PictureBox();
+            this.pb_14 = new System.Windows.Forms.PictureBox();
+            this.pb_10 = new System.Windows.Forms.PictureBox();
+            this.pb_15 = new System.Windows.Forms.PictureBox();
+            this.pb_16 = new System.Windows.Forms.PictureBox();
+            this.pb_17 = new System.Windows.Forms.PictureBox();
+            this.pb_18 = new System.Windows.Forms.PictureBox();
+            this.pb_19 = new System.Windows.Forms.PictureBox();
+            this.pb_20 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.nud_index)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_20)).BeginInit();
             this.SuspendLayout();
             // 
             // bt_LoadLevel
@@ -303,9 +366,197 @@ namespace Nilox2DGameEngine.Editor
             this.pb_selector.TabIndex = 23;
             this.pb_selector.TabStop = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pb_20);
+            this.panel1.Controls.Add(this.pb_19);
+            this.panel1.Controls.Add(this.pb_18);
+            this.panel1.Controls.Add(this.pb_17);
+            this.panel1.Controls.Add(this.pb_16);
+            this.panel1.Controls.Add(this.pb_15);
+            this.panel1.Controls.Add(this.pb_10);
+            this.panel1.Controls.Add(this.pb_14);
+            this.panel1.Controls.Add(this.pb_13);
+            this.panel1.Controls.Add(this.pb_12);
+            this.panel1.Controls.Add(this.pb_11);
+            this.panel1.Controls.Add(this.pb_5);
+            this.panel1.Controls.Add(this.pb_6);
+            this.panel1.Controls.Add(this.pb_7);
+            this.panel1.Controls.Add(this.pb_8);
+            this.panel1.Controls.Add(this.pb_9);
+            this.panel1.Controls.Add(this.pb_2);
+            this.panel1.Controls.Add(this.pb_3);
+            this.panel1.Controls.Add(this.pb_4);
+            this.panel1.Controls.Add(this.pb_1);
+            this.panel1.Location = new System.Drawing.Point(12, 499);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1078, 68);
+            this.panel1.TabIndex = 24;
+            // 
+            // pb_1
+            // 
+            this.pb_1.Location = new System.Drawing.Point(1, 10);
+            this.pb_1.Name = "pb_1";
+            this.pb_1.Size = new System.Drawing.Size(48, 48);
+            this.pb_1.TabIndex = 0;
+            this.pb_1.TabStop = false;
+            // 
+            // pb_4
+            // 
+            this.pb_4.Location = new System.Drawing.Point(163, 10);
+            this.pb_4.Name = "pb_4";
+            this.pb_4.Size = new System.Drawing.Size(48, 48);
+            this.pb_4.TabIndex = 1;
+            this.pb_4.TabStop = false;
+            // 
+            // pb_3
+            // 
+            this.pb_3.Location = new System.Drawing.Point(109, 10);
+            this.pb_3.Name = "pb_3";
+            this.pb_3.Size = new System.Drawing.Size(48, 48);
+            this.pb_3.TabIndex = 2;
+            this.pb_3.TabStop = false;
+            // 
+            // pb_2
+            // 
+            this.pb_2.Location = new System.Drawing.Point(55, 10);
+            this.pb_2.Name = "pb_2";
+            this.pb_2.Size = new System.Drawing.Size(48, 48);
+            this.pb_2.TabIndex = 3;
+            this.pb_2.TabStop = false;
+            // 
+            // pb_9
+            // 
+            this.pb_9.Location = new System.Drawing.Point(433, 10);
+            this.pb_9.Name = "pb_9";
+            this.pb_9.Size = new System.Drawing.Size(48, 48);
+            this.pb_9.TabIndex = 4;
+            this.pb_9.TabStop = false;
+            // 
+            // pb_8
+            // 
+            this.pb_8.Location = new System.Drawing.Point(379, 10);
+            this.pb_8.Name = "pb_8";
+            this.pb_8.Size = new System.Drawing.Size(48, 48);
+            this.pb_8.TabIndex = 5;
+            this.pb_8.TabStop = false;
+            // 
+            // pb_7
+            // 
+            this.pb_7.Location = new System.Drawing.Point(325, 10);
+            this.pb_7.Name = "pb_7";
+            this.pb_7.Size = new System.Drawing.Size(48, 48);
+            this.pb_7.TabIndex = 6;
+            this.pb_7.TabStop = false;
+            // 
+            // pb_6
+            // 
+            this.pb_6.Location = new System.Drawing.Point(271, 10);
+            this.pb_6.Name = "pb_6";
+            this.pb_6.Size = new System.Drawing.Size(48, 48);
+            this.pb_6.TabIndex = 7;
+            this.pb_6.TabStop = false;
+            // 
+            // pb_5
+            // 
+            this.pb_5.Location = new System.Drawing.Point(217, 10);
+            this.pb_5.Name = "pb_5";
+            this.pb_5.Size = new System.Drawing.Size(48, 48);
+            this.pb_5.TabIndex = 8;
+            this.pb_5.TabStop = false;
+            // 
+            // pb_11
+            // 
+            this.pb_11.Location = new System.Drawing.Point(541, 10);
+            this.pb_11.Name = "pb_11";
+            this.pb_11.Size = new System.Drawing.Size(48, 48);
+            this.pb_11.TabIndex = 9;
+            this.pb_11.TabStop = false;
+            // 
+            // pb_12
+            // 
+            this.pb_12.Location = new System.Drawing.Point(595, 10);
+            this.pb_12.Name = "pb_12";
+            this.pb_12.Size = new System.Drawing.Size(48, 48);
+            this.pb_12.TabIndex = 10;
+            this.pb_12.TabStop = false;
+            // 
+            // pb_13
+            // 
+            this.pb_13.Location = new System.Drawing.Point(649, 10);
+            this.pb_13.Name = "pb_13";
+            this.pb_13.Size = new System.Drawing.Size(48, 48);
+            this.pb_13.TabIndex = 11;
+            this.pb_13.TabStop = false;
+            // 
+            // pb_14
+            // 
+            this.pb_14.Location = new System.Drawing.Point(703, 10);
+            this.pb_14.Name = "pb_14";
+            this.pb_14.Size = new System.Drawing.Size(48, 48);
+            this.pb_14.TabIndex = 12;
+            this.pb_14.TabStop = false;
+            // 
+            // pb_10
+            // 
+            this.pb_10.Location = new System.Drawing.Point(487, 10);
+            this.pb_10.Name = "pb_10";
+            this.pb_10.Size = new System.Drawing.Size(48, 48);
+            this.pb_10.TabIndex = 13;
+            this.pb_10.TabStop = false;
+            // 
+            // pb_15
+            // 
+            this.pb_15.Location = new System.Drawing.Point(757, 10);
+            this.pb_15.Name = "pb_15";
+            this.pb_15.Size = new System.Drawing.Size(48, 48);
+            this.pb_15.TabIndex = 14;
+            this.pb_15.TabStop = false;
+            // 
+            // pb_16
+            // 
+            this.pb_16.Location = new System.Drawing.Point(811, 10);
+            this.pb_16.Name = "pb_16";
+            this.pb_16.Size = new System.Drawing.Size(48, 48);
+            this.pb_16.TabIndex = 15;
+            this.pb_16.TabStop = false;
+            // 
+            // pb_17
+            // 
+            this.pb_17.Location = new System.Drawing.Point(865, 10);
+            this.pb_17.Name = "pb_17";
+            this.pb_17.Size = new System.Drawing.Size(48, 48);
+            this.pb_17.TabIndex = 16;
+            this.pb_17.TabStop = false;
+            // 
+            // pb_18
+            // 
+            this.pb_18.Location = new System.Drawing.Point(919, 10);
+            this.pb_18.Name = "pb_18";
+            this.pb_18.Size = new System.Drawing.Size(48, 48);
+            this.pb_18.TabIndex = 17;
+            this.pb_18.TabStop = false;
+            // 
+            // pb_19
+            // 
+            this.pb_19.Location = new System.Drawing.Point(973, 10);
+            this.pb_19.Name = "pb_19";
+            this.pb_19.Size = new System.Drawing.Size(48, 48);
+            this.pb_19.TabIndex = 18;
+            this.pb_19.TabStop = false;
+            // 
+            // pb_20
+            // 
+            this.pb_20.Location = new System.Drawing.Point(1027, 10);
+            this.pb_20.Name = "pb_20";
+            this.pb_20.Size = new System.Drawing.Size(48, 48);
+            this.pb_20.TabIndex = 19;
+            this.pb_20.TabStop = false;
+            // 
             // Builder
             // 
-            this.ClientSize = new System.Drawing.Size(1162, 505);
+            this.ClientSize = new System.Drawing.Size(1162, 588);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pb_selector);
             this.Controls.Add(this.bt_settilename);
             this.Controls.Add(this.bt_settilesize);
@@ -334,6 +585,27 @@ namespace Nilox2DGameEngine.Editor
             this.Load += new System.EventHandler(this.Builder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nud_index)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pb_1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_20)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -378,8 +650,59 @@ namespace Nilox2DGameEngine.Editor
         private void Builder_Load(object sender, EventArgs e)
         {
             Log.Info("[BUILDER] GUI Loaded");
+
+
+
         }
 
+
+        private void setPictureBoxes(int i, Bitmap bitmap)
+        {
+            switch (i)
+            {
+                case 0: pb_1.Image = bitmap;
+                    break;
+                case 1: pb_2.Image = bitmap;
+                    break;
+                case 2: pb_3.Image = bitmap;
+                    break;
+                case 3: pb_4.Image = bitmap;
+                    break;
+                case 4: pb_5.Image = bitmap;
+                    break;
+                case 5: pb_6.Image = bitmap;
+                    break;
+                case 6: pb_7.Image = bitmap;
+                    break;
+                case 7: pb_8.Image = bitmap;
+                    break;
+                case 8: pb_9.Image = bitmap;
+                    break;
+                case 9: pb_10.Image = bitmap;
+                    break;
+                case 10: pb_11.Image = bitmap;
+                    break;
+                case 11: pb_12.Image = bitmap;
+                    break;
+                case 12: pb_13.Image = bitmap;
+                    break;
+                case 13: pb_14.Image = bitmap;
+                    break;
+                case 14: pb_15.Image = bitmap;
+                    break;
+                case 15: pb_16.Image = bitmap;
+                    break;
+                case 16: pb_17.Image = bitmap; 
+                    break;
+                case 17: pb_18.Image = bitmap;
+                    break;
+                case 18: pb_19.Image = bitmap;
+                    break;
+                case 19: pb_20.Image = bitmap;
+                    break;
+
+            }
+        }
 
         #region Input
         private void bt_LoadLevelclick(object sender, EventArgs e)
@@ -562,6 +885,18 @@ namespace Nilox2DGameEngine.Editor
         }
 
         #endregion
+
+        public void ladePictureBoxen()
+        {
+            int i = 0;
+
+            foreach (var item in allimages)
+            {
+                
+                i++;
+            }
+        }
+
         //
         // //
         //
