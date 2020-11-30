@@ -651,10 +651,7 @@ namespace Nilox2DGameEngine.Editor
         {
             Log.Info("[BUILDER] GUI Loaded");
 
-            
-
-            
-
+            LB.loadPictureBoxes();
         }
 
 
@@ -889,14 +886,14 @@ namespace Nilox2DGameEngine.Editor
         #endregion
 
         public void loadPictureBoxes()
-        {
-            int i = 0;
-
-
-            foreach (BaseImage item in allimages)
+        { int index = 0;
+            foreach (BaseImage b in allimages)
             {
-                Window.setPictureBoxes(i, item.image);
-                i++;
+                if (index > 0)
+                {
+                    Window.setPictureBoxes(index - 1, b.image);
+                }
+                index++;
             }
         }
 
