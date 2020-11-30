@@ -656,7 +656,7 @@ namespace Nilox2DGameEngine.Editor
         }
 
 
-        private void setPictureBoxes(int i, Bitmap bitmap)
+        public void setPictureBoxes(int i, Bitmap bitmap)
         {
             switch (i)
             {
@@ -890,9 +890,10 @@ namespace Nilox2DGameEngine.Editor
         {
             int i = 0;
 
-            foreach (var item in allimages)
+
+            foreach (BaseImage item in allimages)
             {
-                
+                Window.setPictureBoxes(i, item.image);
                 i++;
             }
         }
