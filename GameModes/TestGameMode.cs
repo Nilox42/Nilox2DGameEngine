@@ -59,18 +59,22 @@ namespace Nilox2DGameEngine
             if (up)
             {
                 player.location.Y -= maxspeed;
+                updateCameraPosition(new Vector2(0,maxspeed));
             }
             if (down)
             {
                 player.location.Y += maxspeed;
+                updateCameraPosition(new Vector2(0, maxspeed * -1));
             }
             if (left)
             {
                 player.location.X -= maxspeed;
+                updateCameraPosition(new Vector2(maxspeed, 0));
             }
             if (right)
             {
                 player.location.X += maxspeed;
+                updateCameraPosition(new Vector2(maxspeed * -1, 0));
             }
 
             //Collosion
@@ -96,31 +100,17 @@ namespace Nilox2DGameEngine
             }
 
             //AI Movement
-            if (aitick > 2)
+            //Enemy Movement
+            foreach (Enemy e in enemies)
             {
-                //Enemy Movement
-                foreach (Enemy e in enemies)
-                {
-                    e.move(player.location);
-                }
-
-
-                //ProjectileMovement
-                foreach (Projectile p in projectiles)
-                {
-                    p.move();
-                }
-
-
-                aitick = 0;
-            }
-            else
-            {
-                aitick++;
+                e.aiTick(player);
             }
 
-            
-
+            //ProjectileMovement
+            foreach (Projectile p in projectiles)
+            {
+                p.move();
+            }
         }
 
         public override void KeyDown(KeyEventArgs e)
@@ -164,7 +154,7 @@ namespace Nilox2DGameEngine
 
 
             //Player 
-            player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "Player");
+            player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player");
             player.fetchimage();
 
             spawnenemie(new Vector2(200, 200));
@@ -182,8 +172,19 @@ namespace Nilox2DGameEngine
             }
         }
         #endregion
-
-
+        //
+        // //
+        //
+        #region
+        public void updateCameraPosition(Vector2 v)
+        {
+            Engine.CameraPostition = Engine.CameraPostition + v;
+        }
+        #endregion
+        //
+        // //
+        //
+        #region Actors
         public void spawnenemie(Vector2 location)
         {
             Sprite2D s = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "");
@@ -198,10 +199,23 @@ namespace Nilox2DGameEngine
             Sprite2D s = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "");
             s.fetchimage();
 
-            Projectile p = new Projectile(s, location, new Vector2(1,0) , 2) ;
+            Projectile p = new Projectile(s, location, new Vector2(1,0), 2, this);
             projectiles.Add(p);
         }
 
 
+        public void desroyEnemie(Enemy e)
+        {
+            Log.Warning("[DESTROYED][ENEMY]  -  {" + e.sprite.name + "}");
+            e = null;
+        }
+
+        public void destroyProjectile(Projectile p)
+        {
+            Log.Warning("[DESTROYED][PROJECTILE]  -  {" + p.sprite.name + "}");
+            p = null;
+        }
+
+        #endregion Management
     }
 }

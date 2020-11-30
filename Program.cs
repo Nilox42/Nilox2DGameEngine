@@ -42,7 +42,15 @@ namespace Nilox2DGameEngine
                 string s = Console.ReadLine();
                 if(s != "" && s.Length < 7)
                 {
-                    ctr.executeCommand(s);
+                    if (s == "stop" || s == "end" || s == "exit")
+                    {
+                        ctr = null;
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        ctr.executeCommand(s);
+                    }
                 }
                 else
                 {
