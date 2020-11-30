@@ -164,11 +164,11 @@ namespace Nilox2DGameEngine
         public void UnloadCurrentTile()
         {
             Log.Warning("Clearing all Sprites");
-            int count = Engine.AllSprites.Count;
+            int count = Engine.allSprites.Count;
             for (int i = 0 ; i < count; ++i)
             {
-                Engine.AllSprites.ElementAt(0).DestroySelf();
-                Console.WriteLine(Engine.AllSprites.Count.ToString());
+                Engine.allSprites.ElementAt(0).DestroySelf();
+                Console.WriteLine(Engine.allSprites.Count.ToString());
             }
         }
         #endregion
@@ -178,7 +178,7 @@ namespace Nilox2DGameEngine
         #region
         public void updateCameraPosition(Vector2 v)
         {
-            Engine.CameraPostition = Engine.CameraPostition + v;
+            //Engine.CameraPostition = Engine.CameraPostition + v;
         }
         #endregion
         //

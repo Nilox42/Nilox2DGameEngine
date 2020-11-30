@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Threading;
 using Nilox2DGameEngine.Util;
+using Nilox2DGameEngine.Character;
 using System.IO;
 
 namespace Nilox2DGameEngine.Core
@@ -82,9 +83,9 @@ namespace Nilox2DGameEngine.Core
         private Thread GameLoopThread = null;
 
         //Engine lists
-        public static List<Shape2D> AllShapes = new List<Shape2D>();
-        public static List<Sprite2D> AllSprites = new List<Sprite2D>();
-        List<Sprite2D> AllSprites1 = new List<Sprite2D>();
+        public static List<Shape2D> allShapes = new List<Shape2D>();
+        public static List<Sprite2D> allSprites = new List<Sprite2D>();
+        List<Actor> allActors = new List<Actor>();
 
         //Lists all images that are used 
         public static List<BaseImage> allimages = new List<BaseImage>();
@@ -145,11 +146,11 @@ namespace Nilox2DGameEngine.Core
         #region Functions
         public static void RegisterShape(Shape2D shape)
         {
-            AllShapes.Add(shape);
+            allShapes.Add(shape);
         }
         public static void RegisterSprite(Sprite2D sprite)
         {
-            AllSprites.Add(sprite);
+            allSprites.Add(sprite);
         }
         public static void RegisterImage(BaseImage image)
         {
@@ -159,18 +160,18 @@ namespace Nilox2DGameEngine.Core
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
             GameLoopThread.Abort();
-            AllSprites.Clear();
-            AllShapes.Clear();
+            allSprites.Clear();
+            allShapes.Clear();
             Log.Warning("[ENGINE] Closed <------------------------------------------------------------------------------------------>");
         }
 
         public static void UnRegisterSprite(Sprite2D sprite)
         {
-            AllSprites.Remove(sprite);
+            allSprites.Remove(sprite);
         }
         public static void UnRegisterShape(Shape2D shape)
         {
-            AllShapes.Remove(shape);
+            allShapes.Remove(shape);
         }
         #endregion
         //
@@ -205,7 +206,7 @@ namespace Nilox2DGameEngine.Core
             g.TranslateTransform(CameraPostition.X, CameraPostition.Y);
             g.RotateTransform(CameraAngle);
 
-            foreach (Shape2D shape in AllShapes)
+            foreach (Shape2D shape in allShapes)
             {
                 g.FillRectangle(new SolidBrush(Color.Red), shape.Position.X, shape.Position.Y, shape.Scale.X, shape.Scale.Y);
             }
@@ -213,7 +214,7 @@ namespace Nilox2DGameEngine.Core
 
             try
             {
-                foreach (Sprite2D sprite in AllSprites)
+                foreach (Sprite2D sprite in allSprites)
                 {
                     //Check if Sprite is on screen and only draw it if it is
                     if (sprite.location.X < CameraPostition.X + Window.Width &&

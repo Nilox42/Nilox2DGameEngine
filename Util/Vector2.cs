@@ -35,6 +35,8 @@ namespace Nilox2DGameEngine.Util
         {
             double distance = Math.Sqrt(v0.X * v0.X + v0.Y * v0.Y);
 
+            Log.Error(distance.ToString());
+
             return new Vector2(v0.X / (float)distance, v0.Y / (float)distance);
         }
 

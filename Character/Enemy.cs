@@ -8,13 +8,13 @@ using Nilox2DGameEngine.Util;
 
 namespace Nilox2DGameEngine.Character
 {
-    interface DamageInterface
+    interface IDamageInterface
     {
         void TakeDamage(int damage0);
     }
 
 
-    public class Enemy:DamageInterface
+    public class Enemy:IDamageInterface
     {
         int index = 0;
 
