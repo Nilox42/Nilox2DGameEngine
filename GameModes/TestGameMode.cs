@@ -57,22 +57,22 @@ namespace Nilox2DGameEngine
             if (up)
             {
                 player.location.Y -= maxspeed;
-                updateCameraPosition(new Vector2(0,maxspeed));
+                updateCameraPosition();
             }
             if (down)
             {
                 player.location.Y += maxspeed;
-                updateCameraPosition(new Vector2(0, maxspeed * -1));
+                updateCameraPosition();
             }
             if (left)
             {
                 player.location.X -= maxspeed;
-                updateCameraPosition(new Vector2(maxspeed, 0));
+                updateCameraPosition();
             }
             if (right)
             {
                 player.location.X += maxspeed;
-                updateCameraPosition(new Vector2(maxspeed * -1, 0));
+                updateCameraPosition();
             }
 
             //Collosion
@@ -174,9 +174,9 @@ namespace Nilox2DGameEngine
         // //
         //
         #region
-        public void updateCameraPosition(Vector2 v)
+        public void updateCameraPosition()
         {
-            Engine.CameraPostition = Engine.CameraPostition + v;
+            Engine.CameraPostition = new Vector2(player.location - Engine.Window.Width / 2.0 , player.location - Engine.Window.Width / 2);
         }
         #endregion
         //
