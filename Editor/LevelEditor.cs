@@ -651,7 +651,9 @@ namespace Nilox2DGameEngine.Editor
         {
             Log.Info("[BUILDER] GUI Loaded");
 
+            LevelEditor lnkEditor = new LevelEditor();
 
+            lnkEditor.loadPictureBoxes();
 
         }
 
@@ -886,7 +888,7 @@ namespace Nilox2DGameEngine.Editor
 
         #endregion
 
-        public void ladePictureBoxen()
+        public void loadPictureBoxes()
         {
             int i = 0;
 
