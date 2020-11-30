@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Util;
 
@@ -18,35 +16,24 @@ namespace Nilox2DGameEngine.Character
 
     public class Enemy:DamageInterface
     {
+        int index = 0;
+
         TestGameMode tgm = null;
 
-        public Sprite2D sprite = null;
+        Sprite2D sprite = null;
         Vector2 location = Vector2.Zero();
-        Vector2 lastlocation = Vector2.Zero();
 
         double health = 100;
 
         float maxwalkspeed = 1;
 
-        System.Timers.Timer sec = null;
-
-        //AI
-        bool hastarget = true;
+        //Vector2 playerlocation = Vector2.Zero();
 
         public Enemy(Sprite2D sprite0 , Vector2 location0 , TestGameMode GM)
         {
             sprite = sprite0;
             location = location0;
             tgm = GM;
-
-            sec = new System.Timers.Timer(5000);
-            sec.Elapsed += Sec_Elapsed;
-            sec.Start();
-        }
-
-        private void Sec_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            Shoot();
         }
 
         private void updatesprite()
@@ -54,43 +41,45 @@ namespace Nilox2DGameEngine.Character
             sprite.location = location;
         }
 
+
+
+
         public void TakeDamage(int damage0)
         {
             health = health - damage0;
         }
         
-        public void aiTick(Sprite2D player0)
+        public void move(Vector2 playerlocation0)
         {
+<<<<<<< HEAD
             //Movement
             if(sprite.IsCollidingWithTag("collider") == null && hastarget == true)
             {
                 Vector2 direction = Vector2.Normalize(location - player0.location);
 
                 location = location + (direction * maxwalkspeed);
+=======
+            /*
+            float y = Vector2.steigung(location, playerlocation0);
+            location = new Vector2(playerlocation0.X, y);
+            */
+>>>>>>> bafe96dfec1fecefe42050b06398ae0af5e567bc
 
-                lastlocation = location;
-                updatesprite();
-            }
-            else
-            {
-                location = lastlocation;
-                hastarget = false;
-            }
-            if (sprite.IsCollidingWithTag("player") == null && hastarget == true)
-            {
-                
-            }
+            Vector2 place = location - (playerlocation0);
+            location = location + place / -25;
+
+            updatesprite();
         }
 
 
         public void Shoot()
         {
-            tgm.spawnProjectile(location);
-        }
-
-        public void destroyselft()
-        {
-            tgm.desroyEnemie(this);
+            if (index > 120)
+            {
+                tgm.spawnProjectile(location);
+                index = 0;
+            }
+            index++;
         }
     }
 }
