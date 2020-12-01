@@ -849,109 +849,106 @@ namespace Nilox2DGameEngine.Editor
             LB.savecurrent(tb_saveto.Text);
         }
 
-        private void pbSelect(int i)
-        {
-            LB.replacecoorinate(LB.selectedVector, );
-        }
+
 
         private void pb_1_Click(object sender, EventArgs e)
         {
-            pbSelect(1);
+            LB.pbSelect(1);
         }
 
         private void pb_2_Click(object sender, EventArgs e)
         {
-            pbSelect(2);
+            LB.pbSelect(2);
         }
 
         private void pb_3_Click(object sender, EventArgs e)
         {
-            pbSelect(3);
+            LB.pbSelect(3);
         }
 
         private void pb_4_Click(object sender, EventArgs e)
         {
-            pbSelect(4);
+            LB.pbSelect(4);
         }
 
         private void pb_5_Click(object sender, EventArgs e)
         {
-            pbSelect(5);
+            LB.pbSelect(5);
         }
 
         private void pb_6_Click(object sender, EventArgs e)
         {
-            pbSelect(6);
+            LB.pbSelect(6);
         }
 
         private void pb_7_Click(object sender, EventArgs e)
         {
-            pbSelect(7);
+            LB.pbSelect(7);
         }
 
         private void pb_8_Click(object sender, EventArgs e)
         {
-            pbSelect(8);
+            LB.pbSelect(8);
         }
 
         private void pb_9_Click(object sender, EventArgs e)
         {
-            pbSelect(9);
+            LB.pbSelect(9);
         }
 
         private void pb_10_Click(object sender, EventArgs e)
         {
-            pbSelect(10);
+            LB.pbSelect(10);
         }
 
         private void pb_11_Click(object sender, EventArgs e)
         {
-            pbSelect(11);
+            LB.pbSelect(11);
         }
 
         private void pb_12_Click(object sender, EventArgs e)
         {
-            pbSelect(12);
+            LB.pbSelect(12);
         }
 
         private void pb_13_Click(object sender, EventArgs e)
         {
-            pbSelect(13);
+            LB.pbSelect(13);
         }
 
         private void pb_14_Click(object sender, EventArgs e)
         {
-            pbSelect(14);
+            LB.pbSelect(14);
         }
 
         private void pb_15_Click(object sender, EventArgs e)
         {
-            pbSelect(15);
+            LB.pbSelect(15);
         }
 
         private void pb_16_Click(object sender, EventArgs e)
         {
-            pbSelect(16);
+            LB.pbSelect(16);
         }
 
         private void pb_17_Click(object sender, EventArgs e)
         {
-            pbSelect(17);
+            LB.pbSelect(17);
         }
 
         private void pb_18_Click(object sender, EventArgs e)
         {
-            pbSelect(18);
+            LB.pbSelect(18);
         }
 
         private void pb_19_Click(object sender, EventArgs e)
         {
-            pbSelect(19);
+            LB.pbSelect(19);
         }
 
         private void pb_20_Click(object sender, EventArgs e)
         {
-            pbSelect(20);
+            LB.pbSelect(20);
         }
     }
     //
@@ -1273,7 +1270,14 @@ namespace Nilox2DGameEngine.Editor
         public void savecurrent(string dir)
         {
             NSave.TileS(allTiles.ElementAt(selectedtile) ,Application.StartupPath + @"\Levels\" + dir);
-        } 
+        }
+
+        public void pbSelect(int i)
+        {
+            string name1[] = allimages[i].name.Split();
+
+            replacecoorinate(selectedVector, );
+        }
 
         #endregion
     }
