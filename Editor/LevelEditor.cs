@@ -1274,9 +1274,9 @@ namespace Nilox2DGameEngine.Editor
 
         public void pbSelect(int i)
         {
-            string name1[] = allimages[i].name.Split(); 
+            string[] name1 = allimages[1].name.Split('§'); 
 
-            replacecoorinate(selectedVector, );
+            replacecoorinate(selectedVector, name1[0]);
         }
 
         #endregion
