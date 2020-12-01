@@ -33,8 +33,6 @@ namespace Nilox2DGameEngine
         public List<Projectile> projectiles = new List<Projectile>();
 
 
-        int aitick = 0;
-
         public TestGameMode() : base(new Vector2(735,330), "Engine Demo") { }
         #endregion
         //
@@ -59,12 +57,12 @@ namespace Nilox2DGameEngine
             if (up)
             {
                 player.location.Y -= maxspeed;
-                updateCameraPosition(new Vector2(0,maxspeed));
+                updateCameraPosition(new Vector2(0,maxspeed * -1));
             }
             if (down)
             {
                 player.location.Y += maxspeed;
-                updateCameraPosition(new Vector2(0, maxspeed * -1));
+                updateCameraPosition(new Vector2(0, maxspeed));
             }
             if (left)
             {
@@ -142,12 +140,12 @@ namespace Nilox2DGameEngine
                     //Add Sprite2D if i has the name "." with special parameters
                     if (t.Map[j, i] == ".")
                     {
-                        Sprite2D s = new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "o_tile15", "Background");
+                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "o_tile15", "Background");
                     }
                     //Add sprite by name with normal perameters
                     else
                     {
-                        Sprite2D s = new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), t.Map[j, i], "");
+                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), t.Map[j, i], "");
                     }
                 }
             }
@@ -164,11 +162,11 @@ namespace Nilox2DGameEngine
         public void UnloadCurrentTile()
         {
             Log.Warning("Clearing all Sprites");
-            int count = Engine.AllSprites.Count;
+            int count = Engine.allSprites.Count;
             for (int i = 0 ; i < count; ++i)
             {
-                Engine.AllSprites.ElementAt(0).DestroySelf();
-                Console.WriteLine(Engine.AllSprites.Count.ToString());
+                Engine.allSprites.ElementAt(0).DestroySelf();
+                Console.WriteLine(Engine.allSprites.Count.ToString());
             }
         }
         #endregion
@@ -176,9 +174,10 @@ namespace Nilox2DGameEngine
         // //
         //
         #region
-        public void updateCameraPosition(Vector2 v)
+        public void updateCameraPosition( Vector2 v)
         {
-            Engine.CameraPostition = Engine.CameraPostition + v;
+            CameraPostition = CameraPostition + v;
+            Log.Error(Engine.CameraPostition.ToString());
         }
         #endregion
         //

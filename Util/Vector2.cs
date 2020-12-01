@@ -38,21 +38,9 @@ namespace Nilox2DGameEngine.Util
             return new Vector2(v0.X / (float)distance, v0.Y / (float)distance);
         }
 
-        public static float steigung(Vector2 posEnemy, Vector2 posPlayer)
+        public static float Lenght(Vector2 v0)
         {
-            float deltaX = posEnemy.X - posPlayer.X;
-            float deltaY = posEnemy.Y - posPlayer.X;
-
-            if (deltaX <= 0)
-            {
-                deltaX = ((deltaX * deltaX) / deltaX);
-            }
-            if (deltaY <= 0)
-            {
-                deltaY = ((deltaY * deltaY) / deltaY);
-            }
-
-            return deltaY / deltaX;
+            return (float)Math.Sqrt(v0.X * v0.X + v0.Y * v0.Y);
         }
 
         public override string ToString()
@@ -121,6 +109,12 @@ namespace Nilox2DGameEngine.Util
             return new Vector2(
                v1.X * i,
                v1.Y * i);
+        }
+        public static Vector2 operator *(Vector2 v1, double i)
+        {
+            return new Vector2(
+               v1.X * (float)i,
+               v1.Y * (float)i);
         }
 
         public static Vector2 operator / (Vector2 v1, Vector2 v2)

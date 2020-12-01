@@ -113,7 +113,7 @@ namespace Nilox2DGameEngine.Core
         {
             if (isleveleditor == false)
             {
-                foreach (Sprite2D s in Engine.AllSprites)
+                foreach (Sprite2D s in Engine.allSprites)
                 {
                     if (s.tag == tag)
                     {
