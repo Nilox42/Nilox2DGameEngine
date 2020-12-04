@@ -259,10 +259,6 @@ namespace Nilox2DGameEngine.Core
 
         public abstract void KeyUp(KeyEventArgs e);
         #endregion
-        //
-        // //
-        //
-        #endregion
-
     }
+    #endregion
 }

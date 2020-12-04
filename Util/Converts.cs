@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nilox2DGameEngine.Map;
+using Nilox2DGameEngine.Core;
 
 namespace Nilox2DGameEngine.Util
 {
@@ -55,7 +56,6 @@ namespace Nilox2DGameEngine.Util
 
             return t;
         }
-
         public static string TileToString(Tile t0)
         {
             string result = null;
@@ -71,6 +71,13 @@ namespace Nilox2DGameEngine.Util
             return result;
         }
 
-
+        public static Vector2 toScreenLocation(Vector2 gamelocation)
+        {
+            return gamelocation + Engine.CameraPostition;
+        }
+        public static Vector2 toGameLocation(Vector2 screenLocation)
+        {
+            return screenLocation - Engine.CameraPostition;
+        }
     }
 }

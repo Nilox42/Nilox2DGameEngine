@@ -16,22 +16,30 @@ namespace Nilox2DGameEngine
     public class TestGameMode : Engine
     {
         #region Init
+        //var
         Sprite2D player = null;
         Level currentLevel = null;
 
+
+        //Character Movement
         private bool left;
         private bool right;
         private bool up;
         private bool down;
-
+        //
         private float maxspeed = 3;
         private Vector2 lastPos = Vector2.Zero();
         public Vector2 spawnPosition = new Vector2(50, 48 * 4);
 
-
+        //Actors 
         public List<Enemy> enemies = new List<Enemy>();
         public List<Projectile> projectiles = new List<Projectile>();
 
+
+        //Camera Movement
+        public double camerathresholdX = 0.8;
+        public double camerathresholdY = 0.8;
+        //
 
         public TestGameMode() : base(new Vector2(735,330), "Engine Demo") { }
         #endregion
@@ -53,11 +61,24 @@ namespace Nilox2DGameEngine
 
         public override void OnUpdate()
         {
+            Vector2 cameraLocation = new Vector2(CameraPostition.X * (float)camerathresholdX, CameraPostition.Y * (float)camerathresholdY);
+
             //input
             if (up)
             {
-                player.location.Y -= maxspeed;
-                updateCameraPosition(new Vector2(0,maxspeed * -1));
+                if (player.location.X < cameraLocation.X + Window.Width * camerathresholdX   &&
+                    player.location.X + player.scale.X > cameraLocation.X                    &&
+                    player.location.Y < cameraLocation.Y + Window.Height * camerathresholdY  &&
+                    player.location.Y + player.scale.Y > cameraLocation.Y                       )
+                {
+                    player.location.Y -= maxspeed;
+                }
+                else
+                {
+                    float p = cameraLocation.X + (float)Window.Width * (float)camerathresholdX;
+                    Log.Error(p.ToString());
+                }
+                
             }
             if (down)
             {
@@ -173,11 +194,10 @@ namespace Nilox2DGameEngine
         //
         // //
         //
-        #region
+        #region Functions
         public void updateCameraPosition( Vector2 v)
         {
-            CameraPostition = CameraPostition + v;
-            Log.Error(Engine.CameraPostition.ToString());
+            
         }
         #endregion
         //
