@@ -70,6 +70,12 @@ namespace Nilox2DGameEngine.Util
                v1.X - v2.X,
                v1.Y - v2.Y);
         }
+        public static Vector2 operator -(Vector2 v1, float f)
+        {
+            return new Vector2(
+               v1.X - f,
+               v1.Y - f);
+        }
 
         public static bool operator < (Vector2 v1, Vector2 v2)
         {
@@ -111,6 +117,12 @@ namespace Nilox2DGameEngine.Util
                v1.Y * i);
         }
         public static Vector2 operator *(Vector2 v1, double i)
+        {
+            return new Vector2(
+               v1.X * (float)i,
+               v1.Y * (float)i);
+        }
+        public static Vector2 operator *(double i, Vector2 v1)
         {
             return new Vector2(
                v1.X * (float)i,

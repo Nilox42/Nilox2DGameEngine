@@ -37,8 +37,7 @@ namespace Nilox2DGameEngine
 
 
         //Camera Movement
-        public double camerathresholdX = 0.8;
-        public double camerathresholdY = 0.8;
+        public double camerathreshold = 0.8;
         //
 
         public TestGameMode() : base(new Vector2(735,330), "Engine Demo") { }
@@ -59,42 +58,73 @@ namespace Nilox2DGameEngine
             
         }
 
+
+        private bool TCAM(Vector2 TcameraLocation , Vector2 TWindowsize)
+        {
+            return player.location.X < TcameraLocation.X + TWindowsize.X &&
+                     player.location.X + player.scale.X > TcameraLocation.X &&
+                     player.location.Y < TcameraLocation.Y + TWindowsize.Y &&
+                     player.location.Y + player.scale.Y > TcameraLocation.Y;
+        }
         public override void OnUpdate()
         {
-            Vector2 cameraLocation = new Vector2(CameraPostition.X * (float)camerathresholdX, CameraPostition.Y * (float)camerathresholdY);
+            Vector2 Windowsize = new Vector2(Window.Width , Window.Height);
+
+            Vector2 TcameraLocation = CameraPostition + CameraPostition * (1-camerathreshold);
+            Vector2 TWindowsize = Windowsize - 2.0 * (Windowsize * (1.0 - camerathreshold));
 
             //input
             if (up)
             {
-                if (player.location.X < cameraLocation.X + Window.Width * camerathresholdX   &&
-                    player.location.X + player.scale.X > cameraLocation.X                    &&
-                    player.location.Y < cameraLocation.Y + Window.Height * camerathresholdY  &&
-                    player.location.Y + player.scale.Y > cameraLocation.Y                       )
+                if (TCAM(TcameraLocation, TWindowsize))
                 {
                     player.location.Y -= maxspeed;
                 }
                 else
                 {
-                    float p = cameraLocation.X + (float)Window.Width * (float)camerathresholdX;
-                    Log.Error(p.ToString());
+                    player.location.Y -= maxspeed;
+                    Log.Warning("UP");
                 }
-                
             }
             if (down)
             {
-                player.location.Y += maxspeed;
-                updateCameraPosition(new Vector2(0, maxspeed));
+                if (TCAM(TcameraLocation, TWindowsize))
+                {
+                    player.location.Y += maxspeed;
+                }
+                else
+                {
+                    player.location.Y += maxspeed;
+                    Log.Warning("DOWN");
+                }
             }
             if (left)
             {
-                player.location.X -= maxspeed;
-                updateCameraPosition(new Vector2(maxspeed, 0));
+                if (TCAM(TcameraLocation, TWindowsize))
+                {
+                    player.location.X -= maxspeed;
+                }
+                else
+                {
+                    player.location.X -= maxspeed;
+
+                    Log.Warning("LEFT");
+                }
             }
             if (right)
             {
-                player.location.X += maxspeed;
-                updateCameraPosition(new Vector2(maxspeed * -1, 0));
+                if (TCAM(TcameraLocation, TWindowsize))
+                {
+                    player.location.X += maxspeed;
+                }
+                else
+                {
+                    player.location.X += maxspeed;
+                    Log.Warning("RIGHT");
+                }
             }
+
+
 
             //Collosion
             if (player.IsCollidingWithTag("collider") != null)
