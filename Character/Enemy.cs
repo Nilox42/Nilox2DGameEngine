@@ -37,14 +37,11 @@ namespace Nilox2DGameEngine.Character
             sprite = sprite0;
             location = location0;
             tgm = GM;
-
-
         }
 
         private void updatesprite()
         {
             sprite.location = location;
-
         }
 
 

@@ -181,9 +181,9 @@ namespace Nilox2DGameEngine
 
                 if (damage != null && e != null)
                 {
-                    if (e.sprite.IsCollidingWithSprite(e.sprite,damage))
+                    if (false)
                     {
-                        e.TakeDamage(10);
+                        //e.TakeDamage(10);
                     }
                     else
                     {
@@ -193,7 +193,6 @@ namespace Nilox2DGameEngine
                     Log.Error("DEEEEPS");
                 }
 
-                Console.WriteLine(enemies.Count);
             }
 
             //ProjectileMovement
@@ -247,7 +246,7 @@ namespace Nilox2DGameEngine
             player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player", true);
             player.fetchimage();
 
-            //spawnenemie(new Vector2(200, 200));
+            spawnenemie(new Vector2(200, 200));
 
         }
 
