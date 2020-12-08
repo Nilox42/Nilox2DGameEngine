@@ -187,8 +187,13 @@ namespace Nilox2DGameEngine
                     }
                     else
                     {
+
                     }
+
+                    Log.Error("DEEEEPS");
                 }
+
+                Console.WriteLine(enemies.Count);
             }
 
             //ProjectileMovement
@@ -242,7 +247,7 @@ namespace Nilox2DGameEngine
             player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player", true);
             player.fetchimage();
 
-            spawnenemie(new Vector2(200, 200));
+            //spawnenemie(new Vector2(200, 200));
 
         }
 
@@ -272,11 +277,11 @@ namespace Nilox2DGameEngine
         #region Actors
         public void spawnenemie(Vector2 location)
         {
-            Sprite2D s = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "", true);
-            s.fetchimage();
+            Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie",false);
+            sprite.fetchimage();
         
-            Enemy e = new Enemy(s,location,this);
-            enemies.Add(e);
+            Enemy enemie = new Enemy(sprite,location,this);
+            enemies.Add(enemie);
         }
 
         public void spawnProjectile(Vector2 location)

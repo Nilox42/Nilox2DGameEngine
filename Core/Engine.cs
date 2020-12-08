@@ -154,11 +154,11 @@ namespace Nilox2DGameEngine.Core
             allSprites.Add(sprite);
             Log.Info($"[SPRITE2D]({sprite.name} +  X:{sprite.location.X}  +  Y:{sprite.location.Y} ) - Has been registered!");
         }
-
         public static void RegisterImage(BaseImage image)
         {
             allimages.Add(image);
         }
+
 
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
