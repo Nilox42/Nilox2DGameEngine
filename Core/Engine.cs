@@ -152,6 +152,7 @@ namespace Nilox2DGameEngine.Core
         public static void RegisterSprite(Sprite2D sprite)
         {
             allSprites.Add(sprite);
+            Log.Info($"[SPRITE2D]({sprite.name} +  X:{sprite.location.X}  +  Y:{sprite.location.Y} ) - Has been registered!");
         }
 
         public static void RegisterImage(BaseImage image)
@@ -170,6 +171,10 @@ namespace Nilox2DGameEngine.Core
         public static void UnRegisterSprite(Sprite2D sprite)
         {
             allSprites.Remove(sprite);
+
+            Log.Info($"[SPRITE2D][REMOVED]({sprite.name} @  X:{sprite.location.X}  Y:{sprite.location.Y}) - Has been destroyed!");
+
+            sprite = null;
         }
         public static void UnRegisterShape(Shape2D shape)
         {
@@ -222,7 +227,10 @@ namespace Nilox2DGameEngine.Core
                     if (sprite.location.X < CameraPostition.X + Window.Width &&
                         sprite.location.X + sprite.scale.X > CameraPostition.X &&
                         sprite.location.Y < CameraPostition.Y + Window.Height &&
-                        sprite.location.Y + sprite.scale.Y > CameraPostition.Y)
+                        sprite.location.Y + sprite.scale.Y > CameraPostition.Y &&
+
+                        //Check if sprite should be drawn
+                        sprite.draw == true)
                     {
                         try
                         {

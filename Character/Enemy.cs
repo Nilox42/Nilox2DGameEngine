@@ -11,6 +11,8 @@ namespace Nilox2DGameEngine.Character
     interface IDamageInterface
     {
         void TakeDamage(int damage0);
+
+        void Death();
     }
 
 
@@ -23,9 +25,9 @@ namespace Nilox2DGameEngine.Character
         public Sprite2D sprite = null;
         Vector2 location = Vector2.Zero();
 
-        double health = 100;
+        double health = 1;
 
-        double maxwalkspeed = 0.1;
+        double maxwalkspeed = 2;
         bool hastarget = true;
 
         //Vector2 playerlocation = Vector2.Zero();
@@ -35,11 +37,14 @@ namespace Nilox2DGameEngine.Character
             sprite = sprite0;
             location = location0;
             tgm = GM;
+
+
         }
 
         private void updatesprite()
         {
             sprite.location = location;
+
         }
 
 
@@ -48,8 +53,21 @@ namespace Nilox2DGameEngine.Character
         public void TakeDamage(int damage0)
         {
             health -= damage0;
+
+            Log.Info("[DAMAGE] - [ENEMY] - " + damage0);
+
+            if (health <= 0)
+            {
+                Death();
+            }
         }
-        
+        public void Death()
+        {
+            Log.Error("[ENEMIE] - [REMOVED] -DIIIIIIIIIEEEEEEED");
+         
+            tgm.desroyEnemie(this);
+        }
+
         public void aiTick(Sprite2D player0)
         {
 
@@ -77,5 +95,7 @@ namespace Nilox2DGameEngine.Character
             }
             index++;
         }
+
+        
     }
 }

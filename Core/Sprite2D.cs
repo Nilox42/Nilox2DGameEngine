@@ -19,12 +19,14 @@ namespace Nilox2DGameEngine.Core
         public string tag = "";
         public Bitmap sprite = null;
 
+        public bool draw = true;
+
         private LevelEditor LB = null;
         public string name = string.Empty;
 
         private bool isleveleditor = false;
 
-        public Sprite2D(Vector2 Postition0, Vector2 Scale0, string name0, string Tag0, bool isleveleditor0 = false, LevelEditor LB0 = null)
+        public Sprite2D(Vector2 Postition0, Vector2 Scale0, string name0, string Tag0, bool draw0, bool isleveleditor0 = false, LevelEditor LB0 = null)
         {
             location = Postition0;
             scale = Scale0;
@@ -32,6 +34,7 @@ namespace Nilox2DGameEngine.Core
             tag = Tag0;
             isleveleditor = isleveleditor0;
             LB = LB0;
+            draw = draw0;
 
             fetchimage();
         }
@@ -40,7 +43,6 @@ namespace Nilox2DGameEngine.Core
         {
             if (isleveleditor == false)
             {
-                Log.Info($"[SPRITE2D][REMOVED]({name} @  X:{location.X}  Y:{location.Y}) - Has been destroyed!");
                 Engine.UnRegisterSprite(this);
             }
             else
@@ -69,7 +71,6 @@ namespace Nilox2DGameEngine.Core
                     DestroySelf();
                 }
 
-                Log.Info($"[SPRITE2D]({name} +  X:{location.X}  +  Y:{location.Y} ) - Has been registered!");
                 Engine.RegisterSprite(this);
             }
 

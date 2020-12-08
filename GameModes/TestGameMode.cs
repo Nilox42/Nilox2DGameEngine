@@ -27,6 +27,17 @@ namespace Nilox2DGameEngine
         private bool up;
         private bool down;
         //
+        bool movecamera = false;
+
+
+        //Fighting
+        private bool space;
+        //
+        bool canattack = true;
+        bool isattacking = false;
+        int attacktick = 0;
+        Sprite2D damage = null;
+
         private float maxspeed = 3;
         private Vector2 lastPos = Vector2.Zero();
         public Vector2 spawnPosition = new Vector2(50, 48 * 4);
@@ -59,72 +70,87 @@ namespace Nilox2DGameEngine
         }
 
 
-        private bool TCAM(Vector2 TcameraLocation , Vector2 TWindowsize)
-        {
-            return player.location.X < TcameraLocation.X + TWindowsize.X &&
-                     player.location.X + player.scale.X > TcameraLocation.X &&
-                     player.location.Y < TcameraLocation.Y + TWindowsize.Y &&
-                     player.location.Y + player.scale.Y > TcameraLocation.Y;
-        }
+
         public override void OnUpdate()
         {
-            Vector2 Windowsize = new Vector2(Window.Width , Window.Height);
-
-            Vector2 TcameraLocation = CameraPostition + CameraPostition * (1-camerathreshold);
-            Vector2 TWindowsize = Windowsize - 2.0 * (Windowsize * (1.0 - camerathreshold));
-
             //input
             if (up)
             {
-                if (TCAM(TcameraLocation, TWindowsize))
+                if (movecamera)
                 {
-                    player.location.Y -= maxspeed;
+                    CameraPostition -= maxspeed;
                 }
                 else
                 {
                     player.location.Y -= maxspeed;
-                    Log.Warning("UP");
                 }
             }
             if (down)
             {
-                if (TCAM(TcameraLocation, TWindowsize))
+                if (movecamera)
                 {
-                    player.location.Y += maxspeed;
+                    CameraPostition.Y -= maxspeed;
                 }
                 else
                 {
                     player.location.Y += maxspeed;
-                    Log.Warning("DOWN");
                 }
             }
             if (left)
             {
-                if (TCAM(TcameraLocation, TWindowsize))
+                if (movecamera)
                 {
-                    player.location.X -= maxspeed;
+                    CameraPostition.X += maxspeed;
                 }
                 else
                 {
                     player.location.X -= maxspeed;
-
-                    Log.Warning("LEFT");
                 }
             }
             if (right)
             {
-                if (TCAM(TcameraLocation, TWindowsize))
+                if (movecamera)
                 {
-                    player.location.X += maxspeed;
+                    CameraPostition.X -= maxspeed;
                 }
                 else
                 {
                     player.location.X += maxspeed;
-                    Log.Warning("RIGHT");
                 }
             }
 
+            //Fighting
+            if(isattacking)
+            {
+                if (attacktick >= 10)
+                {
+                    isattacking = false;
+                    canattack = true;
+                    attacktick = 0;
 
+                    if (damage != null)
+                    {
+                        damage.DestroySelf();
+                        damage = null;
+                    }
+                    Log.Warning("ATTACK STOP" + attacktick);
+                }
+                else
+                {
+                    attacktick++;
+                }
+            }
+            else
+            {
+                if (canattack == true && space == true)
+                {
+                    isattacking = true;
+                    //ATTACK
+                    damage = new Sprite2D(player.location, new Vector2(48, 48), "Selector", "Damage" , true);
+
+                    canattack = false;
+                }
+            }
 
             //Collosion
             if (player.IsCollidingWithTag("collider") != null)
@@ -148,11 +174,21 @@ namespace Nilox2DGameEngine
                 currentLevel.moveLeft();
             }
 
-            //AI Movement
-            //Enemy Movement
+            //AI Tick
             foreach (Enemy e in enemies)
             {
                 e.aiTick(player);
+
+                if (damage != null && e != null)
+                {
+                    if (e.sprite.IsCollidingWithSprite(e.sprite,damage))
+                    {
+                        e.TakeDamage(10);
+                    }
+                    else
+                    {
+                    }
+                }
             }
 
             //ProjectileMovement
@@ -164,20 +200,20 @@ namespace Nilox2DGameEngine
 
         public override void KeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W) { up = true; }
-            if (e.KeyCode == Keys.S) { down = true; }
-            if (e.KeyCode == Keys.D) { right = true; }
-            if (e.KeyCode == Keys.A) { left = true; }
-            if (e.KeyCode == Keys.Space) {  }
+            if (e.KeyCode == Keys.W)        { up = true;    }
+            if (e.KeyCode == Keys.S)        { down = true;  }
+            if (e.KeyCode == Keys.D)        { right = true; }
+            if (e.KeyCode == Keys.A)        { left = true;  }
+            if (e.KeyCode == Keys.Space)    { space = true; }
         }
 
         public override void KeyUp(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W) { up = false; }
-            if (e.KeyCode == Keys.S) { down = false; }
-            if (e.KeyCode == Keys.D) { right = false; }
-            if (e.KeyCode == Keys.A) { left = false; }
-            if (e.KeyCode == Keys.Space) {  }
+            if (e.KeyCode == Keys.W)        { up = false;   }
+            if (e.KeyCode == Keys.S)        { down = false; }
+            if (e.KeyCode == Keys.D)        { right = false;}
+            if (e.KeyCode == Keys.A)        { left = false; }
+            if (e.KeyCode == Keys.Space)    { space = false;}
         }
 
         public void LoadNewTile(Tile t)
@@ -191,19 +227,19 @@ namespace Nilox2DGameEngine
                     //Add Sprite2D if i has the name "." with special parameters
                     if (t.Map[j, i] == ".")
                     {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "o_tile15", "Background");
+                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "o_tile15", "Background", true);
                     }
                     //Add sprite by name with normal perameters
                     else
                     {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), t.Map[j, i], "");
+                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), t.Map[j, i], "", true);
                     }
                 }
             }
 
 
             //Player 
-            player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player");
+            player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player", true);
             player.fetchimage();
 
             spawnenemie(new Vector2(200, 200));
@@ -236,7 +272,7 @@ namespace Nilox2DGameEngine
         #region Actors
         public void spawnenemie(Vector2 location)
         {
-            Sprite2D s = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "");
+            Sprite2D s = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "", true);
             s.fetchimage();
         
             Enemy e = new Enemy(s,location,this);
@@ -245,7 +281,7 @@ namespace Nilox2DGameEngine
 
         public void spawnProjectile(Vector2 location)
         {
-            Sprite2D s = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "");
+            Sprite2D s = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "", true);
             s.fetchimage();
 
             Projectile p = new Projectile(s, location, new Vector2(1,0), 2, this);
@@ -256,6 +292,12 @@ namespace Nilox2DGameEngine
         public void desroyEnemie(Enemy e)
         {
             Log.Warning("[DESTROYED][ENEMY]  -  {" + e.sprite.name + "}");
+
+            Sprite2D sprite = e.sprite;
+            
+            sprite.DestroySelf();
+
+            enemies.Remove(e);
             e = null;
         }
 

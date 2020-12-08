@@ -18,7 +18,7 @@ namespace Nilox2DGameEngine.Core
         LevelEditor levelEditor = null;
         TestGameMode GM = null;
 
-        MainMenuForm MMF = null;
+        //MainMenuForm MMF = null;
 
 
         public Controller()

@@ -36,7 +36,7 @@ namespace Nilox2DGameEngine.Core
         {
             BackgroundColor = Color.Black;
 
-            player = new Sprite2D(new Vector2(48, 48), new Vector2(48, 48), "Overworld/Objects/rocks1_7", "Player");
+            player = new Sprite2D(new Vector2(48, 48), new Vector2(48, 48), "Overworld/Objects/rocks1_7", "Player", true);
         }
 
         public override void OnDraw()
@@ -98,15 +98,15 @@ namespace Nilox2DGameEngine.Core
                 {
                     if (t.Map[j, i] == "g")
                     {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/tile22", "Collider");
+                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/tile22", "Collider", true);
                     }
                     if (t.Map[j, i] == "w")
                     {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/tile53", "Collider");
+                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/tile53", "Collider", true);
                     }
                     if (t.Map[j, i] == "s")
                     {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/tile12", "BackGround");
+                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/tile12", "BackGround", true);
                     }
                 }
             }
