@@ -78,7 +78,7 @@ namespace Nilox2DGameEngine
 
         public override void OnUpdate()
         {
-            //input
+            #region Input
             if (up)
             {
                 if (movecamera)
@@ -123,9 +123,12 @@ namespace Nilox2DGameEngine
                     player.location.X += maxspeed;
                 }
             }
-
-            //Fighting
-            if(isattacking)
+            #endregion
+            //
+            //
+            //
+            #region Fighting
+            if (isattacking)
             {
                 if (attacktick >= 10)
                 {
@@ -156,8 +159,11 @@ namespace Nilox2DGameEngine
                     canattack = false;
                 }
             }
-
-            //Collosion
+            #endregion
+            //
+            //
+            //
+            #region Collision
             if (player.IsCollidingWithTag("collider") != null)
             {
                 player.location.X = lastPos.X;
@@ -168,8 +174,11 @@ namespace Nilox2DGameEngine
                 lastPos.X = player.location.X;
                 lastPos.Y = player.location.Y;
             }
-
-            //Map Movement
+            #endregion
+            //
+            //
+            //
+            #region Map Movement
             if (player.IsCollidingWithTag("DoorRight") != null)
             {
                 currentLevel.moveRight();
@@ -178,8 +187,11 @@ namespace Nilox2DGameEngine
             {
                 currentLevel.moveLeft();
             }
-
-            //AI Tick
+            #endregion
+            //
+            //
+            //
+            #region AI Tick
             foreach (Enemy e in enemies)
             {
                 e.aiTick(player);
@@ -205,6 +217,7 @@ namespace Nilox2DGameEngine
             {
                 p.move();
             }
+            #endregion
         }
 
         public override void OnClose()
@@ -212,7 +225,7 @@ namespace Nilox2DGameEngine
             Stopwatch sp = new Stopwatch();
             sp.Start();
 
-            string name = "log";
+            string name = "log" + Engine.sessionkey;
             string path = Application.StartupPath + @"\log" + @"\" + name + ".txt";
             string time = Engine.FrameCount.ToString();
 
@@ -232,8 +245,6 @@ namespace Nilox2DGameEngine
 
             sp = null;
             sw.Dispose();
-
-
         }
 
         public override void KeyDown(KeyEventArgs e)

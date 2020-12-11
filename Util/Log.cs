@@ -51,12 +51,14 @@ namespace Nilox2DGameEngine.Util
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine($"[SAVE] - {msg}");
+            line($"[SAVE] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }
         public static void Load(string msg)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"[LOAD] - {msg}");
+            line($"[LOAD] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }
         //

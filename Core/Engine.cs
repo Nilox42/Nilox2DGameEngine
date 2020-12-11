@@ -98,12 +98,28 @@ namespace Nilox2DGameEngine.Core
         public static Vector2 CameraPostition = new Vector2(0, 0);
         public float CameraAngle = 0f;
 
+        //Logging
+        Random keygerator = new Random();
+        public static string sessionkey = "keyerror";
+        int keyrange = 9999;
+
         public Engine(Vector2 ScreenSize0, string Title)
         {
+            //SessionKey
+            sessionkey = keygerator.Next(0, keyrange).ToString();
+            Log.Load("[SESSION]    -    KEY:" + sessionkey);
+
+            //Load Content
             foreach (string sl in allcontentlocations)
             {
                 NLoad.ImagesfromDirectory(Application.StartupPath + sl, allimages);
             }
+            Log.Info("Loading finished");
+            Log.Info("");
+            Log.Info("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+            Log.Info("");
+            
+
 
             //Ser base varibles
             Log.Info("Game is starting ...");
@@ -120,6 +136,8 @@ namespace Nilox2DGameEngine.Core
             Window.KeyDown += Window_KeyDown;
             Window.KeyUp += Window_KeyUp;
             Window.FormClosing += Window_FormClosing;
+
+            
 
             //Initiate Core Functions
             GameLoopThread = new Thread(GameLoop);
