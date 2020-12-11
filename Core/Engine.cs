@@ -98,6 +98,9 @@ namespace Nilox2DGameEngine.Core
         public static Vector2 CameraPostition = new Vector2(0, 0);
         public float CameraAngle = 0f;
 
+        //Logging
+        Log log;
+
         public Engine(Vector2 ScreenSize0, string Title)
         {
             foreach (string sl in allcontentlocations)
@@ -120,6 +123,10 @@ namespace Nilox2DGameEngine.Core
             Window.KeyDown += Window_KeyDown;
             Window.KeyUp += Window_KeyUp;
             Window.FormClosing += Window_FormClosing;
+
+            //Log
+            log = new Log();
+            log.startlogging();
 
             //Initiate Core Functions
             GameLoopThread = new Thread(GameLoop);
