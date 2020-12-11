@@ -25,7 +25,8 @@ namespace Nilox2DGameEngine.Character
         public Sprite2D sprite = null;
         Vector2 location = Vector2.Zero();
 
-        double health = 1;
+        double health = 100;
+        bool alive = true;
 
         double maxwalkspeed = 2;
         bool hastarget = true;
@@ -53,21 +54,22 @@ namespace Nilox2DGameEngine.Character
 
             Log.Info("[DAMAGE] - [ENEMY] - " + damage0);
 
-            if (health <= 0)
+            if (health <= 0 && alive)
             {
+                alive = false;
+                sprite.draw = false;
                 Death();
             }
         }
         public void Death()
         {
-            Log.Error("[ENEMIE] - [REMOVED] -DIIIIIIIIIEEEEEEED");
+            Log.Error("[ENEMIE] - [DIED] - " + sprite.name);
          
             tgm.desroyEnemie(this);
         }
 
         public void aiTick(Sprite2D player0)
         {
-
             //Movement
             if (sprite.IsCollidingWithTag("collider") == null && hastarget == true)
             {

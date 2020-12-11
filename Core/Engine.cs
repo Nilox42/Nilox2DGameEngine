@@ -114,11 +114,11 @@ namespace Nilox2DGameEngine.Core
             {
                 NLoad.ImagesfromDirectory(Application.StartupPath + sl, allimages);
             }
+
             Log.Info("Loading finished");
             Log.Info("");
             Log.Info("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
             Log.Info("");
-            
 
 
             //Ser base varibles

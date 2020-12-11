@@ -198,18 +198,18 @@ namespace Nilox2DGameEngine
 
                 if (damage != null && e != null)
                 {
-                    if (false)
+                    if (e.sprite.location.X < damage.location.X + damage.scale.X        &&
+                        e.sprite.location.X + e.sprite.scale.X  > damage.location.X      &&
+                        e.sprite.location.Y < damage.location.Y + damage.scale.Y        &&
+                        e.sprite.location.Y + e.sprite.scale.Y  > damage.location.Y      )
                     {
-                        //e.TakeDamage(10);
+                        e.TakeDamage(1000);
                     }
                     else
                     {
 
                     }
-
-                    Log.Error("DEEEEPS");
                 }
-
             }
 
             //ProjectileMovement
@@ -292,7 +292,6 @@ namespace Nilox2DGameEngine
             player.fetchimage();
 
             spawnenemie(new Vector2(200, 200));
-
         }
 
         public void UnloadCurrentTile()
@@ -321,7 +320,7 @@ namespace Nilox2DGameEngine
         #region Actors
         public void spawnenemie(Vector2 location)
         {
-            Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie",false);
+            Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie",true);
             sprite.fetchimage();
         
             Enemy enemie = new Enemy(sprite,location,this);
