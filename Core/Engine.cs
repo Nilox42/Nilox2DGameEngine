@@ -79,7 +79,7 @@ namespace Nilox2DGameEngine.Core
         public Color BackgroundColor = Color.Gray;
 
         //Engine varibles
-        public int FrameCount = 0;
+        public static int FrameCount = 0;
         private Thread GameLoopThread = null;
 
         //Engine lists
@@ -97,9 +97,6 @@ namespace Nilox2DGameEngine.Core
         //Camera varibles
         public static Vector2 CameraPostition = new Vector2(0, 0);
         public float CameraAngle = 0f;
-
-        //Logging
-        Log log;
 
         public Engine(Vector2 ScreenSize0, string Title)
         {
@@ -123,10 +120,6 @@ namespace Nilox2DGameEngine.Core
             Window.KeyDown += Window_KeyDown;
             Window.KeyUp += Window_KeyUp;
             Window.FormClosing += Window_FormClosing;
-
-            //Log
-            log = new Log();
-            log.startlogging();
 
             //Initiate Core Functions
             GameLoopThread = new Thread(GameLoop);
@@ -169,6 +162,8 @@ namespace Nilox2DGameEngine.Core
 
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
+            OnClose();
+
             GameLoopThread.Abort();
             allSprites.Clear();
             allShapes.Clear();
@@ -268,6 +263,8 @@ namespace Nilox2DGameEngine.Core
         public abstract void OnUpdate();
 
         public abstract void OnDraw();
+
+        public abstract void OnClose();
 
 
         public abstract void KeyDown(KeyEventArgs e);

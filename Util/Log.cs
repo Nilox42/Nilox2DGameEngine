@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.IO;
 using System.Windows.Forms;
+using Nilox2DGameEngine.Core;
+using System.Diagnostics;
 
 namespace Nilox2DGameEngine.Util
 {
     public class Log
     {
-        string path = String.Empty;
-        StreamWriter sw;
-
         public static void Normal(string msg)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"[MSG] - {msg}");
+            line($"[MSG] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
@@ -24,6 +25,7 @@ namespace Nilox2DGameEngine.Util
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"[INFO] - {msg}");
+            line($"[INFO] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
@@ -31,6 +33,7 @@ namespace Nilox2DGameEngine.Util
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"[WARNING] - {msg}");
+            line($"[WARNING] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
@@ -38,6 +41,7 @@ namespace Nilox2DGameEngine.Util
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"[ERROR] - {msg}");
+            Log.line($"[ERROR] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }
         //
@@ -63,30 +67,9 @@ namespace Nilox2DGameEngine.Util
         //
         //
         #region logfile
-        public void startlogging()
+        public static void line(string line)
         {
-            string name = "log";
-            
-
-            if (File.Exists(Application.StartupPath + @"\log" + @"\" + name + ".txt"))
-            {
-                Random r = new Random();
-
-                name = name + r.Next(0,10000);
-            }
-
-            path = Application.StartupPath + @"\log" + @"\" + name + ".txt";
-            sw = new StreamWriter(path);
-        }
-
-        public void stoplogging()
-        {
-            sw.Dispose();
-        }
-
-        public void line(string line)
-        {
-            sw.WriteLine(line);
+            TestGameMode.logs.Add(line);
         }
         #endregion
     }

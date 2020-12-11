@@ -10,6 +10,8 @@ using Nilox2DGameEngine.Map;
 using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Character;
+using System.IO;
+using System.Diagnostics;
 
 namespace Nilox2DGameEngine
 {
@@ -45,6 +47,9 @@ namespace Nilox2DGameEngine
         //Actors 
         public List<Enemy> enemies = new List<Enemy>();
         public List<Projectile> projectiles = new List<Projectile>();
+
+        //Logging
+        public static List<string> logs = new List<string>();
 
 
         //Camera Movement
@@ -202,6 +207,35 @@ namespace Nilox2DGameEngine
             }
         }
 
+        public override void OnClose()
+        {
+            Stopwatch sp = new Stopwatch();
+            sp.Start();
+
+            string name = "log";
+            string path = Application.StartupPath + @"\log" + @"\" + name + ".txt";
+            string time = Engine.FrameCount.ToString();
+
+            File.WriteAllText(path, " ");
+
+            StreamWriter sw = new StreamWriter(path);
+
+            foreach (string s in TestGameMode.logs)
+            {
+                sw.WriteLine(s);
+            }
+
+            sp.Stop();
+            sw.WriteLine("[TIME]    -    " + sp.ElapsedMilliseconds.ToString());
+
+            Log.Save("[LOGGING]    -    " + sp.ElapsedMilliseconds.ToString());
+
+            sp = null;
+            sw.Dispose();
+
+
+        }
+
         public override void KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W)        { up = true;    }
@@ -310,6 +344,8 @@ namespace Nilox2DGameEngine
             Log.Warning("[DESTROYED][PROJECTILE]  -  {" + p.sprite.name + "}");
             p = null;
         }
+
+        
 
         #endregion Management
     }

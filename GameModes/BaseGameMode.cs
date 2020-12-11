@@ -122,6 +122,11 @@ namespace Nilox2DGameEngine.Core
                 Console.WriteLine(Engine.allSprites.Count.ToString());
             }
         }
+
+        public override void OnClose()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
 
