@@ -78,6 +78,19 @@ namespace Nilox2DGameEngine
 
         public override void OnUpdate()
         {
+            #region Enemymanagment
+            if (enemies.Count < 2 && enemies.Count < 5)
+            {
+                Random x = new Random();
+                Random y = new Random();
+
+                Vector2 v = new Vector2((int)x.Next(0, Window.Width), (int)y.Next(0, Window.Height));
+                spawnenemie(v);
+            }
+            #endregion 
+            //
+            //
+            //
             #region Input
             if (up)
             {
@@ -154,7 +167,7 @@ namespace Nilox2DGameEngine
                 {
                     isattacking = true;
                     //ATTACK
-                    damage = new Sprite2D(player.location, new Vector2(48, 48), "Selector", "Damage" , true);
+                    damage = new Sprite2D(player.location, new Vector2(48, 48), "Selector", "Damage" , false);
 
                     canattack = false;
                 }
