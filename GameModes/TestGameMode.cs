@@ -19,7 +19,7 @@ namespace Nilox2DGameEngine
     {
         #region Init
         //var
-        Sprite2D player = null;
+        public Sprite2D player = null;
         Level currentLevel = null;
 
 
@@ -56,7 +56,7 @@ namespace Nilox2DGameEngine
         public double camerathreshold = 0.8;
         //
 
-        public TestGameMode() : base(new Vector2(735,330), "Engine Demo") { }
+        public TestGameMode() : base(new Vector2(1280,720), "Engine Demo") { }
         #endregion
         //
         // //
@@ -74,12 +74,10 @@ namespace Nilox2DGameEngine
             
         }
 
-
-
         public override void OnUpdate()
         {
             #region Enemymanagment
-            if (enemies.Count < 2 && enemies.Count < 5)
+            if (enemies.Count < 1)
             {
                 Random x = new Random();
                 Random y = new Random();
@@ -207,8 +205,9 @@ namespace Nilox2DGameEngine
             #region AI Tick
             foreach (Enemy e in enemies)
             {
-                e.aiTick(player);
-
+                //Update all Enemies
+                e.Update();
+                //
                 if (damage != null && e != null)
                 {
                     if (e.sprite.location.X < damage.location.X + damage.scale.X        &&
@@ -216,7 +215,7 @@ namespace Nilox2DGameEngine
                         e.sprite.location.Y < damage.location.Y + damage.scale.Y        &&
                         e.sprite.location.Y + e.sprite.scale.Y  > damage.location.Y      )
                     {
-                        e.TakeDamage(1000);
+                        e.Damge(null, 1000);
                     }
                     else
                     {
@@ -262,20 +261,20 @@ namespace Nilox2DGameEngine
 
         public override void KeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W)        { up = true;    }
-            if (e.KeyCode == Keys.S)        { down = true;  }
+            if (e.KeyCode == Keys.W)        { up    = true; }
+            if (e.KeyCode == Keys.S)        { down  = true; }
             if (e.KeyCode == Keys.D)        { right = true; }
-            if (e.KeyCode == Keys.A)        { left = true;  }
+            if (e.KeyCode == Keys.A)        { left  = true; }
             if (e.KeyCode == Keys.Space)    { space = true; }
         }
 
         public override void KeyUp(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W)        { up = false;   }
-            if (e.KeyCode == Keys.S)        { down = false; }
-            if (e.KeyCode == Keys.D)        { right = false;}
-            if (e.KeyCode == Keys.A)        { left = false; }
-            if (e.KeyCode == Keys.Space)    { space = false;}
+            if (e.KeyCode == Keys.W)        { up    = false; }
+            if (e.KeyCode == Keys.S)        { down  = false; }
+            if (e.KeyCode == Keys.D)        { right = false; }
+            if (e.KeyCode == Keys.A)        { left  = false; }
+            if (e.KeyCode == Keys.Space)    { space = false; }
         }
 
         public void LoadNewTile(Tile t)
@@ -302,7 +301,6 @@ namespace Nilox2DGameEngine
 
             //Player 
             player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player", true);
-            player.fetchimage();
 
             spawnenemie(new Vector2(200, 200));
         }
@@ -334,7 +332,6 @@ namespace Nilox2DGameEngine
         public void spawnenemie(Vector2 location)
         {
             Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie",true);
-            sprite.fetchimage();
         
             Enemy enemie = new Enemy(sprite,location,this);
             enemies.Add(enemie);
@@ -343,7 +340,6 @@ namespace Nilox2DGameEngine
         public void spawnProjectile(Vector2 location)
         {
             Sprite2D s = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "", true);
-            s.fetchimage();
 
             Projectile p = new Projectile(s, location, new Vector2(1,0), 2, this);
             projectiles.Add(p);

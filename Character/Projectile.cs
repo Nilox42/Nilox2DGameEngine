@@ -10,10 +10,8 @@ namespace Nilox2DGameEngine.Character
 {
     public class Projectile:Actor
     {
+        #region Init
         TestGameMode gm = null;
-
-        public Sprite2D sprite = null;
-        Vector2 location = Vector2.Zero();
 
         Vector2 direction = Vector2.Zero();
         int speed = 0;
@@ -35,7 +33,29 @@ namespace Nilox2DGameEngine.Character
             sec.Elapsed += Sec_Elapsed;
             sec.Start();
         }
+        #endregion
+        //
+        //
+        //
+        #region abstract functions
+        public override void Destroy(Actor w)
+        {
+            sprite.DestroySelf();
+            gm.destroyProjectile(this);
+        }
 
+        public override void Damge(Actor instigator, int damage)
+        {
+        }
+
+        public override void Update()
+        {
+        }
+        #endregion
+        //
+        //
+        //
+        #region dunctions
         private void Sec_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             sec.Stop();
@@ -55,19 +75,8 @@ namespace Nilox2DGameEngine.Character
 
             updatesprite();
         }
-
-
-        #region Actor
-        public override void Destroy(Actor w)
-        {
-            sprite.DestroySelf();
-            gm.destroyProjectile(this);
-        }
-
-        public override void Damge(Actor instigator, int damage)
-        {
-            
-        }
         #endregion
+
+
     }
 }

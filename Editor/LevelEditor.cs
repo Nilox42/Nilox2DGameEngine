@@ -1037,7 +1037,7 @@ namespace Nilox2DGameEngine.Editor
             {
                 try
                 {
-                    g.DrawImage(sprite.sprite, sprite.location.X, sprite.location.Y, sprite.scale.X, sprite.scale.Y);
+                    g.DrawImage(sprite.bitmap, sprite.location.X, sprite.location.Y, sprite.scale.X, sprite.scale.Y);
                 }
                 catch
                 {

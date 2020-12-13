@@ -22,7 +22,8 @@ namespace Nilox2DGameEngine.Util
             {
                 for (int j = 0; j < tilesize; j++)
                 {
-                    Map0[i, j] = s[count];
+                   Map0[i, j] = s[count];
+                   
                     ++count;
                 }
             }

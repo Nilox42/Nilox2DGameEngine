@@ -17,7 +17,7 @@ namespace Nilox2DGameEngine.Core
         public Vector2 location = null;
         public Vector2 scale = null;
         public string tag = "";
-        public Bitmap sprite = null;
+        public Bitmap bitmap = null;
 
         public bool draw = true;
 
@@ -60,12 +60,12 @@ namespace Nilox2DGameEngine.Core
                 {
                     if (bi.name == this.name)
                     {
-                        this.sprite = bi.image;
+                        this.bitmap = bi.image;
                         this.tag = bi.tag;
                         break;
                     }
                 }
-                if (this.sprite == null)
+                if (this.bitmap == null)
                 {
                     Log.Error("[SPRITE2D  -  E]  -  Imige NAME:" + name + "  could not be found!!");
                     DestroySelf();
@@ -81,7 +81,7 @@ namespace Nilox2DGameEngine.Core
                 {
                     if (bi.name == this.name)
                     {
-                        this.sprite = bi.image;
+                        this.bitmap = bi.image;
                         break;
                     }
                     else
@@ -158,7 +158,7 @@ namespace Nilox2DGameEngine.Core
             {
                 Image tmp = Image.FromFile("Content/Default/tile60§door.png");
                 Bitmap sprite = new Bitmap(tmp);
-                this.sprite = sprite;
+                this.bitmap = sprite;
             }
             else
             {

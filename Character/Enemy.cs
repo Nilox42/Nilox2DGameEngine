@@ -8,22 +8,10 @@ using Nilox2DGameEngine.Util;
 
 namespace Nilox2DGameEngine.Character
 {
-    interface IDamageInterface
+    public class Enemy : Actor
     {
-        void TakeDamage(int damage0);
-
-        void Death();
-    }
-
-
-    public class Enemy:IDamageInterface
-    {
-        int index = 0;
-
+        #region Init
         TestGameMode tgm = null;
-
-        public Sprite2D sprite = null;
-        Vector2 location = Vector2.Zero();
 
         double health = 100;
         bool alive = true;
@@ -31,51 +19,36 @@ namespace Nilox2DGameEngine.Character
         double maxwalkspeed = 2;
         bool hastarget = true;
 
-        //Vector2 playerlocation = Vector2.Zero();
+        int index = 0;
 
-        public Enemy(Sprite2D sprite0 , Vector2 location0 , TestGameMode GM)
+        //Vector2 playerlocation = Vector2.Zero();
+        public Enemy(Sprite2D sprite0, Vector2 location0, TestGameMode GM)
         {
             sprite = sprite0;
             location = location0;
             tgm = GM;
         }
-
-        private void updatesprite()
-        {
-            sprite.location = location;
-        }
-
-
-
-
-        public void TakeDamage(int damage0)
-        {
-            health -= damage0;
-
-            Log.Info("[DAMAGE] - [ENEMY] - " + damage0);
-
-            if (health <= 0 && alive)
-            {
-                alive = false;
-                sprite.draw = false;
-                Death();
-            }
-        }
-        public void Death()
+        #endregion
+        //
+        //
+        //
+        #region abstract functions
+        public override void Destroy(Actor w)
         {
             Log.Error("[ENEMIE] - [DIED] - " + sprite.name);
-         
+
             tgm.desroyEnemie(this);
         }
-
-        public void aiTick(Sprite2D player0)
+        //
+        public override void Update()
         {
+            Sprite2D player = tgm.player;
             //Movement
             if (sprite.IsCollidingWithTag("collider") == null && hastarget == true)
             {
-                if (Vector2.Lenght(location - player0.location) > 10)
+                if (Vector2.Lenght(location - player.location) > 10)
                 {
-                    Vector2 direction = Vector2.Normalize(location - player0.location);
+                    Vector2 direction = Vector2.Normalize(location - player.location);
 
                     location += (direction * maxwalkspeed * -1);
 
@@ -83,8 +56,30 @@ namespace Nilox2DGameEngine.Character
                 }
             }
         }
+        //
+        public override void Damge(Actor instigator, int damage)
+        {
+            health -= damage;
 
+            Log.Info("[DAMAGE] - [ENEMY] - " + damage);
 
+            if (health <= 0 && alive)
+            {
+                alive = false;
+                sprite.draw = false;
+                Destroy(this);
+            }
+        }
+        #endregion
+        //
+        //
+        //
+        #region functions
+        private void updatesprite()
+        {
+            sprite.location = location;
+        }
+        //
         public void Shoot()
         {
             if (index > 120)
@@ -94,7 +89,10 @@ namespace Nilox2DGameEngine.Character
             }
             index++;
         }
+        #endregion
 
-        
+
+
+
     }
 }
