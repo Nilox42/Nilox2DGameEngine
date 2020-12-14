@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Character\Actor.cs" />
     <Compile Include="Character\Enemy.cs" />
+    <Compile Include="Character\Player.cs" />
     <Compile Include="Character\Projectile.cs" />
     <Compile Include="Core\Controller.cs" />
     <Compile Include="Core\Engine.cs">

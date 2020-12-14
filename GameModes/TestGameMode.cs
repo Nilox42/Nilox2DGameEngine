@@ -19,7 +19,8 @@ namespace Nilox2DGameEngine
     {
         #region Init
         //var
-        public Sprite2D player = null;
+        public Player player = null;
+
         Level currentLevel = null;
 
 
@@ -175,7 +176,7 @@ namespace Nilox2DGameEngine
             //
             //
             #region Collision
-            if (player.IsCollidingWithTag("collider") != null)
+            if (player.sprite.IsCollidingWithTag("collider") != null)
             {
                 player.location.X = lastPos.X;
                 player.location.Y = lastPos.Y;
@@ -190,11 +191,11 @@ namespace Nilox2DGameEngine
             //
             //
             #region Map Movement
-            if (player.IsCollidingWithTag("DoorRight") != null)
+            if (player.sprite.IsCollidingWithTag("DoorRight") != null)
             {
                 currentLevel.moveRight();
             }
-            if (player.IsCollidingWithTag("DoorLeft") != null)
+            if (player.sprite.IsCollidingWithTag("DoorLeft") != null)
             {
                 currentLevel.moveLeft();
             }
@@ -276,7 +277,11 @@ namespace Nilox2DGameEngine
             if (e.KeyCode == Keys.A)        { left  = false; }
             if (e.KeyCode == Keys.Space)    { space = false; }
         }
-
+        #endregion
+        //
+        // //
+        //
+        #region Functions
         public void LoadNewTile(Tile t)
         {
             //Map
@@ -300,7 +305,8 @@ namespace Nilox2DGameEngine
 
 
             //Player 
-            player = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player", true);
+            Sprite2D sprite = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player", true);
+            player = new Player(sprite);
 
             spawnenemie(new Vector2(200, 200));
         }
@@ -309,17 +315,12 @@ namespace Nilox2DGameEngine
         {
             Log.Warning("Clearing all Sprites");
             int count = Engine.allSprites.Count;
-            for (int i = 0 ; i < count; ++i)
+            for (int i = 0; i < count; ++i)
             {
                 Engine.allSprites.ElementAt(0).DestroySelf();
                 Console.WriteLine(Engine.allSprites.Count.ToString());
             }
         }
-        #endregion
-        //
-        // //
-        //
-        #region Functions
         public void updateCameraPosition( Vector2 v)
         {
             
@@ -328,7 +329,7 @@ namespace Nilox2DGameEngine
         //
         // //
         //
-        #region Actors
+        #region Actors Management
         public void spawnenemie(Vector2 location)
         {
             Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie",true);
@@ -363,9 +364,6 @@ namespace Nilox2DGameEngine
             Log.Warning("[DESTROYED][PROJECTILE]  -  {" + p.sprite.name + "}");
             p = null;
         }
-
-        
-
-        #endregion Management
+        #endregion 
     }
 }

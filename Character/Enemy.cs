@@ -42,7 +42,7 @@ namespace Nilox2DGameEngine.Character
         //
         public override void Update()
         {
-            Sprite2D player = tgm.player;
+            Sprite2D player = tgm.player.sprite;
             //Movement
             if (sprite.IsCollidingWithTag("collider") == null && hastarget == true)
             {
