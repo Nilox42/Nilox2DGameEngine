@@ -49,11 +49,11 @@ namespace Nilox2DGameEngine.Util
             string[] s = s0.Split('|');
 
             t.name = s[0];
-            t.TileSize = Convert.ToInt32(s[1]);
+            t.tilesize = Convert.ToInt32(s[1]);
             t.locationX = Convert.ToInt32(s[2]);
             t.locationY = Convert.ToInt32(s[3]);
 
-            t.Map = Converts.stringToArray(s[4], t.TileSize);
+            t.Map = Converts.stringToArray(s[4], t.tilesize);
 
             return t;
         }
@@ -62,7 +62,7 @@ namespace Nilox2DGameEngine.Util
             string result = null;
 
             result = result + t0.name + "|";
-            result = result + t0.TileSize.ToString() + "|";
+            result = result + t0.tilesize.ToString() + "|";
             result = result + t0.locationX.ToString() + "|";
             result = result + t0.locationY.ToString() + "|";
 

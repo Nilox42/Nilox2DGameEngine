@@ -39,7 +39,7 @@ namespace Nilox2DGameEngine.Editor
         public Label lb_tilesize;
         private Button bt_saveto;
         public TextBox tb_saveto;
-        private TextBox textBox1;
+        private TextBox tb_tilesize;
         private TextBox tb_tilename;
         private Label lb_tilename;
         private Button bt_settilesize;
@@ -95,7 +95,7 @@ namespace Nilox2DGameEngine.Editor
             this.lb_tilesize = new System.Windows.Forms.Label();
             this.bt_saveto = new System.Windows.Forms.Button();
             this.tb_saveto = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_tilesize = new System.Windows.Forms.TextBox();
             this.tb_tilename = new System.Windows.Forms.TextBox();
             this.lb_tilename = new System.Windows.Forms.Label();
             this.bt_settilesize = new System.Windows.Forms.Button();
@@ -315,12 +315,12 @@ namespace Nilox2DGameEngine.Editor
             this.tb_saveto.Size = new System.Drawing.Size(146, 20);
             this.tb_saveto.TabIndex = 17;
             // 
-            // textBox1
+            // tb_tilesize
             // 
-            this.textBox1.Location = new System.Drawing.Point(624, 360);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(144, 20);
-            this.textBox1.TabIndex = 18;
+            this.tb_tilesize.Location = new System.Drawing.Point(624, 360);
+            this.tb_tilesize.Name = "tb_tilesize";
+            this.tb_tilesize.Size = new System.Drawing.Size(144, 20);
+            this.tb_tilesize.TabIndex = 18;
             // 
             // tb_tilename
             // 
@@ -360,7 +360,7 @@ namespace Nilox2DGameEngine.Editor
             // 
             this.pb_selector.BackColor = System.Drawing.Color.Transparent;
             this.pb_selector.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb_selector.BackgroundImage")));
-            this.pb_selector.Location = new System.Drawing.Point(371, 309);
+            this.pb_selector.Location = new System.Drawing.Point(306, 12);
             this.pb_selector.Name = "pb_selector";
             this.pb_selector.Size = new System.Drawing.Size(48, 48);
             this.pb_selector.TabIndex = 23;
@@ -582,7 +582,7 @@ namespace Nilox2DGameEngine.Editor
             this.Controls.Add(this.bt_settilesize);
             this.Controls.Add(this.lb_tilename);
             this.Controls.Add(this.tb_tilename);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tb_tilesize);
             this.Controls.Add(this.tb_saveto);
             this.Controls.Add(this.bt_saveto);
             this.Controls.Add(this.lb_tilesize);
@@ -837,7 +837,7 @@ namespace Nilox2DGameEngine.Editor
             LB.allTiles.Clear();
             tb_url.Text = "";
 
-            LB.allTiles.Add(new Tile(true));
+            LB.allTiles.Add(new Tile(true,tb_tilename.Text, Convert.ToInt32( tb_tilesize.Text)));
             LB.selectedtile = 0;
             LB.NewLoadNewTile(LB.allTiles.ElementAt(0));
             Log.Info("[NEW TILE]  -  " + LB.allTiles.ElementAt(0).name);
@@ -961,7 +961,7 @@ namespace Nilox2DGameEngine.Editor
     public class LevelEditor 
     {
         #region Init Builder
-        private Vector2 ScreenSize = new Vector2(1178, 544);
+        private Vector2 ScreenSize = new Vector2(1180, 630);
         private string title = "Level Builder - ";
         public Builder Window = null;
 
@@ -1094,7 +1094,7 @@ namespace Nilox2DGameEngine.Editor
                     }
                 }
             }
-            Window.lb_tilesize.Text = "Tilesize:" + t.TileSize;
+            Window.lb_tilesize.Text = "Tilesize:" + t.tilesize;
 
             allSprite2Ds.ElementAt(selected).setSelected(true);
             Window.Refresh();
@@ -1274,11 +1274,9 @@ namespace Nilox2DGameEngine.Editor
 
         public void pbSelect(int i)
         {
-            string[] name1 = allimages[1].name.Split('§');
+            Window.tb_name.Text = allimages[i].name;
 
-            Log.Error(selectedVector.ToString() + name1[0]);
-
-            replacecoorinate(selectedVector, name1[0]);
+            replacecoorinate(selectedVector, Window.tb_name.Text);
         }
 
         #endregion

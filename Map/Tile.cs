@@ -13,7 +13,7 @@ namespace Nilox2DGameEngine.Map
     public class Tile 
     {
         public string name = null;
-        public int TileSize = 15;
+        public int tilesize = 20;
 
         public int locationX = 0;
         public int locationY = 0;
@@ -61,10 +61,11 @@ namespace Nilox2DGameEngine.Map
         {
 
         }
-        public Tile (bool b)
+        public Tile (bool b, string name0 , int tilesize0)
         {
             Map = NewMAP;
-            name = "New";
+            name = name0;
+            tilesize = tilesize0;
         }
 
         public Tile(string string0 , int size)
