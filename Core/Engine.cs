@@ -89,7 +89,7 @@ namespace Nilox2DGameEngine.Core
 
         //Lists all images that are used 
         public static List<BaseImage> allimages = new List<BaseImage>();
-        public string[] allcontentlocations = { @"\Content\Default\", @"\Content\Overworld\Tiles\", @"\Content\Overworld\Objects\", @"\Content\Player\" };
+        public string[] allcontentlocations = { @"\Content\Default\", @"\Content\Player\", @"\Content\Default\Items\", @"\Content\Overworld\Tiles\", @"\Content\Overworld\Objects\"};
 
         //FPS
         Stopwatch stopwatch = new Stopwatch();

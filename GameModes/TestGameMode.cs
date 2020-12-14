@@ -89,7 +89,6 @@ namespace Nilox2DGameEngine
             #endregion 
             //
             //
-            //
             #region Input
             if (up)
             {
@@ -138,7 +137,6 @@ namespace Nilox2DGameEngine
             #endregion
             //
             //
-            //
             #region Fighting
             if (isattacking)
             {
@@ -174,7 +172,6 @@ namespace Nilox2DGameEngine
             #endregion
             //
             //
-            //
             #region Collision
             if (player.sprite.IsCollidingWithTag("collider") != null)
             {
@@ -189,6 +186,12 @@ namespace Nilox2DGameEngine
             #endregion
             //
             //
+            #region Pickups
+            player.coinpickup();
+            player.keypickup();
+            player.healthpickup();
+            #endregion
+            //
             //
             #region Map Movement
             if (player.sprite.IsCollidingWithTag("DoorRight") != null)
@@ -200,7 +203,6 @@ namespace Nilox2DGameEngine
                 currentLevel.moveLeft();
             }
             #endregion
-            //
             //
             //
             #region AI Tick
