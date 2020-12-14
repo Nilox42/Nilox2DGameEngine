@@ -953,19 +953,18 @@ namespace Nilox2DGameEngine.Editor
         {
             LB.pbSelect(20);
         }
-<<<<<<< Updated upstream
 
         private void KeyDownEV(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
-                case Keys.Left:
+                case Keys.Left: LB.moveleft(-1);
                     break;
-                case Keys.Right:
+                case Keys.Right: LB.moveleft(1);
                     break;
-                case Keys.Up:
+                case Keys.Up: LB.moveup(-1);
                     break;
-                case Keys.Down:
+                case Keys.Down: LB.moveup(1);
                     break;
             }
         }
@@ -974,9 +973,9 @@ namespace Nilox2DGameEngine.Editor
         {
 
         }
-=======
+
         #endregion
->>>>>>> Stashed changes
+
     }
     //
 
@@ -1301,17 +1300,9 @@ namespace Nilox2DGameEngine.Editor
 
         public void pbSelect(int i)
         {
-<<<<<<< Updated upstream
             Window.tb_name.Text = allimages[i].name;
 
             replacecoorinate(selectedVector, Window.tb_name.Text);
-=======
-            string[] name1 = allimages[i].name;
-
-            Log.Error(selectedVector.ToString() + name1[i]);
-
-            replacecoorinate(selectedVector, name1[i]);
->>>>>>> Stashed changes
         }
 
         #endregion
