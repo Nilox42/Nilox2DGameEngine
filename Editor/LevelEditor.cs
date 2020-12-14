@@ -676,7 +676,7 @@ namespace Nilox2DGameEngine.Editor
             LB.loadPictureBoxes();
         }
 
-
+        #region loadPictureboxes
         public void setPictureBoxes(int i, Bitmap bitmap)
         {
             switch (i)
@@ -724,6 +724,7 @@ namespace Nilox2DGameEngine.Editor
 
             }
         }
+        #endregion
 
         private void selectTile()
         {
@@ -852,7 +853,7 @@ namespace Nilox2DGameEngine.Editor
         }
 
 
-
+        #region ClickEvents
         private void pb_1_Click(object sender, EventArgs e)
         {
             LB.pbSelect(1);
@@ -952,6 +953,7 @@ namespace Nilox2DGameEngine.Editor
         {
             LB.pbSelect(20);
         }
+<<<<<<< Updated upstream
 
         private void KeyDownEV(object sender, KeyEventArgs e)
         {
@@ -972,6 +974,9 @@ namespace Nilox2DGameEngine.Editor
         {
 
         }
+=======
+        #endregion
+>>>>>>> Stashed changes
     }
     //
 
@@ -1296,9 +1301,17 @@ namespace Nilox2DGameEngine.Editor
 
         public void pbSelect(int i)
         {
+<<<<<<< Updated upstream
             Window.tb_name.Text = allimages[i].name;
 
             replacecoorinate(selectedVector, Window.tb_name.Text);
+=======
+            string[] name1 = allimages[i].name;
+
+            Log.Error(selectedVector.ToString() + name1[i]);
+
+            replacecoorinate(selectedVector, name1[i]);
+>>>>>>> Stashed changes
         }
 
         #endregion
