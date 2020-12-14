@@ -35,7 +35,7 @@ namespace Nilox2DGameEngine.Character
         #region abstract functions
         public override void Destroy(Actor w)
         {
-            Log.Error("[ENEMIE] - [DIED] - " + sprite.name);
+            Log.Info("[ENEMIE] - [DIED] - " + sprite.name);
 
             tgm.desroyEnemie(this);
         }
