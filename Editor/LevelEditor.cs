@@ -603,6 +603,8 @@ namespace Nilox2DGameEngine.Editor
             this.Name = "Builder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Builder_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownEV);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpEV);
             ((System.ComponentModel.ISupportInitialize)(this.nud_index)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -949,6 +951,26 @@ namespace Nilox2DGameEngine.Editor
         private void pb_20_Click(object sender, EventArgs e)
         {
             LB.pbSelect(20);
+        }
+
+        private void KeyDownEV(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+            }
+        }
+
+        private void KeyUpEV(object sender, KeyEventArgs e)
+        {
+
         }
     }
     //
