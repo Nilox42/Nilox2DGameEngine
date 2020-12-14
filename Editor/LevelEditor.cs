@@ -66,6 +66,27 @@ namespace Nilox2DGameEngine.Editor
         private PictureBox pb_3;
         private PictureBox pb_4;
         private PictureBox pb_1;
+        private Panel panel2;
+        private PictureBox pb_40;
+        private PictureBox pb_39;
+        private PictureBox pb_38;
+        private PictureBox pb_37;
+        private PictureBox pb_36;
+        private PictureBox pb_35;
+        private PictureBox pb_30;
+        private PictureBox pb_34;
+        private PictureBox pb_33;
+        private PictureBox pb_32;
+        private PictureBox pb_31;
+        private PictureBox pb_25;
+        private PictureBox pb_26;
+        private PictureBox pb_27;
+        private PictureBox pb_28;
+        private PictureBox pb_29;
+        private PictureBox pb_22;
+        private PictureBox pb_23;
+        private PictureBox pb_24;
+        private PictureBox pb_21;
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         public Builder(LevelEditor LB0)
@@ -122,6 +143,27 @@ namespace Nilox2DGameEngine.Editor
             this.pb_3 = new System.Windows.Forms.PictureBox();
             this.pb_4 = new System.Windows.Forms.PictureBox();
             this.pb_1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pb_40 = new System.Windows.Forms.PictureBox();
+            this.pb_39 = new System.Windows.Forms.PictureBox();
+            this.pb_38 = new System.Windows.Forms.PictureBox();
+            this.pb_37 = new System.Windows.Forms.PictureBox();
+            this.pb_36 = new System.Windows.Forms.PictureBox();
+            this.pb_35 = new System.Windows.Forms.PictureBox();
+            this.pb_30 = new System.Windows.Forms.PictureBox();
+            this.pb_34 = new System.Windows.Forms.PictureBox();
+            this.pb_33 = new System.Windows.Forms.PictureBox();
+            this.pb_32 = new System.Windows.Forms.PictureBox();
+            this.pb_31 = new System.Windows.Forms.PictureBox();
+            this.pb_25 = new System.Windows.Forms.PictureBox();
+            this.pb_26 = new System.Windows.Forms.PictureBox();
+            this.pb_27 = new System.Windows.Forms.PictureBox();
+            this.pb_28 = new System.Windows.Forms.PictureBox();
+            this.pb_29 = new System.Windows.Forms.PictureBox();
+            this.pb_22 = new System.Windows.Forms.PictureBox();
+            this.pb_23 = new System.Windows.Forms.PictureBox();
+            this.pb_24 = new System.Windows.Forms.PictureBox();
+            this.pb_21 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.nud_index)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).BeginInit();
             this.panel1.SuspendLayout();
@@ -145,6 +187,27 @@ namespace Nilox2DGameEngine.Editor
             ((System.ComponentModel.ISupportInitialize)(this.pb_3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_1)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_39)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_38)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_37)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_36)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_35)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_34)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_32)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_26)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_21)).BeginInit();
             this.SuspendLayout();
             // 
             // bt_LoadLevel
@@ -573,9 +636,197 @@ namespace Nilox2DGameEngine.Editor
             this.pb_1.TabStop = false;
             this.pb_1.Click += new System.EventHandler(this.pb_1_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pb_40);
+            this.panel2.Controls.Add(this.pb_39);
+            this.panel2.Controls.Add(this.pb_38);
+            this.panel2.Controls.Add(this.pb_37);
+            this.panel2.Controls.Add(this.pb_36);
+            this.panel2.Controls.Add(this.pb_35);
+            this.panel2.Controls.Add(this.pb_30);
+            this.panel2.Controls.Add(this.pb_34);
+            this.panel2.Controls.Add(this.pb_33);
+            this.panel2.Controls.Add(this.pb_32);
+            this.panel2.Controls.Add(this.pb_31);
+            this.panel2.Controls.Add(this.pb_25);
+            this.panel2.Controls.Add(this.pb_26);
+            this.panel2.Controls.Add(this.pb_27);
+            this.panel2.Controls.Add(this.pb_28);
+            this.panel2.Controls.Add(this.pb_29);
+            this.panel2.Controls.Add(this.pb_22);
+            this.panel2.Controls.Add(this.pb_23);
+            this.panel2.Controls.Add(this.pb_24);
+            this.panel2.Controls.Add(this.pb_21);
+            this.panel2.Location = new System.Drawing.Point(12, 574);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1078, 68);
+            this.panel2.TabIndex = 25;
+            // 
+            // pb_40
+            // 
+            this.pb_40.Location = new System.Drawing.Point(1027, 10);
+            this.pb_40.Name = "pb_40";
+            this.pb_40.Size = new System.Drawing.Size(48, 48);
+            this.pb_40.TabIndex = 19;
+            this.pb_40.TabStop = false;
+            // 
+            // pb_39
+            // 
+            this.pb_39.Location = new System.Drawing.Point(973, 10);
+            this.pb_39.Name = "pb_39";
+            this.pb_39.Size = new System.Drawing.Size(48, 48);
+            this.pb_39.TabIndex = 18;
+            this.pb_39.TabStop = false;
+            // 
+            // pb_38
+            // 
+            this.pb_38.Location = new System.Drawing.Point(919, 10);
+            this.pb_38.Name = "pb_38";
+            this.pb_38.Size = new System.Drawing.Size(48, 48);
+            this.pb_38.TabIndex = 17;
+            this.pb_38.TabStop = false;
+            // 
+            // pb_37
+            // 
+            this.pb_37.Location = new System.Drawing.Point(865, 10);
+            this.pb_37.Name = "pb_37";
+            this.pb_37.Size = new System.Drawing.Size(48, 48);
+            this.pb_37.TabIndex = 16;
+            this.pb_37.TabStop = false;
+            // 
+            // pb_36
+            // 
+            this.pb_36.Location = new System.Drawing.Point(811, 10);
+            this.pb_36.Name = "pb_36";
+            this.pb_36.Size = new System.Drawing.Size(48, 48);
+            this.pb_36.TabIndex = 15;
+            this.pb_36.TabStop = false;
+            // 
+            // pb_35
+            // 
+            this.pb_35.Location = new System.Drawing.Point(757, 10);
+            this.pb_35.Name = "pb_35";
+            this.pb_35.Size = new System.Drawing.Size(48, 48);
+            this.pb_35.TabIndex = 14;
+            this.pb_35.TabStop = false;
+            // 
+            // pb_30
+            // 
+            this.pb_30.Location = new System.Drawing.Point(487, 10);
+            this.pb_30.Name = "pb_30";
+            this.pb_30.Size = new System.Drawing.Size(48, 48);
+            this.pb_30.TabIndex = 13;
+            this.pb_30.TabStop = false;
+            // 
+            // pb_34
+            // 
+            this.pb_34.Location = new System.Drawing.Point(703, 10);
+            this.pb_34.Name = "pb_34";
+            this.pb_34.Size = new System.Drawing.Size(48, 48);
+            this.pb_34.TabIndex = 12;
+            this.pb_34.TabStop = false;
+            // 
+            // pb_33
+            // 
+            this.pb_33.Location = new System.Drawing.Point(649, 10);
+            this.pb_33.Name = "pb_33";
+            this.pb_33.Size = new System.Drawing.Size(48, 48);
+            this.pb_33.TabIndex = 11;
+            this.pb_33.TabStop = false;
+            // 
+            // pb_32
+            // 
+            this.pb_32.Location = new System.Drawing.Point(595, 10);
+            this.pb_32.Name = "pb_32";
+            this.pb_32.Size = new System.Drawing.Size(48, 48);
+            this.pb_32.TabIndex = 10;
+            this.pb_32.TabStop = false;
+            // 
+            // pb_31
+            // 
+            this.pb_31.Location = new System.Drawing.Point(541, 10);
+            this.pb_31.Name = "pb_31";
+            this.pb_31.Size = new System.Drawing.Size(48, 48);
+            this.pb_31.TabIndex = 9;
+            this.pb_31.TabStop = false;
+            // 
+            // pb_25
+            // 
+            this.pb_25.Location = new System.Drawing.Point(217, 10);
+            this.pb_25.Name = "pb_25";
+            this.pb_25.Size = new System.Drawing.Size(48, 48);
+            this.pb_25.TabIndex = 8;
+            this.pb_25.TabStop = false;
+            // 
+            // pb_26
+            // 
+            this.pb_26.Location = new System.Drawing.Point(271, 10);
+            this.pb_26.Name = "pb_26";
+            this.pb_26.Size = new System.Drawing.Size(48, 48);
+            this.pb_26.TabIndex = 7;
+            this.pb_26.TabStop = false;
+            // 
+            // pb_27
+            // 
+            this.pb_27.Location = new System.Drawing.Point(325, 10);
+            this.pb_27.Name = "pb_27";
+            this.pb_27.Size = new System.Drawing.Size(48, 48);
+            this.pb_27.TabIndex = 6;
+            this.pb_27.TabStop = false;
+            // 
+            // pb_28
+            // 
+            this.pb_28.Location = new System.Drawing.Point(379, 10);
+            this.pb_28.Name = "pb_28";
+            this.pb_28.Size = new System.Drawing.Size(48, 48);
+            this.pb_28.TabIndex = 5;
+            this.pb_28.TabStop = false;
+            // 
+            // pb_29
+            // 
+            this.pb_29.Location = new System.Drawing.Point(433, 10);
+            this.pb_29.Name = "pb_29";
+            this.pb_29.Size = new System.Drawing.Size(48, 48);
+            this.pb_29.TabIndex = 4;
+            this.pb_29.TabStop = false;
+            // 
+            // pb_22
+            // 
+            this.pb_22.Location = new System.Drawing.Point(55, 10);
+            this.pb_22.Name = "pb_22";
+            this.pb_22.Size = new System.Drawing.Size(48, 48);
+            this.pb_22.TabIndex = 3;
+            this.pb_22.TabStop = false;
+            // 
+            // pb_23
+            // 
+            this.pb_23.Location = new System.Drawing.Point(109, 10);
+            this.pb_23.Name = "pb_23";
+            this.pb_23.Size = new System.Drawing.Size(48, 48);
+            this.pb_23.TabIndex = 2;
+            this.pb_23.TabStop = false;
+            // 
+            // pb_24
+            // 
+            this.pb_24.Location = new System.Drawing.Point(163, 10);
+            this.pb_24.Name = "pb_24";
+            this.pb_24.Size = new System.Drawing.Size(48, 48);
+            this.pb_24.TabIndex = 1;
+            this.pb_24.TabStop = false;
+            // 
+            // pb_21
+            // 
+            this.pb_21.Location = new System.Drawing.Point(1, 10);
+            this.pb_21.Name = "pb_21";
+            this.pb_21.Size = new System.Drawing.Size(48, 48);
+            this.pb_21.TabIndex = 0;
+            this.pb_21.TabStop = false;
+            // 
             // Builder
             // 
-            this.ClientSize = new System.Drawing.Size(1162, 588);
+            this.ClientSize = new System.Drawing.Size(1162, 654);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pb_selector);
             this.Controls.Add(this.bt_settilename);
@@ -603,8 +854,6 @@ namespace Nilox2DGameEngine.Editor
             this.Name = "Builder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Builder_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownEV);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUpEV);
             ((System.ComponentModel.ISupportInitialize)(this.nud_index)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -628,6 +877,27 @@ namespace Nilox2DGameEngine.Editor
             ((System.ComponentModel.ISupportInitialize)(this.pb_3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pb_40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_39)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_38)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_37)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_36)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_35)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_34)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_32)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_26)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_21)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -953,27 +1223,6 @@ namespace Nilox2DGameEngine.Editor
         {
             LB.pbSelect(20);
         }
-
-        private void KeyDownEV(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Left: LB.moveleft(-1);
-                    break;
-                case Keys.Right: LB.moveleft(1);
-                    break;
-                case Keys.Up: LB.moveup(-1);
-                    break;
-                case Keys.Down: LB.moveup(1);
-                    break;
-            }
-        }
-
-        private void KeyUpEV(object sender, KeyEventArgs e)
-        {
-
-        }
-
         #endregion
 
     }
