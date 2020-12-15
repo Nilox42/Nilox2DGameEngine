@@ -249,7 +249,7 @@ namespace Nilox2DGameEngine.Editor
             this.tb_url.Name = "tb_url";
             this.tb_url.Size = new System.Drawing.Size(99, 20);
             this.tb_url.TabIndex = 3;
-            this.tb_url.Text = "Overworld";
+            this.tb_url.Text = "Test";
             // 
             // nud_index
             // 
@@ -334,9 +334,9 @@ namespace Nilox2DGameEngine.Editor
             this.lb_debug_X.BackColor = System.Drawing.Color.Transparent;
             this.lb_debug_X.Location = new System.Drawing.Point(3, 2);
             this.lb_debug_X.Name = "lb_debug_X";
-            this.lb_debug_X.Size = new System.Drawing.Size(42, 13);
+            this.lb_debug_X.Size = new System.Drawing.Size(14, 13);
             this.lb_debug_X.TabIndex = 11;
-            this.lb_debug_X.Text = "dbug_x";
+            this.lb_debug_X.Text = "X";
             // 
             // lb_debug_Y
             // 
@@ -344,9 +344,9 @@ namespace Nilox2DGameEngine.Editor
             this.lb_debug_Y.BackColor = System.Drawing.Color.Transparent;
             this.lb_debug_Y.Location = new System.Drawing.Point(100, 2);
             this.lb_debug_Y.Name = "lb_debug_Y";
-            this.lb_debug_Y.Size = new System.Drawing.Size(35, 13);
+            this.lb_debug_Y.Size = new System.Drawing.Size(14, 13);
             this.lb_debug_Y.TabIndex = 12;
-            this.lb_debug_Y.Text = "label2";
+            this.lb_debug_Y.Text = "Y";
             // 
             // tb_name
             // 
@@ -1247,7 +1247,7 @@ namespace Nilox2DGameEngine.Editor
         }
 
 
-        #region ClickEvents
+        #region ClickEvents SprteSelection
         private void pb_1_Click(object sender, EventArgs e)
         {
             LB.pbSelect(1);
@@ -1529,7 +1529,7 @@ namespace Nilox2DGameEngine.Editor
         private void Window_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.Clear(Color.Gray);
+            g.Clear(SystemColors.ControlLight);
 
             foreach (Sprite2D sprite in allSprite2Ds)
             {
