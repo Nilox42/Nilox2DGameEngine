@@ -670,6 +670,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_40.Size = new System.Drawing.Size(48, 48);
             this.pb_40.TabIndex = 19;
             this.pb_40.TabStop = false;
+            this.pb_40.Click += new System.EventHandler(this.pb_40_Click);
             // 
             // pb_39
             // 
@@ -678,6 +679,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_39.Size = new System.Drawing.Size(48, 48);
             this.pb_39.TabIndex = 18;
             this.pb_39.TabStop = false;
+            this.pb_39.Click += new System.EventHandler(this.pb_39_Click);
             // 
             // pb_38
             // 
@@ -686,6 +688,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_38.Size = new System.Drawing.Size(48, 48);
             this.pb_38.TabIndex = 17;
             this.pb_38.TabStop = false;
+            this.pb_38.Click += new System.EventHandler(this.pb_38_Click);
             // 
             // pb_37
             // 
@@ -694,6 +697,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_37.Size = new System.Drawing.Size(48, 48);
             this.pb_37.TabIndex = 16;
             this.pb_37.TabStop = false;
+            this.pb_37.Click += new System.EventHandler(this.pb_37_Click);
             // 
             // pb_36
             // 
@@ -702,6 +706,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_36.Size = new System.Drawing.Size(48, 48);
             this.pb_36.TabIndex = 15;
             this.pb_36.TabStop = false;
+            this.pb_36.Click += new System.EventHandler(this.pb_36_Click);
             // 
             // pb_35
             // 
@@ -710,6 +715,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_35.Size = new System.Drawing.Size(48, 48);
             this.pb_35.TabIndex = 14;
             this.pb_35.TabStop = false;
+            this.pb_35.Click += new System.EventHandler(this.pb_35_Click);
             // 
             // pb_30
             // 
@@ -718,6 +724,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_30.Size = new System.Drawing.Size(48, 48);
             this.pb_30.TabIndex = 13;
             this.pb_30.TabStop = false;
+            this.pb_30.Click += new System.EventHandler(this.pb_30_Click);
             // 
             // pb_34
             // 
@@ -726,6 +733,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_34.Size = new System.Drawing.Size(48, 48);
             this.pb_34.TabIndex = 12;
             this.pb_34.TabStop = false;
+            this.pb_34.Click += new System.EventHandler(this.pb_34_Click);
             // 
             // pb_33
             // 
@@ -734,6 +742,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_33.Size = new System.Drawing.Size(48, 48);
             this.pb_33.TabIndex = 11;
             this.pb_33.TabStop = false;
+            this.pb_33.Click += new System.EventHandler(this.pb_33_Click);
             // 
             // pb_32
             // 
@@ -742,6 +751,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_32.Size = new System.Drawing.Size(48, 48);
             this.pb_32.TabIndex = 10;
             this.pb_32.TabStop = false;
+            this.pb_32.Click += new System.EventHandler(this.pb_32_Click);
             // 
             // pb_31
             // 
@@ -750,6 +760,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_31.Size = new System.Drawing.Size(48, 48);
             this.pb_31.TabIndex = 9;
             this.pb_31.TabStop = false;
+            this.pb_31.Click += new System.EventHandler(this.pb_31_Click);
             // 
             // pb_25
             // 
@@ -758,6 +769,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_25.Size = new System.Drawing.Size(48, 48);
             this.pb_25.TabIndex = 8;
             this.pb_25.TabStop = false;
+            this.pb_25.Click += new System.EventHandler(this.pb_25_Click);
             // 
             // pb_26
             // 
@@ -766,6 +778,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_26.Size = new System.Drawing.Size(48, 48);
             this.pb_26.TabIndex = 7;
             this.pb_26.TabStop = false;
+            this.pb_26.Click += new System.EventHandler(this.pb_26_Click);
             // 
             // pb_27
             // 
@@ -774,6 +787,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_27.Size = new System.Drawing.Size(48, 48);
             this.pb_27.TabIndex = 6;
             this.pb_27.TabStop = false;
+            this.pb_27.Click += new System.EventHandler(this.pb_27_Click);
             // 
             // pb_28
             // 
@@ -782,6 +796,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_28.Size = new System.Drawing.Size(48, 48);
             this.pb_28.TabIndex = 5;
             this.pb_28.TabStop = false;
+            this.pb_28.Click += new System.EventHandler(this.pb_28_Click);
             // 
             // pb_29
             // 
@@ -790,6 +805,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_29.Size = new System.Drawing.Size(48, 48);
             this.pb_29.TabIndex = 4;
             this.pb_29.TabStop = false;
+            this.pb_29.Click += new System.EventHandler(this.pb_29_Click);
             // 
             // pb_22
             // 
@@ -798,6 +814,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_22.Size = new System.Drawing.Size(48, 48);
             this.pb_22.TabIndex = 3;
             this.pb_22.TabStop = false;
+            this.pb_22.Click += new System.EventHandler(this.pb_22_Click);
             // 
             // pb_23
             // 
@@ -806,6 +823,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_23.Size = new System.Drawing.Size(48, 48);
             this.pb_23.TabIndex = 2;
             this.pb_23.TabStop = false;
+            this.pb_23.Click += new System.EventHandler(this.pb_23_Click);
             // 
             // pb_24
             // 
@@ -814,6 +832,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_24.Size = new System.Drawing.Size(48, 48);
             this.pb_24.TabIndex = 1;
             this.pb_24.TabStop = false;
+            this.pb_24.Click += new System.EventHandler(this.pb_24_Click);
             // 
             // pb_21
             // 
@@ -822,6 +841,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_21.Size = new System.Drawing.Size(48, 48);
             this.pb_21.TabIndex = 0;
             this.pb_21.TabStop = false;
+            this.pb_21.Click += new System.EventHandler(this.pb_21_Click);
             // 
             // Builder
             // 
@@ -1223,8 +1243,107 @@ namespace Nilox2DGameEngine.Editor
         {
             LB.pbSelect(20);
         }
-        #endregion
 
+        private void pb_21_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(21);
+        }
+
+        private void pb_22_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(22);
+        }
+
+        private void pb_23_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(23);
+        }
+
+        private void pb_24_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(24);
+        }
+
+        private void pb_25_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(25);
+        }
+
+        private void pb_26_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(26);
+        }
+
+        private void pb_27_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(27);
+        }
+
+        private void pb_28_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(28);
+        }
+
+        private void pb_29_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(29);
+        }
+
+        private void pb_30_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(30);
+        }
+
+        private void pb_31_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(31);
+        }
+
+        private void pb_32_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(32);
+        }
+
+        private void pb_33_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(33);
+        }
+
+        private void pb_34_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(34);
+        }
+
+        private void pb_35_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(35);
+        }
+
+        private void pb_36_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(36);
+        }
+
+        private void pb_37_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(37);
+        }
+
+        private void pb_38_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(38);
+        }
+
+        private void pb_39_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(39);
+        }
+
+        private void pb_40_Click(object sender, EventArgs e)
+        {
+            LB.pbSelect(40);
+        }
+        #endregion
     }
     //
 
