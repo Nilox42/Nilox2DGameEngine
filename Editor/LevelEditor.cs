@@ -360,6 +360,7 @@ namespace Nilox2DGameEngine.Editor
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(143, 20);
             this.tb_name.TabIndex = 13;
+            this.tb_name.TextChanged += new System.EventHandler(this.tb_name_TextChanged);
             // 
             // bt_new
             // 
@@ -396,6 +397,7 @@ namespace Nilox2DGameEngine.Editor
             this.tb_saveto.Name = "tb_saveto";
             this.tb_saveto.Size = new System.Drawing.Size(142, 20);
             this.tb_saveto.TabIndex = 17;
+            this.tb_saveto.TextChanged += new System.EventHandler(this.tb_saveto_TextChanged);
             // 
             // tb_tilesize
             // 
@@ -437,6 +439,7 @@ namespace Nilox2DGameEngine.Editor
             this.bt_settilename.TabIndex = 22;
             this.bt_settilename.Text = "Set";
             this.bt_settilename.UseVisualStyleBackColor = true;
+            this.bt_settilename.Click += new System.EventHandler(this.bt_settilename_Click);
             // 
             // pb_selector
             // 
@@ -1167,6 +1170,12 @@ namespace Nilox2DGameEngine.Editor
         }
 
         #region Input
+        private void bt_settilename_Click(object sender, EventArgs e)
+        {
+            LB.allTiles.ElementAt((int)nud_index.Value).name = tb_tilename.Text;
+            Log.Info("[CHANGED]  -  NAME to: " + LB.allTiles.ElementAt((int)nud_index.Value).name);
+        }
+
         private void bt_LoadLevelclick(object sender, EventArgs e)
         {
             string url = Application.StartupPath + @"\Levels\" + tb_url.Text;
@@ -1197,7 +1206,6 @@ namespace Nilox2DGameEngine.Editor
                 Log.Error("Directory does not Exist");
             }
         }
-        
 
         private void bt_UnLoadTile_Click(object sender, EventArgs e)
         {
@@ -1488,7 +1496,18 @@ namespace Nilox2DGameEngine.Editor
         {
             LB.pbSelect(40);
         }
+
         #endregion
+
+        private void tb_name_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_saveto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     //
 
