@@ -339,7 +339,7 @@ namespace Nilox2DGameEngine
                     }
                 case Class.player:
                     {
-                        Sprite2D sprite = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player", true);
+                        Sprite2D sprite = new Sprite2D(location, new Vector2(30, 48), "Knight_Idle", "player", true);
                         player = new Player(sprite);
 
                         return player;
@@ -348,16 +348,16 @@ namespace Nilox2DGameEngine
                     {
                         Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie", true);
 
-                        Enemy enemie = new Enemy(sprite, location, this);
+                        Enemy enemie = new Enemy(sprite, sprite.location, this);
                         enemies.Add(enemie);
 
                         return enemie;
                     }
                 case Class.projectile:
                     {
-                        Sprite2D s = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "", true);
+                        Sprite2D sprite = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "", true);
 
-                        Projectile p = new Projectile(s, location, new Vector2(1, 0), 2, this);
+                        Projectile p = new Projectile(sprite, sprite.location, new Vector2(1, 0), 2, this);
                         projectiles.Add(p);
 
                         return p;
