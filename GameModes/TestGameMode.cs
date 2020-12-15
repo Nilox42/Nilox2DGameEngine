@@ -46,6 +46,7 @@ namespace Nilox2DGameEngine
         public Vector2 spawnPosition = new Vector2(50, 48 * 4);
 
         //Actors 
+        public List<Actor> allactors = new List<Actor>();
         public List<Enemy> enemies = new List<Enemy>();
         public List<Projectile> projectiles = new List<Projectile>();
 
@@ -84,7 +85,7 @@ namespace Nilox2DGameEngine
                 Random y = new Random();
 
                 Vector2 v = new Vector2((int)x.Next(0, Window.Width), (int)y.Next(0, Window.Height));
-                spawnenemie(v);
+                spawnActorFromClass(v,Class.enemie);
             }
             #endregion 
             //
@@ -307,10 +308,9 @@ namespace Nilox2DGameEngine
 
 
             //Player 
-            Sprite2D sprite = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player", true);
-            player = new Player(sprite);
+            
 
-            spawnenemie(new Vector2(200, 200));
+            spawnActorFromClass(new Vector2(200, 200),Class.enemie);
         }
         public void UnloadCurrentTile()
         {
@@ -331,37 +331,69 @@ namespace Nilox2DGameEngine
         // //
         //
         #region Actors Management
-        public void spawnenemie(Vector2 location)
+        public Actor spawnActorFromClass(Vector2 location, Class clas)
         {
-            Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie",true);
-        
-            Enemy enemie = new Enemy(sprite,location,this);
-            enemies.Add(enemie);
+            switch (clas)
+            {
+                default:
+                    {
+                        return null;
+                    }
+                case Class.player:
+                    {
+                        Sprite2D sprite = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player", true);
+
+                        return new Player(sprite);
+                    }
+                case Class.enemie:
+                    {
+                        Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie", true);
+
+                        Enemy enemie = new Enemy(sprite, location, this);
+                        enemies.Add(enemie);
+
+                        return enemie;
+                    }
+                case Class.projectile:
+                    {
+                        Sprite2D s = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "", true);
+
+                        Projectile p = new Projectile(s, location, new Vector2(1, 0), 2, this);
+                        projectiles.Add(p);
+
+                        return p;
+                    }
+            }
         }
 
-        public void spawnActorFromClass()
+
+        public void destroyActor(Actor a)
         {
+            switch (a.clas)
+            {
+                default:
+                    {
+                        break;
+                    }
+                case Class.enemie:
+                    {
+                        Log.Warning("[DESTROYED][ENEMY]  -  {" + a.sprite.name + "}");
+
+                        Sprite2D sprite = a.sprite;
+
+                        sprite.DestroySelf();
+
+                        enemies.Remove();
+                        a = null;
+
+                        break;
+                    }
+            }
 
         }
-
-        public void spawnProjectile(Vector2 location)
-        {
-            Sprite2D s = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "", true);
-
-            Projectile p = new Projectile(s, location, new Vector2(1,0), 2, this);
-            projectiles.Add(p);
-        }
-
         public void desroyEnemie(Enemy e)
         {
-            Log.Warning("[DESTROYED][ENEMY]  -  {" + e.sprite.name + "}");
-
-            Sprite2D sprite = e.sprite;
             
-            sprite.DestroySelf();
-
-            enemies.Remove(e);
-            e = null;
         }
 
         public void destroyProjectile(Projectile p)

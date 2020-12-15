@@ -21,6 +21,8 @@ namespace Nilox2DGameEngine.Character
         #region Init
         public Sprite2D sprite = null;
         public Vector2 location = Vector2.Zero();
+
+        public Class clas;
         #endregion
         //
         //
