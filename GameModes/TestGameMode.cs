@@ -312,7 +312,6 @@ namespace Nilox2DGameEngine
 
             spawnenemie(new Vector2(200, 200));
         }
-
         public void UnloadCurrentTile()
         {
             Log.Warning("Clearing all Sprites");
@@ -340,6 +339,11 @@ namespace Nilox2DGameEngine
             enemies.Add(enemie);
         }
 
+        public void spawnActorFromClass()
+        {
+
+        }
+
         public void spawnProjectile(Vector2 location)
         {
             Sprite2D s = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "", true);
@@ -347,7 +351,6 @@ namespace Nilox2DGameEngine
             Projectile p = new Projectile(s, location, new Vector2(1,0), 2, this);
             projectiles.Add(p);
         }
-
 
         public void desroyEnemie(Enemy e)
         {

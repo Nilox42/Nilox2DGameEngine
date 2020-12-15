@@ -8,6 +8,14 @@ using Nilox2DGameEngine.Core;
 
 namespace Nilox2DGameEngine.Character
 {
+    public enum Class
+    {
+        enemie,
+        projectile,
+        player
+    }
+
+
     public abstract class Actor
     {
         #region Init
