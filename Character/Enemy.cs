@@ -37,7 +37,7 @@ namespace Nilox2DGameEngine.Character
         {
             Log.Info("[ENEMIE] - [DIED] - " + sprite.name);
 
-            tgm.desroyEnemie(this);
+            tgm.destroyActor(this);
         }
         //
         public override void Update()
@@ -84,7 +84,7 @@ namespace Nilox2DGameEngine.Character
         {
             if (index > 120)
             {
-                tgm.spawnProjectile(location);
+                tgm.spawnActorFromClass(location, Class.projectile);
                 index = 0;
             }
             index++;

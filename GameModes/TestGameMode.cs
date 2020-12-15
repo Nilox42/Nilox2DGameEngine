@@ -99,7 +99,7 @@ namespace Nilox2DGameEngine
                 }
                 else
                 {
-                    player.location.Y -= maxspeed;
+                    player.sprite.location.Y -= maxspeed;
                 }
             }
             if (down)
@@ -110,7 +110,7 @@ namespace Nilox2DGameEngine
                 }
                 else
                 {
-                    player.location.Y += maxspeed;
+                    player.sprite.location.Y += maxspeed;
                 }
             }
             if (left)
@@ -121,7 +121,7 @@ namespace Nilox2DGameEngine
                 }
                 else
                 {
-                    player.location.X -= maxspeed;
+                    player.sprite.location.X -= maxspeed;
                 }
             }
             if (right)
@@ -132,7 +132,7 @@ namespace Nilox2DGameEngine
                 }
                 else
                 {
-                    player.location.X += maxspeed;
+                    player.sprite.location.X += maxspeed;
                 }
             }
             #endregion
@@ -165,7 +165,7 @@ namespace Nilox2DGameEngine
                 {
                     isattacking = true;
                     //ATTACK
-                    damage = new Sprite2D(player.location, new Vector2(48, 48), "Selector", "Damage" , false);
+                    damage = new Sprite2D(player.sprite.location, new Vector2(48, 48), "Selector", "Damage" , true);
 
                     canattack = false;
                 }
@@ -308,9 +308,7 @@ namespace Nilox2DGameEngine
 
 
             //Player 
-            
-
-            spawnActorFromClass(new Vector2(200, 200),Class.enemie);
+            spawnActorFromClass(new Vector2(200, 200),Class.player);
         }
         public void UnloadCurrentTile()
         {
@@ -342,8 +340,9 @@ namespace Nilox2DGameEngine
                 case Class.player:
                     {
                         Sprite2D sprite = new Sprite2D(spawnPosition, new Vector2(30, 48), "Knight_Idle", "player", true);
+                        player = new Player(sprite);
 
-                        return new Player(sprite);
+                        return player;
                     }
                 case Class.enemie:
                     {
@@ -383,23 +382,26 @@ namespace Nilox2DGameEngine
 
                         sprite.DestroySelf();
 
-                        enemies.Remove();
+                        enemies.Remove((Enemy)a);
                         a = null;
+
+                        break;
+                    }
+                case Class.projectile:
+                    {
+                        Log.Warning("[DESTROYED][PROJECTILE]  -  {" + a.sprite.name + "}");
+                        a = null;
+
+                        break;
+                    }
+                case Class.player:
+                    {
+                        Log.Error("PLAYER CANT BE DESTROYED!");
 
                         break;
                     }
             }
 
-        }
-        public void desroyEnemie(Enemy e)
-        {
-            
-        }
-
-        public void destroyProjectile(Projectile p)
-        {
-            Log.Warning("[DESTROYED][PROJECTILE]  -  {" + p.sprite.name + "}");
-            p = null;
         }
         #endregion 
     }

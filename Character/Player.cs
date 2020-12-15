@@ -16,6 +16,7 @@ namespace Nilox2DGameEngine.Character
         public Player(Sprite2D sprite0)
         {
             sprite = sprite0;
+            location = sprite.location;
         }
         #endregion
         //

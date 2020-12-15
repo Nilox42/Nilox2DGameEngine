@@ -41,7 +41,7 @@ namespace Nilox2DGameEngine.Character
         public override void Destroy(Actor w)
         {
             sprite.DestroySelf();
-            gm.destroyProjectile(this);
+            gm.destroyActor(this);
         }
 
         public override void Damge(Actor instigator, int damage)
