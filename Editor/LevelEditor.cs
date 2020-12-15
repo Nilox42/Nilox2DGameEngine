@@ -1011,7 +1011,66 @@ namespace Nilox2DGameEngine.Editor
                     break;
                 case 19: pb_20.Image = bitmap;
                     break;
-
+                case 20:
+                    pb_21.Image = bitmap;
+                    break;
+                case 21:
+                    pb_22.Image = bitmap;
+                    break;
+                case 22:
+                    pb_23.Image = bitmap;
+                    break;
+                case 23:
+                    pb_24.Image = bitmap;
+                    break;
+                case 24:
+                    pb_25.Image = bitmap;
+                    break;
+                case 25:
+                    pb_26.Image = bitmap;
+                    break;
+                case 26:
+                    pb_27.Image = bitmap;
+                    break;
+                case 27:
+                    pb_28.Image = bitmap;
+                    break;
+                case 28:
+                    pb_29.Image = bitmap;
+                    break;
+                case 29:
+                    pb_30.Image = bitmap;
+                    break;
+                case 30:
+                    pb_31.Image = bitmap;
+                    break;
+                case 31:
+                    pb_32.Image = bitmap;
+                    break;
+                case 32:
+                    pb_33.Image = bitmap;
+                    break;
+                case 33:
+                    pb_34.Image = bitmap;
+                    break;
+                case 34:
+                    pb_35.Image = bitmap;
+                    break;
+                case 35:
+                    pb_36.Image = bitmap;
+                    break;
+                case 36:
+                    pb_37.Image = bitmap;
+                    break;
+                case 37:
+                    pb_38.Image = bitmap;
+                    break;
+                case 38:
+                    pb_39.Image = bitmap;
+                    break;
+                case 39:
+                    pb_40.Image = bitmap;
+                    break;
             }
         }
         #endregion
