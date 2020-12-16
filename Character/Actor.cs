@@ -12,7 +12,8 @@ namespace Nilox2DGameEngine.Character
     {
         enemie,
         projectile,
-        player
+        player,
+        item
     }
 
 

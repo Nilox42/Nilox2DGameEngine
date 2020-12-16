@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters;
 using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.Editor;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Nilox2DGameEngine.Core 
 {

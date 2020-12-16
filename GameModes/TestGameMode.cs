@@ -18,21 +18,15 @@ namespace Nilox2DGameEngine
     public class TestGameMode : Engine
     {
         #region Init
-        //var
+        //Player
         public Player player = null;
-
+        //Loaded Level
         Level currentLevel = null;
-
-
         //Character Movement
         private bool left;
         private bool right;
         private bool up;
         private bool down;
-        //
-        bool movecamera = false;
-
-
         //Fighting
         private bool space;
         //
@@ -40,22 +34,17 @@ namespace Nilox2DGameEngine
         bool isattacking = false;
         int attacktick = 0;
         Sprite2D damage = null;
-
+        //Movement
         private float maxspeed = 3;
         private Vector2 lastPos = Vector2.Zero();
         public Vector2 spawnPosition = new Vector2(50, 48 * 4);
-
         //Actors 
         public List<Actor> allactors = new List<Actor>();
-        public List<Enemy> enemies = new List<Enemy>();
-        public List<Projectile> projectiles = new List<Projectile>();
-
+        public List<Enemy> allenemies = new List<Enemy>();
+        public List<Projectile> allprojectiles = new List<Projectile>();
+        public List<Item> allitems = new List<Item>();
         //Logging
         public static List<string> logs = new List<string>();
-
-
-        //Camera Movement
-        public double camerathreshold = 0.8;
         //
 
         public TestGameMode() : base(new Vector2(1280,720), "Engine Demo") { }
@@ -79,13 +68,21 @@ namespace Nilox2DGameEngine
         public override void OnUpdate()
         {
             #region Enemymanagment
-            if (enemies.Count < 1)
+            if (allenemies.Count < 1)
             {
                 Random x = new Random();
                 Random y = new Random();
 
-                Vector2 v = new Vector2((int)x.Next(0, Window.Width), (int)y.Next(0, Window.Height));
+                Vector2 v = new Vector2((int)x.Next(0, Window.Width - 50), (int)y.Next(0, Window.Height - 50));
                 spawnActorFromClass(v,Class.enemie);
+            }
+            if (allitems.Count < 1)
+            {
+                Random z = new Random();
+                Random q = new Random();
+
+                Vector2 v = new Vector2((int)z.Next(0, Window.Width - 40), (int)q.Next(0, Window.Height - 40));
+                spawnActorFromClass(v, Class.item);
             }
             #endregion 
             //
@@ -93,47 +90,27 @@ namespace Nilox2DGameEngine
             #region Input
             if (up)
             {
-                if (movecamera)
-                {
-                    CameraPostition -= maxspeed;
-                }
-                else
-                {
-                    player.sprite.location.Y -= maxspeed;
-                }
+                
+                player.sprite.location.Y -= maxspeed;
+                
             }
             if (down)
             {
-                if (movecamera)
-                {
-                    CameraPostition.Y -= maxspeed;
-                }
-                else
-                {
-                    player.sprite.location.Y += maxspeed;
-                }
+                
+                player.sprite.location.Y += maxspeed;
+                
             }
             if (left)
             {
-                if (movecamera)
-                {
-                    CameraPostition.X += maxspeed;
-                }
-                else
-                {
-                    player.sprite.location.X -= maxspeed;
-                }
+                
+                player.sprite.location.X -= maxspeed;
+                
             }
             if (right)
             {
-                if (movecamera)
-                {
-                    CameraPostition.X -= maxspeed;
-                }
-                else
-                {
-                    player.sprite.location.X += maxspeed;
-                }
+                
+                player.sprite.location.X += maxspeed;
+                
             }
             #endregion
             //
@@ -187,13 +164,6 @@ namespace Nilox2DGameEngine
             #endregion
             //
             //
-            #region Pickups
-            player.coinpickup();
-            player.keypickup();
-            player.healthpickup();
-            #endregion
-            //
-            //
             #region Map Movement
             if (player.sprite.IsCollidingWithTag("DoorRight") != null)
             {
@@ -207,29 +177,40 @@ namespace Nilox2DGameEngine
             //
             //
             #region AI Tick
-            foreach (Enemy e in enemies)
+            foreach (Actor a in allenemies)
             {
                 //Update all Enemies
-                e.Update();
+                a.Update();
                 //
-                if (damage != null && e != null)
+                if (a.clas == Class.enemie)
                 {
-                    if (e.sprite.location.X < damage.location.X + damage.scale.X        &&
-                        e.sprite.location.X + e.sprite.scale.X  > damage.location.X      &&
-                        e.sprite.location.Y < damage.location.Y + damage.scale.Y        &&
-                        e.sprite.location.Y + e.sprite.scale.Y  > damage.location.Y      )
+                    //Damage
+                    if (damage != null && a != null)
                     {
-                        e.Damge(null, 1000);
+                        if (a.sprite.location.X < damage.location.X + damage.scale.X &&
+                            a.sprite.location.X + a.sprite.scale.X > damage.location.X &&
+                            a.sprite.location.Y < damage.location.Y + damage.scale.Y &&
+                            a.sprite.location.Y + a.sprite.scale.Y > damage.location.Y)
+                        {
+                            a.Damge(null, 1000);
+                        }
                     }
-                    else
+                }
+                if (a.clas == Class.item)
+                {
+                    if (a.sprite.location.X < player.sprite.location.X + player.sprite.scale.X  &&
+                        a.sprite.location.X + a.sprite.scale.X > player.sprite.location.X       &&
+                        a.sprite.location.Y < player.sprite.location.Y + player.sprite.scale.Y  &&
+                        a.sprite.location.Y + a.sprite.scale.Y > player.sprite.location.Y          )
                     {
-
+                        Item item = (Item)a;
+                        item.Destroy(null);
                     }
                 }
             }
 
             //ProjectileMovement
-            foreach (Projectile p in projectiles)
+            foreach (Projectile p in allprojectiles)
             {
                 p.move();
             }
@@ -306,7 +287,6 @@ namespace Nilox2DGameEngine
                 }
             }
 
-
             //Player 
             spawnActorFromClass(new Vector2(200, 200),Class.player);
         }
@@ -319,10 +299,6 @@ namespace Nilox2DGameEngine
                 Engine.allSprites.ElementAt(0).DestroySelf();
                 Console.WriteLine(Engine.allSprites.Count.ToString());
             }
-        }
-        public void updateCameraPosition( Vector2 v)
-        {
-            
         }
         #endregion
         //
@@ -349,7 +325,8 @@ namespace Nilox2DGameEngine
                         Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie", true);
 
                         Enemy enemie = new Enemy(sprite, sprite.location, this);
-                        enemies.Add(enemie);
+                        allenemies.Add(enemie);
+                        allactors.Add(enemie);
 
                         return enemie;
                     }
@@ -357,10 +334,21 @@ namespace Nilox2DGameEngine
                     {
                         Sprite2D sprite = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "", true);
 
-                        Projectile p = new Projectile(sprite, sprite.location, new Vector2(1, 0), 2, this);
-                        projectiles.Add(p);
+                        Projectile projectile = new Projectile(sprite, sprite.location, new Vector2(1, 0), 2, this);
+                        allprojectiles.Add(projectile);
+                        allactors.Add(projectile);
 
-                        return p;
+                        return projectile;
+                    }
+                case Class.item:
+                    {
+                        Sprite2D sprite = new Sprite2D(location, new Vector2(20, 20), "coin", "", true);
+
+                        Item item = new Item(sprite, location, this);
+                        allitems.Add(item);
+                        allactors.Add(item);
+
+                        return null;
                     }
             }
         }
@@ -376,19 +364,25 @@ namespace Nilox2DGameEngine
                     }
                 case Class.enemie:
                     {
-                        Log.Warning("[DESTROYED][ENEMY]  -  {" + a.sprite.name + "}");
-
                         Sprite2D sprite = a.sprite;
-
                         sprite.DestroySelf();
 
-                        enemies.Remove((Enemy)a);
+                        allenemies.Remove((Enemy)a);
+                        allactors.Remove(a);
+
+                        Log.Warning("[DESTROYED][ENEMY]  -  {" + a.sprite.name + "}");
                         a = null;
 
                         break;
                     }
                 case Class.projectile:
                     {
+                        Sprite2D sprite = a.sprite;
+                        sprite.DestroySelf();
+
+                        allprojectiles.Remove((Projectile)a);
+                        allactors.Remove(a);
+
                         Log.Warning("[DESTROYED][PROJECTILE]  -  {" + a.sprite.name + "}");
                         a = null;
 
@@ -397,6 +391,19 @@ namespace Nilox2DGameEngine
                 case Class.player:
                     {
                         Log.Error("PLAYER CANT BE DESTROYED!");
+
+                        break;
+                    }
+                case Class.item:
+                    {
+                        Sprite2D sprite = a.sprite;
+                        sprite.DestroySelf();
+
+                        allitems.Remove((Item)a);
+                        allactors.Remove(a);
+
+                        Log.Warning("[DESTROYED][Item]  -  {" + a.sprite.name + "}");
+                        a = null;
 
                         break;
                     }
