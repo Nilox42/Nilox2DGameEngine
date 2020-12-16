@@ -1361,14 +1361,21 @@ namespace Nilox2DGameEngine.Editor
         }
         private void tb_newLevel_TextChanged(object sender, EventArgs e)
         {
-            string path = "s";
+            string path = Application.StartupPath + @"\Levels\" + tb_newLevel.Text;
             if (Directory.Exists(path))
             {
-
+                lb_newleveldwbug.ForeColor = Color.Red;
+                lb_newleveldwbug.Text = "Level already exists!";
             }
             else
             {
-
+                lb_newleveldwbug.ForeColor = Color.Green;
+                lb_newleveldwbug.Text = "Path free!";
+            }
+            if(path == Application.StartupPath + @"\Levels\")
+            {
+                lb_newleveldwbug.ForeColor = Color.Red;
+                lb_newleveldwbug.Text = "Name cannot be empty!";
             }
         }
         #endregion
