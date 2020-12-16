@@ -1357,7 +1357,7 @@ namespace Nilox2DGameEngine.Editor
         #region Level Editing
         private void bt_newLevel_Click(object sender, EventArgs e)
         {
-
+            Directory.CreateDirectory(Application.StartupPath + @"\Levels\" + tb_newLevel.Text);
         }
         private void tb_newLevel_TextChanged(object sender, EventArgs e)
         {
@@ -1366,16 +1366,19 @@ namespace Nilox2DGameEngine.Editor
             {
                 lb_newleveldwbug.ForeColor = Color.Red;
                 lb_newleveldwbug.Text = "Level already exists!";
+                bt_newLevel.Enabled = false;
             }
             else
             {
                 lb_newleveldwbug.ForeColor = Color.Green;
                 lb_newleveldwbug.Text = "Path free!";
+                bt_newLevel.Enabled = true;
             }
             if(path == Application.StartupPath + @"\Levels\")
             {
                 lb_newleveldwbug.ForeColor = Color.Red;
                 lb_newleveldwbug.Text = "Name cannot be empty!";
+                bt_newLevel.Enabled = false;
             }
         }
         #endregion
