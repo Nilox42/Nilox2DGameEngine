@@ -396,6 +396,7 @@ namespace Nilox2DGameEngine.Editor
             // 
             // bt_saveto
             // 
+            this.bt_saveto.Enabled = false;
             this.bt_saveto.Location = new System.Drawing.Point(7, 316);
             this.bt_saveto.Name = "bt_saveto";
             this.bt_saveto.Size = new System.Drawing.Size(75, 21);
@@ -458,7 +459,7 @@ namespace Nilox2DGameEngine.Editor
             // 
             this.pb_selector.BackColor = System.Drawing.Color.Transparent;
             this.pb_selector.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb_selector.BackgroundImage")));
-            this.pb_selector.Location = new System.Drawing.Point(223, 30);
+            this.pb_selector.Location = new System.Drawing.Point(292, 14);
             this.pb_selector.Name = "pb_selector";
             this.pb_selector.Size = new System.Drawing.Size(48, 48);
             this.pb_selector.TabIndex = 23;
@@ -906,7 +907,6 @@ namespace Nilox2DGameEngine.Editor
             this.lb_savetodebug.Name = "lb_savetodebug";
             this.lb_savetodebug.Size = new System.Drawing.Size(217, 20);
             this.lb_savetodebug.TabIndex = 24;
-            this.lb_savetodebug.Text = "label4";
             this.lb_savetodebug.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // bt_savechanges
@@ -974,6 +974,7 @@ namespace Nilox2DGameEngine.Editor
             // 
             // bt_newLevel
             // 
+            this.bt_newLevel.Enabled = false;
             this.bt_newLevel.Location = new System.Drawing.Point(12, 391);
             this.bt_newLevel.Name = "bt_newLevel";
             this.bt_newLevel.Size = new System.Drawing.Size(202, 20);
@@ -997,7 +998,6 @@ namespace Nilox2DGameEngine.Editor
             this.lb_newleveldwbug.Name = "lb_newleveldwbug";
             this.lb_newleveldwbug.Size = new System.Drawing.Size(202, 19);
             this.lb_newleveldwbug.TabIndex = 33;
-            this.lb_newleveldwbug.Text = "label4";
             this.lb_newleveldwbug.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Builder
@@ -1339,11 +1339,13 @@ namespace Nilox2DGameEngine.Editor
             {
                 lb_savetodebug.ForeColor = Color.Green;
                 lb_savetodebug.Text = "Level exists";
+                bt_saveto.Enabled = true;
             }
             else
             {
                 lb_savetodebug.ForeColor = Color.Red;
                 lb_savetodebug.Text = "Level doenst exists";
+                bt_saveto.Enabled = false;
             }
         }
 
