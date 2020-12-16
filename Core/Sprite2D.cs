@@ -152,7 +152,7 @@ namespace Nilox2DGameEngine.Core
         //
         //
         #region Editor
-        public void setSelected(bool selecred0)
+        public void setSelectedOLD(bool selecred0)
         {
             if (selecred0 == true)
             {
