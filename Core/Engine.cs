@@ -18,6 +18,7 @@ namespace Nilox2DGameEngine.Core
     public class Canvas : Form
     {
         public Label lbfps;
+        public Label label1;
         public ProgressBar pb_healthbar;
 
         public Canvas()
@@ -30,6 +31,7 @@ namespace Nilox2DGameEngine.Core
         {
             this.pb_healthbar = new System.Windows.Forms.ProgressBar();
             this.lbfps = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pb_healthbar
@@ -52,9 +54,19 @@ namespace Nilox2DGameEngine.Core
             this.lbfps.TabIndex = 1;
             this.lbfps.Text = "000";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(62, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
+            // 
             // Canvas
             // 
             this.ClientSize = new System.Drawing.Size(834, 441);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbfps);
             this.Controls.Add(this.pb_healthbar);
             this.Name = "Canvas";

@@ -36,7 +36,7 @@ namespace Nilox2DGameEngine.Map
             {".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},
             {".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},
         };
-        public string[,] NewMAP0 =
+        public string[,] NewMAP =
         {
                 {"o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14"}, // 1
                 {"o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14"},// 2
@@ -55,7 +55,7 @@ namespace Nilox2DGameEngine.Map
                 {".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 15
         };
 
-        public string[,] NewMAP =
+        public string[,] NewMAP2 =
         {
             {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 1
             {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 2

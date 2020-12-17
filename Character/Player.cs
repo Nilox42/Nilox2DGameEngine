@@ -13,6 +13,8 @@ namespace Nilox2DGameEngine.Character
         #region Init
         int health = 100;
 
+        public int coins = 0;
+
         public Player(Sprite2D sprite0)
         {
             sprite = sprite0;
@@ -33,7 +35,7 @@ namespace Nilox2DGameEngine.Character
             }
         }
 
-        public override void Destroy(Actor w)
+        public override void Destroy()
         {
             
         }

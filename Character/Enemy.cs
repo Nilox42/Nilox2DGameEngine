@@ -33,7 +33,7 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region abstract functions
-        public override void Destroy(Actor w)
+        public override void Destroy()
         {
             Log.Info("[ENEMIE] - [DIED] - " + sprite.name);
 
@@ -67,7 +67,7 @@ namespace Nilox2DGameEngine.Character
             {
                 alive = false;
                 sprite.draw = false;
-                Destroy(this);
+                Destroy();
             }
         }
         #endregion

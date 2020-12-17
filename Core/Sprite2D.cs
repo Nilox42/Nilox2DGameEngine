@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.Serialization.Formatters;
 using Nilox2DGameEngine.Util;
+using Nilox2DGameEngine.Character;
 using Nilox2DGameEngine.Editor;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -15,6 +16,8 @@ namespace Nilox2DGameEngine.Core
     public class Sprite2D
     {
         #region Init
+        public Actor actor = null;
+
         public Vector2 location = null;
         public Vector2 scale = null;
         public string tag = "";

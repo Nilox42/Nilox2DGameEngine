@@ -76,12 +76,17 @@ namespace Nilox2DGameEngine
                 Vector2 v = new Vector2((int)x.Next(0, Window.Width - 50), (int)y.Next(0, Window.Height - 50));
                 spawnActorFromClass(v,Class.enemie);
             }
-            if (allitems.Count < 1)
+            if (allitems.Count < 120)
             {
                 Random z = new Random();
                 Random q = new Random();
 
-                Vector2 v = new Vector2((int)z.Next(0, Window.Width - 40), (int)q.Next(0, Window.Height - 40));
+                Vector2 v = new Vector2(0,0);
+
+                v.X = (int)z.Next(0, Window.Width - 50);
+
+                v.Y = (int)z.Next(0, Window.Height - 50);
+
                 spawnActorFromClass(v, Class.item);
             }
             #endregion 
@@ -161,11 +166,21 @@ namespace Nilox2DGameEngine
                 lastPos.X = player.location.X;
                 lastPos.Y = player.location.Y;
             }
+
+
+            //Coin 
+            Sprite2D coin = player.sprite.IsCollidingWithTag("coin");
+            if ( coin != null)
+            {
+                coin.actor.Destroy();
+                player.coins++;
+                Engine.Window.label1.Text = player.coins.ToString();
+            }
             #endregion
             //
             //
             #region Map Movement
-            if (player.sprite.IsCollidingWithTag("DoorRight") != null)
+                if (player.sprite.IsCollidingWithTag("DoorRight") != null)
             {
                 currentLevel.moveRight();
             }
@@ -194,14 +209,6 @@ namespace Nilox2DGameEngine
                         {
                             a.Damge(null, 1000);
                         }
-                    }
-                }
-                if (a.clas == Class.item)
-                {
-                    if (a.sprite.IsCollidingWithTag("coin") != null)
-                    {
-                        Item item = (Item)a;
-                        item.Destroy(null);
                     }
                 }
             }
@@ -313,7 +320,9 @@ namespace Nilox2DGameEngine
                 case Class.player:
                     {
                         Sprite2D sprite = new Sprite2D(location, new Vector2(30, 48), "Knight_Idle", "player", true);
+
                         player = new Player(sprite);
+                        sprite.actor = player;
 
                         return player;
                     }
@@ -322,6 +331,8 @@ namespace Nilox2DGameEngine
                         Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie", true);
 
                         Enemy enemie = new Enemy(sprite, sprite.location, this);
+                        sprite.actor = enemie;
+
                         allenemies.Add(enemie);
                         allactors.Add(enemie);
 
@@ -332,6 +343,8 @@ namespace Nilox2DGameEngine
                         Sprite2D sprite = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "", true);
 
                         Projectile projectile = new Projectile(sprite, sprite.location, new Vector2(1, 0), 2, this);
+                        sprite.actor = projectile;
+
                         allprojectiles.Add(projectile);
                         allactors.Add(projectile);
 
@@ -342,8 +355,11 @@ namespace Nilox2DGameEngine
                         Sprite2D sprite = new Sprite2D(location, new Vector2(20, 20), "coin", "", true);
 
                         Item item = new Item(sprite, location, this);
+                        sprite.actor = item;
+
                         allitems.Add(item);
                         allactors.Add(item);
+                        item.clas = Class.item;
 
                         return null;
                     }

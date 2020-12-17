@@ -28,7 +28,7 @@ namespace Nilox2DGameEngine.Character
         {
         }
 
-        public override void Destroy(Actor w)
+        public override void Destroy()
         {
             tgm.destroyActor(this);
         }

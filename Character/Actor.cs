@@ -29,7 +29,7 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region core
-        public abstract void Destroy(Actor w);
+        public abstract void Destroy();
         public abstract void Update();
         #endregion
         //
