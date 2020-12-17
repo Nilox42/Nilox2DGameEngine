@@ -1206,15 +1206,18 @@ namespace Nilox2DGameEngine.Editor
 
         private void bt_LoadLevelclick(object sender, EventArgs e)
         {
-            string url = Application.StartupPath + @"\Levels\" + tb_url.Text;
-            if (Directory.Exists(url))
+            string path = Application.StartupPath + @"\Levels\" + tb_url.Text;
+            if (Directory.Exists(path))
             {
+                //Set loadedlevelname varible and Log
                 LB.loadedlevelname = tb_url.Text;
                 Log.Info("[BUILDER]  -  Level Exists     Name:" + LB.loadedlevelname);
 
-                LB.allTiles = NLoad.TilesL(url);
+                //Load Tiles in List
+                LB.allTiles = NLoad.TilesL(path);
                 richTextBox1.Text = "";
 
+                //Add Tiles to RichTextBox
                 int index = 0;
                 foreach (Tile t in LB.allTiles)
                 {
@@ -1228,6 +1231,7 @@ namespace Nilox2DGameEngine.Editor
                     LB.NewLoadNewTile(LB.allTiles.ElementAt(0));
                 }
                 
+                //Redraw Window
                 LB.Window.Refresh();
             }
             else
@@ -1865,7 +1869,6 @@ namespace Nilox2DGameEngine.Editor
 
             return v;
         }
-
         #endregion
         //
         //
@@ -1915,7 +1918,6 @@ namespace Nilox2DGameEngine.Editor
 
             replacecoorinate(selectedVector, Window.tb_name.Text);
         }
-
         #endregion
     }
 }

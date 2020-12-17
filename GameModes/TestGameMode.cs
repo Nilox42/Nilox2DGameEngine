@@ -198,10 +198,7 @@ namespace Nilox2DGameEngine
                 }
                 if (a.clas == Class.item)
                 {
-                    if (a.sprite.location.X < player.sprite.location.X + player.sprite.scale.X  &&
-                        a.sprite.location.X + a.sprite.scale.X > player.sprite.location.X       &&
-                        a.sprite.location.Y < player.sprite.location.Y + player.sprite.scale.Y  &&
-                        a.sprite.location.Y + a.sprite.scale.Y > player.sprite.location.Y          )
+                    if (a.sprite.IsCollidingWithTag("coin") != null)
                     {
                         Item item = (Item)a;
                         item.Destroy(null);
