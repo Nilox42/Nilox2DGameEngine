@@ -85,10 +85,12 @@ namespace Nilox2DGameEngine.Core
     {
         #region Engine Init
         //Windwo varibles
+        #region Window
         private Vector2 ScreenSize = Vector2.Zero();
         private string Title = "Error";
         public static Canvas Window = null;
         public Color BackgroundColor = Color.Gray;
+        #endregion
 
         //Engine varibles
         public static int FrameCount = 0;
@@ -97,23 +99,26 @@ namespace Nilox2DGameEngine.Core
         //Engine lists
         public static List<Shape2D> allShapes = new List<Shape2D>();
         public static List<Sprite2D> allSprites = new List<Sprite2D>();
-        List<Actor> allActors = new List<Actor>();
+        private static List<Sprite2D> spritestoremove = new List<Sprite2D>();
 
         //Lists all images that are used 
+        #region Images
         public static List<BaseImage> allimages = new List<BaseImage>();
         public string[] allcontentlocations = { @"\Content\Default\", @"\Content\Player\", @"\Content\Default\Items\", @"\Content\Overworld\Tiles\", @"\Content\Overworld\Objects\"};
-
-        //FPS
-        Stopwatch stopwatch = new Stopwatch();
+        #endregion
 
         //Camera varibles
+        #region Camera
         public static Vector2 CameraPostition = new Vector2(0, 0);
         public float CameraAngle = 0f;
+        #endregion
 
         //Logging
+        #region Logging
         Random keygerator = new Random();
         public static string sessionkey = "keyerror";
         int keyrange = 9999;
+        #endregion
 
         public Engine(Vector2 ScreenSize0, string Title)
         {
@@ -175,6 +180,28 @@ namespace Nilox2DGameEngine.Core
         // //
         //
         #region Functions
+        //Remove marked Sprite2D Shape2D and BaseImage
+        private void TrashRemoval()
+        {
+            if (spritestoremove.Count > 0)
+            {
+                int index = 0;
+
+                foreach (Sprite2D sprite in spritestoremove)
+                {
+                    allSprites.Remove(sprite);
+                    ++index;
+                }
+
+                spritestoremove.Clear();
+            }
+        }
+        #region TrashRemoval
+        #endregion
+
+
+        //REgister Sprite2D Shape2D and BaseImage
+        #region Registration 
         public static void RegisterShape(Shape2D shape)
         {
             allShapes.Add(shape);
@@ -188,7 +215,26 @@ namespace Nilox2DGameEngine.Core
         {
             allimages.Add(image);
         }
+        #endregion
 
+        //Unregister Sprite2D Shape2D and BaseImage
+        #region Unregistration
+        public static void UnRegisterSprite(Sprite2D sprite)
+        {
+            //Set draw to false
+            sprite.draw = false;
+
+            //allSprites.Remove(sprite);
+            spritestoremove.Add(sprite);
+
+            Log.Info($"[SPRITE2D][REMOVED]({sprite.name} @  X:{sprite.location.X}  Y:{sprite.location.Y}) - Has been destroyed!");
+            sprite = null;
+        }
+        public static void UnRegisterShape(Shape2D shape)
+        {
+            allShapes.Remove(shape);
+        }
+        #endregion
 
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -198,19 +244,6 @@ namespace Nilox2DGameEngine.Core
             allSprites.Clear();
             allShapes.Clear();
             Log.Warning("[ENGINE] Closed <------------------------------------------------------------------------------------------>");
-        }
-
-        public static void UnRegisterSprite(Sprite2D sprite)
-        {
-            allSprites.Remove(sprite);
-
-            Log.Info($"[SPRITE2D][REMOVED]({sprite.name} @  X:{sprite.location.X}  Y:{sprite.location.Y}) - Has been destroyed!");
-
-            sprite = null;
-        }
-        public static void UnRegisterShape(Shape2D shape)
-        {
-            allShapes.Remove(shape);
         }
         #endregion
         //
@@ -228,7 +261,7 @@ namespace Nilox2DGameEngine.Core
                     OnDraw();
                     Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
                     OnUpdate();
-                    Thread.Sleep(10);
+                    Thread.Sleep(20);
                 }
                 catch
                 {
@@ -245,12 +278,13 @@ namespace Nilox2DGameEngine.Core
             g.TranslateTransform(CameraPostition.X, CameraPostition.Y);
             g.RotateTransform(CameraAngle);
 
+            //Draw all Shapes
             foreach (Shape2D shape in allShapes)
             {
                 g.FillRectangle(new SolidBrush(Color.Red), shape.Position.X, shape.Position.Y, shape.Scale.X, shape.Scale.Y);
             }
 
-
+            //Draw all sprites
             try
             {
                 foreach (Sprite2D sprite in allSprites)
@@ -280,6 +314,8 @@ namespace Nilox2DGameEngine.Core
             {
                 Log.Error("Could not draw " + FrameCount);
             }
+
+            TrashRemoval();
 
             ++FrameCount;
         }
