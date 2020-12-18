@@ -76,15 +76,11 @@ namespace Nilox2DGameEngine
                 Vector2 v = new Vector2((int)x.Next(0, Window.Width - 50), (int)y.Next(0, Window.Height - 50));
                 spawnActorFromClass(v,Class.enemie);
             }
-            if (allitems.Count < 120)
+            if (allitems.Count < 500)
             {
-                Random z = new Random();
-                Random q = new Random();
-
-                Vector2 v = new Vector2(0,0);
-
+                Vector2 v = new Vector2(0, 0);
+                Random z = new Random();                
                 v.X = (int)z.Next(0, Window.Width - 50);
-
                 v.Y = (int)z.Next(0, Window.Height - 50);
 
                 spawnActorFromClass(v, Class.item);

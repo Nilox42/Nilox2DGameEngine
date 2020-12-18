@@ -27,6 +27,11 @@ namespace Nilox2DGameEngine.Character
             sprite = sprite0;
             location = location0;
             tgm = GM;
+
+            if (sprite.IsCollidingWithTag("collider") != null)
+            {
+                Destroy();
+            }
         }
         #endregion
         //
