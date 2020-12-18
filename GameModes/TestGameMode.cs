@@ -45,7 +45,7 @@ namespace Nilox2DGameEngine
         public List<Item> allitems = new List<Item>();
         //Logging
         public static List<string> logs = new List<string>();
-        //
+ 
 
         public TestGameMode() : base(new Vector2(1280,720), "Engine Demo") { }
         #endregion
@@ -56,7 +56,6 @@ namespace Nilox2DGameEngine
         public override void OnLoad()
         {
             BackgroundColor = Color.Black;
-
             currentLevel = new Level("Test",this);
         }
 
@@ -70,20 +69,14 @@ namespace Nilox2DGameEngine
             #region Enemymanagment
             if (allenemies.Count < 1)
             {
-                Random x = new Random();
-                Random y = new Random();
-
-                Vector2 v = new Vector2((int)x.Next(0, Window.Width - 50), (int)y.Next(0, Window.Height - 50));
-                spawnActorFromClass(v,Class.enemie);
-            }
-            if (allitems.Count < 200)
-            {
                 Vector2 v = new Vector2(0, 0);
-                Random z = new Random();                
-                v.X = (int)z.Next(0, Window.Width - 50);
-                v.Y = (int)z.Next(0, Window.Height - 50);
 
-                spawnActorFromClass(v, Class.item);
+                Random random = new Random();
+                v.X = (int)random.Next(0, Window.Width - 50);
+                v.Y = (int)random.Next(0, Window.Height - 50);
+                random = null;
+
+                spawnActorFromClass(v, Class.enemie);
             }
             #endregion 
             //
@@ -289,6 +282,18 @@ namespace Nilox2DGameEngine
 
             //Player 
             spawnActorFromClass(new Vector2(200, 200),Class.player);
+
+            //Spawn 3 coins
+            Random random = new Random();
+            for (int i = 0; i < 3; i++)
+            {
+                Vector2 v = new Vector2(0, 0);
+
+                v.X = Convert.ToInt32(random.Next(50, Window.Width - 50));
+                v.Y = Convert.ToInt32(random.Next(50, Window.Height - 50));
+
+                spawnActorFromClass(v, Class.item);
+            }
         }
         public void UnloadCurrentTile()
         {

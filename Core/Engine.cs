@@ -93,8 +93,12 @@ namespace Nilox2DGameEngine.Core
         #endregion
 
         //Engine varibles
-        public static int FrameCount = 0;
+        public static int frametime = 10;
         private Thread GameLoopThread = null;
+
+        //Infi
+        Stopwatch SW = new Stopwatch();
+        public static int FrameCount = 0;
 
         //Engine lists
         public static List<Shape2D> allShapes = new List<Shape2D>();
@@ -261,7 +265,7 @@ namespace Nilox2DGameEngine.Core
                     OnDraw();
                     Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
                     OnUpdate();
-                    Thread.Sleep(20);
+                    Thread.Sleep(frametime);
                 }
                 catch
                 {
@@ -272,6 +276,8 @@ namespace Nilox2DGameEngine.Core
 
         private void Renderer(object sender, PaintEventArgs e)
         {
+            SW.Restart();
+
             Graphics g = e.Graphics;
             g.Clear(BackgroundColor);
 
@@ -318,6 +324,9 @@ namespace Nilox2DGameEngine.Core
             TrashRemoval();
 
             ++FrameCount;
+
+            SW.Stop();
+            //Log.Error("[PIPELINE]  -  Missiseconds:" + (SW.ElapsedMilliseconds));
         }
         #endregion
         //
