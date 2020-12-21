@@ -100,6 +100,11 @@ namespace Nilox2DGameEngine.Editor
         private Button bt_newLevel;
         private TextBox tb_newLevel;
         private Label lb_newleveldwbug;
+        private Panel panel6;
+        public Label lbYMouse;
+        public Label lbXMouse;
+        private System.Windows.Forms.Timer MouseCoordsTimer;
+        private System.ComponentModel.IContainer components;
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         #endregion
 
@@ -111,6 +116,7 @@ namespace Nilox2DGameEngine.Editor
         
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Builder));
             this.bt_LoadLevel = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -189,6 +195,10 @@ namespace Nilox2DGameEngine.Editor
             this.bt_newLevel = new System.Windows.Forms.Button();
             this.tb_newLevel = new System.Windows.Forms.TextBox();
             this.lb_newleveldwbug = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lbYMouse = new System.Windows.Forms.Label();
+            this.lbXMouse = new System.Windows.Forms.Label();
+            this.MouseCoordsTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nud_index)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).BeginInit();
             this.panel1.SuspendLayout();
@@ -236,6 +246,7 @@ namespace Nilox2DGameEngine.Editor
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // bt_LoadLevel
@@ -459,7 +470,7 @@ namespace Nilox2DGameEngine.Editor
             // 
             this.pb_selector.BackColor = System.Drawing.Color.Transparent;
             this.pb_selector.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb_selector.BackgroundImage")));
-            this.pb_selector.Location = new System.Drawing.Point(292, 14);
+            this.pb_selector.Location = new System.Drawing.Point(12, 597);
             this.pb_selector.Name = "pb_selector";
             this.pb_selector.Size = new System.Drawing.Size(48, 48);
             this.pb_selector.TabIndex = 23;
@@ -1000,9 +1011,46 @@ namespace Nilox2DGameEngine.Editor
             this.lb_newleveldwbug.TabIndex = 33;
             this.lb_newleveldwbug.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel6.Controls.Add(this.lbYMouse);
+            this.panel6.Controls.Add(this.lbXMouse);
+            this.panel6.Location = new System.Drawing.Point(1107, 618);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(138, 19);
+            this.panel6.TabIndex = 29;
+            // 
+            // lbYMouse
+            // 
+            this.lbYMouse.AutoSize = true;
+            this.lbYMouse.BackColor = System.Drawing.Color.Transparent;
+            this.lbYMouse.Location = new System.Drawing.Point(100, 2);
+            this.lbYMouse.Name = "lbYMouse";
+            this.lbYMouse.Size = new System.Drawing.Size(14, 13);
+            this.lbYMouse.TabIndex = 12;
+            this.lbYMouse.Text = "Y";
+            // 
+            // lbXMouse
+            // 
+            this.lbXMouse.AutoSize = true;
+            this.lbXMouse.BackColor = System.Drawing.Color.Transparent;
+            this.lbXMouse.Location = new System.Drawing.Point(3, 2);
+            this.lbXMouse.Name = "lbXMouse";
+            this.lbXMouse.Size = new System.Drawing.Size(14, 13);
+            this.lbXMouse.TabIndex = 11;
+            this.lbXMouse.Text = "X";
+            // 
+            // MouseCoordsTimer
+            // 
+            this.MouseCoordsTimer.Enabled = true;
+            this.MouseCoordsTimer.Interval = 20;
+            this.MouseCoordsTimer.Tick += new System.EventHandler(this.CoordsTick);
+            // 
             // Builder
             // 
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.lb_newleveldwbug);
             this.Controls.Add(this.tb_newLevel);
             this.Controls.Add(this.bt_newLevel);
@@ -1073,6 +1121,8 @@ namespace Nilox2DGameEngine.Editor
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1625,9 +1675,14 @@ namespace Nilox2DGameEngine.Editor
             LB.pbSelect(40);
         }
 
+
         #endregion
 
-        
+        private void CoordsTick(object sender, EventArgs e)
+        {
+            lbXMouse.Text = "X: " + Convert.ToString(Cursor.Position.X);
+            lbYMouse.Text = "Y: " + Convert.ToString(Cursor.Position.Y);
+        }
     }
     //
 
