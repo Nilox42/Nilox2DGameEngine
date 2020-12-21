@@ -927,7 +927,7 @@ namespace Nilox2DGameEngine.Editor
             this.panel4.Controls.Add(this.bt_down);
             this.panel4.Controls.Add(this.bt_right);
             this.panel4.Controls.Add(this.bt_left);
-            this.panel4.Location = new System.Drawing.Point(1107, 452);
+            this.panel4.Location = new System.Drawing.Point(1107, 449);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(138, 139);
             this.panel4.TabIndex = 27;
@@ -1204,6 +1204,8 @@ namespace Nilox2DGameEngine.Editor
             Log.Info("[CHANGED]  -  NAME to: " + LB.allTiles.ElementAt((int)nud_index.Value).name);
         }
 
+        private bool mapIsDrawnV = false;
+
         private void bt_LoadLevelclick(object sender, EventArgs e)
         {
             string path = Application.StartupPath + @"\Levels\" + tb_url.Text;
@@ -1233,6 +1235,8 @@ namespace Nilox2DGameEngine.Editor
                 
                 //Redraw Window
                 LB.Window.Refresh();
+
+                mapIsDrawnV = true;
             }
             else
             {
@@ -1280,6 +1284,8 @@ namespace Nilox2DGameEngine.Editor
 
             }
         }
+
+        
         private void button2_Click(object sender, EventArgs e)
         {
             LB.Window.Refresh();
@@ -1288,22 +1294,50 @@ namespace Nilox2DGameEngine.Editor
         #region Dpad
         private void bt_up_Click(object sender, EventArgs e)
         {
-            LB.moveup(-1);
+            if (mapIsDrawnV == true)
+            {
+                LB.moveup(-1);
+            }
+            else
+            {
+
+            }
         }
 
         private void bt_right_Click(object sender, EventArgs e)
         {
-            LB.moveleft(1);
+            if (mapIsDrawnV == true)
+            {
+                LB.moveleft(1);
+            }
+            else
+            {
+
+            }
         }
 
         private void bt_down_Click(object sender, EventArgs e)
         {
-            LB.moveup(1);
+            if (mapIsDrawnV == true)
+            {
+                LB.moveup(1);
+            }
+            else
+            {
+
+            }
         }
 
         private void bt_left_Click(object sender, EventArgs e)
         {
-            LB.moveleft(-1);
+            if (mapIsDrawnV == true)
+            {
+                LB.moveleft(-1);
+            }
+            else
+            {
+
+            }
         }
         private void bt_enter_Click(object sender, EventArgs e)
         {
