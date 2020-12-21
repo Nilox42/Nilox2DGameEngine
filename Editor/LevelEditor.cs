@@ -1291,7 +1291,8 @@ namespace Nilox2DGameEngine.Editor
             }
         }
         #endregion
-
+        //
+        //
         #region Input
         private void bt_settilename_Click(object sender, EventArgs e)
         {
