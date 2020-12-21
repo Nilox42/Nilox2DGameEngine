@@ -25,29 +25,29 @@ namespace Nilox2DGameEngine.Editor
         private RichTextBox richTextBox1;
         private FolderBrowserDialog FD;
         private TextBox tb_url;
-        private NumericUpDown nud_index;
-        private Button button1;
+        private NumericUpDown nudIndex;
+        private Button btLoadTile;
         //private System.ComponentModel.IContainer components;
         private LevelEditor LB = null;
-        private Button bt_left;
-        private Button bt_right;
-        private Button bt_down;
-        private Button bt_enter;
-        private Button bt_up;
+        private Button btDpadLeft;
+        private Button btDpadRight;
+        private Button btDpadDown;
+        private Button btDpadEnter;
+        private Button btDpadUp;
         public Label lb_debug_X;
         public Label lb_debug_Y;
         public TextBox tb_name;
-        private Button bt_new;
+        private Button btNew;
         public Label lb_tilesize;
         private Button bt_saveto;
         public TextBox tb_saveto;
         private TextBox tb_tilesize;
         private TextBox tb_tilename;
         private Label lb_tilename;
-        private Button bt_settilesize;
-        private Button bt_settilename;
+        private Button btSetTilesize;
+        private Button btSetTilename;
         public PictureBox pb_selector;
-        private Panel panel1;
+        private Panel plInventory1;
         private PictureBox pb_20;
         private PictureBox pb_19;
         private PictureBox pb_18;
@@ -68,7 +68,7 @@ namespace Nilox2DGameEngine.Editor
         private PictureBox pb_3;
         private PictureBox pb_4;
         private PictureBox pb_1;
-        private Panel panel2;
+        private Panel plInventory2;
         private PictureBox pb_40;
         private PictureBox pb_39;
         private PictureBox pb_38;
@@ -95,7 +95,7 @@ namespace Nilox2DGameEngine.Editor
         private Label label1;
         private Label label2;
         private Label label3;
-        private Button bt_savechanges;
+        private Button btSaveChanges;
         private Label lb_savetodebug;
         private Button bt_newLevel;
         private TextBox tb_newLevel;
@@ -112,6 +112,7 @@ namespace Nilox2DGameEngine.Editor
         {
             LB = LB0;
             InitializeComponent();
+            lockControls();
         }
         
         private void InitializeComponent()
@@ -122,27 +123,27 @@ namespace Nilox2DGameEngine.Editor
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.FD = new System.Windows.Forms.FolderBrowserDialog();
             this.tb_url = new System.Windows.Forms.TextBox();
-            this.nud_index = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.bt_left = new System.Windows.Forms.Button();
-            this.bt_right = new System.Windows.Forms.Button();
-            this.bt_down = new System.Windows.Forms.Button();
-            this.bt_enter = new System.Windows.Forms.Button();
-            this.bt_up = new System.Windows.Forms.Button();
+            this.nudIndex = new System.Windows.Forms.NumericUpDown();
+            this.btLoadTile = new System.Windows.Forms.Button();
+            this.btDpadLeft = new System.Windows.Forms.Button();
+            this.btDpadRight = new System.Windows.Forms.Button();
+            this.btDpadDown = new System.Windows.Forms.Button();
+            this.btDpadEnter = new System.Windows.Forms.Button();
+            this.btDpadUp = new System.Windows.Forms.Button();
             this.lb_debug_X = new System.Windows.Forms.Label();
             this.lb_debug_Y = new System.Windows.Forms.Label();
             this.tb_name = new System.Windows.Forms.TextBox();
-            this.bt_new = new System.Windows.Forms.Button();
+            this.btNew = new System.Windows.Forms.Button();
             this.lb_tilesize = new System.Windows.Forms.Label();
             this.bt_saveto = new System.Windows.Forms.Button();
             this.tb_saveto = new System.Windows.Forms.TextBox();
             this.tb_tilesize = new System.Windows.Forms.TextBox();
             this.tb_tilename = new System.Windows.Forms.TextBox();
             this.lb_tilename = new System.Windows.Forms.Label();
-            this.bt_settilesize = new System.Windows.Forms.Button();
-            this.bt_settilename = new System.Windows.Forms.Button();
+            this.btSetTilesize = new System.Windows.Forms.Button();
+            this.btSetTilename = new System.Windows.Forms.Button();
             this.pb_selector = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.plInventory1 = new System.Windows.Forms.Panel();
             this.pb_20 = new System.Windows.Forms.PictureBox();
             this.pb_19 = new System.Windows.Forms.PictureBox();
             this.pb_18 = new System.Windows.Forms.PictureBox();
@@ -163,7 +164,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_3 = new System.Windows.Forms.PictureBox();
             this.pb_4 = new System.Windows.Forms.PictureBox();
             this.pb_1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.plInventory2 = new System.Windows.Forms.Panel();
             this.pb_40 = new System.Windows.Forms.PictureBox();
             this.pb_39 = new System.Windows.Forms.PictureBox();
             this.pb_38 = new System.Windows.Forms.PictureBox();
@@ -186,7 +187,7 @@ namespace Nilox2DGameEngine.Editor
             this.pb_21 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lb_savetodebug = new System.Windows.Forms.Label();
-            this.bt_savechanges = new System.Windows.Forms.Button();
+            this.btSaveChanges = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -199,9 +200,9 @@ namespace Nilox2DGameEngine.Editor
             this.lbYMouse = new System.Windows.Forms.Label();
             this.lbXMouse = new System.Windows.Forms.Label();
             this.MouseCoordsTimer = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.nud_index)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.plInventory1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_18)).BeginInit();
@@ -222,7 +223,7 @@ namespace Nilox2DGameEngine.Editor
             ((System.ComponentModel.ISupportInitialize)(this.pb_3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_1)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.plInventory2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_39)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_38)).BeginInit();
@@ -283,80 +284,80 @@ namespace Nilox2DGameEngine.Editor
             // 
             // nud_index
             // 
-            this.nud_index.CausesValidation = false;
-            this.nud_index.Location = new System.Drawing.Point(117, 311);
-            this.nud_index.Name = "nud_index";
-            this.nud_index.Size = new System.Drawing.Size(100, 20);
-            this.nud_index.TabIndex = 4;
-            this.nud_index.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.nudIndex.CausesValidation = false;
+            this.nudIndex.Location = new System.Drawing.Point(117, 311);
+            this.nudIndex.Name = "nud_index";
+            this.nudIndex.Size = new System.Drawing.Size(100, 20);
+            this.nudIndex.TabIndex = 4;
+            this.nudIndex.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // button1
             // 
-            this.button1.CausesValidation = false;
-            this.button1.Location = new System.Drawing.Point(117, 337);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 22);
-            this.button1.TabIndex = 5;
-            this.button1.TabStop = false;
-            this.button1.Text = "LoadTile";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.LoadTile_Click);
+            this.btLoadTile.CausesValidation = false;
+            this.btLoadTile.Location = new System.Drawing.Point(117, 337);
+            this.btLoadTile.Name = "button1";
+            this.btLoadTile.Size = new System.Drawing.Size(100, 22);
+            this.btLoadTile.TabIndex = 5;
+            this.btLoadTile.TabStop = false;
+            this.btLoadTile.Text = "LoadTile";
+            this.btLoadTile.UseVisualStyleBackColor = true;
+            this.btLoadTile.Click += new System.EventHandler(this.LoadTile_Click);
             // 
             // bt_left
             // 
-            this.bt_left.Location = new System.Drawing.Point(3, 49);
-            this.bt_left.Name = "bt_left";
-            this.bt_left.Size = new System.Drawing.Size(40, 40);
-            this.bt_left.TabIndex = 6;
-            this.bt_left.TabStop = false;
-            this.bt_left.Text = "<";
-            this.bt_left.UseVisualStyleBackColor = true;
-            this.bt_left.Click += new System.EventHandler(this.bt_left_Click);
+            this.btDpadLeft.Location = new System.Drawing.Point(3, 49);
+            this.btDpadLeft.Name = "bt_left";
+            this.btDpadLeft.Size = new System.Drawing.Size(40, 40);
+            this.btDpadLeft.TabIndex = 6;
+            this.btDpadLeft.TabStop = false;
+            this.btDpadLeft.Text = "<";
+            this.btDpadLeft.UseVisualStyleBackColor = true;
+            this.btDpadLeft.Click += new System.EventHandler(this.bt_left_Click);
             // 
             // bt_right
             // 
-            this.bt_right.Location = new System.Drawing.Point(95, 49);
-            this.bt_right.Name = "bt_right";
-            this.bt_right.Size = new System.Drawing.Size(40, 40);
-            this.bt_right.TabIndex = 7;
-            this.bt_right.TabStop = false;
-            this.bt_right.Text = ">";
-            this.bt_right.UseVisualStyleBackColor = true;
-            this.bt_right.Click += new System.EventHandler(this.bt_right_Click);
+            this.btDpadRight.Location = new System.Drawing.Point(95, 49);
+            this.btDpadRight.Name = "bt_right";
+            this.btDpadRight.Size = new System.Drawing.Size(40, 40);
+            this.btDpadRight.TabIndex = 7;
+            this.btDpadRight.TabStop = false;
+            this.btDpadRight.Text = ">";
+            this.btDpadRight.UseVisualStyleBackColor = true;
+            this.btDpadRight.Click += new System.EventHandler(this.bt_right_Click);
             // 
             // bt_down
             // 
-            this.bt_down.Location = new System.Drawing.Point(49, 95);
-            this.bt_down.Name = "bt_down";
-            this.bt_down.Size = new System.Drawing.Size(40, 40);
-            this.bt_down.TabIndex = 8;
-            this.bt_down.TabStop = false;
-            this.bt_down.Text = "\\/";
-            this.bt_down.UseVisualStyleBackColor = true;
-            this.bt_down.Click += new System.EventHandler(this.bt_down_Click);
+            this.btDpadDown.Location = new System.Drawing.Point(49, 95);
+            this.btDpadDown.Name = "bt_down";
+            this.btDpadDown.Size = new System.Drawing.Size(40, 40);
+            this.btDpadDown.TabIndex = 8;
+            this.btDpadDown.TabStop = false;
+            this.btDpadDown.Text = "\\/";
+            this.btDpadDown.UseVisualStyleBackColor = true;
+            this.btDpadDown.Click += new System.EventHandler(this.bt_down_Click);
             // 
             // bt_enter
             // 
-            this.bt_enter.Location = new System.Drawing.Point(49, 49);
-            this.bt_enter.Name = "bt_enter";
-            this.bt_enter.Size = new System.Drawing.Size(40, 40);
-            this.bt_enter.TabIndex = 9;
-            this.bt_enter.TabStop = false;
-            this.bt_enter.Text = "O";
-            this.bt_enter.UseVisualStyleBackColor = true;
-            this.bt_enter.Click += new System.EventHandler(this.bt_enter_Click);
+            this.btDpadEnter.Location = new System.Drawing.Point(49, 49);
+            this.btDpadEnter.Name = "bt_enter";
+            this.btDpadEnter.Size = new System.Drawing.Size(40, 40);
+            this.btDpadEnter.TabIndex = 9;
+            this.btDpadEnter.TabStop = false;
+            this.btDpadEnter.Text = "O";
+            this.btDpadEnter.UseVisualStyleBackColor = true;
+            this.btDpadEnter.Click += new System.EventHandler(this.bt_enter_Click);
             // 
             // bt_up
             // 
-            this.bt_up.BackColor = System.Drawing.SystemColors.Control;
-            this.bt_up.Location = new System.Drawing.Point(49, 3);
-            this.bt_up.Name = "bt_up";
-            this.bt_up.Size = new System.Drawing.Size(40, 40);
-            this.bt_up.TabIndex = 10;
-            this.bt_up.TabStop = false;
-            this.bt_up.Text = "/\\";
-            this.bt_up.UseVisualStyleBackColor = false;
-            this.bt_up.Click += new System.EventHandler(this.bt_up_Click);
+            this.btDpadUp.BackColor = System.Drawing.SystemColors.Control;
+            this.btDpadUp.Location = new System.Drawing.Point(49, 3);
+            this.btDpadUp.Name = "bt_up";
+            this.btDpadUp.Size = new System.Drawing.Size(40, 40);
+            this.btDpadUp.TabIndex = 10;
+            this.btDpadUp.TabStop = false;
+            this.btDpadUp.Text = "/\\";
+            this.btDpadUp.UseVisualStyleBackColor = false;
+            this.btDpadUp.Click += new System.EventHandler(this.bt_up_Click);
             // 
             // lb_debug_X
             // 
@@ -384,17 +385,16 @@ namespace Nilox2DGameEngine.Editor
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(143, 20);
             this.tb_name.TabIndex = 13;
-            this.tb_name.TextChanged += new System.EventHandler(this.tb_name_TextChanged);
             // 
             // bt_new
             // 
-            this.bt_new.Location = new System.Drawing.Point(6, 290);
-            this.bt_new.Name = "bt_new";
-            this.bt_new.Size = new System.Drawing.Size(220, 20);
-            this.bt_new.TabIndex = 14;
-            this.bt_new.Text = "New";
-            this.bt_new.UseVisualStyleBackColor = true;
-            this.bt_new.Click += new System.EventHandler(this.bt_new_Click);
+            this.btNew.Location = new System.Drawing.Point(6, 290);
+            this.btNew.Name = "bt_new";
+            this.btNew.Size = new System.Drawing.Size(220, 20);
+            this.btNew.TabIndex = 14;
+            this.btNew.Text = "New";
+            this.btNew.UseVisualStyleBackColor = true;
+            this.btNew.Click += new System.EventHandler(this.bt_new_Click);
             // 
             // lb_tilesize
             // 
@@ -449,22 +449,22 @@ namespace Nilox2DGameEngine.Editor
             // 
             // bt_settilesize
             // 
-            this.bt_settilesize.Location = new System.Drawing.Point(81, 72);
-            this.bt_settilesize.Name = "bt_settilesize";
-            this.bt_settilesize.Size = new System.Drawing.Size(75, 20);
-            this.bt_settilesize.TabIndex = 21;
-            this.bt_settilesize.Text = "Set";
-            this.bt_settilesize.UseVisualStyleBackColor = true;
+            this.btSetTilesize.Location = new System.Drawing.Point(81, 72);
+            this.btSetTilesize.Name = "bt_settilesize";
+            this.btSetTilesize.Size = new System.Drawing.Size(75, 20);
+            this.btSetTilesize.TabIndex = 21;
+            this.btSetTilesize.Text = "Set";
+            this.btSetTilesize.UseVisualStyleBackColor = true;
             // 
             // bt_settilename
             // 
-            this.bt_settilename.Location = new System.Drawing.Point(81, 47);
-            this.bt_settilename.Name = "bt_settilename";
-            this.bt_settilename.Size = new System.Drawing.Size(75, 20);
-            this.bt_settilename.TabIndex = 22;
-            this.bt_settilename.Text = "Set";
-            this.bt_settilename.UseVisualStyleBackColor = true;
-            this.bt_settilename.Click += new System.EventHandler(this.bt_settilename_Click);
+            this.btSetTilename.Location = new System.Drawing.Point(81, 47);
+            this.btSetTilename.Name = "bt_settilename";
+            this.btSetTilename.Size = new System.Drawing.Size(75, 20);
+            this.btSetTilename.TabIndex = 22;
+            this.btSetTilename.Text = "Set";
+            this.btSetTilename.UseVisualStyleBackColor = true;
+            this.btSetTilename.Click += new System.EventHandler(this.bt_settilename_Click);
             // 
             // pb_selector
             // 
@@ -476,33 +476,33 @@ namespace Nilox2DGameEngine.Editor
             this.pb_selector.TabIndex = 23;
             this.pb_selector.TabStop = false;
             // 
-            // panel1
+            // plInventory1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.pb_20);
-            this.panel1.Controls.Add(this.pb_19);
-            this.panel1.Controls.Add(this.pb_18);
-            this.panel1.Controls.Add(this.pb_17);
-            this.panel1.Controls.Add(this.pb_16);
-            this.panel1.Controls.Add(this.pb_15);
-            this.panel1.Controls.Add(this.pb_10);
-            this.panel1.Controls.Add(this.pb_14);
-            this.panel1.Controls.Add(this.pb_13);
-            this.panel1.Controls.Add(this.pb_12);
-            this.panel1.Controls.Add(this.pb_11);
-            this.panel1.Controls.Add(this.pb_5);
-            this.panel1.Controls.Add(this.pb_6);
-            this.panel1.Controls.Add(this.pb_7);
-            this.panel1.Controls.Add(this.pb_8);
-            this.panel1.Controls.Add(this.pb_9);
-            this.panel1.Controls.Add(this.pb_2);
-            this.panel1.Controls.Add(this.pb_3);
-            this.panel1.Controls.Add(this.pb_4);
-            this.panel1.Controls.Add(this.pb_1);
-            this.panel1.Location = new System.Drawing.Point(12, 449);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1078, 68);
-            this.panel1.TabIndex = 24;
+            this.plInventory1.BackColor = System.Drawing.SystemColors.Control;
+            this.plInventory1.Controls.Add(this.pb_20);
+            this.plInventory1.Controls.Add(this.pb_19);
+            this.plInventory1.Controls.Add(this.pb_18);
+            this.plInventory1.Controls.Add(this.pb_17);
+            this.plInventory1.Controls.Add(this.pb_16);
+            this.plInventory1.Controls.Add(this.pb_15);
+            this.plInventory1.Controls.Add(this.pb_10);
+            this.plInventory1.Controls.Add(this.pb_14);
+            this.plInventory1.Controls.Add(this.pb_13);
+            this.plInventory1.Controls.Add(this.pb_12);
+            this.plInventory1.Controls.Add(this.pb_11);
+            this.plInventory1.Controls.Add(this.pb_5);
+            this.plInventory1.Controls.Add(this.pb_6);
+            this.plInventory1.Controls.Add(this.pb_7);
+            this.plInventory1.Controls.Add(this.pb_8);
+            this.plInventory1.Controls.Add(this.pb_9);
+            this.plInventory1.Controls.Add(this.pb_2);
+            this.plInventory1.Controls.Add(this.pb_3);
+            this.plInventory1.Controls.Add(this.pb_4);
+            this.plInventory1.Controls.Add(this.pb_1);
+            this.plInventory1.Location = new System.Drawing.Point(12, 449);
+            this.plInventory1.Name = "plInventory1";
+            this.plInventory1.Size = new System.Drawing.Size(1078, 68);
+            this.plInventory1.TabIndex = 24;
             // 
             // pb_20
             // 
@@ -684,33 +684,33 @@ namespace Nilox2DGameEngine.Editor
             this.pb_1.TabStop = false;
             this.pb_1.Click += new System.EventHandler(this.pb_1_Click);
             // 
-            // panel2
+            // plInventory2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.panel2.Controls.Add(this.pb_40);
-            this.panel2.Controls.Add(this.pb_39);
-            this.panel2.Controls.Add(this.pb_38);
-            this.panel2.Controls.Add(this.pb_37);
-            this.panel2.Controls.Add(this.pb_36);
-            this.panel2.Controls.Add(this.pb_35);
-            this.panel2.Controls.Add(this.pb_30);
-            this.panel2.Controls.Add(this.pb_34);
-            this.panel2.Controls.Add(this.pb_33);
-            this.panel2.Controls.Add(this.pb_32);
-            this.panel2.Controls.Add(this.pb_31);
-            this.panel2.Controls.Add(this.pb_25);
-            this.panel2.Controls.Add(this.pb_26);
-            this.panel2.Controls.Add(this.pb_27);
-            this.panel2.Controls.Add(this.pb_28);
-            this.panel2.Controls.Add(this.pb_29);
-            this.panel2.Controls.Add(this.pb_22);
-            this.panel2.Controls.Add(this.pb_23);
-            this.panel2.Controls.Add(this.pb_24);
-            this.panel2.Controls.Add(this.pb_21);
-            this.panel2.Location = new System.Drawing.Point(12, 523);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1078, 68);
-            this.panel2.TabIndex = 25;
+            this.plInventory2.BackColor = System.Drawing.SystemColors.Control;
+            this.plInventory2.Controls.Add(this.pb_40);
+            this.plInventory2.Controls.Add(this.pb_39);
+            this.plInventory2.Controls.Add(this.pb_38);
+            this.plInventory2.Controls.Add(this.pb_37);
+            this.plInventory2.Controls.Add(this.pb_36);
+            this.plInventory2.Controls.Add(this.pb_35);
+            this.plInventory2.Controls.Add(this.pb_30);
+            this.plInventory2.Controls.Add(this.pb_34);
+            this.plInventory2.Controls.Add(this.pb_33);
+            this.plInventory2.Controls.Add(this.pb_32);
+            this.plInventory2.Controls.Add(this.pb_31);
+            this.plInventory2.Controls.Add(this.pb_25);
+            this.plInventory2.Controls.Add(this.pb_26);
+            this.plInventory2.Controls.Add(this.pb_27);
+            this.plInventory2.Controls.Add(this.pb_28);
+            this.plInventory2.Controls.Add(this.pb_29);
+            this.plInventory2.Controls.Add(this.pb_22);
+            this.plInventory2.Controls.Add(this.pb_23);
+            this.plInventory2.Controls.Add(this.pb_24);
+            this.plInventory2.Controls.Add(this.pb_21);
+            this.plInventory2.Location = new System.Drawing.Point(12, 523);
+            this.plInventory2.Name = "plInventory2";
+            this.plInventory2.Size = new System.Drawing.Size(1078, 68);
+            this.plInventory2.TabIndex = 25;
             // 
             // pb_40
             // 
@@ -896,12 +896,12 @@ namespace Nilox2DGameEngine.Editor
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Control;
             this.panel3.Controls.Add(this.lb_savetodebug);
-            this.panel3.Controls.Add(this.bt_savechanges);
-            this.panel3.Controls.Add(this.bt_new);
+            this.panel3.Controls.Add(this.btSaveChanges);
+            this.panel3.Controls.Add(this.btNew);
             this.panel3.Controls.Add(this.tb_tilesize);
             this.panel3.Controls.Add(this.tb_tilename);
-            this.panel3.Controls.Add(this.bt_settilesize);
-            this.panel3.Controls.Add(this.bt_settilename);
+            this.panel3.Controls.Add(this.btSetTilesize);
+            this.panel3.Controls.Add(this.btSetTilename);
             this.panel3.Controls.Add(this.bt_saveto);
             this.panel3.Controls.Add(this.tb_saveto);
             this.panel3.Controls.Add(this.lb_tilename);
@@ -922,22 +922,22 @@ namespace Nilox2DGameEngine.Editor
             // 
             // bt_savechanges
             // 
-            this.bt_savechanges.Location = new System.Drawing.Point(8, 99);
-            this.bt_savechanges.Name = "bt_savechanges";
-            this.bt_savechanges.Size = new System.Drawing.Size(220, 20);
-            this.bt_savechanges.TabIndex = 23;
-            this.bt_savechanges.Text = "Save Changes";
-            this.bt_savechanges.UseVisualStyleBackColor = true;
-            this.bt_savechanges.Click += new System.EventHandler(this.bt_savechanges_Click);
+            this.btSaveChanges.Location = new System.Drawing.Point(8, 99);
+            this.btSaveChanges.Name = "bt_savechanges";
+            this.btSaveChanges.Size = new System.Drawing.Size(220, 20);
+            this.btSaveChanges.TabIndex = 23;
+            this.btSaveChanges.Text = "Save Changes";
+            this.btSaveChanges.UseVisualStyleBackColor = true;
+            this.btSaveChanges.Click += new System.EventHandler(this.bt_savechanges_Click);
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
-            this.panel4.Controls.Add(this.bt_up);
-            this.panel4.Controls.Add(this.bt_enter);
-            this.panel4.Controls.Add(this.bt_down);
-            this.panel4.Controls.Add(this.bt_right);
-            this.panel4.Controls.Add(this.bt_left);
+            this.panel4.Controls.Add(this.btDpadUp);
+            this.panel4.Controls.Add(this.btDpadEnter);
+            this.panel4.Controls.Add(this.btDpadDown);
+            this.panel4.Controls.Add(this.btDpadRight);
+            this.panel4.Controls.Add(this.btDpadLeft);
             this.panel4.Location = new System.Drawing.Point(1107, 449);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(138, 139);
@@ -1060,11 +1060,11 @@ namespace Nilox2DGameEngine.Editor
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.plInventory2);
+            this.Controls.Add(this.plInventory1);
             this.Controls.Add(this.pb_selector);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.nud_index);
+            this.Controls.Add(this.btLoadTile);
+            this.Controls.Add(this.nudIndex);
             this.Controls.Add(this.tb_url);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.tb_name);
@@ -1072,9 +1072,9 @@ namespace Nilox2DGameEngine.Editor
             this.Name = "Builder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Builder_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nud_index)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.plInventory1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pb_20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_18)).EndInit();
@@ -1095,7 +1095,7 @@ namespace Nilox2DGameEngine.Editor
             ((System.ComponentModel.ISupportInitialize)(this.pb_3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_1)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.plInventory2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pb_40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_39)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_38)).EndInit();
@@ -1247,19 +1247,63 @@ namespace Nilox2DGameEngine.Editor
         #endregion
         //
         //
+        #region Controls Lock/Unlock
+        public void lockControls()
+        {
+            btSaveChanges.Enabled = false;
+            nudIndex.Enabled = false;
+            btLoadTile.Enabled = false;
+
+            btDpadUp.Enabled = false;
+            btDpadLeft.Enabled = false;
+            btDpadDown.Enabled = false;
+            btDpadRight.Enabled = false;
+            btDpadEnter.Enabled = false;
+
+            btSetTilename.Enabled = false;
+            btSetTilesize.Enabled = false;
+            btNew.Enabled = false;
+
+            plInventory1.Enabled = false;
+            plInventory2.Enabled = false;
+        }
+
+        public void mapIsDrawn(bool b)
+        {
+            if (b == true)
+            {
+                btSaveChanges.Enabled = true;
+                nudIndex.Enabled = true;
+                btLoadTile.Enabled = true;
+
+                btDpadUp.Enabled = true;
+                btDpadLeft.Enabled = true;
+                btDpadDown.Enabled = true;
+                btDpadRight.Enabled = true;
+                btDpadEnter.Enabled = true;
+
+                btSetTilesize.Enabled = true;
+                btSetTilename.Enabled = true;
+                btNew.Enabled = true;
+
+                plInventory1.Enabled = true;
+                plInventory2.Enabled = true;
+            }
+        }
+        #endregion
+
         #region Input
         private void bt_settilename_Click(object sender, EventArgs e)
         {
-            LB.allTiles.ElementAt((int)nud_index.Value).name = tb_tilename.Text;
-            Log.Info("[CHANGED]  -  NAME to: " + LB.allTiles.ElementAt((int)nud_index.Value).name);
+            LB.allTiles.ElementAt((int)nudIndex.Value).name = tb_tilename.Text;
+            Log.Info("[CHANGED]  -  NAME to: " + LB.allTiles.ElementAt((int)nudIndex.Value).name);
         }
-
-        private bool mapIsDrawnV = false;
 
         private void bt_LoadLevelclick(object sender, EventArgs e)
         {
             string path = Application.StartupPath + @"\Levels\" + tb_url.Text;
-            if (Directory.Exists(path))
+
+            if (Directory.Exists(path) && tb_url.Text != "")
             {
                 //Set loadedlevelname varible and Log
                 LB.loadedlevelname = tb_url.Text;
@@ -1282,11 +1326,11 @@ namespace Nilox2DGameEngine.Editor
                 {
                     LB.NewLoadNewTile(LB.allTiles.ElementAt(0));
                 }
-                
+
                 //Redraw Window
                 LB.Window.Refresh();
 
-                mapIsDrawnV = true;
+                mapIsDrawn(true);
             }
             else
             {
@@ -1302,20 +1346,20 @@ namespace Nilox2DGameEngine.Editor
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            if (nud_index.Value <= LB.allTiles.Count - 1 && nud_index.Value >= 0)
+            if (nudIndex.Value <= LB.allTiles.Count - 1 && nudIndex.Value >= 0)
             {
-                LB.NewLoadNewTile(LB.allTiles.ElementAt((int)nud_index.Value));
+                LB.NewLoadNewTile(LB.allTiles.ElementAt((int)nudIndex.Value));
                 LB.Window.Refresh();
 
-                LB.selectedtile = (int)nud_index.Value;
+                LB.selectedtile = (int)nudIndex.Value;
             }
-            if (nud_index.Value > LB.allTiles.Count - 1)
+            if (nudIndex.Value > LB.allTiles.Count - 1)
             {
-                nud_index.Value = LB.allTiles.Count - 1;
+                nudIndex.Value = LB.allTiles.Count - 1;
             }
-            if (nud_index.Value < 0)
+            if (nudIndex.Value < 0)
             {
-                nud_index.Value = 0;
+                nudIndex.Value = 0;
             }
             else
             {
@@ -1325,9 +1369,9 @@ namespace Nilox2DGameEngine.Editor
 
         private void LoadTile_Click(object sender, EventArgs e)
         {
-            if (nud_index.Value <= LB.allTiles.Count - 1 && nud_index.Value >= 0)
+            if (nudIndex.Value <= LB.allTiles.Count - 1 && nudIndex.Value >= 0)
             {
-                LB.NewLoadNewTile(LB.allTiles.ElementAt((int)nud_index.Value));
+                LB.NewLoadNewTile(LB.allTiles.ElementAt((int)nudIndex.Value));
             }
             else
             {
@@ -1335,59 +1379,32 @@ namespace Nilox2DGameEngine.Editor
             }
         }
 
-        
+        //Welcher Btn?-----
         private void button2_Click(object sender, EventArgs e)
         {
             LB.Window.Refresh();
         }
+        //-----------------
 
         #region Dpad
         private void bt_up_Click(object sender, EventArgs e)
         {
-            if (mapIsDrawnV == true)
-            {
-                LB.moveup(-1);
-            }
-            else
-            {
-
-            }
+            LB.moveup(-1);
         }
 
         private void bt_right_Click(object sender, EventArgs e)
         {
-            if (mapIsDrawnV == true)
-            {
-                LB.moveleft(1);
-            }
-            else
-            {
-
-            }
+            LB.moveleft(1);
         }
 
         private void bt_down_Click(object sender, EventArgs e)
         {
-            if (mapIsDrawnV == true)
-            {
-                LB.moveup(1);
-            }
-            else
-            {
-
-            }
+            LB.moveup(1);
         }
 
         private void bt_left_Click(object sender, EventArgs e)
         {
-            if (mapIsDrawnV == true)
-            {
-                LB.moveleft(-1);
-            }
-            else
-            {
-
-            }
+            LB.moveleft(-1);
         }
         private void bt_enter_Click(object sender, EventArgs e)
         {
@@ -1402,20 +1419,33 @@ namespace Nilox2DGameEngine.Editor
         #region tile dieting
         private void bt_new_Click(object sender, EventArgs e)
         {
-            LB.allTiles.Clear();
-            tb_url.Text = "";
+            if (tb_tilename.Text != null || tb_tilesize.Text != null)
+            {
+                LB.allTiles.Clear();
+                tb_url.Text = "";
 
-            LB.allTiles.Add(new Tile(true, tb_tilename.Text, Convert.ToInt32(tb_tilesize.Text)));
-            LB.selectedtile = 0;
-            LB.NewLoadNewTile(LB.allTiles.ElementAt(0));
-            Log.Info("[NEW TILE]  -  " + LB.allTiles.ElementAt(0).name);
+                LB.allTiles.Add(new Tile(true, tb_tilename.Text, Convert.ToInt32(tb_tilesize.Text)));
+                LB.selectedtile = 0;
+                LB.NewLoadNewTile(LB.allTiles.ElementAt(0));
+                Log.Info("[NEW TILE]  -  " + LB.allTiles.ElementAt(0).name);
+            }
+            else
+            {
+
+            }
+            
         }
+
         private void bt_saveto_Click(object sender, EventArgs e)
         {
-            LB.savecurrenttoLevel(tb_saveto.Text);
-        }
-        private void tb_name_TextChanged(object sender, EventArgs e)
-        {
+            if (tb_saveto.Text != null)
+            {
+                LB.savecurrenttoLevel(tb_saveto.Text);
+            }
+            else
+            {
+
+            }
 
         }
 
@@ -1449,6 +1479,7 @@ namespace Nilox2DGameEngine.Editor
         {
             Directory.CreateDirectory(Application.StartupPath + @"\Levels\" + tb_newLevel.Text);
         }
+
         private void tb_newLevel_TextChanged(object sender, EventArgs e)
         {
             string path = Application.StartupPath + @"\Levels\" + tb_newLevel.Text;
@@ -1471,10 +1502,11 @@ namespace Nilox2DGameEngine.Editor
                 bt_newLevel.Enabled = false;
             }
         }
+
         #endregion
         //
         //
-        #region ClickEvents SpriteSelection
+        #region ClickEvents SpriteSelection / Inventory
         private void pb_1_Click(object sender, EventArgs e)
         {
             LB.pbSelect(1);
@@ -1677,12 +1709,15 @@ namespace Nilox2DGameEngine.Editor
 
 
         #endregion
-
+        //
+        //
+        #region CoordsTick
         private void CoordsTick(object sender, EventArgs e)
         {
             lbXMouse.Text = "X: " + Convert.ToString(Cursor.Position.X);
             lbYMouse.Text = "Y: " + Convert.ToString(Cursor.Position.Y);
         }
+        #endregion
     }
     //
 
