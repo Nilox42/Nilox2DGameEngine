@@ -281,21 +281,22 @@ namespace Nilox2DGameEngine.Editor
             this.tb_url.Size = new System.Drawing.Size(99, 20);
             this.tb_url.TabIndex = 3;
             this.tb_url.Text = "Test";
+            this.tb_url.TextChanged += new System.EventHandler(this.tb_url_TextChanged);
             // 
-            // nud_index
+            // nudIndex
             // 
             this.nudIndex.CausesValidation = false;
             this.nudIndex.Location = new System.Drawing.Point(117, 311);
-            this.nudIndex.Name = "nud_index";
+            this.nudIndex.Name = "nudIndex";
             this.nudIndex.Size = new System.Drawing.Size(100, 20);
             this.nudIndex.TabIndex = 4;
             this.nudIndex.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
-            // button1
+            // btLoadTile
             // 
             this.btLoadTile.CausesValidation = false;
             this.btLoadTile.Location = new System.Drawing.Point(117, 337);
-            this.btLoadTile.Name = "button1";
+            this.btLoadTile.Name = "btLoadTile";
             this.btLoadTile.Size = new System.Drawing.Size(100, 22);
             this.btLoadTile.TabIndex = 5;
             this.btLoadTile.TabStop = false;
@@ -303,10 +304,10 @@ namespace Nilox2DGameEngine.Editor
             this.btLoadTile.UseVisualStyleBackColor = true;
             this.btLoadTile.Click += new System.EventHandler(this.LoadTile_Click);
             // 
-            // bt_left
+            // btDpadLeft
             // 
             this.btDpadLeft.Location = new System.Drawing.Point(3, 49);
-            this.btDpadLeft.Name = "bt_left";
+            this.btDpadLeft.Name = "btDpadLeft";
             this.btDpadLeft.Size = new System.Drawing.Size(40, 40);
             this.btDpadLeft.TabIndex = 6;
             this.btDpadLeft.TabStop = false;
@@ -314,10 +315,10 @@ namespace Nilox2DGameEngine.Editor
             this.btDpadLeft.UseVisualStyleBackColor = true;
             this.btDpadLeft.Click += new System.EventHandler(this.bt_left_Click);
             // 
-            // bt_right
+            // btDpadRight
             // 
             this.btDpadRight.Location = new System.Drawing.Point(95, 49);
-            this.btDpadRight.Name = "bt_right";
+            this.btDpadRight.Name = "btDpadRight";
             this.btDpadRight.Size = new System.Drawing.Size(40, 40);
             this.btDpadRight.TabIndex = 7;
             this.btDpadRight.TabStop = false;
@@ -325,10 +326,10 @@ namespace Nilox2DGameEngine.Editor
             this.btDpadRight.UseVisualStyleBackColor = true;
             this.btDpadRight.Click += new System.EventHandler(this.bt_right_Click);
             // 
-            // bt_down
+            // btDpadDown
             // 
             this.btDpadDown.Location = new System.Drawing.Point(49, 95);
-            this.btDpadDown.Name = "bt_down";
+            this.btDpadDown.Name = "btDpadDown";
             this.btDpadDown.Size = new System.Drawing.Size(40, 40);
             this.btDpadDown.TabIndex = 8;
             this.btDpadDown.TabStop = false;
@@ -336,10 +337,10 @@ namespace Nilox2DGameEngine.Editor
             this.btDpadDown.UseVisualStyleBackColor = true;
             this.btDpadDown.Click += new System.EventHandler(this.bt_down_Click);
             // 
-            // bt_enter
+            // btDpadEnter
             // 
             this.btDpadEnter.Location = new System.Drawing.Point(49, 49);
-            this.btDpadEnter.Name = "bt_enter";
+            this.btDpadEnter.Name = "btDpadEnter";
             this.btDpadEnter.Size = new System.Drawing.Size(40, 40);
             this.btDpadEnter.TabIndex = 9;
             this.btDpadEnter.TabStop = false;
@@ -347,11 +348,11 @@ namespace Nilox2DGameEngine.Editor
             this.btDpadEnter.UseVisualStyleBackColor = true;
             this.btDpadEnter.Click += new System.EventHandler(this.bt_enter_Click);
             // 
-            // bt_up
+            // btDpadUp
             // 
             this.btDpadUp.BackColor = System.Drawing.SystemColors.Control;
             this.btDpadUp.Location = new System.Drawing.Point(49, 3);
-            this.btDpadUp.Name = "bt_up";
+            this.btDpadUp.Name = "btDpadUp";
             this.btDpadUp.Size = new System.Drawing.Size(40, 40);
             this.btDpadUp.TabIndex = 10;
             this.btDpadUp.TabStop = false;
@@ -386,10 +387,10 @@ namespace Nilox2DGameEngine.Editor
             this.tb_name.Size = new System.Drawing.Size(143, 20);
             this.tb_name.TabIndex = 13;
             // 
-            // bt_new
+            // btNew
             // 
             this.btNew.Location = new System.Drawing.Point(6, 290);
-            this.btNew.Name = "bt_new";
+            this.btNew.Name = "btNew";
             this.btNew.Size = new System.Drawing.Size(220, 20);
             this.btNew.TabIndex = 14;
             this.btNew.Text = "New";
@@ -447,19 +448,19 @@ namespace Nilox2DGameEngine.Editor
             this.lb_tilename.TabIndex = 20;
             this.lb_tilename.Text = "Tilename: \"\"";
             // 
-            // bt_settilesize
+            // btSetTilesize
             // 
             this.btSetTilesize.Location = new System.Drawing.Point(81, 72);
-            this.btSetTilesize.Name = "bt_settilesize";
+            this.btSetTilesize.Name = "btSetTilesize";
             this.btSetTilesize.Size = new System.Drawing.Size(75, 20);
             this.btSetTilesize.TabIndex = 21;
             this.btSetTilesize.Text = "Set";
             this.btSetTilesize.UseVisualStyleBackColor = true;
             // 
-            // bt_settilename
+            // btSetTilename
             // 
             this.btSetTilename.Location = new System.Drawing.Point(81, 47);
-            this.btSetTilename.Name = "bt_settilename";
+            this.btSetTilename.Name = "btSetTilename";
             this.btSetTilename.Size = new System.Drawing.Size(75, 20);
             this.btSetTilename.TabIndex = 22;
             this.btSetTilename.Text = "Set";
@@ -920,10 +921,10 @@ namespace Nilox2DGameEngine.Editor
             this.lb_savetodebug.TabIndex = 24;
             this.lb_savetodebug.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // bt_savechanges
+            // btSaveChanges
             // 
             this.btSaveChanges.Location = new System.Drawing.Point(8, 99);
-            this.btSaveChanges.Name = "bt_savechanges";
+            this.btSaveChanges.Name = "btSaveChanges";
             this.btSaveChanges.Size = new System.Drawing.Size(220, 20);
             this.btSaveChanges.TabIndex = 23;
             this.btSaveChanges.Text = "Save Changes";
@@ -1294,6 +1295,23 @@ namespace Nilox2DGameEngine.Editor
         //
         //
         #region Input
+
+        private void tb_url_TextChanged(object sender, EventArgs e)
+        {
+            string content = tb_url.Text;
+            string path = Application.StartupPath + @"\Levels\" + content;
+
+            if (Directory.Exists(path))
+            {
+                tb_url.ForeColor = Color.Green;
+            }
+            else
+            {
+                tb_url.ForeColor = Color.Red;
+            }
+        }
+
+
         private void bt_settilename_Click(object sender, EventArgs e)
         {
             LB.allTiles.ElementAt((int)nudIndex.Value).name = tb_tilename.Text;
@@ -1719,6 +1737,7 @@ namespace Nilox2DGameEngine.Editor
             lbYMouse.Text = "Y: " + Convert.ToString(Cursor.Position.Y);
         }
         #endregion
+
     }
     //
 
