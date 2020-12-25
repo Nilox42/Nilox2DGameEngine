@@ -105,6 +105,7 @@ namespace Nilox2DGameEngine.Editor
         public Label lbXMouse;
         private System.Windows.Forms.Timer MouseCoordsTimer;
         private System.ComponentModel.IContainer components;
+        private Panel panel1;
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         #endregion
 
@@ -200,6 +201,7 @@ namespace Nilox2DGameEngine.Editor
             this.lbYMouse = new System.Windows.Forms.Label();
             this.lbXMouse = new System.Windows.Forms.Label();
             this.MouseCoordsTimer = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).BeginInit();
             this.plInventory1.SuspendLayout();
@@ -382,7 +384,8 @@ namespace Nilox2DGameEngine.Editor
             // 
             // tb_name
             // 
-            this.tb_name.Location = new System.Drawing.Point(1102, 413);
+            this.tb_name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_name.Location = new System.Drawing.Point(1617, 718);
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(143, 20);
             this.tb_name.TabIndex = 13;
@@ -469,9 +472,10 @@ namespace Nilox2DGameEngine.Editor
             // 
             // pb_selector
             // 
+            this.pb_selector.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pb_selector.BackColor = System.Drawing.Color.Transparent;
             this.pb_selector.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb_selector.BackgroundImage")));
-            this.pb_selector.Location = new System.Drawing.Point(12, 597);
+            this.pb_selector.Location = new System.Drawing.Point(335, 905);
             this.pb_selector.Name = "pb_selector";
             this.pb_selector.Size = new System.Drawing.Size(48, 48);
             this.pb_selector.TabIndex = 23;
@@ -479,6 +483,7 @@ namespace Nilox2DGameEngine.Editor
             // 
             // plInventory1
             // 
+            this.plInventory1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.plInventory1.BackColor = System.Drawing.SystemColors.Control;
             this.plInventory1.Controls.Add(this.pb_20);
             this.plInventory1.Controls.Add(this.pb_19);
@@ -500,7 +505,7 @@ namespace Nilox2DGameEngine.Editor
             this.plInventory1.Controls.Add(this.pb_3);
             this.plInventory1.Controls.Add(this.pb_4);
             this.plInventory1.Controls.Add(this.pb_1);
-            this.plInventory1.Location = new System.Drawing.Point(12, 449);
+            this.plInventory1.Location = new System.Drawing.Point(335, 757);
             this.plInventory1.Name = "plInventory1";
             this.plInventory1.Size = new System.Drawing.Size(1078, 68);
             this.plInventory1.TabIndex = 24;
@@ -687,6 +692,7 @@ namespace Nilox2DGameEngine.Editor
             // 
             // plInventory2
             // 
+            this.plInventory2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.plInventory2.BackColor = System.Drawing.SystemColors.Control;
             this.plInventory2.Controls.Add(this.pb_40);
             this.plInventory2.Controls.Add(this.pb_39);
@@ -708,7 +714,7 @@ namespace Nilox2DGameEngine.Editor
             this.plInventory2.Controls.Add(this.pb_23);
             this.plInventory2.Controls.Add(this.pb_24);
             this.plInventory2.Controls.Add(this.pb_21);
-            this.plInventory2.Location = new System.Drawing.Point(12, 523);
+            this.plInventory2.Location = new System.Drawing.Point(335, 831);
             this.plInventory2.Name = "plInventory2";
             this.plInventory2.Size = new System.Drawing.Size(1078, 68);
             this.plInventory2.TabIndex = 25;
@@ -895,6 +901,9 @@ namespace Nilox2DGameEngine.Editor
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.SystemColors.Control;
             this.panel3.Controls.Add(this.lb_savetodebug);
             this.panel3.Controls.Add(this.btSaveChanges);
@@ -907,7 +916,7 @@ namespace Nilox2DGameEngine.Editor
             this.panel3.Controls.Add(this.tb_saveto);
             this.panel3.Controls.Add(this.lb_tilename);
             this.panel3.Controls.Add(this.lb_tilesize);
-            this.panel3.Location = new System.Drawing.Point(1021, 30);
+            this.panel3.Location = new System.Drawing.Point(1541, 30);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(231, 367);
             this.panel3.TabIndex = 26;
@@ -933,32 +942,35 @@ namespace Nilox2DGameEngine.Editor
             // 
             // panel4
             // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
             this.panel4.Controls.Add(this.btDpadUp);
             this.panel4.Controls.Add(this.btDpadEnter);
             this.panel4.Controls.Add(this.btDpadDown);
             this.panel4.Controls.Add(this.btDpadRight);
             this.panel4.Controls.Add(this.btDpadLeft);
-            this.panel4.Location = new System.Drawing.Point(1107, 449);
+            this.panel4.Location = new System.Drawing.Point(1622, 754);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(138, 139);
             this.panel4.TabIndex = 27;
             // 
             // panel5
             // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel5.Controls.Add(this.lb_debug_Y);
             this.panel5.Controls.Add(this.lb_debug_X);
-            this.panel5.Location = new System.Drawing.Point(1107, 593);
+            this.panel5.Location = new System.Drawing.Point(1622, 898);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(138, 19);
             this.panel5.TabIndex = 28;
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(1033, 416);
+            this.label1.Location = new System.Drawing.Point(1548, 721);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 23;
@@ -976,9 +988,10 @@ namespace Nilox2DGameEngine.Editor
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(1018, 14);
+            this.label3.Location = new System.Drawing.Point(1538, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 30;
@@ -1014,10 +1027,11 @@ namespace Nilox2DGameEngine.Editor
             // 
             // panel6
             // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel6.Controls.Add(this.lbYMouse);
             this.panel6.Controls.Add(this.lbXMouse);
-            this.panel6.Location = new System.Drawing.Point(1107, 618);
+            this.panel6.Location = new System.Drawing.Point(1622, 923);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(138, 19);
             this.panel6.TabIndex = 29;
@@ -1048,9 +1062,17 @@ namespace Nilox2DGameEngine.Editor
             this.MouseCoordsTimer.Interval = 20;
             this.MouseCoordsTimer.Tick += new System.EventHandler(this.CoordsTick);
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(235, 30);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1280, 720);
+            this.panel1.TabIndex = 34;
+            // 
             // Builder
             // 
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1784, 961);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.lb_newleveldwbug);
             this.Controls.Add(this.tb_newLevel);
@@ -1070,6 +1092,7 @@ namespace Nilox2DGameEngine.Editor
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.tb_name);
             this.Controls.Add(this.bt_LoadLevel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Builder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Builder_Load);
@@ -1749,7 +1772,7 @@ namespace Nilox2DGameEngine.Editor
     public class LevelEditor 
     {
         #region Init Builder
-        private Vector2 ScreenSize = new Vector2(1280, 720);
+        private Vector2 ScreenSize = new Vector2(1800, 1000);
         private string title = "Level Builder - ";
         public Builder Window = null;
 
@@ -1762,7 +1785,7 @@ namespace Nilox2DGameEngine.Editor
             Window = new Builder(this);
             Window.Size = new Size((int)ScreenSize.X, (int)ScreenSize.Y);
             Window.Text = this.title;
-            Window.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            //Window.FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Window.Paint += Window_Paint;
             
             Application.Run(Window);
