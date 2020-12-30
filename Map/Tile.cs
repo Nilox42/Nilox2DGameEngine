@@ -55,29 +55,34 @@ namespace Nilox2DGameEngine.Map
                 {".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 15
         };
 
-        public string[,] NewMAP2 =
+        public string[,] NewMap2 =
         {
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 1
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 2
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 3
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 4
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 5
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 6
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 7
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 8
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 9
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 10
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 11
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 12
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 13
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 14
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 15
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 16
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 17
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 18
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 19
-            {".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 20
-
+            //1            2        3        4        5        6        7        8        9        10       11       12       13       14       15       16       17       18       19       20       21       22       23       24       25
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 1
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 2
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 3
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 4
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 5
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 6
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 7
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 8
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 9
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 10
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 11
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 12
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 13
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 14
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 15
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 16
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 17
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 18
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 19
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 20
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 21
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 22
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 23
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 24
+            {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"}// 25
         };
 
         public string[,] Map;
@@ -88,7 +93,7 @@ namespace Nilox2DGameEngine.Map
         }
         public Tile (bool b, string name0 , int tilesize0)
         {
-            Map = NewMAP;
+            Map = NewMap2;
             name = name0;
             tilesize = tilesize0;
         }
@@ -108,12 +113,6 @@ namespace Nilox2DGameEngine.Map
             this.Map = Map;
             this.name = name0;
         }
-
-        
-
-
-
-
 
 
     }

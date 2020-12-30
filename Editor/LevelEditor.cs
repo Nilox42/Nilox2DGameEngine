@@ -434,6 +434,7 @@ namespace Nilox2DGameEngine.Editor
             this.tb_tilesize.Name = "tb_tilesize";
             this.tb_tilesize.Size = new System.Drawing.Size(62, 20);
             this.tb_tilesize.TabIndex = 18;
+            this.tb_tilesize.Text = "22";
             // 
             // tb_tilename
             // 
@@ -441,6 +442,7 @@ namespace Nilox2DGameEngine.Editor
             this.tb_tilename.Name = "tb_tilename";
             this.tb_tilename.Size = new System.Drawing.Size(62, 20);
             this.tb_tilename.TabIndex = 19;
+            this.tb_tilename.Text = "TEST2";
             // 
             // lb_tilename
             // 
@@ -1068,6 +1070,7 @@ namespace Nilox2DGameEngine.Editor
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1280, 720);
             this.panel1.TabIndex = 34;
+            this.panel1.Visible = false;
             // 
             // Builder
             // 
@@ -1286,33 +1289,30 @@ namespace Nilox2DGameEngine.Editor
 
             btSetTilename.Enabled = false;
             btSetTilesize.Enabled = false;
-            btNew.Enabled = false;
+            //btNew.Enabled = false; erstellt map
 
             plInventory1.Enabled = false;
             plInventory2.Enabled = false;
         }
 
-        public void mapIsDrawn(bool b)
+        public void unlockControlls()
         {
-            if (b == true)
-            {
-                btSaveChanges.Enabled = true;
-                nudIndex.Enabled = true;
-                btLoadTile.Enabled = true;
+            btSaveChanges.Enabled = true;
+            nudIndex.Enabled = true;
+            btLoadTile.Enabled = true;
 
-                btDpadUp.Enabled = true;
-                btDpadLeft.Enabled = true;
-                btDpadDown.Enabled = true;
-                btDpadRight.Enabled = true;
-                btDpadEnter.Enabled = true;
+            btDpadUp.Enabled = true;
+            btDpadLeft.Enabled = true;
+            btDpadDown.Enabled = true;
+            btDpadRight.Enabled = true;
+            btDpadEnter.Enabled = true;
 
-                btSetTilesize.Enabled = true;
-                btSetTilename.Enabled = true;
-                btNew.Enabled = true;
+            btSetTilesize.Enabled = true;
+            btSetTilename.Enabled = true;
+            //btNew.Enabled = true; erstellt map
 
-                plInventory1.Enabled = true;
-                plInventory2.Enabled = true;
-            }
+            plInventory1.Enabled = true;
+            plInventory2.Enabled = true;
         }
         #endregion
         //
@@ -1372,7 +1372,7 @@ namespace Nilox2DGameEngine.Editor
                 //Redraw Window
                 LB.Window.Refresh();
 
-                mapIsDrawn(true);
+                unlockControlls();
             }
             else
             {
@@ -1461,6 +1461,8 @@ namespace Nilox2DGameEngine.Editor
         #region tile dieting
         private void bt_new_Click(object sender, EventArgs e)
         {
+            //Custom
+            /*
             if (tb_tilename.Text != null || tb_tilesize.Text != null)
             {
                 LB.allTiles.Clear();
@@ -1474,8 +1476,18 @@ namespace Nilox2DGameEngine.Editor
             else
             {
 
-            }
-            
+            }*/
+
+            LB.allTiles.Clear();
+            tb_url.Text = "";
+
+            LB.allTiles.Add(new Tile(true, "Test20", 25));
+            LB.selectedtile = 0;
+            LB.NewLoadNewTile(LB.allTiles.ElementAt(0));
+            Log.Info("[NEW TILE]  -  " + LB.allTiles.ElementAt(0).name);
+
+            unlockControlls();
+
         }
 
         private void bt_saveto_Click(object sender, EventArgs e)
