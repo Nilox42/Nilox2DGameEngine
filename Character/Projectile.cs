@@ -11,7 +11,7 @@ namespace Nilox2DGameEngine.Character
     public class Projectile:Actor
     {
         #region Init
-        TestGameMode gm = null;
+        GameMode gm = null;
 
         Vector2 direction = Vector2.Zero();
         int speed = 0;
@@ -21,7 +21,7 @@ namespace Nilox2DGameEngine.Character
 
 
 
-        public Projectile(Sprite2D sprite0, Vector2 location0 , Vector2 direction0 , int speed0, TestGameMode gm0): base ()
+        public Projectile(Sprite2D sprite0, Vector2 location0 , Vector2 direction0 , int speed0, GameMode gm0): base ()
         {
             sprite = sprite0;
             location = location0;

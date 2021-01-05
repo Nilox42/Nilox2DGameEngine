@@ -73,7 +73,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Core\BaseImage.cs" />
-    <Compile Include="GameModes\BaseGameMode.cs" />
+    <Compile Include="Old\BaseGameMode.cs" />
     <Compile Include="Editor\LevelEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,7 +96,7 @@
     <Compile Include="Util\NLoad.cs" />
     <Compile Include="Util\NSave.cs" />
     <Compile Include="Util\Vector2.cs" />
-    <Compile Include="GameModes\TestGameMode.cs" />
+    <Compile Include="GameModes\GameMode.cs" />
     <Compile Include="Util\Log.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

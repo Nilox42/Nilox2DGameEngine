@@ -11,9 +11,9 @@ namespace Nilox2DGameEngine.Character
     public class Item : Actor
     {
         #region Init
-        TestGameMode tgm;
+        GameMode tgm;
 
-        public Item(Sprite2D sprite0, Vector2 location0, TestGameMode GM)
+        public Item(Sprite2D sprite0, Vector2 location0, GameMode GM)
         {
             sprite = sprite0;
             location = sprite.location;

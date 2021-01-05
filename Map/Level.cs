@@ -19,7 +19,7 @@ namespace Nilox2DGameEngine.Map
 
         List<Tile> tiles = new List<Tile>();
 
-        TestGameMode GM;
+        GameMode GM;
 
         public string[,] Map =
         {
@@ -58,7 +58,7 @@ namespace Nilox2DGameEngine.Map
             {".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},
         };
 
-        public Level(string name0,TestGameMode DG)
+        public Level(string name0,GameMode DG)
         {
             worldname = name0;
             directory = Application.StartupPath + @"\Levels\" + worldname;

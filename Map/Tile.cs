@@ -19,7 +19,7 @@ namespace Nilox2DGameEngine.Map
         public int locationY = 0;
 
         #region mapreferences
-        public string[,] MapREF =
+        public string[,] mapref =
         {
             {"w","s","s","s","s","s","s","s","s","s","s","s","s","s","w"},
             {"w","s","s","s","s","s","s","s","s","s","s","s","s","s","w"},
@@ -37,7 +37,7 @@ namespace Nilox2DGameEngine.Map
             {".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},
             {".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},
         };
-        public string[,] NewMAP =
+        public string[,] newmap =
         {
                 {"o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14"}, // 1
                 {"o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14","o_tile14"},// 2
@@ -56,7 +56,7 @@ namespace Nilox2DGameEngine.Map
                 {".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},// 15
         };
 
-        public string[,] NewMap2 =
+        public string[,] newmap2 =
         {
             //1            2        3        4        5        6        7        8        9        10       11       12       13       14       15       16       17       18       19       20       21       22       23       24       25       26       27
             {"tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10","tile10"},// 1
@@ -96,7 +96,7 @@ namespace Nilox2DGameEngine.Map
         }
         public Tile (bool b, string name0 , int tilesize0)
         {
-            map = NewMap2;
+            map = newmap2;
             name = name0;
             tilesize = tilesize0;
         }
@@ -111,9 +111,9 @@ namespace Nilox2DGameEngine.Map
             this.map = Map;
         }
 
-        public Tile(string[,] Map,string name0)
+        public Tile(string[,] map0,string name0)
         {
-            this.map = Map;
+            this.map = map0;
             this.name = name0;
         }
 

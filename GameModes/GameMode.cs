@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace Nilox2DGameEngine
 {
-    public class TestGameMode : Engine
+    public class GameMode : Engine
     {
         #region Init
         //Player
@@ -47,7 +47,7 @@ namespace Nilox2DGameEngine
         public static List<string> logs = new List<string>();
  
 
-        public TestGameMode() : base(new Vector2(1280,720), "Engine Demo") { }
+        public GameMode() : base(new Vector2(1280,720), "Engine Demo") { }
         #endregion
         //
         // //
@@ -56,7 +56,7 @@ namespace Nilox2DGameEngine
         public override void OnLoad()
         {
             BackgroundColor = Color.Black;
-            currentLevel = new Level("Test",this);
+            currentLevel = new Level("One",this);
         }
 
         public override void OnDraw()
@@ -223,7 +223,7 @@ namespace Nilox2DGameEngine
 
             StreamWriter sw = new StreamWriter(path);
 
-            foreach (string s in TestGameMode.logs)
+            foreach (string s in GameMode.logs)
             {
                 sw.WriteLine(s);
             }

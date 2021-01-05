@@ -71,7 +71,7 @@ namespace Nilox2DGameEngine.Util
         #region logfile
         public static void line(string line)
         {
-            TestGameMode.logs.Add(line);
+            GameMode.logs.Add(line);
         }
         #endregion
     }

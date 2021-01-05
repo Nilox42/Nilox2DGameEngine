@@ -16,7 +16,7 @@ namespace Nilox2DGameEngine.Core
     public class Controller
     {
         LevelEditor levelEditor = null;
-        TestGameMode GM = null;
+        GameMode GM = null;
 
         //MainMenuForm MMF = null;
 
@@ -42,11 +42,11 @@ namespace Nilox2DGameEngine.Core
                 //Game
                 case "game":
                     
-                    GM = new TestGameMode();
+                    GM = new GameMode();
                     break;
                 case "1":
                     
-                    GM = new TestGameMode();
+                    GM = new GameMode();
                     break;
                 //Editor
                 case "editor":
