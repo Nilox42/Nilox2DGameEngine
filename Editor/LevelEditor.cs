@@ -105,7 +105,6 @@ namespace Nilox2DGameEngine.Editor
         public Label lbXMouse;
         private System.Windows.Forms.Timer MouseCoordsTimer;
         private System.ComponentModel.IContainer components;
-        private Panel panel1;
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         #endregion
 
@@ -201,7 +200,6 @@ namespace Nilox2DGameEngine.Editor
             this.lbYMouse = new System.Windows.Forms.Label();
             this.lbXMouse = new System.Windows.Forms.Label();
             this.MouseCoordsTimer = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selector)).BeginInit();
             this.plInventory1.SuspendLayout();
@@ -1064,18 +1062,9 @@ namespace Nilox2DGameEngine.Editor
             this.MouseCoordsTimer.Interval = 20;
             this.MouseCoordsTimer.Tick += new System.EventHandler(this.CoordsTick);
             // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(235, 30);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1280, 720);
-            this.panel1.TabIndex = 34;
-            this.panel1.Visible = false;
-            // 
             // Builder
             // 
             this.ClientSize = new System.Drawing.Size(1784, 961);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.lb_newleveldwbug);
             this.Controls.Add(this.tb_newLevel);
@@ -1487,7 +1476,6 @@ namespace Nilox2DGameEngine.Editor
             Log.Info("[NEW TILE]  -  " + LB.allTiles.ElementAt(0).name);
 
             unlockControlls();
-
         }
 
         private void bt_saveto_Click(object sender, EventArgs e)
@@ -1817,7 +1805,7 @@ namespace Nilox2DGameEngine.Editor
         public List<BaseImage> allimages = new List<BaseImage>();
         public string[] allcontentlocations = { Application.StartupPath + @"\Content\Default\", Application.StartupPath + @"\Content\Overworld\Tiles\", Application.StartupPath + @"\Content\Overworld\Objects\" };
 
-        public Vector2 maporigin = new Vector2(284, 12);
+        public Vector2 maporigin = new Vector2(240, 30);
         public Sprite2D selector = null;
 
         public string previewpng = string.Empty;
@@ -1862,27 +1850,27 @@ namespace Nilox2DGameEngine.Editor
         {
             allSprite2Ds.Clear();
             Log.Info("[LOADING]:" + t.name);
-            for (int i = 0; i < t.Map.GetLength(0); i++)
+            for (int i = 0; i < t.map.GetLength(0); i++)
             {
-                for (int j = 0; j < t.Map.GetLength(1); j++)
+                for (int j = 0; j < t.map.GetLength(1); j++)
                 {
-                    if (t.Map[j, i] == "g")
+                    if (t.map[j, i] == "g")
                     {
                         allSprite2Ds.Add(new Sprite2D(new Vector2(i * 48 + maporigin.X, j * 48 + maporigin.Y), new Vector2(48, 48), "Overworld/Tiles/tile22", "Collider",true, true, this));
                     }
-                    if (t.Map[j, i] == "w")
+                    if (t.map[j, i] == "w")
                     {
                         allSprite2Ds.Add(new Sprite2D(new Vector2(i * 48 + maporigin.X, j * 48 + maporigin.Y), new Vector2(48, 48), "Overworld/Tiles/tile53", "Collider", true, true, this));
                     }
-                    if (t.Map[j, i] == "s")
+                    if (t.map[j, i] == "s")
                     {
                         allSprite2Ds.Add(new Sprite2D(new Vector2(i * 48 + maporigin.X, j * 48 + maporigin.Y), new Vector2(48, 48), "Overworld/Tiles/tile12", "BackGround", true, true, this));
                     }
-                    if (t.Map[j, i] == "dr")
+                    if (t.map[j, i] == "dr")
                     {
                         allSprite2Ds.Add(new Sprite2D(new Vector2(i * 48 + maporigin.X, j * 48 + maporigin.Y), new Vector2(48, 48), "Overworld/Tiles/tile110", "Collider", true, true, this));
                     }
-                    if (t.Map[j, i] == "dl")
+                    if (t.map[j, i] == "dl")
                     {
                         allSprite2Ds.Add(new Sprite2D(new Vector2(i * 48 + maporigin.X, j * 48 + maporigin.Y), new Vector2(48, 48), "Overworld/Tiles/tile110", "Collider", true, true, this));
                     }
@@ -1894,13 +1882,17 @@ namespace Nilox2DGameEngine.Editor
         {
             allSprite2Ds.Clear();
             Log.Info("[LOADING] - [Tile]:" + t.name);
-            for (int i = 0; i < t.Map.GetLength(0); i++)
+            for (int i = 0; i < t.map.GetLength(0); i++)
             {
-                for (int j = 0; j < t.Map.GetLength(1); j++)
+                for (int j = 0; j < t.map.GetLength(1); j++)
                 {
-                    if (t.Map[j, i] != ".")
+                    if (t.map[j, i] != ".")
                     {
-                        allSprite2Ds.Add(new Sprite2D(new Vector2(i * 48 + maporigin.X, j * 48 + maporigin.Y), new Vector2(48, 48), t.Map[j, i], "Collider", true, true, this));
+                        allSprite2Ds.Add(new Sprite2D(new Vector2(i * 48 + maporigin.X, j * 48 + maporigin.Y), new Vector2(48, 48), t.map[j, i], "Collider", true, true, this));
+                    }
+                    else
+                    {
+                        //No Sprite to draw
                     }
                 }
             }
@@ -1939,7 +1931,7 @@ namespace Nilox2DGameEngine.Editor
         //
         //
         #region Selecting Functions
-        public void moveup(int dir, int tilesize = 5)
+        public void moveup(int dir, int tilesize = 27)
         {
             //move down
             if (dir > 0)
@@ -1981,7 +1973,7 @@ namespace Nilox2DGameEngine.Editor
             Window.lb_debug_Y.Text = "Y:" + selectedVector.Y.ToString();
         }
 
-        public void moveleft(int dir , int tilesize = 5)
+        public void moveleft(int dir , int tilesize = 15)
         {
             //move right
             if (dir > 0)
@@ -2024,7 +2016,7 @@ namespace Nilox2DGameEngine.Editor
             Window.lb_debug_Y.Text = "Y:" + selectedVector.Y.ToString();
         }
 
-        private Vector2 selectedindextovector2d(int si ,int tilesize = 5)
+        private Vector2 selectedindextovector2d(int si ,int tilesize = 15)
         {
             Vector2 v = Vector2.Zero();
 
@@ -2070,7 +2062,7 @@ namespace Nilox2DGameEngine.Editor
             //Replace name
             if (exists == true)
             {
-                allTiles.ElementAt(selectedtile).Map[(int)location.Y, (int)location.X] = Window.tb_name.Text;
+                allTiles.ElementAt(selectedtile).map[(int)location.Y, (int)location.X] = Window.tb_name.Text;
                 NewLoadNewTile(allTiles.ElementAt(selectedtile), selectedindex);
 
                 Log.Warning("Sprite at:   X:" + selectedVector.X + "  Y" + selectedVector.Y + "   swaped for:" + name);

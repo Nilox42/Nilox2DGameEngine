@@ -53,7 +53,7 @@ namespace Nilox2DGameEngine.Util
             t.locationX = Convert.ToInt32(s[2]);
             t.locationY = Convert.ToInt32(s[3]);
 
-            t.Map = Converts.stringToArray(s[4], t.tilesize);
+            t.map = Converts.stringToArray(s[4], t.tilesize);
 
             return t;
         }
@@ -66,7 +66,7 @@ namespace Nilox2DGameEngine.Util
             result = result + t0.locationX.ToString() + "|";
             result = result + t0.locationY.ToString() + "|";
 
-            result = result + Converts.arrayToString(t0.Map);
+            result = result + Converts.arrayToString(t0.map);
 
 
             return result;

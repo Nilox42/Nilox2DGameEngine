@@ -263,19 +263,19 @@ namespace Nilox2DGameEngine
         {
             //Map
             Log.Info("[LOADING]:" + t.name);
-            for (int i = 0; i < t.Map.GetLength(0); i++)
+            for (int i = 0; i < t.map.GetLength(0); i++)
             {
-                for (int j = 0; j < t.Map.GetLength(1); j++)
+                for (int j = 0; j < t.map.GetLength(1); j++)
                 {
                     //Add Sprite2D if i has the name "." with special parameters
-                    if (t.Map[j, i] == ".")
+                    if (t.map[j, i] == ".")
                     {
                         new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "o_tile15", "Background", true);
                     }
                     //Add sprite by name with normal perameters
                     else
                     {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), t.Map[j, i], "", true);
+                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), t.map[j, i], "", true);
                     }
                 }
             }

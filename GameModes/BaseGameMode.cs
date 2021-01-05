@@ -92,19 +92,19 @@ namespace Nilox2DGameEngine.Core
 
         public void LoadNewTile(Tile t)
         {
-            for (int i = 0; i < t.Map.GetLength(0); i++)
+            for (int i = 0; i < t.map.GetLength(0); i++)
             {
-                for (int j = 0; j < t.Map.GetLength(1); j++)
+                for (int j = 0; j < t.map.GetLength(1); j++)
                 {
-                    if (t.Map[j, i] == "g")
+                    if (t.map[j, i] == "g")
                     {
                         new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/tile22", "Collider", true);
                     }
-                    if (t.Map[j, i] == "w")
+                    if (t.map[j, i] == "w")
                     {
                         new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/tile53", "Collider", true);
                     }
-                    if (t.Map[j, i] == "s")
+                    if (t.map[j, i] == "s")
                     {
                         new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "Overworld/Tiles/tile12", "BackGround", true);
                     }
