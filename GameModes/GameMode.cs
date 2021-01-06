@@ -169,11 +169,11 @@ namespace Nilox2DGameEngine
             //
             //
             #region Map Movement
-                if (player.sprite.IsCollidingWithTag("DoorRight") != null)
+            if(player.sprite.IsCollidingWithTag("doorright") != null)
             {
                 currentLevel.moveRight();
             }
-            if (player.sprite.IsCollidingWithTag("DoorLeft") != null)
+            if(player.sprite.IsCollidingWithTag("doorleft") != null)
             {
                 currentLevel.moveLeft();
             }
@@ -337,6 +337,8 @@ namespace Nilox2DGameEngine
                         allenemies.Add(enemie);
                         allactors.Add(enemie);
 
+                        enemie.clas = Class.enemie;
+
                         return enemie;
                     }
                 case Class.projectile:
@@ -348,6 +350,8 @@ namespace Nilox2DGameEngine
 
                         allprojectiles.Add(projectile);
                         allactors.Add(projectile);
+
+                        projectile.clas = Class.projectile;
 
                         return projectile;
                     }
@@ -362,13 +366,17 @@ namespace Nilox2DGameEngine
                         allactors.Add(item);
                         item.clas = Class.item;
 
-                        return null;
+                        return item;
                     }
             }
         }
 
         public void destroyActor(Actor a)
         {
+            if (a == null)
+            {
+                return;
+            }
             switch (a.clas)
             {
                 default:
@@ -421,7 +429,6 @@ namespace Nilox2DGameEngine
                         break;
                     }
             }
-
         }
         #endregion 
     }

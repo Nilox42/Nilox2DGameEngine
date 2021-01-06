@@ -96,8 +96,5 @@ namespace Nilox2DGameEngine.Character
         }
         #endregion
 
-
-
-
     }
 }

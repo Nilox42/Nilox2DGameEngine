@@ -94,23 +94,20 @@ namespace Nilox2DGameEngine.Map
         {
 
         }
-        public Tile (bool b, string name0 , int tilesize0)
+        public Tile(bool b, string name0 , int tilesize0)
         {
             map = newmap2;
             name = name0;
             tilesize = tilesize0;
         }
-
         public Tile(string string0 , int size)
         {
             map = Converts.stringToArray(string0, size);
         }
-
         public Tile(string[,] Map)
         {
             this.map = Map;
         }
-
         public Tile(string[,] map0,string name0)
         {
             this.map = map0;
