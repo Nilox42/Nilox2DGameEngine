@@ -11,14 +11,17 @@ namespace Nilox2DGameEngine.Character
     public class Player : Actor
     {
         #region Init
+        GameMode gm = null;
+
         int health = 100;
 
         public int coins = 0;
 
-        public Player(Sprite2D sprite0)
+        public Player(Sprite2D sprite0, GameMode gm0)
         {
             sprite = sprite0;
             location = sprite.location;
+            gm = gm0;
         }
         #endregion
         //
@@ -42,7 +45,11 @@ namespace Nilox2DGameEngine.Character
 
         public override void Update()
         {
-            
+            if (coins >= 3)
+            {
+                gm.canmoveon = true;
+                Log.Warning("[CINDITION] - Coin Condition met");
+            }
         }
         #endregion
         //

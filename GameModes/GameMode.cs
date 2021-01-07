@@ -18,10 +18,14 @@ namespace Nilox2DGameEngine
     public class GameMode : Engine
     {
         #region Init
-        //Player
-        public Player player = null;
-        //Loaded Level
+
+      //Level
         Level currentLevel = null;
+        public bool canmoveon = false;
+        public bool canmoveback = false;
+
+      //Player
+        public Player player = null;
         //Character Movement
         private bool left;
         private bool right;
@@ -38,12 +42,14 @@ namespace Nilox2DGameEngine
         private float maxspeed = 3;
         private Vector2 lastPos = Vector2.Zero();
         public Vector2 spawnPosition = new Vector2(50, 48 * 4);
-        //Actors 
+
+      //Actors 
         public List<Actor> allactors = new List<Actor>();
         public List<Enemy> allenemies = new List<Enemy>();
         public List<Projectile> allprojectiles = new List<Projectile>();
         public List<Item> allitems = new List<Item>();
-        //Logging
+
+      //Logging
         public static List<string> logs = new List<string>();
  
 
@@ -161,6 +167,8 @@ namespace Nilox2DGameEngine
             Sprite2D coin = player.sprite.IsCollidingWithTag("coin");
             if ( coin != null)
             {
+                Log.Info("[CONDITION] - Coins:" + player.coins);
+
                 coin.actor.Destroy();
                 player.coins++;
                 Engine.Window.label1.Text = player.coins.ToString();
@@ -169,13 +177,15 @@ namespace Nilox2DGameEngine
             //
             //
             #region Map Movement
-            if(player.sprite.IsCollidingWithTag("doorright") != null)
+            if(player.sprite.IsCollidingWithTag("doorright") != null && canmoveon)
             {
                 currentLevel.moveRight();
+                canmoveon = false;
             }
-            if(player.sprite.IsCollidingWithTag("doorleft") != null)
+            if(player.sprite.IsCollidingWithTag("doorleft") != null && canmoveback)
             {
                 currentLevel.moveLeft();
+                canmoveback = false;
             }
             #endregion
             //
@@ -322,7 +332,7 @@ namespace Nilox2DGameEngine
                     {
                         Sprite2D sprite = new Sprite2D(location, new Vector2(30, 48), "Knight_Idle", "player", true);
 
-                        player = new Player(sprite);
+                        player = new Player(sprite, this);
                         sprite.actor = player;
 
                         return player;
