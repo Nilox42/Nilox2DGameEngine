@@ -251,11 +251,12 @@ namespace Nilox2DGameEngine.Core
         public static void RegisterSprite(Sprite2D sprite)
         {
             allSprites.Add(sprite);
-            Log.Info($"[SPRITE2D]({sprite.name} +  X:{sprite.location.X}  +  Y:{sprite.location.Y} ) - Has been registered!");
+            Log.Info($"[SPRITE2D]  -  ({sprite.name}  X:{sprite.location.X}  Y:{sprite.location.Y} ) - Has been registered!  -  now: {allSprites.Count}");
         }
         public static void RegisterImage(BaseImage image)
         {
             allimages.Add(image);
+            Log.Load($"[BASEIMAGE]  -  ({image.name}  Tag:{image.tag}  loaded from  [{image.url}]  -  now: {allSprites.Count}  -  now: {allSprites.Count}");
         }
         public static void RegisterPolygon(Polygon polygon)
         {

@@ -34,7 +34,7 @@ namespace Nilox2DGameEngine.Core
             }
             
 
-            Log.Load("[BASEIMAGE]  {" + name + "}   {" + tag + "} loaded from [" + url + "]");
+            
         }
     }
 }
