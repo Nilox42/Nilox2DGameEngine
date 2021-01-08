@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Character\Actor.cs" />
     <Compile Include="Character\Enemy.cs" />
+    <Compile Include="Character\GameObject.cs" />
     <Compile Include="Character\Item.cs" />
     <Compile Include="Character\Player.cs" />
     <Compile Include="Character\Projectile.cs" />
@@ -73,6 +74,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Core\BaseImage.cs" />
+    <Compile Include="Core\Polygon.cs" />
     <Compile Include="Old\BaseGameMode.cs" />
     <Compile Include="Editor\LevelEditor.cs">
       <SubType>Form</SubType>

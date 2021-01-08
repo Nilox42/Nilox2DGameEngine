@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nilox2DGameEngine.Util;
+using System.Drawing;
 
 namespace Nilox2DGameEngine.Util
 {
@@ -25,7 +26,7 @@ namespace Nilox2DGameEngine.Util
             this.X = X;
             this.Y = Y;
         }
-
+        #region Fonctions
         public static Vector2 Zero()
         {
             return new Vector2(0,0);
@@ -42,13 +43,23 @@ namespace Nilox2DGameEngine.Util
         {
             return (float)Math.Sqrt(v0.X * v0.X + v0.Y * v0.Y);
         }
+        #endregion
 
+        #region Converts
         public override string ToString()
         {
             string s = "X:" + X + "Y:" + Y;
 
             return s;
         }
+
+        public Point ToPoint()
+        {
+            Point res = new Point(Convert.ToInt32(X), Convert.ToInt32(Y));
+            return res;
+        }
+        #endregion
+
 
         #region Operatoren
         public static Vector2 operator + (Vector2 v1, Vector2 v2)

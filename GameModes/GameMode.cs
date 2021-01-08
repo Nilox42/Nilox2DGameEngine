@@ -23,8 +23,9 @@ namespace Nilox2DGameEngine
         Level currentLevel = null;
         public bool canmoveon = false;
         public bool canmoveback = false;
+        public bool ismoving = false;
 
-      //Player
+        //Player
         public Player player = null;
         //Character Movement
         private bool left;
@@ -90,27 +91,19 @@ namespace Nilox2DGameEngine
             #region Input
             if (up)
             {
-                
                 player.sprite.location.Y -= maxspeed;
-                
             }
             if (down)
             {
-                
                 player.sprite.location.Y += maxspeed;
-                
             }
             if (left)
             {
-                
                 player.sprite.location.X -= maxspeed;
-                
             }
             if (right)
             {
-                
                 player.sprite.location.X += maxspeed;
-                
             }
             #endregion
             //
@@ -120,31 +113,34 @@ namespace Nilox2DGameEngine
             {
                 if (attacktick >= 10)
                 {
+                    //Reset Attack
                     isattacking = false;
                     canattack = true;
                     attacktick = 0;
 
+                    //Destroy Damage Sprite e
                     if (damage != null)
                     {
                         damage.DestroySelf();
                         damage = null;
                     }
-                    Log.Warning("ATTACK STOP" + attacktick);
+                    //Log.Warning("ATTACK STOP" + attacktick);
                 }
                 else
                 {
+                    //Increase Attacktick to give the attack some duration
                     attacktick++;
                 }
             }
             else
             {
+                //Determin if player can attack
                 if (canattack == true && space == true)
                 {
                     isattacking = true;
+                    canattack = false;
                     //ATTACK
                     damage = new Sprite2D(player.sprite.location, new Vector2(48, 48), "Selector", "Damage" , true);
-
-                    canattack = false;
                 }
             }
             #endregion
@@ -167,33 +163,33 @@ namespace Nilox2DGameEngine
             Sprite2D coin = player.sprite.IsCollidingWithTag("coin");
             if ( coin != null)
             {
-                Log.Info("[CONDITION] - Coins:" + player.coins);
-
-                coin.actor.Destroy();
                 player.coins++;
+                coin.actor.Destroy();
                 Engine.Window.label1.Text = player.coins.ToString();
             }
             #endregion
             //
             //
             #region Map Movement
-            if(player.sprite.IsCollidingWithTag("doorright") != null && canmoveon)
+            if(player.sprite.IsCollidingWithTag("doorright") != null && canmoveon && ismoving == false)
             {
                 currentLevel.moveRight();
                 canmoveon = false;
+                ismoving = true;
             }
-            if(player.sprite.IsCollidingWithTag("doorleft") != null && canmoveback)
+            if(player.sprite.IsCollidingWithTag("doorleft") != null && canmoveback && ismoving == false)
             {
                 currentLevel.moveLeft();
                 canmoveback = false;
+                ismoving = true;
             }
             #endregion
             //
             //
             #region AI Tick
-            foreach (Actor a in allenemies)
+            foreach (Actor a in allactors)
             {
-                //Update all Enemies
+                //Update all Actors
                 a.Update();
                 //
                 if (a.clas == Class.enemie)
@@ -206,7 +202,7 @@ namespace Nilox2DGameEngine
                             a.sprite.location.Y < damage.location.Y + damage.scale.Y &&
                             a.sprite.location.Y + a.sprite.scale.Y > damage.location.Y)
                         {
-                            a.Damge(null, 1000);
+                            a.Damge(player, 1000);
                         }
                     }
                 }
@@ -290,7 +286,7 @@ namespace Nilox2DGameEngine
                 }
             }
 
-            //Player 
+            //SpawnPlayer 
             spawnActorFromClass(new Vector2(200, 200),Class.player);
 
             //Spawn 3 coins
@@ -304,9 +300,14 @@ namespace Nilox2DGameEngine
 
                 spawnActorFromClass(v, Class.item);
             }
+
+            //Set va
+            ismoving = false;
+            canmoveon = false;
         }
         public void UnloadCurrentTile()
         {
+            //Cleare Sprites
             Log.Warning("Clearing all Sprites");
             int count = Engine.allSprites.Count;
             for (int i = 0; i < count; ++i)
@@ -314,6 +315,19 @@ namespace Nilox2DGameEngine
                 Engine.allSprites.ElementAt(0).DestroySelf();
                 Console.WriteLine(Engine.allSprites.Count.ToString());
             }
+
+            //Reset Player
+            player.Destroy();
+            player = null;
+
+            //Enemies
+            foreach(Actor e in allactors)
+            {
+                destroyActor(e);
+            }
+
+            //Delay Loading (Unnessesairy)
+            Thread.Sleep(100);
         }
         #endregion
         //
@@ -334,6 +348,7 @@ namespace Nilox2DGameEngine
 
                         player = new Player(sprite, this);
                         sprite.actor = player;
+                        allactors.Add(player);
 
                         return player;
                     }

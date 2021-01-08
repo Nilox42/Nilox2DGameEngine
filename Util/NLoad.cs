@@ -69,7 +69,7 @@ namespace Nilox2DGameEngine.Util
 
                     baseImages.Add(b);
                 }
-                else
+                else 
                 {
                     Log.Error("[Nload]  -  [IfD]File is not a PNG");
                 }

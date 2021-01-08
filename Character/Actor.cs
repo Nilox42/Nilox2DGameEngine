@@ -17,7 +17,7 @@ namespace Nilox2DGameEngine.Character
     }
 
 
-    public abstract class Actor
+    public abstract class Actor:GameObject
     {
         #region Init
         public Sprite2D sprite = null;

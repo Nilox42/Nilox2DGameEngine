@@ -22,6 +22,8 @@ namespace Nilox2DGameEngine.Character
             sprite = sprite0;
             location = sprite.location;
             gm = gm0;
+
+            clas = Class.player;
         }
         #endregion
         //
@@ -45,7 +47,7 @@ namespace Nilox2DGameEngine.Character
 
         public override void Update()
         {
-            if (coins >= 3)
+            if (coins >= 3 && gm.ismoving == false && gm.canmoveon == false)
             {
                 gm.canmoveon = true;
                 Log.Warning("[CINDITION] - Coin Condition met");

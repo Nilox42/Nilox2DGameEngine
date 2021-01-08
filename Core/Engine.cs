@@ -11,6 +11,9 @@ using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.Character;
 using System.IO;
 
+using System.Net;
+using System.Net.Sockets;
+
 namespace Nilox2DGameEngine.Core
 {
     #region Canvas
@@ -100,10 +103,16 @@ namespace Nilox2DGameEngine.Core
         Stopwatch SW = new Stopwatch();
         public static int FrameCount = 0;
 
-        //Engine lists
+      //Engine lists
+        //Shapes
         public static List<Shape2D> allShapes = new List<Shape2D>();
+        public static List<Shape2D> shapestoremove = new List<Shape2D>();
+        //Sprites
         public static List<Sprite2D> allSprites = new List<Sprite2D>();
         private static List<Sprite2D> spritestoremove = new List<Sprite2D>();
+        //Polygons
+        public static List<Polygon> allPolygons = new List<Polygon>();
+        public static List<Polygon> polygonstoremove = new List<Polygon>();
 
         //Lists all images that are used 
         #region Images
@@ -187,6 +196,7 @@ namespace Nilox2DGameEngine.Core
         //Remove marked Sprite2D Shape2D and BaseImage
         private void TrashRemoval()
         {
+            //Sprite Trash Removal
             if (spritestoremove.Count > 0)
             {
                 int index = 0;
@@ -194,6 +204,34 @@ namespace Nilox2DGameEngine.Core
                 foreach (Sprite2D sprite in spritestoremove)
                 {
                     allSprites.Remove(sprite);
+                    ++index;
+                }
+
+                spritestoremove.Clear();
+            }
+
+            //Shape TrashRemoval
+            if (shapestoremove.Count > 0)
+            {
+                int index = 0;
+
+                foreach (Shape2D shape in shapestoremove)
+                {
+                    allShapes.Remove(shape);
+                    ++index;
+                }
+
+                shapestoremove.Clear();
+            }
+
+            //Polygon TrashRemoval
+            if (polygonstoremove.Count > 0)
+            {
+                int index = 0;
+
+                foreach (Polygon polygon in polygonstoremove)
+                {
+                    allPolygons.Remove(polygon);
                     ++index;
                 }
 
@@ -219,6 +257,10 @@ namespace Nilox2DGameEngine.Core
         {
             allimages.Add(image);
         }
+        public static void RegisterPolygon(Polygon polygon)
+        {
+            allPolygons.Add(polygon);
+        }
         #endregion
 
         //Unregister Sprite2D Shape2D and BaseImage
@@ -231,12 +273,18 @@ namespace Nilox2DGameEngine.Core
             //allSprites.Remove(sprite);
             spritestoremove.Add(sprite);
 
-            Log.Info($"[SPRITE2D][REMOVED]({sprite.name} @  X:{sprite.location.X}  Y:{sprite.location.Y}) - Has been destroyed!");
+            Log.Info($"[SPRITE2D][REMOVED]({sprite.name} @  X:{sprite.location.X}  Y:{sprite.location.Y}) - Has been marked for destruction!");
             sprite = null;
         }
         public static void UnRegisterShape(Shape2D shape)
         {
-            allShapes.Remove(shape);
+            shapestoremove.Add(shape);
+            Log.Info($"[SHAPE2D][REMOVED](SHAPE @  X:{shape.location.X}  Y:{shape.location.Y}) - Has been marked for destruction!");
+        }
+        public static void UnRegisterPolygon(Polygon polygon)
+        {
+            polygonstoremove.Add(polygon);
+            Log.Info($"[SHAPE2D][REMOVED]({polygon.color} Polygon - Has been marked for destruction!");
         }
         #endregion
 
@@ -276,18 +324,20 @@ namespace Nilox2DGameEngine.Core
 
         private void Renderer(object sender, PaintEventArgs e)
         {
+            //Stopwatch restart
             SW.Restart();
 
+            //Setup for Graphicsediting
             Graphics g = e.Graphics;
             g.Clear(BackgroundColor);
-
+            //Camera Transformation
             g.TranslateTransform(CameraPostition.X, CameraPostition.Y);
             g.RotateTransform(CameraAngle);
 
             //Draw all Shapes
             foreach (Shape2D shape in allShapes)
             {
-                g.FillRectangle(new SolidBrush(Color.Red), shape.Position.X, shape.Position.Y, shape.Scale.X, shape.Scale.Y);
+                g.FillRectangle(new SolidBrush(Color.Red), shape.location.X, shape.location.Y, shape.Scale.X, shape.Scale.Y);
             }
 
             //Draw all sprites
@@ -321,10 +371,19 @@ namespace Nilox2DGameEngine.Core
                 Log.Error("Could not draw " + FrameCount);
             }
 
+            //Draw all Polygons
+            foreach (Polygon p in allPolygons)
+            {
+                g.DrawPolygon(new Pen(p.color),p.points );
+            }
+
+            //Call Trashremoval
             TrashRemoval();
 
+            //Count Frame
             ++FrameCount;
 
+            //Stop Stopwatch
             SW.Stop();
             //Log.Error("[PIPELINE]  -  Missiseconds:" + (SW.ElapsedMilliseconds));
         }

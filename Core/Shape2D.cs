@@ -10,14 +10,14 @@ namespace Nilox2DGameEngine.Core
 {
     public class Shape2D
     {
-        public Vector2 Position = null;
+        public Vector2 location = null;
         public Vector2 Scale = null;
         public string Tag = "";
         public bool editor = false;
 
         public Shape2D(Vector2 Postition0, Vector2 Scale0 , string Tag0 ,bool editor0 = false)
         {
-            this.Position = Postition0;
+            this.location = Postition0;
             this.Scale = Scale0;
             this.Tag = Tag0;
             this.editor = editor0;
