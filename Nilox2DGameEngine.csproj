@@ -63,12 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character\Actor.cs" />
-    <Compile Include="Character\Enemy.cs" />
-    <Compile Include="Character\GameObject.cs" />
-    <Compile Include="Character\Item.cs" />
-    <Compile Include="Character\Player.cs" />
-    <Compile Include="Character\Projectile.cs" />
+    <Compile Include="GameObjects\Actor.cs" />
+    <Compile Include="GameObjects\Enemy.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\Item.cs" />
+    <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="GameObjects\Projectile.cs" />
     <Compile Include="Core\Controller.cs" />
     <Compile Include="Core\Engine.cs">
       <SubType>Form</SubType>

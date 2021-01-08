@@ -12,6 +12,7 @@ namespace Nilox2DGameEngine.Character
     {
         #region Init
         GameMode gm = null;
+        Vector2 lastPos = Vector2.Zero();
 
         int health = 100;
 
@@ -47,6 +48,42 @@ namespace Nilox2DGameEngine.Character
 
         public override void Update()
         {
+            // Collider
+            if (sprite.IsCollidingWithTag("collider") != null)
+            {
+                location.X = lastPos.X;
+                location.Y = lastPos.Y;
+            }
+            else
+            {
+                lastPos.X = location.X;
+                lastPos.Y = location.Y;
+            }
+
+            // Mapmovement
+            if (sprite.IsCollidingWithTag("doorright") != null && gm.canmoveon && gm.ismoving == false)
+            {
+                gm.currentLevel.moveRight();
+                gm.canmoveon = false;
+                gm.ismoving = true;
+            }
+            if (sprite.IsCollidingWithTag("doorleft") != null && gm.canmoveback && gm.ismoving == false)
+            {
+                gm.currentLevel.moveLeft();
+                gm.canmoveback = false;
+                gm.ismoving = true;
+            }
+
+            // Coin 
+            Sprite2D coin = sprite.IsCollidingWithTag("coin");
+            if (coin != null)
+            {
+                coins++;
+                coin.actor.Destroy();
+                Engine.Window.label1.Text = coins.ToString();
+            }
+
+            // Levelcondition coins
             if (coins >= 3 && gm.ismoving == false && gm.canmoveon == false)
             {
                 gm.canmoveon = true;
@@ -58,6 +95,8 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region functions
+
+        #region pikups
         public void keypickup()
         {
             Sprite2D key0 = sprite.IsCollidingWithTag("key");
@@ -85,7 +124,16 @@ namespace Nilox2DGameEngine.Character
                 coin0 = null;
             }
         }
+        #endregion
 
+        public void Hide()
+        {
+            sprite.draw = false;
+        }
+        public void Show()
+        {
+            sprite.draw = true;
+        }
         #endregion
     }
 }

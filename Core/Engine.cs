@@ -193,7 +193,9 @@ namespace Nilox2DGameEngine.Core
         // //
         //
         #region Functions
-        //Remove marked Sprite2D Shape2D and BaseImage
+
+        //Remove marked Sprite2D Polygons Shape2D and BaseImage
+        #region TrashRemoval
         private void TrashRemoval()
         {
             //Sprite Trash Removal
@@ -201,13 +203,19 @@ namespace Nilox2DGameEngine.Core
             {
                 int index = 0;
 
-                foreach (Sprite2D sprite in spritestoremove)
+                try
                 {
-                    allSprites.Remove(sprite);
-                    ++index;
+                    foreach (Sprite2D sprite in spritestoremove)
+                    {
+                        allSprites.Remove(sprite);
+                        ++index;
+                    }
+                    spritestoremove.Clear();
                 }
-
-                spritestoremove.Clear();
+                catch
+                {
+                    Log.Error($"[TrashRemoval]  -  FAILED TRASHREMOVAL");
+                }
             }
 
             //Shape TrashRemoval
@@ -238,9 +246,7 @@ namespace Nilox2DGameEngine.Core
                 spritestoremove.Clear();
             }
         }
-        #region TrashRemoval
         #endregion
-
 
         //REgister Sprite2D Shape2D and BaseImage
         #region Registration 
@@ -291,11 +297,18 @@ namespace Nilox2DGameEngine.Core
 
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Call abstrakt onClose()
             OnClose();
 
+            // Abort GameLoopThread
             GameLoopThread.Abort();
+
+            // Clear Lists
             allSprites.Clear();
             allShapes.Clear();
+            allPolygons.Clear();
+            allimages.Clear();
+
             Log.Warning("[ENGINE] Closed <------------------------------------------------------------------------------------------>");
         }
         #endregion

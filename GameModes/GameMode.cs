@@ -18,9 +18,8 @@ namespace Nilox2DGameEngine
     public class GameMode : Engine
     {
         #region Init
-
       //Level
-        Level currentLevel = null;
+        public Level currentLevel = null;
         public bool canmoveon = false;
         public bool canmoveback = false;
         public bool ismoving = false;
@@ -142,46 +141,6 @@ namespace Nilox2DGameEngine
                     //ATTACK
                     damage = new Sprite2D(player.sprite.location, new Vector2(48, 48), "Selector", "Damage" , true);
                 }
-            }
-            #endregion
-            //
-            //
-            #region Collision
-            if (player.sprite.IsCollidingWithTag("collider") != null)
-            {
-                player.location.X = lastPos.X;
-                player.location.Y = lastPos.Y;
-            }
-            else
-            {
-                lastPos.X = player.location.X;
-                lastPos.Y = player.location.Y;
-            }
-
-
-            //Coin 
-            Sprite2D coin = player.sprite.IsCollidingWithTag("coin");
-            if ( coin != null)
-            {
-                player.coins++;
-                coin.actor.Destroy();
-                Engine.Window.label1.Text = player.coins.ToString();
-            }
-            #endregion
-            //
-            //
-            #region Map Movement
-            if(player.sprite.IsCollidingWithTag("doorright") != null && canmoveon && ismoving == false)
-            {
-                currentLevel.moveRight();
-                canmoveon = false;
-                ismoving = true;
-            }
-            if(player.sprite.IsCollidingWithTag("doorleft") != null && canmoveback && ismoving == false)
-            {
-                currentLevel.moveLeft();
-                canmoveback = false;
-                ismoving = true;
             }
             #endregion
             //
