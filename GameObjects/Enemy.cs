@@ -21,12 +21,16 @@ namespace Nilox2DGameEngine.Character
 
         int index = 0;
 
+        Vector2 laspos = Vector2.Zero();
+
         //Vector2 playerlocation = Vector2.Zero();
         public Enemy(Sprite2D sprite0, Vector2 location0, GameMode GM)
         {
             sprite = sprite0;
             location = location0;
             tgm = GM;
+
+            sprite.location = location;
 
             if (sprite.IsCollidingWithTag("collider") != null)
             {
@@ -59,6 +63,12 @@ namespace Nilox2DGameEngine.Character
 
                     updatesprite();
                 }
+                laspos = location;
+            }
+            else
+            {
+                location = laspos;
+                sprite.location = location;
             }
         }
         //

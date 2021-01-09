@@ -96,6 +96,7 @@ namespace Nilox2DGameEngine.Core
         #endregion
 
         //Engine varibles
+        public static bool disablerenderer = true;
         public static int frametime = 10;
         private Thread GameLoopThread = null;
 
@@ -246,6 +247,11 @@ namespace Nilox2DGameEngine.Core
                 spritestoremove.Clear();
             }
         }
+
+        public static void clearAllSprite2Ds()
+        {
+            allSprites.Clear();
+        }
         #endregion
 
         //REgister Sprite2D Shape2D and BaseImage
@@ -295,6 +301,7 @@ namespace Nilox2DGameEngine.Core
         }
         #endregion
 
+        // Update
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Call abstrakt onClose()
@@ -324,9 +331,14 @@ namespace Nilox2DGameEngine.Core
             {
                 try
                 {
-                    OnDraw();
-                    Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
-                    OnUpdate();
+                    if (disablerenderer == false)
+                    {
+                        OnDraw();
+                        Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
+                        OnUpdate();
+                    }
+                    
+
                     Thread.Sleep(frametime);
                 }
                 catch
@@ -341,54 +353,64 @@ namespace Nilox2DGameEngine.Core
             //Stopwatch restart
             SW.Restart();
 
-            //Setup for Graphicsediting
-            Graphics g = e.Graphics;
-            g.Clear(BackgroundColor);
-            //Camera Transformation
-            g.TranslateTransform(CameraPostition.X, CameraPostition.Y);
-            g.RotateTransform(CameraAngle);
-
-            //Draw all Shapes
-            foreach (Shape2D shape in allShapes)
+            if (disablerenderer == false)
             {
-                g.FillRectangle(new SolidBrush(Color.Red), shape.location.X, shape.location.Y, shape.Scale.X, shape.Scale.Y);
-            }
+                #region rendercore
+                //Setup for Graphicsediting
+                Graphics g = e.Graphics;
+                g.Clear(BackgroundColor);
+                //Camera Transformation
+                g.TranslateTransform(CameraPostition.X, CameraPostition.Y);
+                g.RotateTransform(CameraAngle);
 
-            //Draw all sprites
-            try
-            {
-                foreach (Sprite2D sprite in allSprites)
+                //Draw all Shapes
+                foreach (Shape2D shape in allShapes)
                 {
-                    //Check if Sprite is on screen and only draw it if it is
-                    if (sprite.location.X < CameraPostition.X + Window.Width &&
-                        sprite.location.X + sprite.scale.X > CameraPostition.X &&
-                        sprite.location.Y < CameraPostition.Y + Window.Height &&
-                        sprite.location.Y + sprite.scale.Y > CameraPostition.Y &&
+                    g.FillRectangle(new SolidBrush(Color.Red), shape.location.X, shape.location.Y, shape.Scale.X, shape.Scale.Y);
+                }
 
-                        //Check if sprite should be drawn
-                        sprite.draw == true)
+                //Draw all sprites
+                try
+                {
+                    foreach (Sprite2D sprite in allSprites)
                     {
-                        try
+                        //Check if Sprite is on screen and only draw it if it is
+                        if (sprite.location.X < CameraPostition.X + Window.Width &&
+                            sprite.location.X + sprite.scale.X > CameraPostition.X &&
+                            sprite.location.Y < CameraPostition.Y + Window.Height &&
+                            sprite.location.Y + sprite.scale.Y > CameraPostition.Y &&
+
+                            //Check if sprite should be drawn
+                            sprite.draw == true)
                         {
-                            //Draw Sprite
-                            g.DrawImage(sprite.bitmap, sprite.location.X, sprite.location.Y, sprite.scale.X, sprite.scale.Y);
-                        }
-                        catch
-                        {
-                            Log.Error("Failed to Draw sprite:" + sprite.name + "    " + sprite.location.ToString());
+                            try
+                            {
+                                //Draw Sprite
+                                g.DrawImage(sprite.bitmap, sprite.location.X, sprite.location.Y, sprite.scale.X, sprite.scale.Y);
+                            }
+                            catch
+                            {
+                                Log.Error("Failed to Draw sprite:" + sprite.name + "    " + sprite.location.ToString());
+                            }
                         }
                     }
                 }
-            }
-            catch
-            {
-                Log.Error("Could not draw " + FrameCount);
-            }
+                catch
+                {
+                    Log.Error("Could not draw " + FrameCount);
+                }
 
-            //Draw all Polygons
-            foreach (Polygon p in allPolygons)
+                //Draw all Polygons
+                foreach (Polygon p in allPolygons)
+                {
+                    g.DrawPolygon(new Pen(p.color), p.points);
+                }
+
+                #endregion
+            }
+            else
             {
-                g.DrawPolygon(new Pen(p.color),p.points );
+                
             }
 
             //Call Trashremoval

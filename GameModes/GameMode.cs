@@ -26,6 +26,7 @@ namespace Nilox2DGameEngine
 
         //Player
         public Player player = null;
+        public bool canmove = false;
         //Character Movement
         private bool left;
         private bool right;
@@ -39,7 +40,7 @@ namespace Nilox2DGameEngine
         int attacktick = 0;
         Sprite2D damage = null;
         //Movement
-        private float maxspeed = 3;
+        private float maxspeed = 13;
         private Vector2 lastPos = Vector2.Zero();
         public Vector2 spawnPosition = new Vector2(50, 48 * 4);
 
@@ -53,7 +54,10 @@ namespace Nilox2DGameEngine
         public static List<string> logs = new List<string>();
  
 
-        public GameMode() : base(new Vector2(1280,720), "Engine Demo") { }
+        public GameMode() : base(new Vector2(1280,720), "Engine Demo") 
+        {
+            
+        }
         #endregion
         //
         // //
@@ -72,6 +76,11 @@ namespace Nilox2DGameEngine
 
         public override void OnUpdate()
         {
+            #region Player
+            player.Update();
+            #endregion
+            //
+            //
             #region Enemymanagment
             if (allenemies.Count < 1)
             {
@@ -88,21 +97,24 @@ namespace Nilox2DGameEngine
             //
             //
             #region Input
-            if (up)
+            if (canmove == true)
             {
-                player.sprite.location.Y -= maxspeed;
-            }
-            if (down)
-            {
-                player.sprite.location.Y += maxspeed;
-            }
-            if (left)
-            {
-                player.sprite.location.X -= maxspeed;
-            }
-            if (right)
-            {
-                player.sprite.location.X += maxspeed;
+                if (up && player != null)
+                {
+                    player.sprite.location.Y -= maxspeed;
+                }
+                if (down && player != null)
+                {
+                    player.sprite.location.Y += maxspeed;
+                }
+                if (left && player != null)
+                {
+                    player.sprite.location.X -= maxspeed;
+                }
+                if (right && player != null)
+                {
+                    player.sprite.location.X += maxspeed;
+                }
             }
             #endregion
             //
@@ -245,8 +257,10 @@ namespace Nilox2DGameEngine
                 }
             }
 
-            //SpawnPlayer 
-            spawnActorFromClass(new Vector2(200, 200),Class.player);
+            string debuglöschmich = string.Empty;
+
+            //Spawn Player
+            spawnActorFromClass(new Vector2(200, 200), Class.player);
 
             //Spawn 3 coins
             Random random = new Random();
@@ -260,33 +274,37 @@ namespace Nilox2DGameEngine
                 spawnActorFromClass(v, Class.item);
             }
 
-            //Set va
+            //Set level varibles
             ismoving = false;
-            canmoveon = false;
+            canmoveon = true;
+
+            // enable Player
+            canmove = true;
+
+            // enable Engine
+            Engine.disablerenderer = false;
+            Log.Warning("[ENGINE]  -  EGNINE ENABLED");
         }
         public void UnloadCurrentTile()
         {
-            //Cleare Sprites
-            Log.Warning("Clearing all Sprites");
-            int count = Engine.allSprites.Count;
-            for (int i = 0; i < count; ++i)
-            {
-                Engine.allSprites.ElementAt(0).DestroySelf();
-                Console.WriteLine(Engine.allSprites.Count.ToString());
-            }
+            // Dont ask why but this semes to be the solution i have no idea wh ybut this is important for sth to happen that i dont undetstand
+            delay(100);
 
-            //Reset Player
-            player.Destroy();
-            player = null;
+            //Prep
+            Engine.disablerenderer = true;
+            Log.Warning("[ENGINE]  -  EGNINE DISABLED");
+
+
+
+            Engine.clearAllSprite2Ds();
 
             //Enemies
-            foreach(Actor e in allactors)
+            while(allactors.Count > 1)
             {
-                destroyActor(e);
+                destroyActor(allactors.ElementAt(0));
             }
 
-            //Delay Loading (Unnessesairy)
-            Thread.Sleep(100);
+
         }
         #endregion
         //
@@ -307,7 +325,6 @@ namespace Nilox2DGameEngine
 
                         player = new Player(sprite, this);
                         sprite.actor = player;
-                        allactors.Add(player);
 
                         return player;
                     }
@@ -413,6 +430,12 @@ namespace Nilox2DGameEngine
                         break;
                     }
             }
+        }
+
+
+        public async void delay(int time)
+        {
+            await Task.Delay(time);
         }
         #endregion 
     }

@@ -35,6 +35,16 @@ namespace Nilox2DGameEngine.Character
         //
         //
         //
+        #region Transform
+        public void setLocation(Vector2 vector)
+        {
+            location = vector;
+            sprite.location = location;
+        }
+        #endregion
+        //
+        //
+        //
         #region Damage
         public abstract void Damge(Actor instigator, int damage);
         #endregion

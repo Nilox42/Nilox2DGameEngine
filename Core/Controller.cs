@@ -23,7 +23,7 @@ namespace Nilox2DGameEngine.Core
 
         public Controller()
         {
-           
+            executeCommand("1");
         }
 
 

@@ -76,16 +76,16 @@ namespace Nilox2DGameEngine.Map
         #region LevelMovement
         public void moveRight()
         {
-            Log.Info("[MOVEMENT] Moving RIGHT | " + currentlocation.X + "-->" + (currentlocation.X + 1).ToString());
             if (currentlocation.X < tiles.Count - 1)
             {
+                Log.Info("[MOVEMENT] Moving RIGHT | " + currentlocation.X + "-->" + (currentlocation.X + 1).ToString());
+
                 GM.UnloadCurrentTile();
                 GM.spawnPosition = new Vector2(50, 48 * 4);
                 currentlocation = new Vector2(currentlocation.X + 1, currentlocation.Y);
 
                 //GM.LoadNewTile(new Tile(Map2,"right"));
-                GM.LoadNewTile(tiles.ElementAt((int)currentlocation.X));
-
+                GM.LoadNewTile(tiles.ElementAt(Convert.ToInt32(currentlocation.X)));
             }
             else
             {
@@ -102,7 +102,7 @@ namespace Nilox2DGameEngine.Map
                 currentlocation = new Vector2(currentlocation.X - 1, currentlocation.Y);
 
                 //GM.LoadNewTile(new Tile(Map,"left"));
-                GM.LoadNewTile(tiles.ElementAt((int)currentlocation.X));
+                GM.LoadNewTile(tiles.ElementAt(Convert.ToInt32(currentlocation.X)));
             }
             else
             {
