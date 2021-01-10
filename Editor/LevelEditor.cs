@@ -1470,7 +1470,7 @@ namespace Nilox2DGameEngine.Editor
             LB.allTiles.Clear();
             tb_url.Text = "";
 
-            LB.allTiles.Add(new Tile(true, "Test20", 27));
+            LB.allTiles.Add(new Tile(true, "Test20", 27,new Vector2(200,200)));
             LB.selectedtile = 0;
             LB.NewLoadNewTile(LB.allTiles.ElementAt(0));
             Log.Info("[NEW TILE]  -  " + LB.allTiles.ElementAt(0).name);

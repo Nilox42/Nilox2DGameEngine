@@ -135,6 +135,23 @@ namespace Nilox2DGameEngine.Core
             return null;
         }
 
+        public List<Sprite2D> GetCollidingTags(string[] tags)
+        {
+            List<Sprite2D> result = new List<Sprite2D>();
+            foreach (Sprite2D s in Engine.allSprites)
+            {
+                foreach (string st in tags)
+                {
+                    if (s.tag == st)
+                    {
+                        result.Add(s);
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public bool isonScreen()
         {
             bool res = false;

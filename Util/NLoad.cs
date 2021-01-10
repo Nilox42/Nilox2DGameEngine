@@ -30,8 +30,7 @@ namespace Nilox2DGameEngine.Util
         }
         public static Tile TileL(string directory0)
         {
-            Tile tile = new Tile();
-
+            Tile tile;
             int index = 0;
 
             Log.Load("[NLoad] - [Tiles] Tile:" + index.ToString() + "From:" + directory0);

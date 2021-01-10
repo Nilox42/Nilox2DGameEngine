@@ -18,6 +18,7 @@ namespace Nilox2DGameEngine.Character
 
         double maxwalkspeed = 2;
         bool hastarget = true;
+        int damagepotential = 10;
 
         int index = 0;
 
@@ -70,6 +71,16 @@ namespace Nilox2DGameEngine.Character
                 location = laspos;
                 sprite.location = location;
             }
+
+            if (player.IsCollidingWithSprite(player,this.sprite))
+            {
+                player.actor.Damge(this,damagepotential);
+                damagepotential = 0;
+                tgm.destroyActor(this);
+            }
+
+
+
         }
         //
         public override void Damge(Actor instigator, int damage)

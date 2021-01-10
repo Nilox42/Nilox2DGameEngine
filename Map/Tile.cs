@@ -14,6 +14,7 @@ namespace Nilox2DGameEngine.Map
     {
         public string name = null;
         public int tilesize = 20;
+        public Vector2 spawnlocation = Vector2.Zero();
 
         public int locationX = 0;
         public int locationY = 0;
@@ -95,11 +96,12 @@ namespace Nilox2DGameEngine.Map
         {
 
         }
-        public Tile(bool b, string name0 , int tilesize0)
+        public Tile(bool b, string name0 , int tilesize0,Vector2 spawnlocation0)
         {
             map = newmap2;
             name = name0;
             tilesize = tilesize0;
+            spawnlocation = spawnlocation0;
         }
         public Tile(string string0 , int size)
         {

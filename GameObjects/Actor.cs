@@ -38,8 +38,8 @@ namespace Nilox2DGameEngine.Character
         #region Transform
         public void setLocation(Vector2 vector)
         {
-            location = vector;
-            sprite.location = location;
+            location = new Vector2(vector.X, vector.Y);
+            sprite.location = new Vector2(vector.X, vector.Y);
         }
         #endregion
         //

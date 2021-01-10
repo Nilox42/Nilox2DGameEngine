@@ -15,9 +15,9 @@ namespace Nilox2DGameEngine.Map
         #region Init
         public string worldname = null;
         string directory = null;
-        private Vector2 currentlocation = new Vector2(0,0);
+        public Vector2 currentlocation = new Vector2(0,0);
 
-        List<Tile> tiles = new List<Tile>();
+        public List<Tile> tiles = new List<Tile>();
 
         GameMode GM;
 
@@ -62,10 +62,11 @@ namespace Nilox2DGameEngine.Map
         {
             worldname = name0;
             directory = Application.StartupPath + @"\Levels\" + worldname;
-
             this.GM = DG;
 
             tiles = NLoad.TilesL(directory);
+
+            GM.currentLevel = this;
             DG.LoadNewTile(tiles.ElementAt(0));
             //DG.LoadNewTile(new Tile(Map));
         }

@@ -84,7 +84,7 @@ namespace Nilox2DGameEngine.Core
     //---------------------------------------------------------------------------------------------------------------------------------------
     //
     #region Engine
-    public abstract class Engine
+    public  abstract class Engine
     {
         #region Engine Init
         //Windwo varibles
@@ -97,7 +97,7 @@ namespace Nilox2DGameEngine.Core
 
         //Engine varibles
         public static bool disablerenderer = true;
-        public static int frametime = 10;
+        public static int frametime = 20;
         private Thread GameLoopThread = null;
 
         //Infi
@@ -250,7 +250,15 @@ namespace Nilox2DGameEngine.Core
 
         public static void clearAllSprite2Ds()
         {
-            allSprites.Clear();
+            foreach (Sprite2D sprite in allSprites)
+            {
+                UnRegisterSprite(sprite);
+            }
+
+            if (allSprites.Count > 0)
+            {
+                allSprites.Clear();
+            }
         }
         #endregion
 
@@ -301,7 +309,11 @@ namespace Nilox2DGameEngine.Core
         }
         #endregion
 
-        // Update
+        public void updatehealtbar(int value)
+        {
+            Window.lbfps.Text = value.ToString();
+        }
+
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Call abstrakt onClose()
@@ -435,7 +447,6 @@ namespace Nilox2DGameEngine.Core
         public abstract void OnDraw();
 
         public abstract void OnClose();
-
 
         public abstract void KeyDown(KeyEventArgs e);
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.Core;
+using System.Windows.Forms;
 
 namespace Nilox2DGameEngine.Character
 {
@@ -15,16 +16,27 @@ namespace Nilox2DGameEngine.Character
         Vector2 lastPos = Vector2.Zero();
 
         int health = 100;
+        int maxhealth = 100;
 
         public int coins = 0;
 
         public Player(Sprite2D sprite0, GameMode gm0)
         {
             sprite = sprite0;
-            location = sprite.location;
+            location = sprite0.location;
             gm = gm0;
 
             clas = Class.player;
+        }
+        #endregion
+        //
+        //
+        //
+        #region movement
+        public void move(Vector2 vector)
+        {
+            location = location + vector;
+            sprite.location = location;
         }
         #endregion
         //
@@ -35,10 +47,15 @@ namespace Nilox2DGameEngine.Character
         {
             health -= damage;
 
+            gm.updatehealtbar((health/maxhealth)*100 +1);
+
             if (health <= 0) 
             {
                 Log.Error("[PLAYER]  -  Died!");
+                Engine.Window.Close();
             }
+
+            Log.Warning("[PLAYER]  -  Took Damage");
         }
 
         public override void Destroy()

@@ -82,7 +82,7 @@ namespace Nilox2DGameEngine
             //
             //
             #region Enemymanagment
-            if (allenemies.Count < 1)
+            if (allenemies.Count < 3)
             {
                 Vector2 v = new Vector2(0, 0);
 
@@ -101,19 +101,27 @@ namespace Nilox2DGameEngine
             {
                 if (up && player != null)
                 {
-                    player.sprite.location.Y -= maxspeed;
+                    //player.sprite.location.Y -= maxspeed;
+                    //player.setLocation(new Vector2 (player.location.X, player.location.Y - maxspeed));
+                    player.move(new Vector2(0,maxspeed * -1));
                 }
                 if (down && player != null)
                 {
-                    player.sprite.location.Y += maxspeed;
+                    //player.sprite.location.Y += maxspeed;
+                    //player.setLocation(new Vector2(player.location.X, player.location.Y + maxspeed));
+                    player.move(new Vector2(0, maxspeed));
                 }
                 if (left && player != null)
                 {
-                    player.sprite.location.X -= maxspeed;
+                    //player.sprite.location.X -= maxspeed;
+                    //player.setLocation(new Vector2(player.location.X - maxspeed, player.location.Y));
+                    player.move(new Vector2(maxspeed * -1, 0));
                 }
                 if (right && player != null)
                 {
-                    player.sprite.location.X += maxspeed;
+                    //player.sprite.location.X += maxspeed;
+                    //player.setLocation(new Vector2(player.location.X + maxspeed, player.location.Y));
+                    player.move(new Vector2(maxspeed, 0));
                 }
             }
             #endregion
@@ -141,6 +149,7 @@ namespace Nilox2DGameEngine
                 {
                     //Increase Attacktick to give the attack some duration
                     attacktick++;
+                    damage.location = player.sprite.location;
                 }
             }
             else
@@ -221,6 +230,15 @@ namespace Nilox2DGameEngine
             if (e.KeyCode == Keys.D)        { right = true; }
             if (e.KeyCode == Keys.A)        { left  = true; }
             if (e.KeyCode == Keys.Space)    { space = true; }
+
+            //Debug
+            if(e.KeyCode == Keys.U)         { UnloadCurrentTile(); }
+            if (e.KeyCode == Keys.N)        { LoadNewTile(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X))); }
+            if (e.KeyCode == Keys.O)
+            { 
+                player.setLocation(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation);
+                Log.Error("RESET TO LOCATION: " + currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation.ToString());
+            }
         }
 
         public override void KeyUp(KeyEventArgs e)
@@ -239,7 +257,7 @@ namespace Nilox2DGameEngine
         public void LoadNewTile(Tile t)
         {
             //Map
-            Log.Info("[LOADING]:" + t.name);
+            Log.Info($"[LOADING]:  Name: {t.name};  Size:{t.tilesize};  Spawnlocation:{t.spawnlocation.ToString()}");
             for (int i = 0; i < t.map.GetLength(0); i++)
             {
                 for (int j = 0; j < t.map.GetLength(1); j++)
@@ -257,54 +275,51 @@ namespace Nilox2DGameEngine
                 }
             }
 
-            string debuglöschmich = string.Empty;
-
             //Spawn Player
-            spawnActorFromClass(new Vector2(200, 200), Class.player);
+            spawnActorFromClass(new Vector2(t.spawnlocation.X, t.spawnlocation.Y), Class.player);
 
-            //Spawn 3 coins
-            Random random = new Random();
-            for (int i = 0; i < 3; i++)
-            {
-                Vector2 v = new Vector2(0, 0);
-
-                v.X = Convert.ToInt32(random.Next(50, Window.Width - 50));
-                v.Y = Convert.ToInt32(random.Next(50, Window.Height - 50));
-
-                spawnActorFromClass(v, Class.item);
-            }
-
-            //Set level varibles
+            // Set level varibles
             ismoving = false;
             canmoveon = true;
 
             // enable Player
+            ResetPlayer();
             canmove = true;
 
             // enable Engine
             Engine.disablerenderer = false;
-            Log.Warning("[ENGINE]  -  EGNINE ENABLED");
+            Log.Warning("[ENGINE]  -  EGNINE ENABLED -----------------------------------------------------------------------------------------------");
         }
         public void UnloadCurrentTile()
-        {
-            // Dont ask why but this semes to be the solution i have no idea wh ybut this is important for sth to happen that i dont undetstand
-            delay(100);
-
-            //Prep
+        {      
+            // Prep
             Engine.disablerenderer = true;
-            Log.Warning("[ENGINE]  -  EGNINE DISABLED");
+            Log.Warning("[ENGINE]  -  EGNINE DISABLED ----------------------------------------------------------------------------------------------");
 
+            //Player
+            player.Destroy();
+            player = null;
+            Log.Warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
 
-
-            Engine.clearAllSprite2Ds();
-
-            //Enemies
-            while(allactors.Count > 1)
+            //Kill all Actors
+            while(allactors.Count > 0)
             {
                 destroyActor(allactors.ElementAt(0));
             }
+            Log.Warning("[GameMode]  -  Actors Destroyed! ------------------------------------------------------------------------------------------");
 
+            //Remove all Sprites
+            Engine.clearAllSprite2Ds();
+            Log.Warning("[GameMode]  -  Sprites2D Cleared! -----------------------------------------------------------------------------------------");
 
+            Log.Warning("[GameMode]  -  Tile UNLOADED! ---------------------------------------------------------------------------------------------");
+            Thread.Sleep(100);
+        }
+
+        public void ResetPlayer()
+        {
+            Tile t = currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X));
+            player.setLocation(new Vector2(t.spawnlocation.X, t.spawnlocation.Y));
         }
         #endregion
         //
@@ -313,6 +328,7 @@ namespace Nilox2DGameEngine
         #region Actors Management
         public Actor spawnActorFromClass(Vector2 location, Class clas)
         {
+
             switch (clas)
             {
                 default:
@@ -321,16 +337,17 @@ namespace Nilox2DGameEngine
                     }
                 case Class.player:
                     {
-                        Sprite2D sprite = new Sprite2D(location, new Vector2(30, 48), "Knight_Idle", "player", true);
+                        Sprite2D sprite = new Sprite2D(new Vector2(location.X,location.Y), new Vector2(30, 48), "Knight_Idle", "player", true);
 
                         player = new Player(sprite, this);
+                        player.setLocation(location);
                         sprite.actor = player;
 
                         return player;
                     }
                 case Class.enemie:
                     {
-                        Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "Enemie", true);
+                        Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "enemie", true);
 
                         Enemy enemie = new Enemy(sprite, sprite.location, this);
                         sprite.actor = enemie;
@@ -412,7 +429,9 @@ namespace Nilox2DGameEngine
                     }
                 case Class.player:
                     {
-                        Log.Error("PLAYER CANT BE DESTROYED!");
+                        player.Destroy();
+                        player.sprite.DestroySelf();
+                        player = null;
 
                         break;
                     }
@@ -432,11 +451,6 @@ namespace Nilox2DGameEngine
             }
         }
 
-
-        public async void delay(int time)
-        {
-            await Task.Delay(time);
-        }
-        #endregion 
+        #endregion
     }
 }
