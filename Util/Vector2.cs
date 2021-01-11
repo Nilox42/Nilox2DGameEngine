@@ -17,8 +17,8 @@ namespace Nilox2DGameEngine.Util
 
         public Vector2()
         {
-            X = Zero().X;
-            Y = Zero().Y;
+            X = zero().X;
+            Y = zero().Y;
         }
 
         public Vector2(float X , float Y)
@@ -27,19 +27,19 @@ namespace Nilox2DGameEngine.Util
             this.Y = Y;
         }
         #region Fonctions
-        public static Vector2 Zero()
+        public static Vector2 zero()
         {
             return new Vector2(0,0);
         }
 
-        public static Vector2 Normalize(Vector2 v0)
+        public static Vector2 normalize(Vector2 v0)
         {
             double distance = Math.Sqrt(v0.X * v0.X + v0.Y * v0.Y);
 
             return new Vector2(v0.X / (float)distance, v0.Y / (float)distance);
         }
 
-        public static float Lenght(Vector2 v0)
+        public static float lenght(Vector2 v0)
         {
             return (float)Math.Sqrt(v0.X * v0.X + v0.Y * v0.Y);
         }

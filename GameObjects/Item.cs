@@ -19,7 +19,7 @@ namespace Nilox2DGameEngine.Character
             location = sprite.location;
             tgm = GM;
 
-            if (sprite.IsCollidingWithTag("collider") != null)
+            if (sprite.isCollidingWithTag("collider") != null)
             {
                 destroy();
             }

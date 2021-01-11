@@ -15,11 +15,11 @@ namespace Nilox2DGameEngine.Core
         public string Tag = "";
         public bool editor = false;
 
-        public Shape2D(Vector2 Postition0, Vector2 Scale0 , string Tag0 ,bool editor0 = false)
+        public Shape2D(Vector2 postition0, Vector2 scale0 , string tag0 ,bool editor0 = false)
         {
-            this.location = Postition0;
-            this.Scale = Scale0;
-            this.Tag = Tag0;
+            this.location = postition0;
+            this.Scale = scale0;
+            this.Tag = tag0;
             this.editor = editor0;
 
             Log.info($"[SHAPE2D]({Tag}) - Has been registered!");

@@ -89,7 +89,7 @@ namespace Nilox2DGameEngine.Core
         #region Engine Init
         //Windwo varibles
         #region Window
-        private Vector2 ScreenSize = Vector2.Zero();
+        private Vector2 ScreenSize = Vector2.zero();
         private string Title = "Error";
         public static Canvas Window = null;
         public Color backgroundColor = Color.Gray;

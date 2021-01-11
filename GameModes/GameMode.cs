@@ -41,7 +41,7 @@ namespace Nilox2DGameEngine
         Sprite2D damage = null;
         //Movement
         private float maxspeed = 13;
-        private Vector2 lastPos = Vector2.Zero();
+        private Vector2 lastPos = Vector2.zero();
         public Vector2 spawnPosition = new Vector2(50, 48 * 4);
 
       //Actors 
@@ -140,7 +140,7 @@ namespace Nilox2DGameEngine
                     //Destroy Damage Sprite e
                     if (damage != null)
                     {
-                        damage.DestroySelf();
+                        damage.destroySelf();
                         damage = null;
                     }
                     //Log.Warning("ATTACK STOP" + attacktick);
@@ -404,7 +404,7 @@ namespace Nilox2DGameEngine
                 case Class.enemie:
                     {
                         Sprite2D sprite = a.sprite;
-                        sprite.DestroySelf();
+                        sprite.destroySelf();
 
                         allenemies.Remove((Enemy)a);
                         allactors.Remove(a);
@@ -417,7 +417,7 @@ namespace Nilox2DGameEngine
                 case Class.projectile:
                     {
                         Sprite2D sprite = a.sprite;
-                        sprite.DestroySelf();
+                        sprite.destroySelf();
 
                         allprojectiles.Remove((Projectile)a);
                         allactors.Remove(a);
@@ -430,7 +430,7 @@ namespace Nilox2DGameEngine
                 case Class.player:
                     {
                         player.destroy();
-                        player.sprite.DestroySelf();
+                        player.sprite.destroySelf();
                         player = null;
 
                         break;
@@ -438,7 +438,7 @@ namespace Nilox2DGameEngine
                 case Class.item:
                     {
                         Sprite2D sprite = a.sprite;
-                        sprite.DestroySelf();
+                        sprite.destroySelf();
 
                         allitems.Remove((Item)a);
                         allactors.Remove(a);

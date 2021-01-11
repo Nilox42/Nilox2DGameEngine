@@ -22,7 +22,7 @@ namespace Nilox2DGameEngine.Core
         bool down;
 
         float maxspeed = 1;
-        Vector2 lastPos = Vector2.Zero();
+        Vector2 lastPos = Vector2.zero();
 
         
 
@@ -62,7 +62,7 @@ namespace Nilox2DGameEngine.Core
             {
                 player.location.X += maxspeed;
             }
-            if (player.IsCollidingWithTag("Collider") != null)
+            if (player.isCollidingWithTag("Collider") != null)
             {
                 player.location.X = lastPos.X;
                 player.location.Y = lastPos.Y;
@@ -118,7 +118,7 @@ namespace Nilox2DGameEngine.Core
             int count = Engine.allSprites.Count;
             for (int i = 0 ; i < count; ++i)
             {
-                Engine.allSprites.ElementAt(0).DestroySelf();
+                Engine.allSprites.ElementAt(0).destroySelf();
                 Console.WriteLine(Engine.allSprites.Count.ToString());
             }
         }

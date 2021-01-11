@@ -13,7 +13,7 @@ namespace Nilox2DGameEngine.Character
         #region Init
         GameMode gm = null;
 
-        Vector2 direction = Vector2.Zero();
+        Vector2 direction = Vector2.zero();
         int speed = 0;
 
         System.Timers.Timer sec = null;
@@ -40,7 +40,7 @@ namespace Nilox2DGameEngine.Character
         #region abstract functions
         public override void destroy()
         {
-            sprite.DestroySelf();
+            sprite.destroySelf();
             gm.destroyActor(this);
         }
 

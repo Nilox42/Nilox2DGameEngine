@@ -22,7 +22,7 @@ namespace Nilox2DGameEngine.Character
 
         int index = 0;
 
-        Vector2 laspos = Vector2.Zero();
+        Vector2 laspos = Vector2.zero();
 
         //Vector2 playerlocation = Vector2.Zero();
         public Enemy(Sprite2D sprite0, Vector2 location0, GameMode GM)
@@ -33,7 +33,7 @@ namespace Nilox2DGameEngine.Character
 
             sprite.location = location;
 
-            if (sprite.IsCollidingWithTag("collider") != null)
+            if (sprite.isCollidingWithTag("collider") != null)
             {
                 destroy();
             }
@@ -54,11 +54,11 @@ namespace Nilox2DGameEngine.Character
         {
             Sprite2D player = tgm.player.sprite;
             //Movement
-            if (sprite.IsCollidingWithTag("collider") == null && hastarget == true)
+            if (sprite.isCollidingWithTag("collider") == null && hastarget == true)
             {
-                if (Vector2.Lenght(location - player.location) > 10)
+                if (Vector2.lenght(location - player.location) > 10)
                 {
-                    Vector2 direction = Vector2.Normalize(location - player.location);
+                    Vector2 direction = Vector2.normalize(location - player.location);
 
                     location += (direction * maxwalkspeed * -1);
 
@@ -72,7 +72,7 @@ namespace Nilox2DGameEngine.Character
                 sprite.location = location;
             }
 
-            if (player.IsCollidingWithSprite(player,this.sprite))
+            if (player.isCollidingWithSprite(player,this.sprite))
             {
                 player.actor.damge(this,damagepotential);
                 damagepotential = 0;

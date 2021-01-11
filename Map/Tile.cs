@@ -14,11 +14,12 @@ namespace Nilox2DGameEngine.Map
     {
         public string name = null;
         public int tilesize = 20;
-        public Vector2 spawnlocation = Vector2.Zero();
+        public Vector2 spawnlocation = Vector2.zero();
 
         public int locationX = 0;
         public int locationY = 0;
 
+        
         #region mapreferences
         public string[,] mapref =
         {
@@ -89,6 +90,7 @@ namespace Nilox2DGameEngine.Map
             {"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     ,"."     } // 27
         };
         #endregion
+        
 
         public string[,] map;
 
@@ -107,9 +109,9 @@ namespace Nilox2DGameEngine.Map
         {
             map = Converts.stringToArray(string0, size);
         }
-        public Tile(string[,] Map)
+        public Tile(string[,] map)
         {
-            this.map = Map;
+            this.map = map;
         }
         public Tile(string[,] map0,string name0)
         {

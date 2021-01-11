@@ -1757,7 +1757,7 @@ namespace Nilox2DGameEngine.Editor
         public Builder window = null;
 
         private int selectedindex = 0;
-        public Vector2 selectedVector = Vector2.Zero();
+        public Vector2 selectedVector = Vector2.zero();
         public int selectedtile = 0;
 
         public void loadBuilderGUI()
@@ -1887,7 +1887,7 @@ namespace Nilox2DGameEngine.Editor
             int count = Engine.allSprites.Count;
             for (int i = 0; i < count; ++i)
             {
-                Engine.allSprites.ElementAt(0).DestroySelf();
+                Engine.allSprites.ElementAt(0).destroySelf();
                 Console.WriteLine(Engine.allSprites.Count.ToString());
             }
         }
@@ -1998,7 +1998,7 @@ namespace Nilox2DGameEngine.Editor
 
         private Vector2 selectedindextovector2d(int si ,int tilesize = 15)
         {
-            Vector2 v = Vector2.Zero();
+            Vector2 v = Vector2.zero();
 
             int x = 0;
             int y = 0;
