@@ -1760,7 +1760,7 @@ namespace Nilox2DGameEngine.Editor
         public Vector2 selectedVector = Vector2.Zero();
         public int selectedtile = 0;
 
-        public void LoadBuilderGUI()
+        public void loadBuilderGUI()
         {
             window = new Builder(this);
             window.Size = new Size((int)screenSize.X, (int)screenSize.Y);
@@ -1800,7 +1800,7 @@ namespace Nilox2DGameEngine.Editor
                 NLoad.ImagesfromDirectory(sl , allimages);
             }
 
-            LoadBuilderGUI();
+            loadBuilderGUI();
         }
 
         #endregion
