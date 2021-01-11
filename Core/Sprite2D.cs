@@ -71,7 +71,7 @@ namespace Nilox2DGameEngine.Core
                 }
                 if (this.bitmap == null)
                 {
-                    Log.Error("[SPRITE2D  -  E]  -  Imige NAME:" + name + "  could not be found!!");
+                    Log.error("[SPRITE2D  -  E]  -  Imige NAME:" + name + "  could not be found!!");
                     DestroySelf();
                 }
 

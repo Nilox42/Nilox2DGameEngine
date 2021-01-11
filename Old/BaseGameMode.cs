@@ -114,7 +114,7 @@ namespace Nilox2DGameEngine.Core
 
         public void unloadCurrentTile()
         {
-            Log.Warning("Clearing all Sprites");
+            Log.warning("Clearing all Sprites");
             int count = Engine.allSprites.Count;
             for (int i = 0 ; i < count; ++i)
             {

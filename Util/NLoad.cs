@@ -13,7 +13,7 @@ namespace Nilox2DGameEngine.Util
 {
     class NLoad
     {
-        public static List<Tile> TilesL(string directory0)
+        public static List<Tile> tilesL(string directory0)
         {
             string[] files = Directory.GetFiles(directory0);
             List<Tile> tiles1 = new List<Tile>();
@@ -21,19 +21,19 @@ namespace Nilox2DGameEngine.Util
             int index = 0;
             foreach (string s in files)
             {
-                Log.Load("[NLoad] - [Tiles] Tile:" + index.ToString() + "From:" + s);
+                Log.load("[NLoad] - [Tiles] Tile:" + index.ToString() + "From:" + s);
                 tiles1.Add(Converts.StringToTile(File.ReadLines(s).Skip(0).Take(1).First()));
                 ++index;
             }
 
             return tiles1;
         }
-        public static Tile TileL(string directory0)
+        public static Tile tileL(string directory0)
         {
             Tile tile;
             int index = 0;
 
-            Log.Load("[NLoad] - [Tiles] Tile:" + index.ToString() + "From:" + directory0);
+            Log.load("[NLoad] - [Tiles] Tile:" + index.ToString() + "From:" + directory0);
             tile = Converts.StringToTile(File.ReadLines(directory0).Skip(0).Take(1).First());
             ++index;
 
@@ -42,7 +42,7 @@ namespace Nilox2DGameEngine.Util
         //
         //-----------------------------------------------------------------------------------------------------------------------------------
         //
-        public static void ImagesfromDirectory(string directory0, List<BaseImage> baseImages)
+        public static void imagesfromDirectory(string directory0, List<BaseImage> baseImages)
         {
             string dir = directory0;
             foreach (string s in Directory.GetFiles(dir))
@@ -70,7 +70,7 @@ namespace Nilox2DGameEngine.Util
                 }
                 else 
                 {
-                    Log.Error("[Nload]  -  [IfD]File is not a PNG");
+                    Log.error("[Nload]  -  [IfD]File is not a PNG");
                 }
             }
         }

@@ -51,11 +51,11 @@ namespace Nilox2DGameEngine.Character
 
             if (health <= 0) 
             {
-                Log.Error("[PLAYER]  -  Died!");
+                Log.error("[PLAYER]  -  Died!");
                 Engine.Window.Close();
             }
 
-            Log.Warning("[PLAYER]  -  Took Damage");
+            Log.warning("[PLAYER]  -  Took Damage");
         }
 
         public override void destroy()
@@ -104,7 +104,7 @@ namespace Nilox2DGameEngine.Character
             if (coins >= 3 && gm.ismoving == false && gm.canmoveon == false)
             {
                 gm.canmoveon = true;
-                Log.Warning("[CINDITION] - Coin Condition met");
+                Log.warning("[CINDITION] - Coin Condition met");
             }
         }
         #endregion

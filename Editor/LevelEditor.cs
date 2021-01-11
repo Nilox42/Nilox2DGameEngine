@@ -1146,7 +1146,7 @@ namespace Nilox2DGameEngine.Editor
         
         private void Builder_Load(object sender, EventArgs e)
         {
-            Log.Info("[BUILDER]  -  GUI Loaded");
+            Log.info("[BUILDER]  -  GUI Loaded");
 
             LB.loadPictureBoxes();
         }
@@ -1307,7 +1307,7 @@ namespace Nilox2DGameEngine.Editor
         private void bt_settilename_Click(object sender, EventArgs e)
         {
             LB.allTiles.ElementAt((int)nudIndex.Value).name = tb_tilename.Text;
-            Log.Info("[CHANGED]  -  NAME to: " + LB.allTiles.ElementAt((int)nudIndex.Value).name);
+            Log.info("[CHANGED]  -  NAME to: " + LB.allTiles.ElementAt((int)nudIndex.Value).name);
         }
 
         private void bt_LoadLevelclick(object sender, EventArgs e)
@@ -1318,10 +1318,10 @@ namespace Nilox2DGameEngine.Editor
             {
                 //Set loadedlevelname varible and Log
                 LB.loadedlevelname = tb_url.Text;
-                Log.Info("[BUILDER]  -  Level Exists     Name:" + LB.loadedlevelname);
+                Log.info("[BUILDER]  -  Level Exists     Name:" + LB.loadedlevelname);
 
                 //Load Tiles in List
-                LB.allTiles = NLoad.TilesL(path);
+                LB.allTiles = NLoad.tilesL(path);
                 richTextBox1.Text = "";
 
                 //Add Tiles to RichTextBox
@@ -1345,7 +1345,7 @@ namespace Nilox2DGameEngine.Editor
             }
             else
             {
-                Log.Error("Directory does not Exist");
+                Log.error("Directory does not Exist");
             }
         }
 
@@ -1453,7 +1453,7 @@ namespace Nilox2DGameEngine.Editor
             LB.allTiles.Add(new Tile(true, "Test20", 27,new Vector2(200,200)));
             LB.selectedtile = 0;
             LB.newLoadNewTile(LB.allTiles.ElementAt(0));
-            Log.Info("[NEW TILE]  -  " + LB.allTiles.ElementAt(0).name);
+            Log.info("[NEW TILE]  -  " + LB.allTiles.ElementAt(0).name);
 
             unlockControlls();
         }
@@ -1797,7 +1797,7 @@ namespace Nilox2DGameEngine.Editor
         {
             foreach (string sl in allcontentlocations)
             {
-                NLoad.ImagesfromDirectory(sl , allimages);
+                NLoad.imagesfromDirectory(sl , allimages);
             }
 
             loadBuilderGUI();
@@ -1821,7 +1821,7 @@ namespace Nilox2DGameEngine.Editor
                 }
                 catch
                 {
-                    Log.Error("Sprite couldnt be drawn");
+                    Log.error("Sprite couldnt be drawn");
                 }
             }
         }
@@ -1829,7 +1829,7 @@ namespace Nilox2DGameEngine.Editor
         public void loadNewTile(Tile t)
         {
             allSprite2Ds.Clear();
-            Log.Info("[LOADING]:" + t.name);
+            Log.info("[LOADING]:" + t.name);
             for (int i = 0; i < t.map.GetLength(0); i++)
             {
                 for (int j = 0; j < t.map.GetLength(1); j++)
@@ -1861,7 +1861,7 @@ namespace Nilox2DGameEngine.Editor
         public void newLoadNewTile(Tile t , int selected = 0)
         {
             allSprite2Ds.Clear();
-            Log.Info("[LOADING] - [Tile]:" + t.name);
+            Log.info("[LOADING] - [Tile]:" + t.name);
             for (int i = 0; i < t.map.GetLength(0); i++)
             {
                 for (int j = 0; j < t.map.GetLength(1); j++)
@@ -1883,7 +1883,7 @@ namespace Nilox2DGameEngine.Editor
 
         public void unloadCurrentTile()
         {
-            Log.Warning("Clearing all Sprites");
+            Log.warning("Clearing all Sprites");
             int count = Engine.allSprites.Count;
             for (int i = 0; i < count; ++i)
             {
@@ -1903,7 +1903,7 @@ namespace Nilox2DGameEngine.Editor
                 }
                 index++;
             }
-            Log.Info("[BUILDER] - Reference Sprite loaded");
+            Log.info("[BUILDER] - Reference Sprite loaded");
         }
 
         #endregion
@@ -2045,22 +2045,22 @@ namespace Nilox2DGameEngine.Editor
                 allTiles.ElementAt(selectedtile).map[(int)location.Y, (int)location.X] = window.tb_name.Text;
                 newLoadNewTile(allTiles.ElementAt(selectedtile), selectedindex);
 
-                Log.Warning("Sprite at:   X:" + selectedVector.X + "  Y" + selectedVector.Y + "   swaped for:" + name);
+                Log.warning("Sprite at:   X:" + selectedVector.X + "  Y" + selectedVector.Y + "   swaped for:" + name);
                 window.Refresh();
             }
             else
             {
-                Log.Error("Sprite name does not exist!!!");
+                Log.error("Sprite name does not exist!!!");
             }
         }
 
         public void savecurrenttoLevel(string dir)
         {
-            NSave.TileS(allTiles.ElementAt(selectedtile) ,Application.StartupPath + @"\Levels\" + dir);
+            NSave.tileS(allTiles.ElementAt(selectedtile) ,Application.StartupPath + @"\Levels\" + dir);
         }
         public void savecurrent()
         {
-            NSave.TileS(allTiles.ElementAt(selectedtile), Application.StartupPath + @"\Levels\" + loadedlevelname);
+            NSave.tileS(allTiles.ElementAt(selectedtile), Application.StartupPath + @"\Levels\" + loadedlevelname);
         }
 
         public void pbSelect(int i)

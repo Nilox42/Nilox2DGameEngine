@@ -138,22 +138,22 @@ namespace Nilox2DGameEngine.Core
         {
             //SessionKey
             sessionkey = keygerator.Next(0, keyrange).ToString();
-            Log.Load("[SESSION]    -    KEY:" + sessionkey);
+            Log.load("[SESSION]    -    KEY:" + sessionkey);
 
             //Load Content
             foreach (string sl in allcontentlocations)
             {
-                NLoad.ImagesfromDirectory(Application.StartupPath + sl, allimages);
+                NLoad.imagesfromDirectory(Application.StartupPath + sl, allimages);
             }
 
-            Log.Info("Loading finished");
-            Log.Info("");
-            Log.Info("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
-            Log.Info("");
+            Log.info("Loading finished");
+            Log.info("");
+            Log.info("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+            Log.info("");
 
 
             //Ser base varibles
-            Log.Info("Game is starting ...");
+            Log.info("Game is starting ...");
             this.ScreenSize = screenSize0;
             this.Title = title;
 
@@ -215,7 +215,7 @@ namespace Nilox2DGameEngine.Core
                 }
                 catch
                 {
-                    Log.Error($"[TrashRemoval]  -  FAILED TRASHREMOVAL");
+                    Log.error($"[TrashRemoval]  -  FAILED TRASHREMOVAL");
                 }
             }
 
@@ -271,12 +271,12 @@ namespace Nilox2DGameEngine.Core
         public static void registerSprite(Sprite2D sprite)
         {
             allSprites.Add(sprite);
-            Log.Info($"[SPRITE2D]  -  ({sprite.name}  X:{sprite.location.X}  Y:{sprite.location.Y} ) - Has been registered!  -  now: {allSprites.Count}");
+            Log.info($"[SPRITE2D]  -  ({sprite.name}  X:{sprite.location.X}  Y:{sprite.location.Y} ) - Has been registered!  -  now: {allSprites.Count}");
         }
         public static void registerImage(BaseImage image)
         {
             allimages.Add(image);
-            Log.Load($"[BASEIMAGE]  -  ({image.name}  Tag:{image.tag}  loaded from  [{image.url}]  -  now: {allSprites.Count}  -  now: {allSprites.Count}");
+            Log.load($"[BASEIMAGE]  -  ({image.name}  Tag:{image.tag}  loaded from  [{image.url}]  -  now: {allSprites.Count}  -  now: {allSprites.Count}");
         }
         public static void registerPolygon(Polygon polygon)
         {
@@ -294,18 +294,18 @@ namespace Nilox2DGameEngine.Core
             //allSprites.Remove(sprite);
             spritestoremove.Add(sprite);
 
-            Log.Info($"[SPRITE2D][REMOVED]({sprite.name} @  X:{sprite.location.X}  Y:{sprite.location.Y}) - Has been marked for destruction!");
+            Log.info($"[SPRITE2D][REMOVED]({sprite.name} @  X:{sprite.location.X}  Y:{sprite.location.Y}) - Has been marked for destruction!");
             sprite = null;
         }
         public static void unRegisterShape(Shape2D shape)
         {
             shapestoremove.Add(shape);
-            Log.Info($"[SHAPE2D][REMOVED](SHAPE @  X:{shape.location.X}  Y:{shape.location.Y}) - Has been marked for destruction!");
+            Log.info($"[SHAPE2D][REMOVED](SHAPE @  X:{shape.location.X}  Y:{shape.location.Y}) - Has been marked for destruction!");
         }
         public static void unRegisterPolygon(Polygon polygon)
         {
             polygonstoremove.Add(polygon);
-            Log.Info($"[SHAPE2D][REMOVED]({polygon.color} Polygon - Has been marked for destruction!");
+            Log.info($"[SHAPE2D][REMOVED]({polygon.color} Polygon - Has been marked for destruction!");
         }
         #endregion
 
@@ -328,7 +328,7 @@ namespace Nilox2DGameEngine.Core
             allPolygons.Clear();
             allimages.Clear();
 
-            Log.Warning("[ENGINE] Closed <------------------------------------------------------------------------------------------>");
+            Log.warning("[ENGINE] Closed <------------------------------------------------------------------------------------------>");
         }
         #endregion
         //
@@ -355,7 +355,7 @@ namespace Nilox2DGameEngine.Core
                 }
                 catch
                 {
-                    Log.Error("Window has not been found...");
+                    Log.error("Window has not been found...");
                 }
             }
         }
@@ -402,14 +402,14 @@ namespace Nilox2DGameEngine.Core
                             }
                             catch
                             {
-                                Log.Error("Failed to Draw sprite:" + sprite.name + "    " + sprite.location.ToString());
+                                Log.error("Failed to Draw sprite:" + sprite.name + "    " + sprite.location.ToString());
                             }
                         }
                     }
                 }
                 catch
                 {
-                    Log.Error("Could not draw " + frameCount);
+                    Log.error("Could not draw " + frameCount);
                 }
 
                 //Draw all Polygons

@@ -45,7 +45,7 @@ namespace Nilox2DGameEngine.Character
         #region abstract functions
         public override void destroy()
         {
-            Log.Info("[ENEMIE] - [DIED] - " + sprite.name);
+            Log.info("[ENEMIE] - [DIED] - " + sprite.name);
 
             tgm.destroyActor(this);
         }
@@ -87,7 +87,7 @@ namespace Nilox2DGameEngine.Character
         {
             health -= damage;
 
-            Log.Info("[DAMAGE] - [ENEMY] - " + damage);
+            Log.info("[DAMAGE] - [ENEMY] - " + damage);
 
             if (health <= 0 && alive)
             {

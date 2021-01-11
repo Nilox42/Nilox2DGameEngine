@@ -61,7 +61,7 @@ namespace Nilox2DGameEngine.Core
                     break;
                 //Error
                 default:
-                    Log.Error("[COMMAND] Command not found!!");
+                    Log.error("[COMMAND] Command not found!!");
                     break;
             }
         }

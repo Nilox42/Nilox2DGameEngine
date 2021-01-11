@@ -22,7 +22,7 @@ namespace Nilox2DGameEngine.Core
             this.Tag = Tag0;
             this.editor = editor0;
 
-            Log.Info($"[SHAPE2D]({Tag}) - Has been registered!");
+            Log.info($"[SHAPE2D]({Tag}) - Has been registered!");
             if (editor == false)
             {
                 Engine.registerShape(this);
@@ -31,7 +31,7 @@ namespace Nilox2DGameEngine.Core
 
         public void DestroySelf()
         {
-            Log.Info($"[SHAPE2D]({Tag}) - Has been destroyed!");
+            Log.info($"[SHAPE2D]({Tag}) - Has been destroyed!");
             if (editor == false)
             {
                 Engine.unRegisterShape(this);

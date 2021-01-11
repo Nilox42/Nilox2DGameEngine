@@ -13,7 +13,7 @@ namespace Nilox2DGameEngine.Util
 {
     public class Log
     {
-        public static void Normal(string msg)
+        public static void normal(string msg)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"[MSG] - {msg}");
@@ -21,7 +21,7 @@ namespace Nilox2DGameEngine.Util
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public static void Info(string msg)
+        public static void info(string msg)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"[INFO] - {msg}");
@@ -29,7 +29,7 @@ namespace Nilox2DGameEngine.Util
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public static void Warning(string msg)
+        public static void warning(string msg)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"[WARNING] - {msg}");
@@ -37,7 +37,7 @@ namespace Nilox2DGameEngine.Util
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public static void Error(string msg)
+        public static void error(string msg)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"[ERROR] - {msg}");
@@ -47,14 +47,14 @@ namespace Nilox2DGameEngine.Util
         //
         //
         //
-        public static void Save(string msg)
+        public static void save(string msg)
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine($"[SAVE] - {msg}");
             line($"[SAVE] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public static void Load(string msg)
+        public static void load(string msg)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"[LOAD] - {msg}");

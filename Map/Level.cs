@@ -66,7 +66,7 @@ namespace Nilox2DGameEngine.Map
             directory = Application.StartupPath + @"\Levels\" + worldname;
             this.gm = dg;
 
-            tiles = NLoad.TilesL(directory);
+            tiles = NLoad.tilesL(directory);
 
             gm.currentLevel = this;
             dg.loadNewTile(tiles.ElementAt(0));
@@ -81,7 +81,7 @@ namespace Nilox2DGameEngine.Map
         {
             if (currentlocation.X < tiles.Count - 1)
             {
-                Log.Info("[MOVEMENT] Moving RIGHT | " + currentlocation.X + "-->" + (currentlocation.X + 1).ToString());
+                Log.info("[MOVEMENT] Moving RIGHT | " + currentlocation.X + "-->" + (currentlocation.X + 1).ToString());
 
                 gm.unloadCurrentTile();
                 gm.spawnPosition = new Vector2(50, 48 * 4);
@@ -92,12 +92,12 @@ namespace Nilox2DGameEngine.Map
             }
             else
             {
-                Log.Error("[MOVEMENT] Cant walk RIGHT here | currentlocation.X:" + currentlocation.X);
+                Log.error("[MOVEMENT] Cant walk RIGHT here | currentlocation.X:" + currentlocation.X);
             }
         }
         public void moveLeft()
         {
-            Log.Info("[MOVEMENT] Moving LEFT | " + currentlocation.X + "-->" + (currentlocation.X - 1).ToString());
+            Log.info("[MOVEMENT] Moving LEFT | " + currentlocation.X + "-->" + (currentlocation.X - 1).ToString());
             if (currentlocation.X > 0)
             {
                 gm.unloadCurrentTile();
@@ -109,7 +109,7 @@ namespace Nilox2DGameEngine.Map
             }
             else
             {
-                Log.Error("[MOVEMENT] Cant walk LEFT here | currentlocation.X:" + currentlocation.X);
+                Log.error("[MOVEMENT] Cant walk LEFT here | currentlocation.X:" + currentlocation.X);
             }
         }
         #endregion

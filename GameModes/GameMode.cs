@@ -217,7 +217,7 @@ namespace Nilox2DGameEngine
             sp.Stop();
             sw.WriteLine("[TIME]    -    " + sp.ElapsedMilliseconds.ToString());
 
-            Log.Save("[LOGGING]    -    " + sp.ElapsedMilliseconds.ToString());
+            Log.save("[LOGGING]    -    " + sp.ElapsedMilliseconds.ToString());
 
             sw = null;
             sw.Dispose();
@@ -237,7 +237,7 @@ namespace Nilox2DGameEngine
             if (e.KeyCode == Keys.O)
             { 
                 player.setLocation(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation);
-                Log.Error("RESET TO LOCATION: " + currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation.ToString());
+                Log.error("RESET TO LOCATION: " + currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation.ToString());
             }
         }
 
@@ -257,7 +257,7 @@ namespace Nilox2DGameEngine
         public void loadNewTile(Tile t)
         {
             //Map
-            Log.Info($"[LOADING]:  Name: {t.name};  Size:{t.tilesize};  Spawnlocation:{t.spawnlocation.ToString()}");
+            Log.info($"[LOADING]:  Name: {t.name};  Size:{t.tilesize};  Spawnlocation:{t.spawnlocation.ToString()}");
             for (int i = 0; i < t.map.GetLength(0); i++)
             {
                 for (int j = 0; j < t.map.GetLength(1); j++)
@@ -288,31 +288,31 @@ namespace Nilox2DGameEngine
 
             // enable Engine
             Engine.disablerenderer = false;
-            Log.Warning("[ENGINE]  -  EGNINE ENABLED -----------------------------------------------------------------------------------------------");
+            Log.warning("[ENGINE]  -  EGNINE ENABLED -----------------------------------------------------------------------------------------------");
         }
         public void unloadCurrentTile()
         {      
             // Prep
             Engine.disablerenderer = true;
-            Log.Warning("[ENGINE]  -  EGNINE DISABLED ----------------------------------------------------------------------------------------------");
+            Log.warning("[ENGINE]  -  EGNINE DISABLED ----------------------------------------------------------------------------------------------");
 
             //Player
             player.destroy();
             player = null;
-            Log.Warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
+            Log.warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
 
             //Kill all Actors
             while(allactors.Count > 0)
             {
                 destroyActor(allactors.ElementAt(0));
             }
-            Log.Warning("[GameMode]  -  Actors Destroyed! ------------------------------------------------------------------------------------------");
+            Log.warning("[GameMode]  -  Actors Destroyed! ------------------------------------------------------------------------------------------");
 
             //Remove all Sprites
             Engine.clearAllSprite2Ds();
-            Log.Warning("[GameMode]  -  Sprites2D Cleared! -----------------------------------------------------------------------------------------");
+            Log.warning("[GameMode]  -  Sprites2D Cleared! -----------------------------------------------------------------------------------------");
 
-            Log.Warning("[GameMode]  -  Tile UNLOADED! ---------------------------------------------------------------------------------------------");
+            Log.warning("[GameMode]  -  Tile UNLOADED! ---------------------------------------------------------------------------------------------");
             Thread.Sleep(100);
         }
 
@@ -409,7 +409,7 @@ namespace Nilox2DGameEngine
                         allenemies.Remove((Enemy)a);
                         allactors.Remove(a);
 
-                        Log.Warning("[DESTROYED][ENEMY]  -  {" + a.sprite.name + "}");
+                        Log.warning("[DESTROYED][ENEMY]  -  {" + a.sprite.name + "}");
                         a = null;
 
                         break;
@@ -422,7 +422,7 @@ namespace Nilox2DGameEngine
                         allprojectiles.Remove((Projectile)a);
                         allactors.Remove(a);
 
-                        Log.Warning("[DESTROYED][PROJECTILE]  -  {" + a.sprite.name + "}");
+                        Log.warning("[DESTROYED][PROJECTILE]  -  {" + a.sprite.name + "}");
                         a = null;
 
                         break;
@@ -443,7 +443,7 @@ namespace Nilox2DGameEngine
                         allitems.Remove((Item)a);
                         allactors.Remove(a);
 
-                        Log.Warning("[DESTROYED][Item]  -  {" + a.sprite.name + "}");
+                        Log.warning("[DESTROYED][Item]  -  {" + a.sprite.name + "}");
                         a = null;
 
                         break;
