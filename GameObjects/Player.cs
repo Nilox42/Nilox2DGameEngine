@@ -34,7 +34,7 @@ namespace Nilox2DGameEngine.Character
         #region movement
         public void move(Vector2 vector)
         {
-            setActorLocation(getActorLocation() + vector); 
+            addActorLocation(vector);
         }
         #endregion
         //

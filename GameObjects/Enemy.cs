@@ -58,7 +58,8 @@ namespace Nilox2DGameEngine.Character
                 {
                     Vector2 direction = Vector2.normalize(getActorLocation() - player.location);
 
-                    setActorLocation(getActorLocation() + (direction * maxwalkspeed * -1));
+                    //etActorLocation(getActorLocation() + (direction * maxwalkspeed * -1));
+                    addActorLocation(direction * maxwalkspeed * -1);
                 }
                 laspos = getActorLocation();
             }
