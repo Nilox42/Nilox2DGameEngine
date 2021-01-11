@@ -13,10 +13,9 @@ namespace Nilox2DGameEngine.Character
         #region Init
         GameMode tgm;
 
-        public Item(Sprite2D sprite0, Vector2 location0, GameMode GM)
+        public Item(Sprite2D sprite0, GameMode GM)
         {
             sprite = sprite0;
-            location = sprite.location;
             tgm = GM;
 
             if (sprite.isCollidingWithTag("collider") != null)

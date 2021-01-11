@@ -21,7 +21,7 @@ namespace Nilox2DGameEngine.Character
     {
         #region Init
         public Sprite2D sprite = null;
-        public Vector2 location = Vector2.zero();
+        //public Vector2 location = Vector2.zero();
 
         public Class clas;
         #endregion
@@ -36,9 +36,13 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region Transform
-        public void setLocation(Vector2 vector)
+        public Vector2 getActorLocation()
         {
-            location = new Vector2(vector.X, vector.Y);
+            return sprite.location;
+        }
+
+        public void setActorLocation(Vector2 vector)
+        {
             sprite.location = new Vector2(vector.X, vector.Y);
         }
         #endregion

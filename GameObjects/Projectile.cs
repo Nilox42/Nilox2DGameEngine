@@ -24,7 +24,7 @@ namespace Nilox2DGameEngine.Character
         public Projectile(Sprite2D sprite0, Vector2 location0 , Vector2 direction0 , int speed0, GameMode gm0): base ()
         {
             sprite = sprite0;
-            location = location0;
+            setActorLocation(location0);
             direction = direction0;
             speed = speed0;
             gm = gm0;
@@ -63,17 +63,10 @@ namespace Nilox2DGameEngine.Character
             this.destroy();
         }
 
-        private void updatesprite()
-        {
-            sprite.location = location;
-        }
-
         public void move()
         {
             Vector2 tomove = direction * speed;
-            location = location + tomove;
-
-            updatesprite();
+            setActorLocation(getActorLocation() + tomove);
         }
         #endregion
 

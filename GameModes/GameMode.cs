@@ -236,7 +236,7 @@ namespace Nilox2DGameEngine
             if (e.KeyCode == Keys.N)        { loadNewTile(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X))); }
             if (e.KeyCode == Keys.O)
             { 
-                player.setLocation(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation);
+                player.setActorLocation(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation);
                 Log.error("RESET TO LOCATION: " + currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation.ToString());
             }
         }
@@ -321,7 +321,7 @@ namespace Nilox2DGameEngine
         public void resetPlayer()
         {
             Tile t = currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X));
-            player.setLocation(new Vector2(t.spawnlocation.X, t.spawnlocation.Y));
+            player.setActorLocation(new Vector2(t.spawnlocation.X, t.spawnlocation.Y));
         }
         #endregion
         //
@@ -342,7 +342,7 @@ namespace Nilox2DGameEngine
                         Sprite2D sprite = new Sprite2D(new Vector2(location.X,location.Y), new Vector2(30, 48), "Knight_Idle", "player", true);
 
                         player = new Player(sprite, this);
-                        player.setLocation(location);
+                        player.setActorLocation(location);
                         sprite.actor = player;
 
                         return player;
@@ -379,7 +379,7 @@ namespace Nilox2DGameEngine
                     {
                         Sprite2D sprite = new Sprite2D(location, new Vector2(20, 20), "coin", "", true);
 
-                        Item item = new Item(sprite, location, this);
+                        Item item = new Item(sprite, this);
                         sprite.actor = item;
 
                         allitems.Add(item);

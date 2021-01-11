@@ -23,7 +23,6 @@ namespace Nilox2DGameEngine.Character
         public Player(Sprite2D sprite0, GameMode gm0)
         {
             sprite = sprite0;
-            location = sprite0.location;
             gm = gm0;
 
             clas = Class.player;
@@ -35,8 +34,7 @@ namespace Nilox2DGameEngine.Character
         #region movement
         public void move(Vector2 vector)
         {
-            location = location + vector;
-            sprite.location = location;
+            setActorLocation(getActorLocation() + vector); 
         }
         #endregion
         //
@@ -68,13 +66,11 @@ namespace Nilox2DGameEngine.Character
             // Collider
             if (sprite.isCollidingWithTag("collider") != null)
             {
-                location.X = lastPos.X;
-                location.Y = lastPos.Y;
+                setActorLocation(lastPos);
             }
             else
             {
-                lastPos.X = location.X;
-                lastPos.Y = location.Y;
+                lastPos = getActorLocation();
             }
 
             // Mapmovement

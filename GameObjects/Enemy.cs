@@ -28,10 +28,8 @@ namespace Nilox2DGameEngine.Character
         public Enemy(Sprite2D sprite0, Vector2 location0, GameMode GM)
         {
             sprite = sprite0;
-            location = location0;
+            setActorLocation(location0);
             tgm = GM;
-
-            sprite.location = location;
 
             if (sprite.isCollidingWithTag("collider") != null)
             {
@@ -56,20 +54,17 @@ namespace Nilox2DGameEngine.Character
             //Movement
             if (sprite.isCollidingWithTag("collider") == null && hastarget == true)
             {
-                if (Vector2.lenght(location - player.location) > 10)
+                if (Vector2.lenght(getActorLocation() - player.location) > 10)
                 {
-                    Vector2 direction = Vector2.normalize(location - player.location);
+                    Vector2 direction = Vector2.normalize(getActorLocation() - player.location);
 
-                    location += (direction * maxwalkspeed * -1);
-
-                    updatesprite();
+                    setActorLocation(getActorLocation() + (direction * maxwalkspeed * -1));
                 }
-                laspos = location;
+                laspos = getActorLocation();
             }
             else
             {
-                location = laspos;
-                sprite.location = location;
+                setActorLocation(laspos);
             }
 
             if (player.isCollidingWithSprite(player,this.sprite))
@@ -101,16 +96,11 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region functions
-        private void updatesprite()
-        {
-            sprite.location = location;
-        }
-        //
         public void shoot()
         {
             if (index > 120)
             {
-                tgm.spawnActorFromClass(location, Class.projectile);
+                tgm.spawnActorFromClass(getActorLocation(), Class.projectile);
                 index = 0;
             }
             index++;
