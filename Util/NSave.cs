@@ -13,7 +13,7 @@ namespace Nilox2DGameEngine.Util
 {
     class NSave
     {
-        public static void TilesS(List<Tile> tiles0 , string directory0)
+        public static void tilesS(List<Tile> tiles0 , string directory0)
         {
             foreach (Tile tile in tiles0)
             {
@@ -27,11 +27,11 @@ namespace Nilox2DGameEngine.Util
         //
         //-----------------------------------------------------------------------------------------------------------------------------------
         //
-        public static void TileS(Tile tile0, string directory0)
+        public static void tileS(Tile tile0, string directory0)
         {
             if (Directory.Exists(directory0))
             {
-                Log.Save("[Tile]  -  Name:" + tile0.name + "  -  URL:" + directory0 + @"\" + tile0.name + ".txt");
+                Log.save("[Tile]  -  Name:" + tile0.name + "  -  URL:" + directory0 + @"\" + tile0.name + ".txt");
 
                 StreamWriter writer = new StreamWriter(directory0 + @"\" + tile0.name + ".txt");
                 writer.WriteLine(Converts.TileToString(tile0));
@@ -39,7 +39,7 @@ namespace Nilox2DGameEngine.Util
             }
             else
             {
-                Log.Error("[Tile]  :  Directory  {" + directory0 + @"\" + tile0.name + ".txt }  does not exist!!!");
+                Log.error("[Tile]  :  Directory  {" + directory0 + @"\" + tile0.name + ".txt }  does not exist!!!");
             }
         }
 

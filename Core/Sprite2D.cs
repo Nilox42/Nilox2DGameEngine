@@ -25,7 +25,7 @@ namespace Nilox2DGameEngine.Core
 
         public bool draw = true;
 
-        private LevelEditor LB = null;
+        private LevelEditor lb = null;
         public string name = string.Empty;
 
         private bool isleveleditor = false;
@@ -37,21 +37,21 @@ namespace Nilox2DGameEngine.Core
             name = name0;
             tag = Tag0;
             isleveleditor = isleveleditor0;
-            LB = LB0;
+            lb = LB0;
             draw = draw0;
 
             fetchimage();
         }
 
-        public void DestroySelf()
+        public void destroySelf()
         {
             if (isleveleditor == false)
             {
-                Engine.UnRegisterSprite(this);
+                Engine.unRegisterSprite(this);
             }
             else
             {
-                LB.allSprite2Ds.Remove(this);
+                lb.allSprite2Ds.Remove(this);
             }
         }
 
@@ -71,17 +71,17 @@ namespace Nilox2DGameEngine.Core
                 }
                 if (this.bitmap == null)
                 {
-                    Log.Error("[SPRITE2D  -  E]  -  Imige NAME:" + name + "  could not be found!!");
-                    DestroySelf();
+                    Log.error("[SPRITE2D  -  E]  -  Imige NAME:" + name + "  could not be found!!");
+                    destroySelf();
                 }
 
-                Engine.RegisterSprite(this);
+                Engine.registerSprite(this);
             }
 
             //get image from Level Builder
             if (isleveleditor == true)
             {
-                foreach (BaseImage bi in LB.allimages)
+                foreach (BaseImage bi in lb.allimages)
                 {
                     if (bi.name == this.name)
                     {
@@ -99,7 +99,7 @@ namespace Nilox2DGameEngine.Core
         //
         //
         #region Collision
-        public bool IsCollidingWithSprite(Sprite2D a , Sprite2D b)
+        public bool isCollidingWithSprite(Sprite2D a , Sprite2D b)
         {
             if (isleveleditor == false)
             {
@@ -114,7 +114,7 @@ namespace Nilox2DGameEngine.Core
             return false;
         }
 
-        public Sprite2D IsCollidingWithTag(string tag)
+        public Sprite2D isCollidingWithTag(string tag)
         {
             if (isleveleditor == false)
             {
@@ -135,7 +135,7 @@ namespace Nilox2DGameEngine.Core
             return null;
         }
 
-        public List<Sprite2D> GetCollidingTags(string[] tags)
+        public List<Sprite2D> getCollidingTags(string[] tags)
         {
             List<Sprite2D> result = new List<Sprite2D>();
             foreach (Sprite2D s in Engine.allSprites)
@@ -155,7 +155,7 @@ namespace Nilox2DGameEngine.Core
         public bool isonScreen()
         {
             bool res = false;
-            Vector2 cp = Engine.CameraPostition;
+            Vector2 cp = Engine.cameraPos;
             Vector2 cs = new Vector2(Engine.Window.Width ,Engine.Window.Height);
 
             if (this.location.X < cp.X          + cs.X &&

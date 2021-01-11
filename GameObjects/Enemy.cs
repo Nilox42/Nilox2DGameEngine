@@ -22,7 +22,7 @@ namespace Nilox2DGameEngine.Character
 
         int index = 0;
 
-        Vector2 laspos = Vector2.Zero();
+        Vector2 laspos = Vector2.zero();
 
         //Vector2 playerlocation = Vector2.Zero();
         public Enemy(Sprite2D sprite0, Vector2 location0, GameMode GM)
@@ -33,9 +33,9 @@ namespace Nilox2DGameEngine.Character
 
             sprite.location = location;
 
-            if (sprite.IsCollidingWithTag("collider") != null)
+            if (sprite.isCollidingWithTag("collider") != null)
             {
-                Destroy();
+                destroy();
             }
         }
         #endregion
@@ -43,22 +43,22 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region abstract functions
-        public override void Destroy()
+        public override void destroy()
         {
-            Log.Info("[ENEMIE] - [DIED] - " + sprite.name);
+            Log.info("[ENEMIE] - [DIED] - " + sprite.name);
 
             tgm.destroyActor(this);
         }
         //
-        public override void Update()
+        public override void update()
         {
             Sprite2D player = tgm.player.sprite;
             //Movement
-            if (sprite.IsCollidingWithTag("collider") == null && hastarget == true)
+            if (sprite.isCollidingWithTag("collider") == null && hastarget == true)
             {
-                if (Vector2.Lenght(location - player.location) > 10)
+                if (Vector2.lenght(location - player.location) > 10)
                 {
-                    Vector2 direction = Vector2.Normalize(location - player.location);
+                    Vector2 direction = Vector2.normalize(location - player.location);
 
                     location += (direction * maxwalkspeed * -1);
 
@@ -72,9 +72,9 @@ namespace Nilox2DGameEngine.Character
                 sprite.location = location;
             }
 
-            if (player.IsCollidingWithSprite(player,this.sprite))
+            if (player.isCollidingWithSprite(player,this.sprite))
             {
-                player.actor.Damge(this,damagepotential);
+                player.actor.damge(this,damagepotential);
                 damagepotential = 0;
                 tgm.destroyActor(this);
             }
@@ -83,17 +83,17 @@ namespace Nilox2DGameEngine.Character
 
         }
         //
-        public override void Damge(Actor instigator, int damage)
+        public override void damge(Actor instigator, int damage)
         {
             health -= damage;
 
-            Log.Info("[DAMAGE] - [ENEMY] - " + damage);
+            Log.info("[DAMAGE] - [ENEMY] - " + damage);
 
             if (health <= 0 && alive)
             {
                 alive = false;
                 sprite.draw = false;
-                Destroy();
+                destroy();
             }
         }
         #endregion
@@ -106,7 +106,7 @@ namespace Nilox2DGameEngine.Character
             sprite.location = location;
         }
         //
-        public void Shoot()
+        public void shoot()
         {
             if (index > 120)
             {

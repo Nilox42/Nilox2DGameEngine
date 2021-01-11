@@ -13,7 +13,7 @@ namespace Nilox2DGameEngine.Util
         #region MapArrayConverts
         public static string[,] stringToArray(string s0, int tilesize)
         {
-            string[,] Map0 = new string[tilesize, tilesize];
+            string[,] map0 = new string[tilesize, tilesize];
 
             string[] s = s0.Split(':');
 
@@ -22,17 +22,17 @@ namespace Nilox2DGameEngine.Util
             {
                 for (int j = 0; j < tilesize; j++)
                 {
-                   Map0[i, j] = s[count];
+                   map0[i, j] = s[count];
                    
                     ++count;
                 }
             }
-            return Map0;
+            return map0;
         }
-        public static string arrayToString(string[,] Map)
+        public static string arrayToString(string[,] map)
         {
             string result = "";
-            foreach (string s in Map)
+            foreach (string s in map)
             {
                 result = result + s + ":";
             }
@@ -81,11 +81,11 @@ namespace Nilox2DGameEngine.Util
         #region location Converts
         public static Vector2 toScreenLocation(Vector2 gamelocation)
         {
-            return gamelocation + Engine.CameraPostition;
+            return gamelocation + Engine.cameraPos;
         }
         public static Vector2 toGameLocation(Vector2 screenLocation)
         {
-            return screenLocation - Engine.CameraPostition;
+            return screenLocation - Engine.cameraPos;
         }
         #endregion
     }

@@ -54,7 +54,7 @@ namespace Nilox2DGameEngine
                 }
                 else
                 {
-                    Log.Error("[CONSOLE]  -  Line Empty or to long to be a command");
+                    Log.error("[CONSOLE]  -  Line Empty or to long to be a command");
                     Console.Beep();
                 }
             }

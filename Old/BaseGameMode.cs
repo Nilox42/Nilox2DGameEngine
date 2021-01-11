@@ -22,7 +22,7 @@ namespace Nilox2DGameEngine.Core
         bool down;
 
         float maxspeed = 1;
-        Vector2 lastPos = Vector2.Zero();
+        Vector2 lastPos = Vector2.zero();
 
         
 
@@ -32,19 +32,19 @@ namespace Nilox2DGameEngine.Core
         // //
         //
         #region Overrrides
-        public override void OnLoad()
+        public override void onLoad()
         {
-            BackgroundColor = Color.Black;
+            backgroundColor = Color.Black;
 
             player = new Sprite2D(new Vector2(48, 48), new Vector2(48, 48), "Overworld/Objects/rocks1_7", "Player", true);
         }
 
-        public override void OnDraw()
+        public override void onDraw()
         {
             
         }
 
-        public override void OnUpdate()
+        public override void onUpdate()
         {
             if (up)
             {
@@ -62,7 +62,7 @@ namespace Nilox2DGameEngine.Core
             {
                 player.location.X += maxspeed;
             }
-            if (player.IsCollidingWithTag("Collider") != null)
+            if (player.isCollidingWithTag("Collider") != null)
             {
                 player.location.X = lastPos.X;
                 player.location.Y = lastPos.Y;
@@ -74,7 +74,7 @@ namespace Nilox2DGameEngine.Core
             }
         }
 
-        public override void KeyDown(KeyEventArgs e)
+        public override void keyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W) { up = true; }
             if (e.KeyCode == Keys.S) { down = true; }
@@ -82,7 +82,7 @@ namespace Nilox2DGameEngine.Core
             if (e.KeyCode == Keys.A) { left = true; }
         }
 
-        public override void KeyUp(KeyEventArgs e)
+        public override void keyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W) { up = false; }
             if (e.KeyCode == Keys.S) { down = false; }
@@ -90,7 +90,7 @@ namespace Nilox2DGameEngine.Core
             if (e.KeyCode == Keys.A) { left = false; }
         }
 
-        public void LoadNewTile(Tile t)
+        public void loadNewTile(Tile t)
         {
             for (int i = 0; i < t.map.GetLength(0); i++)
             {
@@ -112,18 +112,18 @@ namespace Nilox2DGameEngine.Core
             }
         }
 
-        public void UnloadCurrentTile()
+        public void unloadCurrentTile()
         {
-            Log.Warning("Clearing all Sprites");
+            Log.warning("Clearing all Sprites");
             int count = Engine.allSprites.Count;
             for (int i = 0 ; i < count; ++i)
             {
-                Engine.allSprites.ElementAt(0).DestroySelf();
+                Engine.allSprites.ElementAt(0).destroySelf();
                 Console.WriteLine(Engine.allSprites.Count.ToString());
             }
         }
 
-        public override void OnClose()
+        public override void onClose()
         {
             throw new NotImplementedException();
         }

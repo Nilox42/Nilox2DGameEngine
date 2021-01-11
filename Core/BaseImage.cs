@@ -30,7 +30,7 @@ namespace Nilox2DGameEngine.Core
 
             if (isleveleditor == false)
             {
-                Engine.RegisterImage(this);
+                Engine.registerImage(this);
             }
             
 

@@ -16,7 +16,7 @@ namespace Nilox2DGameEngine.Core
     public class Controller
     {
         LevelEditor levelEditor = null;
-        GameMode GM = null;
+        GameMode gm = null;
 
         //MainMenuForm MMF = null;
 
@@ -42,11 +42,11 @@ namespace Nilox2DGameEngine.Core
                 //Game
                 case "game":
                     
-                    GM = new GameMode();
+                    gm = new GameMode();
                     break;
                 case "1":
                     
-                    GM = new GameMode();
+                    gm = new GameMode();
                     break;
                 //Editor
                 case "editor":
@@ -61,7 +61,7 @@ namespace Nilox2DGameEngine.Core
                     break;
                 //Error
                 default:
-                    Log.Error("[COMMAND] Command not found!!");
+                    Log.error("[COMMAND] Command not found!!");
                     break;
             }
         }

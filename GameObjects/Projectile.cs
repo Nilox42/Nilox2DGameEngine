@@ -13,7 +13,7 @@ namespace Nilox2DGameEngine.Character
         #region Init
         GameMode gm = null;
 
-        Vector2 direction = Vector2.Zero();
+        Vector2 direction = Vector2.zero();
         int speed = 0;
 
         System.Timers.Timer sec = null;
@@ -30,7 +30,7 @@ namespace Nilox2DGameEngine.Character
             gm = gm0;
 
             sec = new System.Timers.Timer(lifespan * 1000);
-            sec.Elapsed += Sec_Elapsed;
+            sec.Elapsed += sec_Elapsed;
             sec.Start();
         }
         #endregion
@@ -38,17 +38,17 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region abstract functions
-        public override void Destroy()
+        public override void destroy()
         {
-            sprite.DestroySelf();
+            sprite.destroySelf();
             gm.destroyActor(this);
         }
 
-        public override void Damge(Actor instigator, int damage)
+        public override void damge(Actor instigator, int damage)
         {
         }
 
-        public override void Update()
+        public override void update()
         {
         }
         #endregion
@@ -56,11 +56,11 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region dunctions
-        private void Sec_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void sec_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             sec.Stop();
             sec = null;
-            this.Destroy();
+            this.destroy();
         }
 
         private void updatesprite()

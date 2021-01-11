@@ -41,7 +41,7 @@ namespace Nilox2DGameEngine
         Sprite2D damage = null;
         //Movement
         private float maxspeed = 13;
-        private Vector2 lastPos = Vector2.Zero();
+        private Vector2 lastPos = Vector2.zero();
         public Vector2 spawnPosition = new Vector2(50, 48 * 4);
 
       //Actors 
@@ -63,21 +63,21 @@ namespace Nilox2DGameEngine
         // //
         //
         #region Overrrides
-        public override void OnLoad()
+        public override void onLoad()
         {
-            BackgroundColor = Color.Black;
+            backgroundColor = Color.Black;
             currentLevel = new Level("One",this);
         }
 
-        public override void OnDraw()
+        public override void onDraw()
         {
             
         }
 
-        public override void OnUpdate()
+        public override void onUpdate()
         {
             #region Player
-            player.Update();
+            player.update();
             #endregion
             //
             //
@@ -140,7 +140,7 @@ namespace Nilox2DGameEngine
                     //Destroy Damage Sprite e
                     if (damage != null)
                     {
-                        damage.DestroySelf();
+                        damage.destroySelf();
                         damage = null;
                     }
                     //Log.Warning("ATTACK STOP" + attacktick);
@@ -170,7 +170,7 @@ namespace Nilox2DGameEngine
             foreach (Actor a in allactors)
             {
                 //Update all Actors
-                a.Update();
+                a.update();
                 //
                 if (a.clas == Class.enemie)
                 {
@@ -182,7 +182,7 @@ namespace Nilox2DGameEngine
                             a.sprite.location.Y < damage.location.Y + damage.scale.Y &&
                             a.sprite.location.Y + a.sprite.scale.Y > damage.location.Y)
                         {
-                            a.Damge(player, 1000);
+                            a.damge(player, 1000);
                         }
                     }
                 }
@@ -196,14 +196,14 @@ namespace Nilox2DGameEngine
             #endregion
         }
 
-        public override void OnClose()
+        public override void onClose()
         {
             Stopwatch sp = new Stopwatch();
             sp.Start();
 
             string name = "log" + Engine.sessionkey;
             string path = Application.StartupPath + @"\log" + @"\" + name + ".txt";
-            string time = Engine.FrameCount.ToString();
+            string time = Engine.frameCount.ToString();
 
             File.WriteAllText(path, " ");
 
@@ -217,13 +217,13 @@ namespace Nilox2DGameEngine
             sp.Stop();
             sw.WriteLine("[TIME]    -    " + sp.ElapsedMilliseconds.ToString());
 
-            Log.Save("[LOGGING]    -    " + sp.ElapsedMilliseconds.ToString());
+            Log.save("[LOGGING]    -    " + sp.ElapsedMilliseconds.ToString());
 
-            sp = null;
+            sw = null;
             sw.Dispose();
         }
 
-        public override void KeyDown(KeyEventArgs e)
+        public override void keyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W)        { up    = true; }
             if (e.KeyCode == Keys.S)        { down  = true; }
@@ -232,16 +232,16 @@ namespace Nilox2DGameEngine
             if (e.KeyCode == Keys.Space)    { space = true; }
 
             //Debug
-            if(e.KeyCode == Keys.U)         { UnloadCurrentTile(); }
-            if (e.KeyCode == Keys.N)        { LoadNewTile(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X))); }
+            if(e.KeyCode == Keys.U)         { unloadCurrentTile(); }
+            if (e.KeyCode == Keys.N)        { loadNewTile(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X))); }
             if (e.KeyCode == Keys.O)
             { 
                 player.setLocation(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation);
-                Log.Error("RESET TO LOCATION: " + currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation.ToString());
+                Log.error("RESET TO LOCATION: " + currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation.ToString());
             }
         }
 
-        public override void KeyUp(KeyEventArgs e)
+        public override void keyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W)        { up    = false; }
             if (e.KeyCode == Keys.S)        { down  = false; }
@@ -254,10 +254,10 @@ namespace Nilox2DGameEngine
         // //
         //
         #region Functions
-        public void LoadNewTile(Tile t)
+        public void loadNewTile(Tile t)
         {
             //Map
-            Log.Info($"[LOADING]:  Name: {t.name};  Size:{t.tilesize};  Spawnlocation:{t.spawnlocation.ToString()}");
+            Log.info($"[LOADING]:  Name: {t.name};  Size:{t.tilesize};  Spawnlocation:{t.spawnlocation.ToString()}");
             for (int i = 0; i < t.map.GetLength(0); i++)
             {
                 for (int j = 0; j < t.map.GetLength(1); j++)
@@ -283,40 +283,40 @@ namespace Nilox2DGameEngine
             canmoveon = true;
 
             // enable Player
-            ResetPlayer();
+            resetPlayer();
             canmove = true;
 
             // enable Engine
             Engine.disablerenderer = false;
-            Log.Warning("[ENGINE]  -  EGNINE ENABLED -----------------------------------------------------------------------------------------------");
+            Log.warning("[ENGINE]  -  EGNINE ENABLED -----------------------------------------------------------------------------------------------");
         }
-        public void UnloadCurrentTile()
+        public void unloadCurrentTile()
         {      
             // Prep
             Engine.disablerenderer = true;
-            Log.Warning("[ENGINE]  -  EGNINE DISABLED ----------------------------------------------------------------------------------------------");
+            Log.warning("[ENGINE]  -  EGNINE DISABLED ----------------------------------------------------------------------------------------------");
 
             //Player
-            player.Destroy();
+            player.destroy();
             player = null;
-            Log.Warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
+            Log.warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
 
             //Kill all Actors
             while(allactors.Count > 0)
             {
                 destroyActor(allactors.ElementAt(0));
             }
-            Log.Warning("[GameMode]  -  Actors Destroyed! ------------------------------------------------------------------------------------------");
+            Log.warning("[GameMode]  -  Actors Destroyed! ------------------------------------------------------------------------------------------");
 
             //Remove all Sprites
             Engine.clearAllSprite2Ds();
-            Log.Warning("[GameMode]  -  Sprites2D Cleared! -----------------------------------------------------------------------------------------");
+            Log.warning("[GameMode]  -  Sprites2D Cleared! -----------------------------------------------------------------------------------------");
 
-            Log.Warning("[GameMode]  -  Tile UNLOADED! ---------------------------------------------------------------------------------------------");
+            Log.warning("[GameMode]  -  Tile UNLOADED! ---------------------------------------------------------------------------------------------");
             Thread.Sleep(100);
         }
 
-        public void ResetPlayer()
+        public void resetPlayer()
         {
             Tile t = currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X));
             player.setLocation(new Vector2(t.spawnlocation.X, t.spawnlocation.Y));
@@ -404,12 +404,12 @@ namespace Nilox2DGameEngine
                 case Class.enemie:
                     {
                         Sprite2D sprite = a.sprite;
-                        sprite.DestroySelf();
+                        sprite.destroySelf();
 
                         allenemies.Remove((Enemy)a);
                         allactors.Remove(a);
 
-                        Log.Warning("[DESTROYED][ENEMY]  -  {" + a.sprite.name + "}");
+                        Log.warning("[DESTROYED][ENEMY]  -  {" + a.sprite.name + "}");
                         a = null;
 
                         break;
@@ -417,20 +417,20 @@ namespace Nilox2DGameEngine
                 case Class.projectile:
                     {
                         Sprite2D sprite = a.sprite;
-                        sprite.DestroySelf();
+                        sprite.destroySelf();
 
                         allprojectiles.Remove((Projectile)a);
                         allactors.Remove(a);
 
-                        Log.Warning("[DESTROYED][PROJECTILE]  -  {" + a.sprite.name + "}");
+                        Log.warning("[DESTROYED][PROJECTILE]  -  {" + a.sprite.name + "}");
                         a = null;
 
                         break;
                     }
                 case Class.player:
                     {
-                        player.Destroy();
-                        player.sprite.DestroySelf();
+                        player.destroy();
+                        player.sprite.destroySelf();
                         player = null;
 
                         break;
@@ -438,12 +438,12 @@ namespace Nilox2DGameEngine
                 case Class.item:
                     {
                         Sprite2D sprite = a.sprite;
-                        sprite.DestroySelf();
+                        sprite.destroySelf();
 
                         allitems.Remove((Item)a);
                         allactors.Remove(a);
 
-                        Log.Warning("[DESTROYED][Item]  -  {" + a.sprite.name + "}");
+                        Log.warning("[DESTROYED][Item]  -  {" + a.sprite.name + "}");
                         a = null;
 
                         break;

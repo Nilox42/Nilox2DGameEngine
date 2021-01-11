@@ -13,7 +13,7 @@ namespace Nilox2DGameEngine.Character
     {
         #region Init
         GameMode gm = null;
-        Vector2 lastPos = Vector2.Zero();
+        Vector2 lastPos = Vector2.zero();
 
         int health = 100;
         int maxhealth = 100;
@@ -43,7 +43,7 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region abstract functions
-        public override void Damge(Actor instigator, int damage)
+        public override void damge(Actor instigator, int damage)
         {
             health -= damage;
 
@@ -51,22 +51,22 @@ namespace Nilox2DGameEngine.Character
 
             if (health <= 0) 
             {
-                Log.Error("[PLAYER]  -  Died!");
+                Log.error("[PLAYER]  -  Died!");
                 Engine.Window.Close();
             }
 
-            Log.Warning("[PLAYER]  -  Took Damage");
+            Log.warning("[PLAYER]  -  Took Damage");
         }
 
-        public override void Destroy()
+        public override void destroy()
         {
             gm.UnloadCurrentTile();
         }
 
-        public override void Update()
+        public override void update()
         {
             // Collider
-            if (sprite.IsCollidingWithTag("collider") != null)
+            if (sprite.isCollidingWithTag("collider") != null)
             {
                 location.X = lastPos.X;
                 location.Y = lastPos.Y;
@@ -78,13 +78,13 @@ namespace Nilox2DGameEngine.Character
             }
 
             // Mapmovement
-            if (sprite.IsCollidingWithTag("doorright") != null && gm.canmoveon && gm.ismoving == false)
+            if (sprite.isCollidingWithTag("doorright") != null && gm.canmoveon && gm.ismoving == false)
             {
                 gm.currentLevel.moveRight();
                 gm.canmoveon = false;
                 gm.ismoving = true;
             }
-            if (sprite.IsCollidingWithTag("doorleft") != null && gm.canmoveback && gm.ismoving == false)
+            if (sprite.isCollidingWithTag("doorleft") != null && gm.canmoveback && gm.ismoving == false)
             {
                 gm.currentLevel.moveLeft();
                 gm.canmoveback = false;
@@ -92,11 +92,11 @@ namespace Nilox2DGameEngine.Character
             }
 
             // Coin 
-            Sprite2D coin = sprite.IsCollidingWithTag("coin");
+            Sprite2D coin = sprite.isCollidingWithTag("coin");
             if (coin != null)
             {
                 coins++;
-                coin.actor.Destroy();
+                coin.actor.destroy();
                 Engine.Window.label1.Text = coins.ToString();
             }
 
@@ -104,7 +104,7 @@ namespace Nilox2DGameEngine.Character
             if (coins >= 3 && gm.ismoving == false && gm.canmoveon == false)
             {
                 gm.canmoveon = true;
-                Log.Warning("[CINDITION] - Coin Condition met");
+                Log.warning("[CINDITION] - Coin Condition met");
             }
         }
         #endregion
@@ -116,38 +116,38 @@ namespace Nilox2DGameEngine.Character
         #region pikups
         public void keypickup()
         {
-            Sprite2D key0 = sprite.IsCollidingWithTag("key");
+            Sprite2D key0 = sprite.isCollidingWithTag("key");
             if (key0 != null)
             {
-                key0.DestroySelf();
+                key0.destroySelf();
                 key0 = null;
             }
         }
         public void healthpickup()
         {
-            Sprite2D heart0 = sprite.IsCollidingWithTag("heart");
+            Sprite2D heart0 = sprite.isCollidingWithTag("heart");
             if (heart0 != null)
             {
-                heart0.DestroySelf();
+                heart0.destroySelf();
                 heart0 = null;
             }
         }
         public void coinpickup()
         {
-            Sprite2D coin0 = sprite.IsCollidingWithTag("coin");
+            Sprite2D coin0 = sprite.isCollidingWithTag("coin");
             if (coin0 != null)
             {
-                coin0.DestroySelf();
+                coin0.destroySelf();
                 coin0 = null;
             }
         }
         #endregion
 
-        public void Hide()
+        public void hide()
         {
             sprite.draw = false;
         }
-        public void Show()
+        public void show()
         {
             sprite.draw = true;
         }

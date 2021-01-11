@@ -19,8 +19,9 @@ namespace Nilox2DGameEngine.Map
 
         public List<Tile> tiles = new List<Tile>();
 
-        GameMode GM;
+        GameMode gm;
 
+        /*
         public string[,] Map =
         {
             {"w","s","s","s","s","s","s","s","s","s","s","s","s","s","w"},
@@ -57,17 +58,18 @@ namespace Nilox2DGameEngine.Map
             {".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},
             {".",".",".",".",".",".",".",".",".",".",".",".",".",".","."},
         };
+        */
 
-        public Level(string name0,GameMode DG)
+        public Level(string name0,GameMode dg)
         {
             worldname = name0;
             directory = Application.StartupPath + @"\Levels\" + worldname;
-            this.GM = DG;
+            this.gm = dg;
 
-            tiles = NLoad.TilesL(directory);
+            tiles = NLoad.tilesL(directory);
 
-            GM.currentLevel = this;
-            DG.LoadNewTile(tiles.ElementAt(0));
+            gm.currentLevel = this;
+            dg.loadNewTile(tiles.ElementAt(0));
             //DG.LoadNewTile(new Tile(Map));
         }
         #endregion
@@ -79,35 +81,35 @@ namespace Nilox2DGameEngine.Map
         {
             if (currentlocation.X < tiles.Count - 1)
             {
-                Log.Info("[MOVEMENT] Moving RIGHT | " + currentlocation.X + "-->" + (currentlocation.X + 1).ToString());
+                Log.info("[MOVEMENT] Moving RIGHT | " + currentlocation.X + "-->" + (currentlocation.X + 1).ToString());
 
-                GM.UnloadCurrentTile();
-                GM.spawnPosition = new Vector2(50, 48 * 4);
+                gm.unloadCurrentTile();
+                gm.spawnPosition = new Vector2(50, 48 * 4);
                 currentlocation = new Vector2(currentlocation.X + 1, currentlocation.Y);
 
                 //GM.LoadNewTile(new Tile(Map2,"right"));
-                GM.LoadNewTile(tiles.ElementAt(Convert.ToInt32(currentlocation.X)));
+                gm.loadNewTile(tiles.ElementAt(Convert.ToInt32(currentlocation.X)));
             }
             else
             {
-                Log.Error("[MOVEMENT] Cant walk RIGHT here | currentlocation.X:" + currentlocation.X);
+                Log.error("[MOVEMENT] Cant walk RIGHT here | currentlocation.X:" + currentlocation.X);
             }
         }
         public void moveLeft()
         {
-            Log.Info("[MOVEMENT] Moving LEFT | " + currentlocation.X + "-->" + (currentlocation.X - 1).ToString());
+            Log.info("[MOVEMENT] Moving LEFT | " + currentlocation.X + "-->" + (currentlocation.X - 1).ToString());
             if (currentlocation.X > 0)
             {
-                GM.UnloadCurrentTile();
-                GM.spawnPosition = new Vector2(48 * 13, 48 * 4);
+                gm.unloadCurrentTile();
+                gm.spawnPosition = new Vector2(48 * 13, 48 * 4);
                 currentlocation = new Vector2(currentlocation.X - 1, currentlocation.Y);
 
                 //GM.LoadNewTile(new Tile(Map,"left"));
-                GM.LoadNewTile(tiles.ElementAt(Convert.ToInt32(currentlocation.X)));
+                gm.loadNewTile(tiles.ElementAt(Convert.ToInt32(currentlocation.X)));
             }
             else
             {
-                Log.Error("[MOVEMENT] Cant walk LEFT here | currentlocation.X:" + currentlocation.X);
+                Log.error("[MOVEMENT] Cant walk LEFT here | currentlocation.X:" + currentlocation.X);
             }
         }
         #endregion
