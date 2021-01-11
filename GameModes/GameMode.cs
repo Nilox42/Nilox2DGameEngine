@@ -77,7 +77,7 @@ namespace Nilox2DGameEngine
         public override void OnUpdate()
         {
             #region Player
-            player.Update();
+            player.update();
             #endregion
             //
             //
@@ -170,7 +170,7 @@ namespace Nilox2DGameEngine
             foreach (Actor a in allactors)
             {
                 //Update all Actors
-                a.Update();
+                a.update();
                 //
                 if (a.clas == Class.enemie)
                 {
@@ -182,7 +182,7 @@ namespace Nilox2DGameEngine
                             a.sprite.location.Y < damage.location.Y + damage.scale.Y &&
                             a.sprite.location.Y + a.sprite.scale.Y > damage.location.Y)
                         {
-                            a.Damge(player, 1000);
+                            a.damge(player, 1000);
                         }
                     }
                 }
@@ -297,7 +297,7 @@ namespace Nilox2DGameEngine
             Log.Warning("[ENGINE]  -  EGNINE DISABLED ----------------------------------------------------------------------------------------------");
 
             //Player
-            player.Destroy();
+            player.destroy();
             player = null;
             Log.Warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
 
@@ -429,7 +429,7 @@ namespace Nilox2DGameEngine
                     }
                 case Class.player:
                     {
-                        player.Destroy();
+                        player.destroy();
                         player.sprite.DestroySelf();
                         player = null;
 

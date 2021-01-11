@@ -21,7 +21,7 @@ namespace Nilox2DGameEngine.Character
 
             if (sprite.IsCollidingWithTag("collider") != null)
             {
-                Destroy();
+                destroy();
             }
         }
         #endregion
@@ -29,16 +29,16 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region abstact functions
-        public override void Damge(Actor instigator, int damage)
+        public override void damge(Actor instigator, int damage)
         {
         }
 
-        public override void Destroy()
+        public override void destroy()
         {
             tgm.destroyActor(this);
         }
 
-        public override void Update()
+        public override void update()
         {
         }
         #endregion

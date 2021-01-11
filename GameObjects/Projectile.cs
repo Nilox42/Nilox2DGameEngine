@@ -38,17 +38,17 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region abstract functions
-        public override void Destroy()
+        public override void destroy()
         {
             sprite.DestroySelf();
             gm.destroyActor(this);
         }
 
-        public override void Damge(Actor instigator, int damage)
+        public override void damge(Actor instigator, int damage)
         {
         }
 
-        public override void Update()
+        public override void update()
         {
         }
         #endregion
@@ -60,7 +60,7 @@ namespace Nilox2DGameEngine.Character
         {
             sec.Stop();
             sec = null;
-            this.Destroy();
+            this.destroy();
         }
 
         private void updatesprite()

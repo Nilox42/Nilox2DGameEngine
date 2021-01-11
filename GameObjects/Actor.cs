@@ -29,8 +29,8 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region core
-        public abstract void Destroy();
-        public abstract void Update();
+        public abstract void destroy();
+        public abstract void update();
         #endregion
         //
         //
@@ -46,7 +46,7 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region Damage
-        public abstract void Damge(Actor instigator, int damage);
+        public abstract void damge(Actor instigator, int damage);
         #endregion
     }
 }

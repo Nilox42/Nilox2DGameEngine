@@ -43,7 +43,7 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region abstract functions
-        public override void Damge(Actor instigator, int damage)
+        public override void damge(Actor instigator, int damage)
         {
             health -= damage;
 
@@ -58,12 +58,12 @@ namespace Nilox2DGameEngine.Character
             Log.Warning("[PLAYER]  -  Took Damage");
         }
 
-        public override void Destroy()
+        public override void destroy()
         {
             
         }
 
-        public override void Update()
+        public override void update()
         {
             // Collider
             if (sprite.IsCollidingWithTag("collider") != null)
@@ -96,7 +96,7 @@ namespace Nilox2DGameEngine.Character
             if (coin != null)
             {
                 coins++;
-                coin.actor.Destroy();
+                coin.actor.destroy();
                 Engine.Window.label1.Text = coins.ToString();
             }
 

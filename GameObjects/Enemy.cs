@@ -35,7 +35,7 @@ namespace Nilox2DGameEngine.Character
 
             if (sprite.IsCollidingWithTag("collider") != null)
             {
-                Destroy();
+                destroy();
             }
         }
         #endregion
@@ -43,14 +43,14 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region abstract functions
-        public override void Destroy()
+        public override void destroy()
         {
             Log.Info("[ENEMIE] - [DIED] - " + sprite.name);
 
             tgm.destroyActor(this);
         }
         //
-        public override void Update()
+        public override void update()
         {
             Sprite2D player = tgm.player.sprite;
             //Movement
@@ -74,7 +74,7 @@ namespace Nilox2DGameEngine.Character
 
             if (player.IsCollidingWithSprite(player,this.sprite))
             {
-                player.actor.Damge(this,damagepotential);
+                player.actor.damge(this,damagepotential);
                 damagepotential = 0;
                 tgm.destroyActor(this);
             }
@@ -83,7 +83,7 @@ namespace Nilox2DGameEngine.Character
 
         }
         //
-        public override void Damge(Actor instigator, int damage)
+        public override void damge(Actor instigator, int damage)
         {
             health -= damage;
 
@@ -93,7 +93,7 @@ namespace Nilox2DGameEngine.Character
             {
                 alive = false;
                 sprite.draw = false;
-                Destroy();
+                destroy();
             }
         }
         #endregion
