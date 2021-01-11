@@ -1060,7 +1060,7 @@ namespace Nilox2DGameEngine.Editor
             // 
             this.MouseCoordsTimer.Enabled = true;
             this.MouseCoordsTimer.Interval = 20;
-            this.MouseCoordsTimer.Tick += new System.EventHandler(this.CoordsTick);
+            this.MouseCoordsTimer.Tick += new System.EventHandler(this.coordsTick);
             // 
             // Builder
             // 
@@ -1335,11 +1335,11 @@ namespace Nilox2DGameEngine.Editor
                 //Check if there is i Tile to load
                 if (LB.allTiles.Count > 0)
                 {
-                    LB.NewLoadNewTile(LB.allTiles.ElementAt(0));
+                    LB.newLoadNewTile(LB.allTiles.ElementAt(0));
                 }
 
                 //Redraw Window
-                LB.Window.Refresh();
+                LB.window.Refresh();
 
                 unlockControlls();
             }
@@ -1351,16 +1351,16 @@ namespace Nilox2DGameEngine.Editor
 
         private void bt_UnLoadTile_Click(object sender, EventArgs e)
         {
-            LB.UnloadCurrentTile();
-            LB.Window.Refresh();
+            LB.unloadCurrentTile();
+            LB.window.Refresh();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             if (nudIndex.Value <= LB.allTiles.Count - 1 && nudIndex.Value >= 0)
             {
-                LB.NewLoadNewTile(LB.allTiles.ElementAt((int)nudIndex.Value));
-                LB.Window.Refresh();
+                LB.newLoadNewTile(LB.allTiles.ElementAt((int)nudIndex.Value));
+                LB.window.Refresh();
 
                 LB.selectedtile = (int)nudIndex.Value;
             }
@@ -1382,7 +1382,7 @@ namespace Nilox2DGameEngine.Editor
         {
             if (nudIndex.Value <= LB.allTiles.Count - 1 && nudIndex.Value >= 0)
             {
-                LB.NewLoadNewTile(LB.allTiles.ElementAt((int)nudIndex.Value));
+                LB.newLoadNewTile(LB.allTiles.ElementAt((int)nudIndex.Value));
             }
             else
             {
@@ -1393,7 +1393,7 @@ namespace Nilox2DGameEngine.Editor
         //Welcher Btn?-----
         private void button2_Click(object sender, EventArgs e)
         {
-            LB.Window.Refresh();
+            LB.window.Refresh();
         }
         //-----------------
 
@@ -1452,7 +1452,7 @@ namespace Nilox2DGameEngine.Editor
 
             LB.allTiles.Add(new Tile(true, "Test20", 27,new Vector2(200,200)));
             LB.selectedtile = 0;
-            LB.NewLoadNewTile(LB.allTiles.ElementAt(0));
+            LB.newLoadNewTile(LB.allTiles.ElementAt(0));
             Log.Info("[NEW TILE]  -  " + LB.allTiles.ElementAt(0).name);
 
             unlockControlls();
@@ -1734,7 +1734,7 @@ namespace Nilox2DGameEngine.Editor
         //
         //
         #region CoordsTick
-        private void CoordsTick(object sender, EventArgs e)
+        private void coordsTick(object sender, EventArgs e)
         {
             lbXMouse.Text = "X: " + Convert.ToString(Cursor.Position.X);
             lbYMouse.Text = "Y: " + Convert.ToString(Cursor.Position.Y);
@@ -1752,9 +1752,9 @@ namespace Nilox2DGameEngine.Editor
     public class LevelEditor 
     {
         #region Init Builder
-        private Vector2 ScreenSize = new Vector2(1800, 1000);
+        private Vector2 screenSize = new Vector2(1800, 1000);
         private string title = "Level Builder - ";
-        public Builder Window = null;
+        public Builder window = null;
 
         private int selectedindex = 0;
         public Vector2 selectedVector = Vector2.Zero();
@@ -1762,13 +1762,13 @@ namespace Nilox2DGameEngine.Editor
 
         public void LoadBuilderGUI()
         {
-            Window = new Builder(this);
-            Window.Size = new Size((int)ScreenSize.X, (int)ScreenSize.Y);
-            Window.Text = this.title;
+            window = new Builder(this);
+            window.Size = new Size((int)screenSize.X, (int)screenSize.Y);
+            window.Text = this.title;
             //Window.FormBorderStyle = FormBorderStyle.SizableToolWindow;
-            Window.Paint += Window_Paint;
+            window.Paint += window_Paint;
             
-            Application.Run(Window);
+            Application.Run(window);
         }
         #endregion
         //
@@ -1808,7 +1808,7 @@ namespace Nilox2DGameEngine.Editor
         // //
         //
         #region Core Functions
-        private void Window_Paint(object sender, PaintEventArgs e)
+        private void window_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             g.Clear(SystemColors.ControlLight);
@@ -1826,7 +1826,7 @@ namespace Nilox2DGameEngine.Editor
             }
         }
 
-        public void LoadNewTile(Tile t)
+        public void loadNewTile(Tile t)
         {
             allSprite2Ds.Clear();
             Log.Info("[LOADING]:" + t.name);
@@ -1858,7 +1858,7 @@ namespace Nilox2DGameEngine.Editor
             }
         }
 
-        public void NewLoadNewTile(Tile t , int selected = 0)
+        public void newLoadNewTile(Tile t , int selected = 0)
         {
             allSprite2Ds.Clear();
             Log.Info("[LOADING] - [Tile]:" + t.name);
@@ -1876,12 +1876,12 @@ namespace Nilox2DGameEngine.Editor
                     }
                 }
             }
-            Window.lb_tilesize.Text = "Tilesize:" + t.tilesize;
+            window.lb_tilesize.Text = "Tilesize:" + t.tilesize;
 
-            Window.Refresh();
+            window.Refresh();
         }
 
-        public void UnloadCurrentTile()
+        public void unloadCurrentTile()
         {
             Log.Warning("Clearing all Sprites");
             int count = Engine.allSprites.Count;
@@ -1899,7 +1899,7 @@ namespace Nilox2DGameEngine.Editor
             {
                 if (index > 0)
                 {
-                    Window.setPictureBoxes(index - 1, b.image);
+                    window.setPictureBoxes(index - 1, b.image);
                 }
                 index++;
             }
@@ -1924,8 +1924,8 @@ namespace Nilox2DGameEngine.Editor
                     --selectedindex;
                 }
 
-                Window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
-                Window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
+                window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
+                window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
 
                 //allSprite2Ds.ElementAt(selectedindex).setSelected(true);
             }
@@ -1940,17 +1940,17 @@ namespace Nilox2DGameEngine.Editor
                     ++selectedindex;
                 }
 
-                Window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
-                Window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
+                window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
+                window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
 
                 //allSprite2Ds.ElementAt(selectedindex).setSelected(true);
             }
-            Window.Refresh();
+            window.Refresh();
 
             selectedVector = selectedindextovector2d(selectedindex);
 
-            Window.lb_debug_X.Text = "X:" + selectedVector.X.ToString();
-            Window.lb_debug_Y.Text = "Y:" + selectedVector.Y.ToString();
+            window.lb_debug_X.Text = "X:" + selectedVector.X.ToString();
+            window.lb_debug_Y.Text = "Y:" + selectedVector.Y.ToString();
         }
 
         public void moveleft(int dir , int tilesize = 15)
@@ -1966,8 +1966,8 @@ namespace Nilox2DGameEngine.Editor
                     selectedindex = selectedindex - tilesize;
                 }
 
-                Window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
-                Window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
+                window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
+                window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
 
                 //allSprite2Ds.ElementAt(selectedindex).setSelected(true);
             }
@@ -1982,18 +1982,18 @@ namespace Nilox2DGameEngine.Editor
                     selectedindex = selectedindex + tilesize;
                 }
 
-                Window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
-                Window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
+                window.pb_selector.Top = (int)allSprite2Ds.ElementAt(selectedindex).location.Y;
+                window.pb_selector.Left = (int)allSprite2Ds.ElementAt(selectedindex).location.X;
 
 
                 //allSprite2Ds.ElementAt(selectedindex).setSelected(true);
             }
-            Window.Refresh();
+            window.Refresh();
 
             selectedVector = selectedindextovector2d(selectedindex);
 
-            Window.lb_debug_X.Text = "X:" + selectedVector.X.ToString();
-            Window.lb_debug_Y.Text = "Y:" + selectedVector.Y.ToString();
+            window.lb_debug_X.Text = "X:" + selectedVector.X.ToString();
+            window.lb_debug_Y.Text = "Y:" + selectedVector.Y.ToString();
         }
 
         private Vector2 selectedindextovector2d(int si ,int tilesize = 15)
@@ -2042,11 +2042,11 @@ namespace Nilox2DGameEngine.Editor
             //Replace name
             if (exists == true)
             {
-                allTiles.ElementAt(selectedtile).map[(int)location.Y, (int)location.X] = Window.tb_name.Text;
-                NewLoadNewTile(allTiles.ElementAt(selectedtile), selectedindex);
+                allTiles.ElementAt(selectedtile).map[(int)location.Y, (int)location.X] = window.tb_name.Text;
+                newLoadNewTile(allTiles.ElementAt(selectedtile), selectedindex);
 
                 Log.Warning("Sprite at:   X:" + selectedVector.X + "  Y" + selectedVector.Y + "   swaped for:" + name);
-                Window.Refresh();
+                window.Refresh();
             }
             else
             {
@@ -2065,9 +2065,9 @@ namespace Nilox2DGameEngine.Editor
 
         public void pbSelect(int i)
         {
-            Window.tb_name.Text = allimages[i].name;
+            window.tb_name.Text = allimages[i].name;
 
-            replacecoorinate(selectedVector, Window.tb_name.Text);
+            replacecoorinate(selectedVector, window.tb_name.Text);
         }
         #endregion
     }
