@@ -98,11 +98,11 @@ namespace Nilox2DGameEngine.Core
         //Engine varibles
         public static bool disablerenderer = true;
         public static int frametime = 20;
-        private Thread GameLoopThread = null;
+        private Thread gameLoopThread = null;
 
         //Infi
-        Stopwatch SW = new Stopwatch();
-        public static int FrameCount = 0;
+        Stopwatch sw = new Stopwatch();
+        public static int frameCount = 0;
 
       //Engine lists
         //Shapes
@@ -123,8 +123,8 @@ namespace Nilox2DGameEngine.Core
 
         //Camera varibles
         #region Camera
-        public static Vector2 CameraPostition = new Vector2(0, 0);
-        public float CameraAngle = 0f;
+        public static Vector2 cameraPos = new Vector2(0, 0);
+        public float cameraAngle = 0f;
         #endregion
 
         //Logging
@@ -163,16 +163,16 @@ namespace Nilox2DGameEngine.Core
             Window.Text = this.Title;
             Window.FormBorderStyle = FormBorderStyle.Sizable;
 
-            Window.Paint += Renderer;
-            Window.KeyDown += Window_KeyDown;
-            Window.KeyUp += Window_KeyUp;
-            Window.FormClosing += Window_FormClosing;
+            Window.Paint += renderer;
+            Window.KeyDown += window_KeyDown;
+            Window.KeyUp += window_KeyUp;
+            Window.FormClosing += window_FormClosing;
 
             
 
             //Initiate Core Functions
-            GameLoopThread = new Thread(GameLoop);
-            GameLoopThread.Start();
+            gameLoopThread = new Thread(gameLoop);
+            gameLoopThread.Start();
             Application.Run(Window);
         }
         #endregion
@@ -181,13 +181,13 @@ namespace Nilox2DGameEngine.Core
         //
         #region Input
 
-        private void Window_KeyUp(object sender, KeyEventArgs e)
+        private void window_KeyUp(object sender, KeyEventArgs e)
         {
-            KeyUp(e);
+            keyUp(e);
         }
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private void window_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDown(e);
+            keyDown(e);
         }
         #endregion
         //
@@ -197,7 +197,7 @@ namespace Nilox2DGameEngine.Core
 
         //Remove marked Sprite2D Polygons Shape2D and BaseImage
         #region TrashRemoval
-        private void TrashRemoval()
+        private void trashRemoval()
         {
             //Sprite Trash Removal
             if (spritestoremove.Count > 0)
@@ -252,7 +252,7 @@ namespace Nilox2DGameEngine.Core
         {
             foreach (Sprite2D sprite in allSprites)
             {
-                UnRegisterSprite(sprite);
+                unRegisterSprite(sprite);
             }
 
             if (allSprites.Count > 0)
@@ -264,21 +264,21 @@ namespace Nilox2DGameEngine.Core
 
         //REgister Sprite2D Shape2D and BaseImage
         #region Registration 
-        public static void RegisterShape(Shape2D shape)
+        public static void registerShape(Shape2D shape)
         {
             allShapes.Add(shape);
         }
-        public static void RegisterSprite(Sprite2D sprite)
+        public static void registerSprite(Sprite2D sprite)
         {
             allSprites.Add(sprite);
             Log.Info($"[SPRITE2D]  -  ({sprite.name}  X:{sprite.location.X}  Y:{sprite.location.Y} ) - Has been registered!  -  now: {allSprites.Count}");
         }
-        public static void RegisterImage(BaseImage image)
+        public static void registerImage(BaseImage image)
         {
             allimages.Add(image);
             Log.Load($"[BASEIMAGE]  -  ({image.name}  Tag:{image.tag}  loaded from  [{image.url}]  -  now: {allSprites.Count}  -  now: {allSprites.Count}");
         }
-        public static void RegisterPolygon(Polygon polygon)
+        public static void registerPolygon(Polygon polygon)
         {
             allPolygons.Add(polygon);
         }
@@ -286,7 +286,7 @@ namespace Nilox2DGameEngine.Core
 
         //Unregister Sprite2D Shape2D and BaseImage
         #region Unregistration
-        public static void UnRegisterSprite(Sprite2D sprite)
+        public static void unRegisterSprite(Sprite2D sprite)
         {
             //Set draw to false
             sprite.draw = false;
@@ -297,12 +297,12 @@ namespace Nilox2DGameEngine.Core
             Log.Info($"[SPRITE2D][REMOVED]({sprite.name} @  X:{sprite.location.X}  Y:{sprite.location.Y}) - Has been marked for destruction!");
             sprite = null;
         }
-        public static void UnRegisterShape(Shape2D shape)
+        public static void unRegisterShape(Shape2D shape)
         {
             shapestoremove.Add(shape);
             Log.Info($"[SHAPE2D][REMOVED](SHAPE @  X:{shape.location.X}  Y:{shape.location.Y}) - Has been marked for destruction!");
         }
-        public static void UnRegisterPolygon(Polygon polygon)
+        public static void unRegisterPolygon(Polygon polygon)
         {
             polygonstoremove.Add(polygon);
             Log.Info($"[SHAPE2D][REMOVED]({polygon.color} Polygon - Has been marked for destruction!");
@@ -314,13 +314,13 @@ namespace Nilox2DGameEngine.Core
             Window.lbfps.Text = value.ToString();
         }
 
-        private void Window_FormClosing(object sender, FormClosingEventArgs e)
+        private void window_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Call abstrakt onClose()
-            OnClose();
+            onClose();
 
             // Abort GameLoopThread
-            GameLoopThread.Abort();
+            gameLoopThread.Abort();
 
             // Clear Lists
             allSprites.Clear();
@@ -335,19 +335,19 @@ namespace Nilox2DGameEngine.Core
         //
         //
         #region Rendering
-        void GameLoop()
+        void gameLoop()
         {
-            OnLoad();
+            onLoad();
 
-            while (GameLoopThread.IsAlive)
+            while (gameLoopThread.IsAlive)
             {
                 try
                 {
                     if (disablerenderer == false)
                     {
-                        OnDraw();
+                        onDraw();
                         Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
-                        OnUpdate();
+                        onUpdate();
                     }
                     
 
@@ -360,10 +360,10 @@ namespace Nilox2DGameEngine.Core
             }
         }
 
-        private void Renderer(object sender, PaintEventArgs e)
+        private void renderer(object sender, PaintEventArgs e)
         {
             //Stopwatch restart
-            SW.Restart();
+            sw.Restart();
 
             if (disablerenderer == false)
             {
@@ -372,8 +372,8 @@ namespace Nilox2DGameEngine.Core
                 Graphics g = e.Graphics;
                 g.Clear(BackgroundColor);
                 //Camera Transformation
-                g.TranslateTransform(CameraPostition.X, CameraPostition.Y);
-                g.RotateTransform(CameraAngle);
+                g.TranslateTransform(cameraPos.X, cameraPos.Y);
+                g.RotateTransform(cameraAngle);
 
                 //Draw all Shapes
                 foreach (Shape2D shape in allShapes)
@@ -387,10 +387,10 @@ namespace Nilox2DGameEngine.Core
                     foreach (Sprite2D sprite in allSprites)
                     {
                         //Check if Sprite is on screen and only draw it if it is
-                        if (sprite.location.X < CameraPostition.X + Window.Width &&
-                            sprite.location.X + sprite.scale.X > CameraPostition.X &&
-                            sprite.location.Y < CameraPostition.Y + Window.Height &&
-                            sprite.location.Y + sprite.scale.Y > CameraPostition.Y &&
+                        if (sprite.location.X < cameraPos.X + Window.Width &&
+                            sprite.location.X + sprite.scale.X > cameraPos.X &&
+                            sprite.location.Y < cameraPos.Y + Window.Height &&
+                            sprite.location.Y + sprite.scale.Y > cameraPos.Y &&
 
                             //Check if sprite should be drawn
                             sprite.draw == true)
@@ -409,7 +409,7 @@ namespace Nilox2DGameEngine.Core
                 }
                 catch
                 {
-                    Log.Error("Could not draw " + FrameCount);
+                    Log.Error("Could not draw " + frameCount);
                 }
 
                 //Draw all Polygons
@@ -426,13 +426,13 @@ namespace Nilox2DGameEngine.Core
             }
 
             //Call Trashremoval
-            TrashRemoval();
+            trashRemoval();
 
             //Count Frame
-            ++FrameCount;
+            ++frameCount;
 
             //Stop Stopwatch
-            SW.Stop();
+            sw.Stop();
             //Log.Error("[PIPELINE]  -  Missiseconds:" + (SW.ElapsedMilliseconds));
         }
         #endregion
@@ -440,17 +440,17 @@ namespace Nilox2DGameEngine.Core
         //
         //
         #region Abstract Functions
-        public abstract void OnLoad();
+        public abstract void onLoad();
 
-        public abstract void OnUpdate();
+        public abstract void onUpdate();
 
-        public abstract void OnDraw();
+        public abstract void onDraw();
 
-        public abstract void OnClose();
+        public abstract void onClose();
 
-        public abstract void KeyDown(KeyEventArgs e);
+        public abstract void keyDown(KeyEventArgs e);
 
-        public abstract void KeyUp(KeyEventArgs e);
+        public abstract void keyUp(KeyEventArgs e);
         #endregion
     }
     #endregion

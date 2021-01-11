@@ -106,7 +106,7 @@ namespace Nilox2DGameEngine.Character
             sprite.location = location;
         }
         //
-        public void Shoot()
+        public void shoot()
         {
             if (index > 120)
             {

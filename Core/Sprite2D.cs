@@ -47,7 +47,7 @@ namespace Nilox2DGameEngine.Core
         {
             if (isleveleditor == false)
             {
-                Engine.UnRegisterSprite(this);
+                Engine.unRegisterSprite(this);
             }
             else
             {
@@ -75,7 +75,7 @@ namespace Nilox2DGameEngine.Core
                     DestroySelf();
                 }
 
-                Engine.RegisterSprite(this);
+                Engine.registerSprite(this);
             }
 
             //get image from Level Builder
@@ -155,7 +155,7 @@ namespace Nilox2DGameEngine.Core
         public bool isonScreen()
         {
             bool res = false;
-            Vector2 cp = Engine.CameraPostition;
+            Vector2 cp = Engine.cameraPos;
             Vector2 cs = new Vector2(Engine.Window.Width ,Engine.Window.Height);
 
             if (this.location.X < cp.X          + cs.X &&

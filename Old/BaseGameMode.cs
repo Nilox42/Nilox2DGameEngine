@@ -32,19 +32,19 @@ namespace Nilox2DGameEngine.Core
         // //
         //
         #region Overrrides
-        public override void OnLoad()
+        public override void onLoad()
         {
             BackgroundColor = Color.Black;
 
             player = new Sprite2D(new Vector2(48, 48), new Vector2(48, 48), "Overworld/Objects/rocks1_7", "Player", true);
         }
 
-        public override void OnDraw()
+        public override void onDraw()
         {
             
         }
 
-        public override void OnUpdate()
+        public override void onUpdate()
         {
             if (up)
             {
@@ -74,7 +74,7 @@ namespace Nilox2DGameEngine.Core
             }
         }
 
-        public override void KeyDown(KeyEventArgs e)
+        public override void keyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W) { up = true; }
             if (e.KeyCode == Keys.S) { down = true; }
@@ -82,7 +82,7 @@ namespace Nilox2DGameEngine.Core
             if (e.KeyCode == Keys.A) { left = true; }
         }
 
-        public override void KeyUp(KeyEventArgs e)
+        public override void keyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W) { up = false; }
             if (e.KeyCode == Keys.S) { down = false; }
@@ -123,7 +123,7 @@ namespace Nilox2DGameEngine.Core
             }
         }
 
-        public override void OnClose()
+        public override void onClose()
         {
             throw new NotImplementedException();
         }

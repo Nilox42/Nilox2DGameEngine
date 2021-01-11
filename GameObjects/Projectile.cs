@@ -30,7 +30,7 @@ namespace Nilox2DGameEngine.Character
             gm = gm0;
 
             sec = new System.Timers.Timer(lifespan * 1000);
-            sec.Elapsed += Sec_Elapsed;
+            sec.Elapsed += sec_Elapsed;
             sec.Start();
         }
         #endregion
@@ -56,7 +56,7 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region dunctions
-        private void Sec_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void sec_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             sec.Stop();
             sec = null;

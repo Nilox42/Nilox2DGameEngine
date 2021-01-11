@@ -81,11 +81,11 @@ namespace Nilox2DGameEngine.Util
         #region location Converts
         public static Vector2 toScreenLocation(Vector2 gamelocation)
         {
-            return gamelocation + Engine.CameraPostition;
+            return gamelocation + Engine.cameraPos;
         }
         public static Vector2 toGameLocation(Vector2 screenLocation)
         {
-            return screenLocation - Engine.CameraPostition;
+            return screenLocation - Engine.cameraPos;
         }
         #endregion
     }

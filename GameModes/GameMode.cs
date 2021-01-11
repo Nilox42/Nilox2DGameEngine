@@ -63,18 +63,18 @@ namespace Nilox2DGameEngine
         // //
         //
         #region Overrrides
-        public override void OnLoad()
+        public override void onLoad()
         {
             BackgroundColor = Color.Black;
             currentLevel = new Level("One",this);
         }
 
-        public override void OnDraw()
+        public override void onDraw()
         {
             
         }
 
-        public override void OnUpdate()
+        public override void onUpdate()
         {
             #region Player
             player.update();
@@ -196,14 +196,14 @@ namespace Nilox2DGameEngine
             #endregion
         }
 
-        public override void OnClose()
+        public override void onClose()
         {
             Stopwatch sp = new Stopwatch();
             sp.Start();
 
             string name = "log" + Engine.sessionkey;
             string path = Application.StartupPath + @"\log" + @"\" + name + ".txt";
-            string time = Engine.FrameCount.ToString();
+            string time = Engine.frameCount.ToString();
 
             File.WriteAllText(path, " ");
 
@@ -223,7 +223,7 @@ namespace Nilox2DGameEngine
             sw.Dispose();
         }
 
-        public override void KeyDown(KeyEventArgs e)
+        public override void keyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W)        { up    = true; }
             if (e.KeyCode == Keys.S)        { down  = true; }
@@ -241,7 +241,7 @@ namespace Nilox2DGameEngine
             }
         }
 
-        public override void KeyUp(KeyEventArgs e)
+        public override void keyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W)        { up    = false; }
             if (e.KeyCode == Keys.S)        { down  = false; }

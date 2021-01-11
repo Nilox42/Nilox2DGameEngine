@@ -25,7 +25,7 @@ namespace Nilox2DGameEngine.Core
             Log.Info($"[SHAPE2D]({Tag}) - Has been registered!");
             if (editor == false)
             {
-                Engine.RegisterShape(this);
+                Engine.registerShape(this);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Nilox2DGameEngine.Core
             Log.Info($"[SHAPE2D]({Tag}) - Has been destroyed!");
             if (editor == false)
             {
-                Engine.UnRegisterShape(this);
+                Engine.unRegisterShape(this);
             }
         }
 

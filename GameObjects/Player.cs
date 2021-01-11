@@ -143,11 +143,11 @@ namespace Nilox2DGameEngine.Character
         }
         #endregion
 
-        public void Hide()
+        public void hide()
         {
             sprite.draw = false;
         }
-        public void Show()
+        public void show()
         {
             sprite.draw = true;
         }
