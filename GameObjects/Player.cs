@@ -60,7 +60,7 @@ namespace Nilox2DGameEngine.Character
 
         public override void destroy()
         {
-            gm.UnloadCurrentTile();
+            
         }
 
         public override void update()
@@ -81,14 +81,11 @@ namespace Nilox2DGameEngine.Character
             if (sprite.isCollidingWithTag("doorright") != null && gm.canmoveon && gm.ismoving == false)
             {
                 gm.currentLevel.moveRight();
-                gm.canmoveon = false;
-                gm.ismoving = true;
             }
             if (sprite.isCollidingWithTag("doorleft") != null && gm.canmoveback && gm.ismoving == false)
             {
                 gm.currentLevel.moveLeft();
-                gm.canmoveback = false;
-                gm.ismoving = true;
+               
             }
 
             // Coin 

@@ -44,6 +44,13 @@ namespace Nilox2DGameEngine.Util
             Log.line($"[ERROR] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }
+        public static void debug(string msg)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine($"[DEBUG] - {msg}");
+            Log.line($"[DEBUG] - {msg}");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
         //
         //
         //

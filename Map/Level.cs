@@ -60,16 +60,16 @@ namespace Nilox2DGameEngine.Map
         };
         */
 
-        public Level(string name0,GameMode dg)
+        public Level(string name0,GameMode gm0)
         {
             worldname = name0;
             directory = Application.StartupPath + @"\Levels\" + worldname;
-            this.gm = dg;
+            this.gm = gm0;
 
             tiles = NLoad.tilesL(directory);
 
             gm.currentLevel = this;
-            dg.loadNewTile(tiles.ElementAt(0));
+            gm0.loadNewTile(tiles.ElementAt(0));
             //DG.LoadNewTile(new Tile(Map));
         }
         #endregion
@@ -82,6 +82,9 @@ namespace Nilox2DGameEngine.Map
             if (currentlocation.X < tiles.Count - 1)
             {
                 Log.info("[MOVEMENT] Moving RIGHT | " + currentlocation.X + "-->" + (currentlocation.X + 1).ToString());
+
+                gm.canmoveon = false;
+                gm.ismoving = true;
 
                 gm.unloadCurrentTile();
                 gm.spawnPosition = new Vector2(50, 48 * 4);
@@ -97,9 +100,13 @@ namespace Nilox2DGameEngine.Map
         }
         public void moveLeft()
         {
-            Log.info("[MOVEMENT] Moving LEFT | " + currentlocation.X + "-->" + (currentlocation.X - 1).ToString());
             if (currentlocation.X > 0)
             {
+                Log.info("[MOVEMENT] Moving LEFT | " + currentlocation.X + "-->" + (currentlocation.X - 1).ToString());
+
+                gm.canmoveback = false;
+                gm.ismoving = true;
+
                 gm.unloadCurrentTile();
                 gm.spawnPosition = new Vector2(48 * 13, 48 * 4);
                 currentlocation = new Vector2(currentlocation.X - 1, currentlocation.Y);

@@ -20,13 +20,13 @@ namespace Nilox2DGameEngine
         #region Init
       //Level
         public Level currentLevel = null;
-        public bool canmoveon = false;
+        public bool canmoveon = true;
         public bool canmoveback = false;
         public bool ismoving = false;
 
         //Player
         public Player player = null;
-        public bool canmove = false;
+        public bool playercanmove = false;
         //Character Movement
         private bool left;
         private bool right;
@@ -41,7 +41,7 @@ namespace Nilox2DGameEngine
         Sprite2D damage = null;
         //Movement
         private float maxspeed = 13;
-        private Vector2 lastPos = Vector2.zero();
+        //private Vector2 lastPos = Vector2.zero();
         public Vector2 spawnPosition = new Vector2(50, 48 * 4);
 
       //Actors 
@@ -97,7 +97,7 @@ namespace Nilox2DGameEngine
             //
             //
             #region Input
-            if (canmove == true)
+            if (playercanmove == true)
             {
                 if (up && player != null)
                 {
@@ -284,14 +284,16 @@ namespace Nilox2DGameEngine
 
             // enable Player
             resetPlayer();
-            canmove = true;
+            playercanmove = true;
 
             // enable Engine
             Engine.disablerenderer = false;
             Log.warning("[ENGINE]  -  EGNINE ENABLED -----------------------------------------------------------------------------------------------");
         }
         public void unloadCurrentTile()
-        {      
+        {
+            Log.debug("AAAAAAAAAAAAA");
+
             // Prep
             Engine.disablerenderer = true;
             Log.warning("[ENGINE]  -  EGNINE DISABLED ----------------------------------------------------------------------------------------------");
