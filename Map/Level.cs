@@ -67,7 +67,7 @@ namespace Nilox2DGameEngine.Map
             tiles = NLoad.TilesL(directory);
 
             GM.currentLevel = this;
-            DG.LoadNewTile(tiles.ElementAt(0));
+            DG.loadNewTile(tiles.ElementAt(0));
             //DG.LoadNewTile(new Tile(Map));
         }
         #endregion
@@ -81,12 +81,12 @@ namespace Nilox2DGameEngine.Map
             {
                 Log.Info("[MOVEMENT] Moving RIGHT | " + currentlocation.X + "-->" + (currentlocation.X + 1).ToString());
 
-                GM.UnloadCurrentTile();
+                GM.unloadCurrentTile();
                 GM.spawnPosition = new Vector2(50, 48 * 4);
                 currentlocation = new Vector2(currentlocation.X + 1, currentlocation.Y);
 
                 //GM.LoadNewTile(new Tile(Map2,"right"));
-                GM.LoadNewTile(tiles.ElementAt(Convert.ToInt32(currentlocation.X)));
+                GM.loadNewTile(tiles.ElementAt(Convert.ToInt32(currentlocation.X)));
             }
             else
             {
@@ -98,12 +98,12 @@ namespace Nilox2DGameEngine.Map
             Log.Info("[MOVEMENT] Moving LEFT | " + currentlocation.X + "-->" + (currentlocation.X - 1).ToString());
             if (currentlocation.X > 0)
             {
-                GM.UnloadCurrentTile();
+                GM.unloadCurrentTile();
                 GM.spawnPosition = new Vector2(48 * 13, 48 * 4);
                 currentlocation = new Vector2(currentlocation.X - 1, currentlocation.Y);
 
                 //GM.LoadNewTile(new Tile(Map,"left"));
-                GM.LoadNewTile(tiles.ElementAt(Convert.ToInt32(currentlocation.X)));
+                GM.loadNewTile(tiles.ElementAt(Convert.ToInt32(currentlocation.X)));
             }
             else
             {

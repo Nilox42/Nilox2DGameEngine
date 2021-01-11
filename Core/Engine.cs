@@ -92,7 +92,7 @@ namespace Nilox2DGameEngine.Core
         private Vector2 ScreenSize = Vector2.Zero();
         private string Title = "Error";
         public static Canvas Window = null;
-        public Color BackgroundColor = Color.Gray;
+        public Color backgroundColor = Color.Gray;
         #endregion
 
         //Engine varibles
@@ -370,7 +370,7 @@ namespace Nilox2DGameEngine.Core
                 #region rendercore
                 //Setup for Graphicsediting
                 Graphics g = e.Graphics;
-                g.Clear(BackgroundColor);
+                g.Clear(backgroundColor);
                 //Camera Transformation
                 g.TranslateTransform(cameraPos.X, cameraPos.Y);
                 g.RotateTransform(cameraAngle);

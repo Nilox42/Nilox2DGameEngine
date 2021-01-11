@@ -34,7 +34,7 @@ namespace Nilox2DGameEngine.Core
         #region Overrrides
         public override void onLoad()
         {
-            BackgroundColor = Color.Black;
+            backgroundColor = Color.Black;
 
             player = new Sprite2D(new Vector2(48, 48), new Vector2(48, 48), "Overworld/Objects/rocks1_7", "Player", true);
         }
@@ -90,7 +90,7 @@ namespace Nilox2DGameEngine.Core
             if (e.KeyCode == Keys.A) { left = false; }
         }
 
-        public void LoadNewTile(Tile t)
+        public void loadNewTile(Tile t)
         {
             for (int i = 0; i < t.map.GetLength(0); i++)
             {
@@ -112,7 +112,7 @@ namespace Nilox2DGameEngine.Core
             }
         }
 
-        public void UnloadCurrentTile()
+        public void unloadCurrentTile()
         {
             Log.Warning("Clearing all Sprites");
             int count = Engine.allSprites.Count;

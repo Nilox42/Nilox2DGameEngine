@@ -65,7 +65,7 @@ namespace Nilox2DGameEngine
         #region Overrrides
         public override void onLoad()
         {
-            BackgroundColor = Color.Black;
+            backgroundColor = Color.Black;
             currentLevel = new Level("One",this);
         }
 
@@ -219,7 +219,7 @@ namespace Nilox2DGameEngine
 
             Log.Save("[LOGGING]    -    " + sp.ElapsedMilliseconds.ToString());
 
-            sp = null;
+            sw = null;
             sw.Dispose();
         }
 
@@ -232,8 +232,8 @@ namespace Nilox2DGameEngine
             if (e.KeyCode == Keys.Space)    { space = true; }
 
             //Debug
-            if(e.KeyCode == Keys.U)         { UnloadCurrentTile(); }
-            if (e.KeyCode == Keys.N)        { LoadNewTile(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X))); }
+            if(e.KeyCode == Keys.U)         { unloadCurrentTile(); }
+            if (e.KeyCode == Keys.N)        { loadNewTile(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X))); }
             if (e.KeyCode == Keys.O)
             { 
                 player.setLocation(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation);
@@ -254,7 +254,7 @@ namespace Nilox2DGameEngine
         // //
         //
         #region Functions
-        public void LoadNewTile(Tile t)
+        public void loadNewTile(Tile t)
         {
             //Map
             Log.Info($"[LOADING]:  Name: {t.name};  Size:{t.tilesize};  Spawnlocation:{t.spawnlocation.ToString()}");
@@ -283,14 +283,14 @@ namespace Nilox2DGameEngine
             canmoveon = true;
 
             // enable Player
-            ResetPlayer();
+            resetPlayer();
             canmove = true;
 
             // enable Engine
             Engine.disablerenderer = false;
             Log.Warning("[ENGINE]  -  EGNINE ENABLED -----------------------------------------------------------------------------------------------");
         }
-        public void UnloadCurrentTile()
+        public void unloadCurrentTile()
         {      
             // Prep
             Engine.disablerenderer = true;
@@ -316,7 +316,7 @@ namespace Nilox2DGameEngine
             Thread.Sleep(100);
         }
 
-        public void ResetPlayer()
+        public void resetPlayer()
         {
             Tile t = currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X));
             player.setLocation(new Vector2(t.spawnlocation.X, t.spawnlocation.Y));
