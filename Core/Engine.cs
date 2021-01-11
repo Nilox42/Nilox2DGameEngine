@@ -134,7 +134,7 @@ namespace Nilox2DGameEngine.Core
         int keyrange = 9999;
         #endregion
 
-        public Engine(Vector2 ScreenSize0, string Title)
+        public Engine(Vector2 screenSize0, string title)
         {
             //SessionKey
             sessionkey = keygerator.Next(0, keyrange).ToString();
@@ -154,8 +154,8 @@ namespace Nilox2DGameEngine.Core
 
             //Ser base varibles
             Log.Info("Game is starting ...");
-            this.ScreenSize = ScreenSize0;
-            this.Title = Title;
+            this.ScreenSize = screenSize0;
+            this.Title = title;
 
             //Create and handle Window
             Window = new Canvas();
