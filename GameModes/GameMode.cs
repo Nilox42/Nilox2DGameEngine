@@ -450,7 +450,6 @@ namespace Nilox2DGameEngine
                     }
             }
         }
-
         #endregion
     }
 }

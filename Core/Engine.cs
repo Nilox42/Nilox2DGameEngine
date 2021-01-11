@@ -311,7 +311,7 @@ namespace Nilox2DGameEngine.Core
 
         public void updatehealtbar(int value)
         {
-            Window.lbfps.Text = value.ToString();
+            //Window.lbfps.Text = value.ToString();
         }
 
         private void Window_FormClosing(object sender, FormClosingEventArgs e)

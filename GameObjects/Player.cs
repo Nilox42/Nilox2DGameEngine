@@ -60,7 +60,7 @@ namespace Nilox2DGameEngine.Character
 
         public override void Destroy()
         {
-            
+            gm.UnloadCurrentTile();
         }
 
         public override void Update()
