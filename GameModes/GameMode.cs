@@ -239,6 +239,7 @@ namespace Nilox2DGameEngine
                 player.setActorLocation(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation);
                 Log.error("RESET TO LOCATION: " + currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation.ToString());
             }
+            if (e.KeyCode == Keys.F) { player.sprite.Flip(); }
         }
 
         public override void keyUp(KeyEventArgs e)

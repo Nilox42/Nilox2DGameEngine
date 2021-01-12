@@ -38,7 +38,7 @@ namespace Nilox2DGameEngine.Character
         #region Transform
         public Vector2 getActorLocation()
         {
-            return sprite.location;
+            return new Vector2(sprite.location.X, sprite.location.Y);
         }
         public void setActorLocation(Vector2 vector)
         {
