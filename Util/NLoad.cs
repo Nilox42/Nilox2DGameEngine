@@ -13,16 +13,27 @@ namespace Nilox2DGameEngine.Util
 {
     class NLoad
     {
-        public static List<Tile> tilesL(string directory0)
+        #region Tiles
+        public static List<Tile> tilesL(string directory0, GameMode gm)
         {
             string[] files = Directory.GetFiles(directory0);
             List<Tile> tiles1 = new List<Tile>();
+
+           
 
             int index = 0;
             foreach (string s in files)
             {
                 Log.load("[NLoad] - [Tiles] Tile:" + index.ToString() + "From:" + s);
-                tiles1.Add(Converts.StringToTile(File.ReadLines(s).Skip(0).Take(1).First()));
+
+                string enemies = string.Empty;
+                Tile buffer;
+
+                //Load enemie spawnlist (Decoded in Tile)
+                enemies = readLine(directory0,2);
+
+                //Load Sprites (Map)
+                buffer = Converts.StringToTile(readLine(directory0, 1));
                 ++index;
             }
 
@@ -34,14 +45,16 @@ namespace Nilox2DGameEngine.Util
             int index = 0;
 
             Log.load("[NLoad] - [Tiles] Tile:" + index.ToString() + "From:" + directory0);
-            tile = Converts.StringToTile(File.ReadLines(directory0).Skip(0).Take(1).First());
+            tile = Converts.StringToTile(readLine(directory0, 1));
             ++index;
 
             return tile;
         }
+        #endregion
         //
         //-----------------------------------------------------------------------------------------------------------------------------------
         //
+        #region Images
         public static void imagesfromDirectory(string directory0, List<BaseImage> baseImages)
         {
             string dir = directory0;
@@ -74,10 +87,16 @@ namespace Nilox2DGameEngine.Util
                 }
             }
         }
+        #endregion
         //
         //-----------------------------------------------------------------------------------------------------------------------------------
         //
-
+        #region functions
+        public static string readLine(string directory, int line)
+        {
+            return File.ReadLines(directory).Skip(line - 1).Take(1).First();
+        }
+        #endregion
 
 
     }

@@ -77,7 +77,9 @@ namespace Nilox2DGameEngine.Util
             return result;
         }
         #endregion
-
+        //
+        //
+        //
         #region location Converts
         public static Vector2 toScreenLocation(Vector2 gamelocation)
         {

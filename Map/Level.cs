@@ -69,8 +69,7 @@ namespace Nilox2DGameEngine.Map
             tiles = NLoad.tilesL(directory);
 
             gm.currentLevel = this;
-            gm0.loadNewTile(tiles.ElementAt(0));
-            //DG.LoadNewTile(new Tile(Map));
+            gm.loadNewTile(tiles.ElementAt(0));
         }
         #endregion
         //
@@ -120,10 +119,5 @@ namespace Nilox2DGameEngine.Map
             }
         }
         #endregion
-
-
-
-
-
     }
 }

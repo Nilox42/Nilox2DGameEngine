@@ -18,7 +18,7 @@ namespace Nilox2DGameEngine
     public class GameMode : Engine
     {
         #region Init
-      //Level
+        //Level
         public Level currentLevel = null;
         public bool canmoveon = true;
         public bool canmoveback = false;
@@ -27,30 +27,29 @@ namespace Nilox2DGameEngine
         //Player
         public Player player = null;
         public bool playercanmove = false;
+        public Vector2 spawnPosition = new Vector2(50, 48 * 4);
+        //
         //Character Movement
         private bool left;
         private bool right;
         private bool up;
         private bool down;
+        private float maxspeed = 7;
+        //
         //Fighting
         private bool space;
-        //
         bool canattack = true;
         bool isattacking = false;
         int attacktick = 0;
         Sprite2D damage = null;
-        //Movement
-        private float maxspeed = 13;
-        //private Vector2 lastPos = Vector2.zero();
-        public Vector2 spawnPosition = new Vector2(50, 48 * 4);
 
-      //Actors 
+        //Actors 
         public List<Actor> allactors = new List<Actor>();
         public List<Enemy> allenemies = new List<Enemy>();
         public List<Projectile> allprojectiles = new List<Projectile>();
         public List<Item> allitems = new List<Item>();
 
-      //Logging
+        //Logging
         public static List<string> logs = new List<string>();
  
 
@@ -219,8 +218,8 @@ namespace Nilox2DGameEngine
 
             Log.save("[LOGGING]    -    " + sp.ElapsedMilliseconds.ToString());
 
-            sw = null;
             sw.Dispose();
+            sw = null;
         }
 
         public override void keyDown(KeyEventArgs e)
