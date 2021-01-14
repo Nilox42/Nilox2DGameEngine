@@ -20,6 +20,8 @@ namespace Nilox2DGameEngine.Character
 
         public int coins = 0;
 
+        string facing = "right";
+
         public Player(Sprite2D sprite0, GameMode gm0)
         {
             sprite = sprite0;
@@ -36,6 +38,35 @@ namespace Nilox2DGameEngine.Character
         {
             addActorLocation(vector);
         }
+
+        public void updateFacing(string facing0)
+        {
+            if (facing0 != facing)
+            {
+                switch (facing0)
+                {
+                    default:
+                        Log.error("[Player]  -  Facing is not possible");
+                        break;
+
+                    case "right":
+                        sprite.Flip();
+                        facing = "right";
+                        break;
+
+                    case "left":
+                        sprite.Flip();
+                        facing = "left";
+                        break;
+                    case "up":
+                        facing = "up";
+                        break;
+                    case "down":
+                        facing = "down";
+                        break;
+                }
+            }
+        }
         #endregion
         //
         //
@@ -50,7 +81,7 @@ namespace Nilox2DGameEngine.Character
             if (health <= 0) 
             {
                 Log.error("[PLAYER]  -  Died!");
-                Engine.Window.Close();
+                gm.resetPlayer();
             }
 
             Log.warning("[PLAYER]  -  Took Damage");
@@ -132,6 +163,36 @@ namespace Nilox2DGameEngine.Character
             {
                 coin0.destroySelf();
                 coin0 = null;
+            }
+        }
+        #endregion
+
+        #region Fighting
+        public void shoot()
+        {
+            if (facing == "up")
+            {
+                Projectile p =  (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile);
+                p.direction = new Vector2(0,-1);
+                p.speed = 20;
+            }
+            if (facing == "down")
+            {
+                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile);
+                p.direction = new Vector2(0,1);
+                p.speed = 20;
+            }
+            if (facing == "right")
+            {
+                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile);
+                p.direction = new Vector2(1,0);
+                p.speed = 20;
+            }
+            if (facing == "left")
+            {
+                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile);
+                p.direction = new Vector2(-1,0);
+                p.speed = 20;
             }
         }
         #endregion

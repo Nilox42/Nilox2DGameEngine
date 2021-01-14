@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Util;
 
@@ -11,28 +12,32 @@ namespace Nilox2DGameEngine.Character
     public class Enemy : Actor
     {
         #region Init
-        GameMode tgm = null;
+        GameMode gm = null;
 
         double health = 100;
         bool alive = true;
 
-        double maxwalkspeed = 2;
+        double maxwalkspeed = 1;
         bool hastarget = true;
         int damagepotential = 10;
 
-        int index = 0;
+        //int index = 0;
 
         Vector2 laspos = Vector2.zero();
 
+        int shootcoundownnuber = 0;
+        int shootcoundown = 100;
+
         //Vector2 playerlocation = Vector2.Zero();
-        public Enemy(Sprite2D sprite0, Vector2 location0, GameMode GM)
+        public Enemy(Sprite2D sprite0, Vector2 location0, GameMode gm0)
         {
             sprite = sprite0;
             setActorLocation(location0);
-            tgm = GM;
+            gm = gm0;
 
             if (sprite.isCollidingWithTag("collider") != null)
             {
+                Log.error($"[Enemie]  -  Enemie can't spawn here {getActorLocation().ToString()}");
                 destroy();
             }
         }
@@ -45,12 +50,12 @@ namespace Nilox2DGameEngine.Character
         {
             Log.info("[ENEMIE] - [DIED] - " + sprite.name);
 
-            tgm.destroyActor(this);
+            gm.destroyActor(this);
         }
         //
         public override void update()
         {
-            Sprite2D player = tgm.player.sprite;
+            Sprite2D player = gm.player.sprite;
             //Movement
             if (sprite.isCollidingWithTag("collider") == null && hastarget == true)
             {
@@ -72,11 +77,19 @@ namespace Nilox2DGameEngine.Character
             {
                 player.actor.damge(this,damagepotential);
                 damagepotential = 0;
-                tgm.destroyActor(this);
+                gm.destroyActor(this);
             }
 
+            if (shootcoundownnuber > shootcoundown)
+            {
+                shoot();
 
+                Random r = new Random();
+                shootcoundown = r.Next(70,200);
 
+                shootcoundownnuber = 0;
+            }
+            shootcoundownnuber++;
         }
         //
         public override void damge(Actor instigator, int damage)
@@ -99,13 +112,9 @@ namespace Nilox2DGameEngine.Character
         #region functions
         public void shoot()
         {
-            if (index > 120)
-            {
-                tgm.spawnActorFromClass(getActorLocation(), Class.projectile);
-                index = 0;
-            }
-            index++;
-        }
+            Projectile projectile = (Projectile)gm.spawnActorFromClass(getActorLocation(), Class.projectile);
+            projectile.direction = (Vector2.normalize(getActorLocation() - gm.player.getActorLocation())* -1);
+    }
         #endregion
 
     }

@@ -48,6 +48,11 @@ namespace Nilox2DGameEngine.Character
         {
             sprite.location += vector;
         }
+
+        public Vector2 getActorScale2D()
+        {
+            return new Vector2(sprite.scale.X, sprite.scale.Y);
+        }
         #endregion
         //
         //

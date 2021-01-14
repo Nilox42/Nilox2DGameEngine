@@ -11,13 +11,13 @@ namespace Nilox2DGameEngine.Character
     public class Projectile:Actor
     {
         #region Init
-        GameMode gm = null;
+        private GameMode gm = null;
 
-        Vector2 direction = Vector2.zero();
-        int speed = 0;
+        public Vector2 direction = Vector2.zero();
+        public int speed = 0;
 
-        System.Timers.Timer sec = null;
-        double lifespan = 0.5;
+        private System.Timers.Timer sec = null;
+        private double lifespan = 2;
 
 
 

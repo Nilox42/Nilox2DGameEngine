@@ -26,7 +26,7 @@ namespace Nilox2DGameEngine.Util
             this.X = X;
             this.Y = Y;
         }
-        #region Fonctions
+        #region Functions
         public static Vector2 zero()
         {
             return new Vector2(0,0);
@@ -42,6 +42,12 @@ namespace Nilox2DGameEngine.Util
         public static float lenght(Vector2 v0)
         {
             return (float)Math.Sqrt(v0.X * v0.X + v0.Y * v0.Y);
+        }
+
+        public static float Distance(Vector2 v0, Vector2 v1)
+        {
+            float f = ((v0.X - v1.X) * (v0.X - v1.X) + (v0.Y - v1.Y) * (v0.Y - v1.Y));
+            return f;
         }
         #endregion
 

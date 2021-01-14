@@ -162,6 +162,7 @@ namespace Nilox2DGameEngine
                     canattack = false;
                     //ATTACK
                     damage = new Sprite2D(player.sprite.location, new Vector2(48, 48), "Selector", "Damage", true);
+                    player.shoot();
                 }
             }
             #endregion
@@ -226,11 +227,11 @@ namespace Nilox2DGameEngine
 
         public override void keyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W) { up = true; }
-            if (e.KeyCode == Keys.S) { down = true; }
-            if (e.KeyCode == Keys.D) { right = true; }
-            if (e.KeyCode == Keys.A) { left = true; }
-            if (e.KeyCode == Keys.Space) { space = true; }
+            if (e.KeyCode == Keys.W)     { up    = true; player.updateFacing("up");    }
+            if (e.KeyCode == Keys.S)     { down  = true; player.updateFacing("down");  }
+            if (e.KeyCode == Keys.D)     { right = true; player.updateFacing("right"); }
+            if (e.KeyCode == Keys.A)     { left  = true; player.updateFacing("left");  }
+            if (e.KeyCode == Keys.Space) { space = true;}
 
             //Debug
             if (e.KeyCode == Keys.U) { unloadCurrentTile(); }
@@ -369,9 +370,9 @@ namespace Nilox2DGameEngine
                     }
                 case Class.projectile:
                     {
-                        Sprite2D sprite = new Sprite2D(location, new Vector2(16, 16), "rocks1_1", "", true);
+                        Sprite2D sprite = new Sprite2D(location, new Vector2(20, 20), "fireball", "", true);
 
-                        Projectile projectile = new Projectile(sprite, sprite.location, new Vector2(1, 0), 2, this);
+                        Projectile projectile = new Projectile(sprite, sprite.location, new Vector2(1, 0), 10, this);
                         sprite.actor = projectile;
 
                         allprojectiles.Add(projectile);
