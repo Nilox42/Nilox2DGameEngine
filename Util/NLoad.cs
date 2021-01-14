@@ -14,40 +14,28 @@ namespace Nilox2DGameEngine.Util
     class NLoad
     {
         #region Tiles
-        public static List<Tile> tilesL(string directory0, GameMode gm)
+        public static List<Tile> tilesL( string directory0)
         {
             string[] files = Directory.GetFiles(directory0);
             List<Tile> tiles1 = new List<Tile>();
 
-           
-
-            int index = 0;
             foreach (string s in files)
             {
-                Log.load("[NLoad] - [Tiles] Tile:" + index.ToString() + "From:" + s);
-
-                string enemies = string.Empty;
-                Tile buffer;
-
-                //Load enemie spawnlist (Decoded in Tile)
-                enemies = readLine(directory0,2);
-
-                //Load Sprites (Map)
-                buffer = Converts.StringToTile(readLine(directory0, 1));
-                ++index;
+                //Load Tiles
+                tiles1.Add(tileL(s));
             }
 
+            Log.load($"[NLoad] - [Tiles]  loaded {tiles1.Count} Tiles");
             return tiles1;
         }
         public static Tile tileL(string directory0)
         {
-            Tile tile;
-            int index = 0;
+            //Load Tile a
+            Tile tile = Converts.StringToTile(readLine(directory0, 0));
+            //Loadenemies
+            tile.enemies = readLine(directory0, 1);
 
-            Log.load("[NLoad] - [Tiles] Tile:" + index.ToString() + "From:" + directory0);
-            tile = Converts.StringToTile(readLine(directory0, 1));
-            ++index;
-
+            Log.load("[NLoad]  -  Tile:" + tile.name + "From:" + directory0);
             return tile;
         }
         #endregion
@@ -94,7 +82,7 @@ namespace Nilox2DGameEngine.Util
         #region functions
         public static string readLine(string directory, int line)
         {
-            return File.ReadLines(directory).Skip(line - 1).Take(1).First();
+            return File.ReadLines(directory).Skip(line).Take(1).First();
         }
         #endregion
 

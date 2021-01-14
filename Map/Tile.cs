@@ -6,22 +6,27 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+//
 using Nilox2DGameEngine.Util;
+using Nilox2DGameEngine.Character;
 
 namespace Nilox2DGameEngine.Map
 {
     public class Tile 
     {
         #region Init
+        public Level level = null;
+        public GameMode gm = null;
+
+        public string directory = string.Empty;
         public string name = null;
         public int tilesize = 20;
         public Vector2 spawnlocation = Vector2.zero();
-        GameMode gm = null;
 
         public int locationX = 0;
         public int locationY = 0;
 
-        string spawnenemies;
+        public string enemies;
 
         #region mapreferences
         public string[,] mapref =
@@ -100,6 +105,18 @@ namespace Nilox2DGameEngine.Map
         {
 
         }
+        public Tile(Level level0, string name0, int tilesize0, Vector2 spawnlocation0, string directory0, string enemies)
+        {
+            level = level0;
+
+            map = newmap2;
+
+            name = name0;
+            tilesize = tilesize0;
+            spawnlocation = spawnlocation0;
+            this.enemies = enemies;
+        }
+        #region for LE
         public Tile(string name0, int tilesize0, Vector2 spawnlocation0)
         {
             map = newmap2;
@@ -108,7 +125,6 @@ namespace Nilox2DGameEngine.Map
             tilesize = tilesize0;
             spawnlocation = spawnlocation0;
         }
-        #region for LE
         public Tile(string string0 , int size)
         {
             map = Converts.stringToArray(string0, size);
@@ -130,15 +146,28 @@ namespace Nilox2DGameEngine.Map
         #region functions
         public void spawnStartenemies()
         {
-            string[] list = spawnenemies.Split('|');        //Split the Name:Location
+            string[] list = enemies.Split('|');             //Split enemies
             foreach (string s in list)                      //Loop each enemie code
             {
-                string[] enemie = s.Split(':');             //Split enemie parts
-                foreach (string s0 in enemie)               //Loop through enemie parts
+                string[] enemie = s.Split(':');             //Split the Name+Location
+
+                //make spawnlocation
+                Vector2 vector = Vector2.zero();
+                vector.X = Convert.ToInt32(enemie[1].Split(',')[0]);
+                vector.Y = Convert.ToInt32(enemie[1].Split(',')[1]);
+
+                switch (enemie[0])
                 {
-                    
+                    default:
+                        Log.error($"[Tile]  -  Enemietype doenst exist!  ({enemie[0]})");
+                        break;
+
+                    case "enemie":
+                        gm.spawnActorFromClass(new Vector2(vector.X,vector.Y), Class.enemie);
+                        break;
                 }
             }
+
         }
         #endregion
     }

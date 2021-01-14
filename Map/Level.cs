@@ -64,9 +64,14 @@ namespace Nilox2DGameEngine.Map
         {
             worldname = name0;
             directory = Application.StartupPath + @"\Levels\" + worldname;
-            this.gm = gm0;
+            gm = gm0;
 
             tiles = NLoad.tilesL(directory);
+            foreach (Tile t in tiles)
+            {
+                t.level = this;
+                t.gm = gm;
+            }
 
             gm.currentLevel = this;
             gm.loadNewTile(tiles.ElementAt(0));

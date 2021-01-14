@@ -6,17 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
+using System.Diagnostics;
+//
 using Nilox2DGameEngine.Map;
 using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Character;
-using System.IO;
-using System.Diagnostics;
 
 namespace Nilox2DGameEngine
 {
     public class GameMode : Engine
     {
+        //
         #region Init
         //Level
         public Level currentLevel = null;
@@ -51,11 +53,11 @@ namespace Nilox2DGameEngine
 
         //Logging
         public static List<string> logs = new List<string>();
- 
 
-        public GameMode() : base(new Vector2(1280,720), "Engine Demo") 
+
+        public GameMode() : base(new Vector2(1280, 720), "Engine Demo")
         {
-            
+
         }
         #endregion
         //
@@ -65,12 +67,12 @@ namespace Nilox2DGameEngine
         public override void onLoad()
         {
             backgroundColor = Color.Black;
-            currentLevel = new Level("One",this);
+            currentLevel = new Level("One", this);
         }
 
         public override void onDraw()
         {
-            
+
         }
 
         public override void onUpdate()
@@ -102,7 +104,7 @@ namespace Nilox2DGameEngine
                 {
                     //player.sprite.location.Y -= maxspeed;
                     //player.setLocation(new Vector2 (player.location.X, player.location.Y - maxspeed));
-                    player.move(new Vector2(0,maxspeed * -1));
+                    player.move(new Vector2(0, maxspeed * -1));
                 }
                 if (down && player != null)
                 {
@@ -159,7 +161,7 @@ namespace Nilox2DGameEngine
                     isattacking = true;
                     canattack = false;
                     //ATTACK
-                    damage = new Sprite2D(player.sprite.location, new Vector2(48, 48), "Selector", "Damage" , true);
+                    damage = new Sprite2D(player.sprite.location, new Vector2(48, 48), "Selector", "Damage", true);
                 }
             }
             #endregion
@@ -224,17 +226,17 @@ namespace Nilox2DGameEngine
 
         public override void keyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W)        { up    = true; }
-            if (e.KeyCode == Keys.S)        { down  = true; }
-            if (e.KeyCode == Keys.D)        { right = true; }
-            if (e.KeyCode == Keys.A)        { left  = true; }
-            if (e.KeyCode == Keys.Space)    { space = true; }
+            if (e.KeyCode == Keys.W) { up = true; }
+            if (e.KeyCode == Keys.S) { down = true; }
+            if (e.KeyCode == Keys.D) { right = true; }
+            if (e.KeyCode == Keys.A) { left = true; }
+            if (e.KeyCode == Keys.Space) { space = true; }
 
             //Debug
-            if(e.KeyCode == Keys.U)         { unloadCurrentTile(); }
-            if (e.KeyCode == Keys.N)        { loadNewTile(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X))); }
+            if (e.KeyCode == Keys.U) { unloadCurrentTile(); }
+            if (e.KeyCode == Keys.N) { loadNewTile(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X))); }
             if (e.KeyCode == Keys.O)
-            { 
+            {
                 player.setActorLocation(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation);
                 Log.error("RESET TO LOCATION: " + currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation.ToString());
             }
@@ -243,11 +245,11 @@ namespace Nilox2DGameEngine
 
         public override void keyUp(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W)        { up    = false; }
-            if (e.KeyCode == Keys.S)        { down  = false; }
-            if (e.KeyCode == Keys.D)        { right = false; }
-            if (e.KeyCode == Keys.A)        { left  = false; }
-            if (e.KeyCode == Keys.Space)    { space = false; }
+            if (e.KeyCode == Keys.W) { up = false; }
+            if (e.KeyCode == Keys.S) { down = false; }
+            if (e.KeyCode == Keys.D) { right = false; }
+            if (e.KeyCode == Keys.A) { left = false; }
+            if (e.KeyCode == Keys.Space) { space = false; }
         }
         #endregion
         //
@@ -290,6 +292,9 @@ namespace Nilox2DGameEngine
             // enable Engine
             Engine.disablerenderer = false;
             Log.warning("[ENGINE]  -  EGNINE ENABLED -----------------------------------------------------------------------------------------------");
+
+            //Spawn Tileenemies
+            t.spawnStartenemies();
         }
         public void unloadCurrentTile()
         {
@@ -305,7 +310,7 @@ namespace Nilox2DGameEngine
             Log.warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
 
             //Kill all Actors
-            while(allactors.Count > 0)
+            while (allactors.Count > 0)
             {
                 destroyActor(allactors.ElementAt(0));
             }
@@ -340,7 +345,7 @@ namespace Nilox2DGameEngine
                     }
                 case Class.player:
                     {
-                        Sprite2D sprite = new Sprite2D(new Vector2(location.X,location.Y), new Vector2(30, 48), "Knight_Idle", "player", true);
+                        Sprite2D sprite = new Sprite2D(new Vector2(location.X, location.Y), new Vector2(30, 48), "Knight_Idle", "player", true);
 
                         player = new Player(sprite, this);
                         player.setActorLocation(location);
@@ -454,5 +459,6 @@ namespace Nilox2DGameEngine
             }
         }
         #endregion
+        //
     }
 }
