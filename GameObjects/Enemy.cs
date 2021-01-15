@@ -13,6 +13,7 @@ namespace Nilox2DGameEngine.Character
     {
         #region Init
         GameMode gm = null;
+        
 
         double health = 100;
         bool alive = true;

@@ -83,7 +83,7 @@ namespace Nilox2DGameEngine
             //
             //
             #region Enemymanagment
-            if (allenemies.Count < 3)
+            if (false)
             {
                 Vector2 v = new Vector2(0, 0);
 
@@ -203,6 +203,9 @@ namespace Nilox2DGameEngine
             Stopwatch sp = new Stopwatch();
             sp.Start();
 
+            unloadCurrentTile();
+
+            // logging
             string name = "log" + Engine.sessionkey;
             string path = Application.StartupPath + @"\log" + @"\" + name + ".txt";
             string time = Engine.frameCount.ToString();
@@ -268,7 +271,7 @@ namespace Nilox2DGameEngine
                     //Add Sprite2D if i has the name "." with special parameters
                     if (t.map[j, i] == ".")
                     {
-                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "o_tile15", "Background", true);
+                        new Sprite2D(new Vector2(i * 48, j * 48), new Vector2(48, 48), "o_tile15", "background", true);
                     }
                     //Add sprite by name with normal perameters
                     else
@@ -299,8 +302,6 @@ namespace Nilox2DGameEngine
         }
         public void unloadCurrentTile()
         {
-            Log.debug("AAAAAAAAAAAAA");
-
             // Prep
             Engine.disablerenderer = true;
             Log.warning("[ENGINE]  -  EGNINE DISABLED ----------------------------------------------------------------------------------------------");
@@ -311,9 +312,12 @@ namespace Nilox2DGameEngine
             Log.warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
 
             //Kill all Actors
-            while (allactors.Count > 0)
+            if (allactors.Count != 0)
             {
-                destroyActor(allactors.ElementAt(0));
+                while (allactors.Count > 0)
+                {
+                    destroyActor(allactors.ElementAt(0));
+                }
             }
             Log.warning("[GameMode]  -  Actors Destroyed! ------------------------------------------------------------------------------------------");
 

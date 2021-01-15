@@ -59,9 +59,9 @@ namespace Nilox2DGameEngine.Character
             }
 
             // enemie
-            if (sprite.isCollidingWithTag("enemie") != null && owner != gm.player)
+            if (sprite.isCollidingWithTag("enemie") != null && owner.clas != clas)
             {
-                destroy();
+                Log.debug("aaaaaaaaaaaaaaaaaaaaaaaaaa");
             }
 
             //damage player
