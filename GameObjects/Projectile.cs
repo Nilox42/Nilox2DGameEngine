@@ -59,9 +59,13 @@ namespace Nilox2DGameEngine.Character
             }
 
             // enemie
-            if (sprite.isCollidingWithTag("enemie") != null && owner.clas != clas)
+            Sprite2D e = sprite.isCollidingWithTag("enemie");
+            if (e != null && owner.clas == Class.player)
             {
-                Log.debug("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+                Enemy enemy = (Enemy)e.actor;
+                enemy.damge(this, damagepotential);
+                damagepotential = 0;
+                destroy();
             }
 
             //damage player

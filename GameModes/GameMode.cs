@@ -83,7 +83,7 @@ namespace Nilox2DGameEngine
             //
             //
             #region Enemymanagment
-            if (false)
+            if (allenemies.Count < 1)
             {
                 Vector2 v = new Vector2(0, 0);
 
