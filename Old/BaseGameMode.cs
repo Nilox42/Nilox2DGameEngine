@@ -62,7 +62,8 @@ namespace Nilox2DGameEngine.Core
             {
                 player.location.X += maxspeed;
             }
-            if (player.isCollidingWithTag("Collider") != null)
+            /*
+            if (player.isCollidingWithTag("collider") != null)
             {
                 player.location.X = lastPos.X;
                 player.location.Y = lastPos.Y;
@@ -72,6 +73,7 @@ namespace Nilox2DGameEngine.Core
                 lastPos.X = player.location.X;
                 lastPos.Y = player.location.Y;
             }
+            */
         }
 
         public override void keyDown(KeyEventArgs e)

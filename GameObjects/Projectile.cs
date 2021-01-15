@@ -12,6 +12,7 @@ namespace Nilox2DGameEngine.Character
     {
         #region Init
         private GameMode gm = null;
+        public Actor owner = null;
 
         public Vector2 direction = Vector2.zero();
         public int speed = 0;
@@ -19,15 +20,16 @@ namespace Nilox2DGameEngine.Character
         private System.Timers.Timer sec = null;
         private double lifespan = 2;
 
+        int damagepotential = 00;
 
-
-        public Projectile(Sprite2D sprite0, Vector2 location0 , Vector2 direction0 , int speed0, GameMode gm0): base ()
+        public Projectile(Sprite2D sprite0, Vector2 location0, Vector2 direction0, int speed0, GameMode gm0, Actor owner0): base ()
         {
             sprite = sprite0;
             setActorLocation(location0);
             direction = direction0;
             speed = speed0;
             gm = gm0;
+            owner = owner0;
 
             sec = new System.Timers.Timer(lifespan * 1000);
             sec.Elapsed += sec_Elapsed;
@@ -37,7 +39,7 @@ namespace Nilox2DGameEngine.Character
         //
         //
         //
-        #region abstract functions
+        #region overrides
         public override void destroy()
         {
             sprite.destroySelf();
@@ -50,6 +52,25 @@ namespace Nilox2DGameEngine.Character
 
         public override void update()
         {
+            // collider
+            if (sprite.isCollidingWithTag("collider") != null)
+            {
+                destroy();
+            }
+
+            // enemie
+            if (sprite.isCollidingWithTag("enemie") != null && owner != gm.player)
+            {
+                destroy();
+            }
+
+            //damage player
+            if (sprite.isCollidingWithSprite(sprite, gm.player.sprite) && owner != gm.player)
+            {
+                gm.player.damge(this, damagepotential);
+                damagepotential = 0;
+                destroy();
+            }
         }
         #endregion
         //

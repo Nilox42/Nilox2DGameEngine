@@ -28,6 +28,7 @@ namespace Nilox2DGameEngine.Character
             gm = gm0;
 
             clas = Class.player;
+            sprite.actor = this;
         }
         #endregion
         //
@@ -71,7 +72,7 @@ namespace Nilox2DGameEngine.Character
         //
         //
         //
-        #region abstract functions
+        #region overrides
         public override void damge(Actor instigator, int damage)
         {
             health -= damage;
@@ -81,6 +82,7 @@ namespace Nilox2DGameEngine.Character
             if (health <= 0) 
             {
                 Log.error("[PLAYER]  -  Died!");
+                health = maxhealth;
                 gm.resetPlayer();
             }
 
@@ -172,25 +174,25 @@ namespace Nilox2DGameEngine.Character
         {
             if (facing == "up")
             {
-                Projectile p =  (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile);
+                Projectile p =  (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile, this);
                 p.direction = new Vector2(0,-1);
                 p.speed = 20;
             }
             if (facing == "down")
             {
-                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile);
+                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile, this);
                 p.direction = new Vector2(0,1);
                 p.speed = 20;
             }
             if (facing == "right")
             {
-                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile);
+                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile, this);
                 p.direction = new Vector2(1,0);
                 p.speed = 20;
             }
             if (facing == "left")
             {
-                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile);
+                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile, this);
                 p.direction = new Vector2(-1,0);
                 p.speed = 20;
             }

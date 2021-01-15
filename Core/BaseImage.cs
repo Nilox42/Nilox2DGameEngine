@@ -33,8 +33,6 @@ namespace Nilox2DGameEngine.Core
                 Engine.registerImage(this);
             }
             
-
-            
         }
     }
 }

@@ -227,10 +227,10 @@ namespace Nilox2DGameEngine
 
         public override void keyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W)     { up    = true; player.updateFacing("up");    }
-            if (e.KeyCode == Keys.S)     { down  = true; player.updateFacing("down");  }
-            if (e.KeyCode == Keys.D)     { right = true; player.updateFacing("right"); }
-            if (e.KeyCode == Keys.A)     { left  = true; player.updateFacing("left");  }
+            if (e.KeyCode == Keys.W)     { up    = true; updatePlayerFacing("up");    }
+            if (e.KeyCode == Keys.S)     { down  = true; updatePlayerFacing("down");  }
+            if (e.KeyCode == Keys.D)     { right = true; updatePlayerFacing("right"); }
+            if (e.KeyCode == Keys.A)     { left  = true; updatePlayerFacing("left");  }
             if (e.KeyCode == Keys.Space) { space = true;}
 
             //Debug
@@ -330,12 +330,19 @@ namespace Nilox2DGameEngine
             Tile t = currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X));
             player.setActorLocation(new Vector2(t.spawnlocation.X, t.spawnlocation.Y));
         }
+        public void updatePlayerFacing(string s)
+        {
+            if (player != null)
+            {
+                player.updateFacing(s);
+            }
+        }
         #endregion
         //
         // //
         //
         #region Actors Management
-        public Actor spawnActorFromClass(Vector2 location, Class clas)
+        public Actor spawnActorFromClass(Vector2 location, Class clas, Actor onwer = null)
         {
 
             switch (clas)
@@ -372,7 +379,7 @@ namespace Nilox2DGameEngine
                     {
                         Sprite2D sprite = new Sprite2D(location, new Vector2(20, 20), "fireball", "", true);
 
-                        Projectile projectile = new Projectile(sprite, sprite.location, new Vector2(1, 0), 10, this);
+                        Projectile projectile = new Projectile(sprite, sprite.location, new Vector2(1, 0), 10, this, onwer);
                         sprite.actor = projectile;
 
                         allprojectiles.Add(projectile);
@@ -397,7 +404,6 @@ namespace Nilox2DGameEngine
                     }
             }
         }
-
         public void destroyActor(Actor a)
         {
             if (a == null)

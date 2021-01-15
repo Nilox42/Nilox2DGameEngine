@@ -112,7 +112,7 @@ namespace Nilox2DGameEngine.Character
         #region functions
         public void shoot()
         {
-            Projectile projectile = (Projectile)gm.spawnActorFromClass(getActorLocation(), Class.projectile);
+            Projectile projectile = (Projectile)gm.spawnActorFromClass(getActorLocation(), Class.projectile, this);
             projectile.direction = (Vector2.normalize(getActorLocation() - gm.player.getActorLocation())* -1);
     }
         #endregion
