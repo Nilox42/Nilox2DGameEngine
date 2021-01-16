@@ -13,9 +13,8 @@ namespace Nilox2DGameEngine.Character
     {
         #region Init
         GameMode gm = null;
-        
 
-        double health = 100;
+        double health = 10;
         bool alive = true;
 
         double maxwalkspeed = 1;

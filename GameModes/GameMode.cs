@@ -203,8 +203,6 @@ namespace Nilox2DGameEngine
             Stopwatch sp = new Stopwatch();
             sp.Start();
 
-            unloadCurrentTile();
-
             // logging
             string name = "log" + Engine.sessionkey;
             string path = Application.StartupPath + @"\log" + @"\" + name + ".txt";

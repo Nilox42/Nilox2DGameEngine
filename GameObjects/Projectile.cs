@@ -20,7 +20,7 @@ namespace Nilox2DGameEngine.Character
         private System.Timers.Timer sec = null;
         private double lifespan = 2;
 
-        int damagepotential = 00;
+        int damagepotential = 10;
 
         public Projectile(Sprite2D sprite0, Vector2 location0, Vector2 direction0, int speed0, GameMode gm0, Actor owner0): base ()
         {

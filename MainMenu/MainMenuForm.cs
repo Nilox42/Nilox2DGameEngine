@@ -24,12 +24,12 @@ namespace Nilox2DGameEngine.MainMenu
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ctr.executeCommand("1");
+            //ctr.executeCommand("1");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ctr.executeCommand("2");
+            //ctr.executeCommand("2");
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Nilox2DGameEngine
             ShowWindow(handle,SW_SHOW);
             #endregion
 
-            Controller ctr = new Controller();
+           Controller ctr = new Controller();
 
             while (ctr != null)
             {
