@@ -22,7 +22,7 @@ namespace Nilox2DGameEngine
         //
         #region Init
 
-        ControllerForm cr = null;
+        Controller cr = null;
 
         //Level
         public Level currentLevel = null;
@@ -59,7 +59,7 @@ namespace Nilox2DGameEngine
         public static List<string> logs = new List<string>();
 
 
-        public GameMode(ControllerForm cr0) : base(new Vector2(1280, 720), "Engine Demo")
+        public GameMode(Controller cr0) : base(new Vector2(1280, 720), "Engine Demo")
         {
             cr = cr0;
         }

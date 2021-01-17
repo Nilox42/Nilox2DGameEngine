@@ -19,7 +19,7 @@ namespace Nilox2DGameEngine
         static void Main(string[] args)
         {
             // create corenadann
-            ControllerForm controllerForm = new ControllerForm();
+            Controller controllerForm = new Controller();
             Application.Run(controllerForm);
         }
     }

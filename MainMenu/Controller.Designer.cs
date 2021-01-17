@@ -1,7 +1,7 @@
 ﻿
 namespace Nilox2DGameEngine.MainMenu
 {
-    partial class ControllerForm
+    partial class Controller
     {
         /// <summary>
         /// Required designer variable.

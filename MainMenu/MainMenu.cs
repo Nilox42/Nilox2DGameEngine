@@ -16,9 +16,9 @@ namespace Nilox2DGameEngine.MainMenu
     public partial class MainMenu : Form
     {
         #region Init
-        ControllerForm cr = null;
+        Controller cr = null;
 
-        public MainMenu(ControllerForm cr0)
+        public MainMenu(Controller cr0)
         {
             InitializeComponent();
 
@@ -26,11 +26,11 @@ namespace Nilox2DGameEngine.MainMenu
         }
         private void MainMenuForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ControllerForm.exit();
+            Controller.exit();
         }
         private void btexit_Click(object sender, EventArgs e)
         {
-            ControllerForm.exit();
+            Controller.exit();
         }
         #endregion
 

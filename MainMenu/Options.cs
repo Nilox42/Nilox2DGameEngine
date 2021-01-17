@@ -13,9 +13,9 @@ namespace Nilox2DGameEngine.MainMenu
     public partial class Options : Form
     {
         #region Init
-        ControllerForm cr = null;
+        Controller cr = null;
 
-        public Options(ControllerForm cr0)
+        public Options(Controller cr0)
         {
             cr = cr0;
 
