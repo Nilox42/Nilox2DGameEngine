@@ -63,7 +63,6 @@ namespace Nilox2DGameEngine.Character
                 {
                     Vector2 direction = Vector2.normalize(getActorLocation() - player.location);
 
-                    //etActorLocation(getActorLocation() + (direction * maxwalkspeed * -1));
                     addActorLocation(direction * maxwalkspeed * -1);
                 }
                 laspos = getActorLocation();
@@ -102,6 +101,9 @@ namespace Nilox2DGameEngine.Character
             {
                 alive = false;
                 sprite.draw = false;
+
+                gm.spawnActorFromClass(getActorLocation(), Class.item);
+
                 destroy();
             }
         }

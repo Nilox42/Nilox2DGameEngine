@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Nilox2DGameEngine.Util;
+using Nilox2DGameEngine.Character;
+//
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +10,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Threading;
-using Nilox2DGameEngine.Util;
-using Nilox2DGameEngine.Character;
 using System.IO;
-
 using System.Net;
 using System.Net.Sockets;
 
@@ -78,6 +78,11 @@ namespace Nilox2DGameEngine.Core
             this.PerformLayout();
 
         }
+
+        public void setlb1(string s)
+        {
+            label1.Text = s;
+        }
     }
     #endregion
     //
@@ -91,7 +96,7 @@ namespace Nilox2DGameEngine.Core
         #region Window
         private Vector2 ScreenSize = Vector2.zero();
         private string Title = "Error";
-        public static Canvas Window = null;
+        public Canvas Window = null;
         public Color backgroundColor = Color.Gray;
         #endregion
 
@@ -114,6 +119,10 @@ namespace Nilox2DGameEngine.Core
         //Polygons
         public static List<Polygon> allPolygons = new List<Polygon>();
         public static List<Polygon> polygonstoremove = new List<Polygon>();
+
+        //Ui
+        public int coins = -5;
+        public int health = 100;
 
         //Lists all images that are used 
         #region Images
@@ -169,7 +178,6 @@ namespace Nilox2DGameEngine.Core
             Window.FormClosing += window_FormClosing;
 
             
-
             //Initiate Core Functions
             gameLoopThread = new Thread(gameLoop);
             gameLoopThread.Start();
@@ -309,10 +317,14 @@ namespace Nilox2DGameEngine.Core
         }
         #endregion
 
-        public void updatehealtbar(int value)
+        //User Interface
+        #region Ui
+        public void updateUi()
         {
-            //Window.lbfps.Text = value.ToString();
+            Window.label1.Text = coins.ToString();
+            Window.pb_healthbar.Value = 50;
         }
+        #endregion
 
         private void window_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -427,6 +439,9 @@ namespace Nilox2DGameEngine.Core
 
             //Call Trashremoval
             trashRemoval();
+
+            //update ui
+            updateUi();
 
             //Count Frame
             ++frameCount;

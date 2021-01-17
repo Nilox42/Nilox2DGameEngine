@@ -52,13 +52,22 @@ namespace Nilox2DGameEngine.Character
 
         public override void update()
         {
-            // collider
+            // collider collision
             if (sprite.isCollidingWithTag("collider") != null)
             {
                 destroy();
             }
 
-            // enemie
+            // projectile collision
+            Sprite2D p = sprite.isCollidingWithTag("projectile");
+            if (p != null && sprite != p)
+            {
+                Projectile projectile = (Projectile)p.actor;
+                projectile.destroy();
+                destroy();
+            }
+
+            // enemie collision
             Sprite2D e = sprite.isCollidingWithTag("enemie");
             if (e != null && owner.clas == Class.player)
             {
@@ -75,6 +84,7 @@ namespace Nilox2DGameEngine.Character
                 damagepotential = 0;
                 destroy();
             }
+
         }
         #endregion
         //

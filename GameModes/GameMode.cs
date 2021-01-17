@@ -85,7 +85,7 @@ namespace Nilox2DGameEngine
             //
             //
             #region Enemymanagment
-            if (allenemies.Count < 1)
+            if (allenemies.Count < 1 && false)
             {
                 Vector2 v = new Vector2(0, 0);
 
@@ -163,7 +163,7 @@ namespace Nilox2DGameEngine
                     isattacking = true;
                     canattack = false;
                     //ATTACK
-                    damage = new Sprite2D(player.sprite.location, new Vector2(48, 48), "Selector", "Damage", true);
+                    damage = new Sprite2D(player.sprite.location, new Vector2(48, 48), "Selector", "Damage", false);
                     player.shoot();
                 }
             }
@@ -298,6 +298,8 @@ namespace Nilox2DGameEngine
             Engine.disablerenderer = false;
             Log.warning("[ENGINE]  -  EGNINE ENABLED -----------------------------------------------------------------------------------------------");
 
+            spawnActorFromClass(new Vector2(-100, -100), Class.item);
+
             //Spawn Tileenemies
             t.spawnStartenemies();
         }
@@ -313,7 +315,7 @@ namespace Nilox2DGameEngine
             Log.warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
 
             //Kill all Actors
-            if (allactors.Count != 0)
+            if (allactors.Count > 0)
             {
                 while (allactors.Count > 0)
                 {
@@ -409,6 +411,7 @@ namespace Nilox2DGameEngine
                     }
             }
         }
+
         public void destroyActor(Actor a)
         {
             if (a == null)
@@ -436,8 +439,7 @@ namespace Nilox2DGameEngine
                     }
                 case Class.projectile:
                     {
-                        Sprite2D sprite = a.sprite;
-                        sprite.destroySelf();
+                        a.sprite.destroySelf();
 
                         allprojectiles.Remove((Projectile)a);
                         allactors.Remove(a);
@@ -449,7 +451,6 @@ namespace Nilox2DGameEngine
                     }
                 case Class.player:
                     {
-                        player.destroy();
                         player.sprite.destroySelf();
                         player = null;
 

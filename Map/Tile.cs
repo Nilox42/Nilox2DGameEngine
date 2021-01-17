@@ -146,6 +146,7 @@ namespace Nilox2DGameEngine.Map
         #region functions
         public void spawnStartenemies()
         {
+            Log.info("[Tile]  -  spawning start enemie");
             string[] list = enemies.Split('|');             //Split enemies
             foreach (string s in list)                      //Loop each enemie code
             {
@@ -163,6 +164,7 @@ namespace Nilox2DGameEngine.Map
                         break;
 
                     case "enemie":
+                        Log.info("[Tile]  -  startspawned enemie");
                         gm.spawnActorFromClass(new Vector2(vector.X,vector.Y), Class.enemie);
                         break;
                 }

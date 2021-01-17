@@ -51,13 +51,12 @@ namespace Nilox2DGameEngine.Character
                         break;
 
                     case "right":
-                        //sprite.Flip();
-                        sprite.bitmap = Sprite2D.RotateImage(sprite.bitmap, sprite.scale, 270);
+                        sprite.Flip();
                         facing = "right";
                         break;
 
                     case "left":
-                        //sprite.Flip();
+                        sprite.Flip();
                         facing = "left";
                         break;
                     case "up":
@@ -78,7 +77,7 @@ namespace Nilox2DGameEngine.Character
         {
             health -= damage;
 
-            gm.updatehealtbar((health/maxhealth)*100 +1);
+            gm.health = (health / maxhealth) * 100 + 1;
 
             if (health <= 0) 
             {
@@ -92,7 +91,7 @@ namespace Nilox2DGameEngine.Character
 
         public override void destroy()
         {
-            
+            gm.destroyActor(this);
         }
 
         public override void update()
@@ -124,7 +123,8 @@ namespace Nilox2DGameEngine.Character
             {
                 coins++;
                 coin.actor.destroy();
-                Engine.Window.label1.Text = coins.ToString();
+
+                gm.coins = coins;
             }
 
             // Levelcondition coins
@@ -132,6 +132,7 @@ namespace Nilox2DGameEngine.Character
             {
                 gm.canmoveon = true;
                 Log.warning("[CINDITION] - Coin Condition met");
+
             }
         }
         #endregion
@@ -166,6 +167,10 @@ namespace Nilox2DGameEngine.Character
             {
                 coin0.destroySelf();
                 coin0 = null;
+
+
+                //
+                gm.Window.lbfps.Text += "1"; 
             }
         }
         #endregion

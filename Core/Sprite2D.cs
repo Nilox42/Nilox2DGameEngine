@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 
-
 namespace Nilox2DGameEngine.Core 
 {
     public class Sprite2D
@@ -153,23 +152,6 @@ namespace Nilox2DGameEngine.Core
 
             return result;
         }
-
-        public bool isonScreen()
-        {
-            bool res = false;
-            Vector2 cp = Engine.cameraPos;
-            Vector2 cs = new Vector2(Engine.Window.Width ,Engine.Window.Height);
-
-            if (this.location.X < cp.X          + cs.X &&
-                this.location.X + this.scale.X  > cp.X &&
-                this.location.Y < cp.Y          + cs.Y &&
-                this.location.Y + this.scale.Y  > cp.Y   )
-            {
-                res = true;
-            }
-
-            return res;
-        }
         #endregion
         //
         //
@@ -178,11 +160,6 @@ namespace Nilox2DGameEngine.Core
         public void Flip()
         {
             bitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
-        }
-        public static Bitmap RotateImage(Bitmap img, Vector2 scale, float rotationAngle)
-        {
-            
-            return img;
         }
         #endregion
         //
