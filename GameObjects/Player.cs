@@ -51,12 +51,13 @@ namespace Nilox2DGameEngine.Character
                         break;
 
                     case "right":
-                        sprite.Flip();
+                        //sprite.Flip();
+                        sprite.bitmap = Sprite2D.RotateImage(sprite.bitmap, sprite.scale, 270);
                         facing = "right";
                         break;
 
                     case "left":
-                        sprite.Flip();
+                        //sprite.Flip();
                         facing = "left";
                         break;
                     case "up":
