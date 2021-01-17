@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.label1 = new System.Windows.Forms.Label();
             this.bt_startgame = new System.Windows.Forms.Button();
             this.bteditor = new System.Windows.Forms.Button();
@@ -38,18 +37,19 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(158, 28);
+            this.label1.Font = new System.Drawing.Font("Unispace", 50.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(483, 76);
+            this.label1.Size = new System.Drawing.Size(776, 92);
             this.label1.TabIndex = 0;
-            this.label1.Text = "EinGeielrName";
+            this.label1.Text = "THE DUNGEON";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // bt_startgame
             // 
+            this.bt_startgame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_startgame.Location = new System.Drawing.Point(232, 196);
             this.bt_startgame.Name = "bt_startgame";
             this.bt_startgame.Size = new System.Drawing.Size(165, 51);
@@ -60,6 +60,7 @@
             // 
             // bteditor
             // 
+            this.bteditor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bteditor.Location = new System.Drawing.Point(403, 196);
             this.bteditor.Name = "bteditor";
             this.bteditor.Size = new System.Drawing.Size(165, 51);
@@ -70,20 +71,20 @@
             // 
             // btoptions
             // 
+            this.btoptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btoptions.Location = new System.Drawing.Point(232, 253);
             this.btoptions.Name = "btoptions";
             this.btoptions.Size = new System.Drawing.Size(165, 51);
             this.btoptions.TabIndex = 3;
             this.btoptions.Text = "Options";
-            this.btoptions.UseVisualStyleBackColor = true;
+            this.btoptions.UseVisualStyleBackColor = false;
             this.btoptions.Click += new System.EventHandler(this.btoptions_Click);
             // 
             // btexit
             // 
-            this.btexit.BackColor = System.Drawing.Color.Transparent;
             this.btexit.Cursor = System.Windows.Forms.Cursors.No;
             this.btexit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btexit.Location = new System.Drawing.Point(12, 387);
+            this.btexit.Location = new System.Drawing.Point(403, 253);
             this.btexit.Name = "btexit";
             this.btexit.Size = new System.Drawing.Size(165, 51);
             this.btexit.TabIndex = 4;
@@ -95,14 +96,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BackgroundImage = global::Nilox2DGameEngine.Properties.Resources.MMBI;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btexit);
             this.Controls.Add(this.btoptions);
             this.Controls.Add(this.bteditor);
             this.Controls.Add(this.bt_startgame);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -110,7 +112,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenuForm_FormClosing);
             this.Load += new System.EventHandler(this.MainMenu_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

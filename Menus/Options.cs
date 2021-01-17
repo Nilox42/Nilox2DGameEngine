@@ -22,12 +22,25 @@ namespace Nilox2DGameEngine.Menus
         private void Options_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
-            this.Close();
             this.Dispose();
             cr.showMainMenu();
         }
+
+
         #endregion
 
-        
+       
+
+        private void cbconsolevisibility_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbconsolevisibility.Checked)
+            {
+                cr.showConsole();
+            }
+            else
+            {
+                cr.hideConsole();
+            }
+        }
     }
 }

@@ -70,11 +70,9 @@ namespace Nilox2DGameEngine.Menus
         {
             Log.control("Mainmenu showing");
 
-            if (MM != null)
-            {
-                hideMainMenu();
-            }
-
+            hideOptions();
+            hideMainMenu();
+            
             MM = new MainMenu(this);
             MM.Show();
         }
@@ -90,7 +88,7 @@ namespace Nilox2DGameEngine.Menus
             }
             else
             {
-                Log.warning("[CORE]  -  Couldnt destroy MainMenu REF");
+                //Log.warning("[CORE]  -  Couldnt destroy MainMenu REF");
             }
         }
 
@@ -98,10 +96,9 @@ namespace Nilox2DGameEngine.Menus
         {
             Log.control("Options showing");
 
-            if (OP != null)
-            {
-                hideMainMenu();
-            }
+            hideMainMenu();
+            hideOptions();
+            
 
             OP = new Options(this);
             OP.Show();
@@ -118,7 +115,7 @@ namespace Nilox2DGameEngine.Menus
             }
             else
             {
-                Log.warning("[CORE]  -  Couldnt destroy MainMenu REF");
+               // Log.warning("[CORE]  -  Couldnt destroy MainMenu REF");
             }
         }
 
@@ -154,7 +151,7 @@ namespace Nilox2DGameEngine.Menus
             if (LE == null && GM == null)
             {
                 Log.control("Level Editor initialising");
-                LE = new LevelEditor();
+                LE = new LevelEditor(this);
             }
             else
             {

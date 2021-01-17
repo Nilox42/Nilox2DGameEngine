@@ -51,7 +51,7 @@ namespace Nilox2DGameEngine.Util
         {
             Tile t = new Tile();
             string[] s = s0.Split('|');
-
+            
             t.name = s[0];                                          //0  Set name
             t.tilesize = Convert.ToInt32(s[1]);                     //1  Set tilesize
             t.locationX = Convert.ToInt32(s[2]);                    //2  Set location x

@@ -42,8 +42,9 @@ namespace Nilox2DGameEngine.Menus
         }
         private void btoptions_Click(object sender, EventArgs e)
         {
-
+            cr.showOptions();
         }
+
 
 
         #endregion

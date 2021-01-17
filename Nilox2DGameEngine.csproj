@@ -156,6 +156,11 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="bin\Debug\Content\Default\BSP\MapBeispiel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Content\Menus\MMBI.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,6 +11,7 @@ using System.Timers;
 using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.Map;
 using Nilox2DGameEngine.Core;
+using Nilox2DGameEngine.Menus;
 using System.DirectoryServices.ActiveDirectory;
 using System.Linq.Expressions;
 
@@ -1767,8 +1768,10 @@ namespace Nilox2DGameEngine.Editor
             window.Text = this.title;
             //Window.FormBorderStyle = FormBorderStyle.SizableToolWindow;
             window.Paint += window_Paint;
-            
-            Application.Run(window);
+            window.FormClosing += exitLeveleditor;
+
+            //Application.Run(window);
+            window.Show();
         }
         #endregion
         //
@@ -1779,6 +1782,8 @@ namespace Nilox2DGameEngine.Editor
         // //
         //
         #region Init
+        Controller cr = null;
+
         public List<Tile> allTiles = new List<Tile>();
         public List<Sprite2D> allSprite2Ds = new List<Sprite2D>();
 
@@ -1793,8 +1798,10 @@ namespace Nilox2DGameEngine.Editor
         public string loadedlevelname = string.Empty;
 
 
-        public LevelEditor()
+        public LevelEditor(Controller cr0)
         {
+            cr = cr0;
+
             foreach (string sl in allcontentlocations)
             {
                 NLoad.imagesfromDirectory(sl , allimages);
@@ -1802,7 +1809,10 @@ namespace Nilox2DGameEngine.Editor
 
             loadBuilderGUI();
         }
-
+        public void exitLeveleditor(object sender, FormClosingEventArgs e)
+        {
+            cr.showMainMenu();
+        }
         #endregion
         //
         // //
