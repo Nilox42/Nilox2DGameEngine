@@ -75,12 +75,23 @@
     <Compile Include="GameObjects\Item.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameObjects\Projectile.cs" />
-    <Compile Include="Core\Controller.cs" />
     <Compile Include="Core\Engine.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Core\BaseImage.cs" />
     <Compile Include="Core\Polygon.cs" />
+    <Compile Include="MainMenu\ControllerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu\ControllerForm.Designer.cs">
+      <DependentUpon>ControllerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu\Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu\Options.Designer.cs">
+      <DependentUpon>Options.cs</DependentUpon>
+    </Compile>
     <Compile Include="Old\BaseGameMode.cs" />
     <Compile Include="Editor\LevelEditor.cs">
       <SubType>Form</SubType>
@@ -131,8 +142,14 @@
     <EmbeddedResource Include="Editor\LevelEditor.resx">
       <DependentUpon>LevelEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu\ControllerForm.resx">
+      <DependentUpon>ControllerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainMenu\MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu\Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

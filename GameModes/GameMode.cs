@@ -13,6 +13,7 @@ using Nilox2DGameEngine.Map;
 using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Character;
+using Nilox2DGameEngine.MainMenu;
 
 namespace Nilox2DGameEngine
 {
@@ -20,6 +21,9 @@ namespace Nilox2DGameEngine
     {
         //
         #region Init
+
+        ControllerForm cr = null;
+
         //Level
         public Level currentLevel = null;
         public bool canmoveon = true;
@@ -55,9 +59,9 @@ namespace Nilox2DGameEngine
         public static List<string> logs = new List<string>();
 
 
-        public GameMode() : base(new Vector2(1280, 720), "Engine Demo")
+        public GameMode(ControllerForm cr0) : base(new Vector2(1280, 720), "Engine Demo")
         {
-
+            cr = cr0;
         }
         #endregion
         //
@@ -218,12 +222,13 @@ namespace Nilox2DGameEngine
             }
 
             sp.Stop();
-            sw.WriteLine("[TIME]    -    " + sp.ElapsedMilliseconds.ToString());
 
-            Log.save("[LOGGING]    -    " + sp.ElapsedMilliseconds.ToString());
+            Log.save("[LOGGING]    -   Saving took " + sp.ElapsedMilliseconds.ToString());
 
             sw.Dispose();
             sw = null;
+
+            cr.closeGame();
         }
 
         public override void keyDown(KeyEventArgs e)

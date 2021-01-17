@@ -20,7 +20,13 @@ namespace Nilox2DGameEngine.Util
             line($"[MSG] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }
-
+        public static void control(string msg)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"[CONTROL] - {msg}");
+            line($"[CONTROL] - {msg}");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
         public static void info(string msg)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;

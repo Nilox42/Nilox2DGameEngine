@@ -84,7 +84,7 @@ namespace Nilox2DGameEngine.Core
     //---------------------------------------------------------------------------------------------------------------------------------------
     //
     #region Engine
-    public  abstract class Engine
+    public abstract class Engine
     {
         #region Engine Init
         //Windwo varibles
@@ -173,7 +173,8 @@ namespace Nilox2DGameEngine.Core
             //Initiate Core Functions
             gameLoopThread = new Thread(gameLoop);
             gameLoopThread.Start();
-            Application.Run(Window);
+            //Application.Run(Window);
+            Window.Show();
         }
         #endregion
         //
@@ -194,7 +195,6 @@ namespace Nilox2DGameEngine.Core
         // //
         //
         #region Functions
-
         //Remove marked Sprite2D Polygons Shape2D and BaseImage
         #region TrashRemoval
         private void trashRemoval()
@@ -316,8 +316,8 @@ namespace Nilox2DGameEngine.Core
 
         private void window_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Call abstrakt onClose()
-            onClose();
+            //disable Engine
+            disablerenderer = true;
 
             // Abort GameLoopThread
             gameLoopThread.Abort();
@@ -327,6 +327,9 @@ namespace Nilox2DGameEngine.Core
             allShapes.Clear();
             allPolygons.Clear();
             allimages.Clear();
+
+            // Call abstrakt onClose()
+            onClose();
 
             Log.warning("[ENGINE] Closed <------------------------------------------------------------------------------------------>");
         }
@@ -420,10 +423,7 @@ namespace Nilox2DGameEngine.Core
 
                 #endregion
             }
-            else
-            {
-                
-            }
+            
 
             //Call Trashremoval
             trashRemoval();
