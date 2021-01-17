@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 
+
 namespace Nilox2DGameEngine.Core 
 {
     public class Sprite2D
@@ -180,30 +181,8 @@ namespace Nilox2DGameEngine.Core
         }
         public static Bitmap RotateImage(Bitmap img, Vector2 scale, float rotationAngle)
         {
-            //create an empty Bitmap image
-            Bitmap bmp = new Bitmap(Convert.ToInt32(scale.X), Convert.ToInt32(scale.Y));
-
-            //turn the Bitmap into a Graphics object
-            Graphics gfx = Graphics.FromImage(bmp);
-
-            //now we set the rotation point to the center of our image
-            gfx.TranslateTransform(scale.X / 2, scale.Y / 2);
-
-            //now rotate the image
-            gfx.RotateTransform(rotationAngle);
-
-            gfx.TranslateTransform(-scale.X / 2, -scale.Y / 2);
-
-            //set the InterpolationMode to HighQualityBicubic so to ensure a high
-            //quality image once it is transformed to the specified size
-            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-            //now draw our new image onto the graphics object
-            gfx.DrawImage(img, new Point(0, 0));
-
-            gfx.Dispose();
-
-            return bmp;
+            
+            return img;
         }
         #endregion
         //
