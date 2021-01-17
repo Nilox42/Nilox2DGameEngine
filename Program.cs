@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Nilox2DGameEngine.Menus;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Runtime.CompilerServices;
-//
-using Nilox2DGameEngine.Editor;
-using Nilox2DGameEngine.Util;
-using Nilox2DGameEngine.MainMenu;
-using Nilox2DGameEngine.Core;
 
 namespace Nilox2DGameEngine
 {

@@ -1,7 +1,7 @@
 ﻿
-namespace Nilox2DGameEngine.MainMenu
+namespace Nilox2DGameEngine.Menus
 {
-    partial class Options
+    partial class Controller
     {
         /// <summary>
         /// Required designer variable.
@@ -29,22 +29,35 @@ namespace Nilox2DGameEngine.MainMenu
         /// </summary>
         private void InitializeComponent()
         {
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // Options
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(284, 183);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(226, 67);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ERROR";
+            // 
+            // ControllerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Options";
+            this.Controls.Add(this.label1);
+            this.Name = "ControllerForm";
+            this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Options";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Options_FormClosing);
-            this.Load += new System.EventHandler(this.Options_Load);
+            this.Text = "ControllerForm";
+            this.Load += new System.EventHandler(this.ControllerForm_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using Nilox2DGameEngine.Editor;
+using Nilox2DGameEngine.Util;
+//
+using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//
-using Nilox2DGameEngine.Util;
-using Nilox2DGameEngine.Editor;
 
-namespace Nilox2DGameEngine.MainMenu
+namespace Nilox2DGameEngine.Menus
 {
-    public partial class ControllerForm : Form
+    public partial class Controller : Form
     {
         #region imported Dll´s
         //Import Dll´s to be able to Hide the Console
@@ -30,16 +24,13 @@ namespace Nilox2DGameEngine.MainMenu
         #endregion
         //
         #region Init
-        MainMenuForm MM = null;
-
-        //Game
-        GameMode GM = null;
-        //Level Editor
-        LevelEditor LE = null;
-        //Options
+        MainMenu MM = null;
         Options OP = null;
 
-        public ControllerForm()
+        GameMode GM = null;
+        LevelEditor LE = null;
+
+        public Controller()
         {
             InitializeComponent();
         }
@@ -84,7 +75,7 @@ namespace Nilox2DGameEngine.MainMenu
                 hideMainMenu();
             }
 
-            MM = new MainMenuForm(this);
+            MM = new MainMenu(this);
             MM.Show();
         }
         public void hideMainMenu()

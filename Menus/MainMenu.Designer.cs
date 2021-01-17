@@ -1,4 +1,4 @@
-﻿namespace Nilox2DGameEngine.MainMenu
+﻿namespace Nilox2DGameEngine.Menus
 {
     partial class MainMenu
     {
@@ -91,7 +91,7 @@
             this.btexit.UseVisualStyleBackColor = false;
             this.btexit.Click += new System.EventHandler(this.btexit_Click);
             // 
-            // MainMenuForm
+            // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -104,10 +104,11 @@
             this.Controls.Add(this.bt_startgame);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Name = "MainMenuForm";
+            this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainMenuForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenuForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

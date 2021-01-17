@@ -1,17 +1,7 @@
-﻿using Nilox2DGameEngine.Editor;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
-using Nilox2DGameEngine.Core;
-
-namespace Nilox2DGameEngine.MainMenu
+namespace Nilox2DGameEngine.Menus
 {
     public partial class MainMenu : Form
     {
@@ -23,6 +13,11 @@ namespace Nilox2DGameEngine.MainMenu
             InitializeComponent();
 
             cr = cr0;
+        }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+
         }
         private void MainMenuForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -49,6 +44,7 @@ namespace Nilox2DGameEngine.MainMenu
         {
 
         }
+
 
         #endregion
 

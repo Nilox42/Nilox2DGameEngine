@@ -1,19 +1,17 @@
-﻿using System;
+﻿using Nilox2DGameEngine.Character;
+using Nilox2DGameEngine.Core;
+using Nilox2DGameEngine.Map;
+using Nilox2DGameEngine.Menus;
+using Nilox2DGameEngine.Util;
+//
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
-using System.IO;
-using System.Diagnostics;
-//
-using Nilox2DGameEngine.Map;
-using Nilox2DGameEngine.Util;
-using Nilox2DGameEngine.Core;
-using Nilox2DGameEngine.Character;
-using Nilox2DGameEngine.MainMenu;
 
 namespace Nilox2DGameEngine
 {

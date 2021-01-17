@@ -80,27 +80,27 @@
     </Compile>
     <Compile Include="Core\BaseImage.cs" />
     <Compile Include="Core\Polygon.cs" />
-    <Compile Include="MainMenu\ControllerForm.cs">
+    <Compile Include="Menus\Controller.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainMenu\ControllerForm.Designer.cs">
-      <DependentUpon>ControllerForm.cs</DependentUpon>
+    <Compile Include="Menus\Controller.Designer.cs">
+      <DependentUpon>Controller.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainMenu\Options.cs">
+    <Compile Include="Menus\Options.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainMenu\Options.Designer.cs">
+    <Compile Include="Menus\Options.Designer.cs">
       <DependentUpon>Options.cs</DependentUpon>
     </Compile>
     <Compile Include="Old\BaseGameMode.cs" />
     <Compile Include="Editor\LevelEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainMenu\MainMenuForm.cs">
+    <Compile Include="Menus\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainMenu\MainMenuForm.Designer.cs">
-      <DependentUpon>MainMenuForm.cs</DependentUpon>
+    <Compile Include="Menus\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Map\Level.cs" />
     <Compile Include="Map\Tile.cs" />
@@ -142,13 +142,13 @@
     <EmbeddedResource Include="Editor\LevelEditor.resx">
       <DependentUpon>LevelEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainMenu\ControllerForm.resx">
-      <DependentUpon>ControllerForm.cs</DependentUpon>
+    <EmbeddedResource Include="Menus\Controller.resx">
+      <DependentUpon>Controller.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainMenu\MainMenuForm.resx">
-      <DependentUpon>MainMenuForm.cs</DependentUpon>
+    <EmbeddedResource Include="Menus\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainMenu\Options.resx">
+    <EmbeddedResource Include="Menus\Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
