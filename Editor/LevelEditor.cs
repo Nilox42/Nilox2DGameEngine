@@ -282,7 +282,7 @@ namespace Nilox2DGameEngine.Editor
             this.tb_url.Name = "tb_url";
             this.tb_url.Size = new System.Drawing.Size(99, 20);
             this.tb_url.TabIndex = 3;
-            this.tb_url.Text = "Test";
+            this.tb_url.Text = "One";
             this.tb_url.TextChanged += new System.EventHandler(this.tb_url_TextChanged);
             // 
             // nudIndex
