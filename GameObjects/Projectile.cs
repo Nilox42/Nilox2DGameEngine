@@ -92,7 +92,7 @@ namespace Nilox2DGameEngine.Objects
             }
 
             //damage player
-            if (sprite.isCollidingWithSprite(sprite, gm.player.sprite) && owner != gm.player)
+            if (sprite.isCollidingWithSprite(sprite, gm.player.sprite) && owner.clas != Class.player)
             {
                 gm.player.damge(this, damagepotential);
                 damagepotential = 0;

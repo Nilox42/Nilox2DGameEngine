@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WMPLib;
 
 namespace Nilox2DGameEngine.Objects
 {
@@ -21,10 +20,10 @@ namespace Nilox2DGameEngine.Objects
         Vector2 lastpos = Vector2.zero();
         float maxwalkspeed = 0.2f;
 
-        int health = 10000;
-        int maxhealth = 10000;
+        int health = 1000;
+        int maxhealth = 1000;
 
-        Timer timer = new Timer();
+        int shootcooldown = 0;
 
         public Boss(Sprite2D sprite0, GameMode gm0)
         {
@@ -45,9 +44,7 @@ namespace Nilox2DGameEngine.Objects
             }
 
             //setup timer
-            timer.Interval = 500;
-            timer.Tick += shoot;
-            timer.Start();
+            
         }
         #endregion
         //
@@ -56,17 +53,20 @@ namespace Nilox2DGameEngine.Objects
         #region overrides
         public override void damge(Actor instigator, int damage)
         {
-            health -= damage;
+            health = health - damage;
+            Log.debug("LIFE" + health);
+            if (health <= 0)
+            {
+                destroy();
+            }
         }
 
         public override void destroy(string reason = "")
         {
-            timer.Stop();
-            timer.Dispose();
-
-            for (int i = 0; i < 3; i++)
+            Random r = new Random();
+            for (int i = 0; i < 10; i++)
             {
-                gm.spawnActorFromClass(Vector2.randomInBox(getActorLocation(), getActorScale2D()), Class.item);
+                gm.spawnActorFromClass(Vector2.randomLocationInRadius(getActorCenterLocation(), 200, r), Class.item);
             }
 
             gm.destroyActor(this);
@@ -76,6 +76,15 @@ namespace Nilox2DGameEngine.Objects
         {
             move();
 
+            if (shootcooldown > 30)
+            {
+                shoot();
+                shootcooldown = 0;
+            }
+            else
+            {
+                shootcooldown++;
+            }
         }
         #endregion
         //
@@ -102,13 +111,10 @@ namespace Nilox2DGameEngine.Objects
             }
         }
 
-        public void shoot(object sender, EventArgs e)
+        public void shoot()
         {
-            shootAtTarget();
-        }
+            Log.debug("shoot");
 
-        public void shootAtTarget()
-        {
             Projectile projectile = (Projectile)gm.spawnActorFromClass(getActorCenterLocation(), Class.projectile, this);
             projectile.direction = (Vector2.normalize(getActorCenterLocation() - gm.player.getActorCenterLocation()) * -1);
         }

@@ -51,9 +51,8 @@ namespace Nilox2DGameEngine.Util
         }
 
 
-        public static Vector2 randomInBox(Vector2 boxlocation, Vector2 boxscale)
+        public static Vector2 randomLocationInBox(Vector2 boxlocation, Vector2 boxscale, Random r)
         {
-            Random r = new Random();
             Vector2 v = Vector2.zero();
 
             v.X = r.Next(Convert.ToInt32(boxlocation.X), Convert.ToInt32(boxlocation.X + boxscale.X));
@@ -63,7 +62,17 @@ namespace Nilox2DGameEngine.Util
 
             return v;
         }
+        public static Vector2 randomLocationInRadius(Vector2 center, int radius, Random r)
+        {
+            Vector2 v = Vector2.zero();
 
+            v.X = r.Next(Convert.ToInt32(center.X - radius), Convert.ToInt32(center.X + radius));
+            v.Y = r.Next(Convert.ToInt32(center.Y - radius), Convert.ToInt32(center.Y + radius));
+
+            Log.debug(v.ToString());
+
+            return v;
+        }
         #endregion
 
         #region Converts
