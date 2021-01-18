@@ -24,7 +24,7 @@ namespace Nilox2DGameEngine
 
         //Level
         public Level currentLevel = null;
-        public bool canmoveon = true;
+        public bool canmoveon = false;
         public bool canmoveback = false;
         public bool ismoving = false;
 
@@ -303,8 +303,8 @@ namespace Nilox2DGameEngine
 
             // Set level varibles
             ismoving = false;
-            canmoveon = true;
-            canmoveback = true;
+            canmoveon = false;
+            canmoveback = false;
 
             // enable Player
             resetPlayer();

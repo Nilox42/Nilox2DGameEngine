@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 //
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Util;
@@ -25,8 +26,11 @@ namespace Nilox2DGameEngine.Objects
 
         Vector2 laspos = Vector2.zero();
 
-        int shootcoundownnuber = 0;
-        int shootcoundown = 100;
+        int shootcoundown = 0;
+        int shootcoundownmax = 100;
+
+        int meleecouldown = 400;
+        int meleecouldownmax = 500;
 
         //Vector2 playerlocation = Vector2.Zero();
         public Enemy(Sprite2D sprite0, GameMode gm0)
@@ -80,23 +84,32 @@ namespace Nilox2DGameEngine.Objects
                 setActorLocation(laspos);
             }
 
-            if (player.isCollidingWithSprite(player,this.sprite))
+            //kill player if colliding
+            if (sprite.isCollidingWithSprite(player,sprite) && meleecouldown > meleecouldownmax)
             {
+                //damage
                 player.actor.damge(this,damagepotential);
                 damagepotential = 0;
-                gm.destroyActor(this);
-            }
 
-            if (shootcoundownnuber > shootcoundown)
+                //countdow
+                meleecouldown = 0;
+            }
+             meleecouldown++;
+            
+
+            //shoot tick
+            if (shootcoundown > shootcoundownmax)
             {
                 shoot();
 
                 Random r = new Random();
-                shootcoundown = r.Next(70,200);
+                shootcoundownmax = r.Next(70,200);
+                r = null;
 
-                shootcoundownnuber = 0;
+                shootcoundown = 0;
             }
-            shootcoundownnuber++;
+            shootcoundown++;
+            
         }
         //
         public override void damge(Actor instigator, int damage)

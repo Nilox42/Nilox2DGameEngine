@@ -138,7 +138,7 @@ namespace Nilox2DGameEngine.Objects
             if (coins >= 3 && gm.ismoving == false && gm.canmoveon == false)
             {
                 gm.canmoveon = true;
-                Log.warning("[CINDITION] - Coin Condition met");
+                Log.debug("[CINDITION] - Coin Condition met");
 
             }
         }
