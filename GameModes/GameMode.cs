@@ -240,6 +240,8 @@ namespace Nilox2DGameEngine
             //Debug
             if (e.KeyCode == Keys.U) { unloadCurrentTile(); }
             if (e.KeyCode == Keys.N) { loadNewTile(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X))); }
+            if (e.KeyCode == Keys.M) { currentLevel.moveRight(); }
+            if (e.KeyCode == Keys.B) { currentLevel.moveLeft(); }
             if (e.KeyCode == Keys.O)
             {
                 player.setActorLocation(currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation);
@@ -310,17 +312,36 @@ namespace Nilox2DGameEngine
             Log.warning("[ENGINE]  -  EGNINE DISABLED ----------------------------------------------------------------------------------------------");
 
             //Player
-            player.destroy();
-            player = null;
-            Log.warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
-
-            //Kill all Actors
-            if (allactors.Count > 0)
+            if (player != null)
             {
-                while (allactors.Count > 0)
+                player.destroy();
+                player = null;
+                Log.warning("[GameMode]  -  Player Destroyed! ------------------------------------------------------------------------------------------");
+
+            }
+            else
+            {
+                Log.warning("[GameMode]  -  Player doesnt exist");
+            }
+        
+
+
+        //Kill all Actors
+        ka:
+            try
+            {
+                if (allactors.Count > 0)
                 {
-                    destroyActor(allactors.ElementAt(0));
+                    while (allactors.Count > 0)
+                    {
+                        destroyActor(allactors.ElementAt(0));
+                    }
                 }
+            }
+            catch
+            {
+                Log.error("[GAMEMODE]  -  Kill Actors Failed");
+                goto ka;
             }
             Log.warning("[GameMode]  -  Actors Destroyed! ------------------------------------------------------------------------------------------");
 
@@ -360,7 +381,7 @@ namespace Nilox2DGameEngine
                     }
                 case Class.player:
                     {
-                        Sprite2D sprite = new Sprite2D(new Vector2(location.X, location.Y), new Vector2(30, 48), "Knight_Idle", "player", true);
+                        Sprite2D sprite = new Sprite2D(new Vector2(location.X, location.Y), new Vector2(22, 40), "Knight_Idle", "player", true);
 
                         player = new Player(sprite, this);
                         player.setActorLocation(location);

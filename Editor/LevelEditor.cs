@@ -20,6 +20,7 @@ namespace Nilox2DGameEngine.Editor
     public class Builder : Form
     {
         #region Init
+        Vector2 lastmouse = Vector2.zero();
 
         #region FormVaribles
         private Button bt_LoadLevel;
@@ -1737,8 +1738,19 @@ namespace Nilox2DGameEngine.Editor
         #region CoordsTick
         private void coordsTick(object sender, EventArgs e)
         {
-            lbXMouse.Text = "X: " + Convert.ToString(Cursor.Position.X);
-            lbYMouse.Text = "Y: " + Convert.ToString(Cursor.Position.Y);
+            Vector2 v = Vector2.zero();
+            try
+            {
+                 v = new Vector2(this.PointToClient(MousePosition).X, this.PointToClient(MousePosition).Y);
+                lastmouse = v;
+            }
+            catch
+            {
+                v = lastmouse;
+            }
+
+            lbXMouse.Text = "X: " + Convert.ToString(v.X - LB.maporigin.X);
+            lbYMouse.Text = "Y: " + Convert.ToString(v.Y - LB.maporigin.Y);
         }
         #endregion
 
@@ -1811,7 +1823,7 @@ namespace Nilox2DGameEngine.Editor
         }
         public void exitLeveleditor(object sender, FormClosingEventArgs e)
         {
-            cr.showMainMenu();
+            cr.closeEditor();
         }
         #endregion
         //

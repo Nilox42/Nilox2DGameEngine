@@ -40,6 +40,10 @@ namespace Nilox2DGameEngine.Character
         {
             return new Vector2(sprite.location.X, sprite.location.Y);
         }
+        public Vector2 getActorCenterLocation()
+        {
+            return new Vector2(sprite.location.X + (sprite.scale.X / 2), sprite.location.Y + (sprite.scale.Y / 2));
+        }
         public void setActorLocation(Vector2 vector)
         {
             sprite.location = new Vector2(vector.X, vector.Y);

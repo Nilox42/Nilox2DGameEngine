@@ -14,10 +14,10 @@ namespace Nilox2DGameEngine.Character
         #region Init
         GameMode gm = null;
 
-        double health = 10;
+        double health = 100;
         bool alive = true;
 
-        double maxwalkspeed = 1;
+        double maxwalkspeed = 0.01;
         bool hastarget = true;
         int damagepotential = 10;
 
@@ -102,7 +102,7 @@ namespace Nilox2DGameEngine.Character
                 alive = false;
                 sprite.draw = false;
 
-                gm.spawnActorFromClass(getActorLocation(), Class.item);
+                gm.spawnActorFromClass(getActorCenterLocation(), Class.item);
 
                 destroy();
             }
@@ -114,8 +114,8 @@ namespace Nilox2DGameEngine.Character
         #region functions
         public void shoot()
         {
-            Projectile projectile = (Projectile)gm.spawnActorFromClass(getActorLocation(), Class.projectile, this);
-            projectile.direction = (Vector2.normalize(getActorLocation() - gm.player.getActorLocation())* -1);
+            Projectile projectile = (Projectile)gm.spawnActorFromClass(getActorCenterLocation(), Class.projectile, this);
+            projectile.direction = (Vector2.normalize(getActorCenterLocation() - gm.player.getActorCenterLocation())* -1);
     }
         #endregion
 

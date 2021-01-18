@@ -159,6 +159,12 @@ namespace Nilox2DGameEngine.Menus
                 showMainMenu();
             }
         }
+        public void closeEditor()
+        {
+            LE = null;
+            showMainMenu();
+            Log.control("closed editor");
+        }
         #endregion
     }
 }

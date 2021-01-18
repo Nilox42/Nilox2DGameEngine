@@ -21,6 +21,8 @@ namespace Nilox2DGameEngine.Util
                 {
                     StreamWriter writer = new StreamWriter(directory0 + @"\" + tile.name + ".txt");
                     writer.WriteLine(Converts.TileToString(tile));
+                    writer.WriteLine(tile.enemies);
+                    writer.Dispose();
                 }
             }
         }
@@ -35,6 +37,7 @@ namespace Nilox2DGameEngine.Util
 
                 StreamWriter writer = new StreamWriter(directory0 + @"\" + tile0.name + ".txt");
                 writer.WriteLine(Converts.TileToString(tile0));
+                writer.WriteLine(tile0.enemies);
                 writer.Dispose();
             }
             else

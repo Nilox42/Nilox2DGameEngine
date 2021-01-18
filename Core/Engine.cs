@@ -20,9 +20,8 @@ namespace Nilox2DGameEngine.Core
     //Custom Window to draw to 
     public class Canvas : Form
     {
-        public Label lbfps;
-        public Label label1;
-        public ProgressBar pb_healthbar;
+        private PictureBox pictureBox1;
+        public Label lbcoins;
 
         public Canvas()
         {
@@ -32,48 +31,38 @@ namespace Nilox2DGameEngine.Core
 
         private void InitializeComponent()
         {
-            this.pb_healthbar = new System.Windows.Forms.ProgressBar();
-            this.lbfps = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbcoins = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // pb_healthbar
+            // lbcoins
             // 
-            this.pb_healthbar.BackColor = System.Drawing.Color.White;
-            this.pb_healthbar.ForeColor = System.Drawing.Color.Transparent;
-            this.pb_healthbar.Location = new System.Drawing.Point(12, 12);
-            this.pb_healthbar.Name = "pb_healthbar";
-            this.pb_healthbar.Size = new System.Drawing.Size(163, 23);
-            this.pb_healthbar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.pb_healthbar.TabIndex = 0;
-            this.pb_healthbar.Value = 90;
+            this.lbcoins.AutoSize = true;
+            this.lbcoins.Location = new System.Drawing.Point(56, 29);
+            this.lbcoins.Name = "lbcoins";
+            this.lbcoins.Size = new System.Drawing.Size(13, 13);
+            this.lbcoins.TabIndex = 2;
+            this.lbcoins.Text = "0";
             // 
-            // lbfps
+            // pictureBox1
             // 
-            this.lbfps.AutoSize = true;
-            this.lbfps.Location = new System.Drawing.Point(208, 21);
-            this.lbfps.Name = "lbfps";
-            this.lbfps.Size = new System.Drawing.Size(25, 13);
-            this.lbfps.TabIndex = 1;
-            this.lbfps.Text = "000";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
+            this.pictureBox1.BackgroundImage = global::Nilox2DGameEngine.Properties.Resources.coin;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(38, 45);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // Canvas
             // 
             this.ClientSize = new System.Drawing.Size(834, 441);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lbfps);
-            this.Controls.Add(this.pb_healthbar);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lbcoins);
             this.Name = "Canvas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,8 +70,9 @@ namespace Nilox2DGameEngine.Core
 
         public void setlb1(string s)
         {
-            label1.Text = s;
+            lbcoins.Text = s;
         }
+
     }
     #endregion
     //
@@ -121,7 +111,7 @@ namespace Nilox2DGameEngine.Core
         public static List<Polygon> polygonstoremove = new List<Polygon>();
 
         //Ui
-        public int coins = -5;
+        public int coins = 0;
         public int health = 100;
 
         //Lists all images that are used 
@@ -321,8 +311,7 @@ namespace Nilox2DGameEngine.Core
         #region Ui
         public void updateUi()
         {
-            Window.label1.Text = coins.ToString();
-            Window.pb_healthbar.Value = 50;
+            Window.lbcoins.Text = coins.ToString();
         }
         #endregion
 

@@ -168,9 +168,8 @@ namespace Nilox2DGameEngine.Character
                 coin0.destroySelf();
                 coin0 = null;
 
-
-                //
-                gm.Window.lbfps.Text += "1"; 
+                //coins
+                gm.coins = coins;
             }
         }
         #endregion
