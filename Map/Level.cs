@@ -100,7 +100,7 @@ namespace Nilox2DGameEngine.Map
             else
             {
                 Log.error("[MOVEMENT] Cant walk RIGHT here | currentlocation.X:" + currentlocation.X);
-                gm.Window.Close();
+                gm.endGame();
             }
         }
         public void moveLeft()
@@ -122,6 +122,7 @@ namespace Nilox2DGameEngine.Map
             else
             {
                 Log.error("[MOVEMENT] Cant walk LEFT here | currentlocation.X:" + currentlocation.X);
+                gm.endGame();
             }
         }
         #endregion

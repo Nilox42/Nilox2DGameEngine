@@ -1,4 +1,4 @@
-﻿using Nilox2DGameEngine.Character;
+﻿using Nilox2DGameEngine.Objects;
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Map;
 using Nilox2DGameEngine.Menus;
@@ -52,6 +52,7 @@ namespace Nilox2DGameEngine
         public List<Enemy> allenemies = new List<Enemy>();
         public List<Projectile> allprojectiles = new List<Projectile>();
         public List<Item> allitems = new List<Item>();
+        public List<Boss> allbosses = new List<Boss>();
 
         //Logging
         public static List<string> logs = new List<string>();
@@ -248,6 +249,18 @@ namespace Nilox2DGameEngine
                 Log.error("RESET TO LOCATION: " + currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X)).spawnlocation.ToString());
             }
             if (e.KeyCode == Keys.F) { player.sprite.Flip(); }
+
+            if (e.KeyCode == Keys.V)
+            {
+                if (Engine.disablerenderer == true)
+                {
+                    Engine.disablerenderer = false;
+                }
+                else
+                {
+                    Engine.disablerenderer = true;
+                }
+            }
         }
 
         public override void keyUp(KeyEventArgs e)
@@ -263,6 +276,7 @@ namespace Nilox2DGameEngine
         // //
         //
         #region Functions
+        //tilerelated
         public void loadNewTile(Tile t)
         {
             //Map
@@ -285,7 +299,7 @@ namespace Nilox2DGameEngine
             }
 
             //Spawn Player
-            spawnActorFromClass(new Vector2(t.spawnlocation.X, t.spawnlocation.Y), Class.player);
+            player = (Player)spawnActorFromClass(new Vector2(t.spawnlocation.X, t.spawnlocation.Y), Class.player);
 
             // Set level varibles
             ismoving = false;
@@ -353,6 +367,7 @@ namespace Nilox2DGameEngine
             Thread.Sleep(100);
         }
 
+        //Palyerrelated
         public void resetPlayer()
         {
             Tile t = currentLevel.tiles.ElementAt(Convert.ToInt32(currentLevel.currentlocation.X));
@@ -364,6 +379,12 @@ namespace Nilox2DGameEngine
             {
                 player.updateFacing(s);
             }
+        }
+
+        //engine related
+        public void endGame()
+        {
+            Window.Close();
         }
         #endregion
         //
@@ -383,9 +404,8 @@ namespace Nilox2DGameEngine
                     {
                         Sprite2D sprite = new Sprite2D(new Vector2(location.X, location.Y), new Vector2(22, 40), "Knight_Idle", "player", true);
 
-                        player = new Player(sprite, this);
+                        Player player = new Player(sprite, this);
                         player.setActorLocation(location);
-                        sprite.actor = player;
 
                         return player;
                     }
@@ -393,13 +413,10 @@ namespace Nilox2DGameEngine
                     {
                         Sprite2D sprite = new Sprite2D(location, new Vector2(48, 48), "rectangle2", "enemie", true);
 
-                        Enemy enemie = new Enemy(sprite, sprite.location, this);
-                        sprite.actor = enemie;
+                        Enemy enemie = new Enemy(sprite, this);
 
                         allenemies.Add(enemie);
                         allactors.Add(enemie);
-
-                        enemie.clas = Class.enemie;
 
                         return enemie;
                     }
@@ -407,13 +424,10 @@ namespace Nilox2DGameEngine
                     {
                         Sprite2D sprite = new Sprite2D(location, new Vector2(20, 20), "fireball", "", true);
 
-                        Projectile projectile = new Projectile(sprite, sprite.location, new Vector2(1, 0), 10, this, onwer);
-                        sprite.actor = projectile;
+                        Projectile projectile = new Projectile(sprite, new Vector2(1, 0), 10, this, onwer);
 
                         allprojectiles.Add(projectile);
                         allactors.Add(projectile);
-
-                        projectile.clas = Class.projectile;
 
                         return projectile;
                     }
@@ -422,13 +436,22 @@ namespace Nilox2DGameEngine
                         Sprite2D sprite = new Sprite2D(location, new Vector2(20, 20), "coin", "", true);
 
                         Item item = new Item(sprite, this);
-                        sprite.actor = item;
 
                         allitems.Add(item);
                         allactors.Add(item);
-                        item.clas = Class.item;
 
                         return item;
+                    }
+                case Class.boss:
+                    {
+                        Sprite2D sprite = new Sprite2D(location, new Vector2(100, 100), "bosstangle", "boss", true);
+
+                        Boss boss = new Boss(sprite, this);
+
+                        allbosses.Add(boss);
+                        allactors.Add(boss);
+
+                        return boss;
                     }
             }
         }
@@ -490,6 +513,21 @@ namespace Nilox2DGameEngine
 
                         break;
                     }
+                case Class.boss:
+                    {
+                        Sprite2D sprite = a.sprite;
+                        sprite.destroySelf();
+
+                        allbosses.Remove((Boss)a);
+                        allactors.Remove(a);
+
+                        Log.warning("[DESTROYED][BOSS]  -  {" + a.sprite.name + "}");
+                        a = null;
+
+                        break;
+                    }
+
+
             }
         }
         #endregion

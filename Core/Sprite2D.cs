@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.Serialization.Formatters;
 using Nilox2DGameEngine.Util;
-using Nilox2DGameEngine.Character;
+using Nilox2DGameEngine.Objects;
 using Nilox2DGameEngine.Editor;
 using System.Windows.Forms;
 using System.Diagnostics;

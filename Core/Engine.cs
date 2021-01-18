@@ -1,5 +1,5 @@
 ﻿using Nilox2DGameEngine.Util;
-using Nilox2DGameEngine.Character;
+using Nilox2DGameEngine.Objects;
 //
 using System;
 using System.Collections.Generic;

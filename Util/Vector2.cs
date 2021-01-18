@@ -49,6 +49,21 @@ namespace Nilox2DGameEngine.Util
             float f = ((v0.X - v1.X) * (v0.X - v1.X) + (v0.Y - v1.Y) * (v0.Y - v1.Y));
             return f;
         }
+
+
+        public static Vector2 randomInBox(Vector2 boxlocation, Vector2 boxscale)
+        {
+            Random r = new Random();
+            Vector2 v = Vector2.zero();
+
+            v.X = r.Next(Convert.ToInt32(boxlocation.X), Convert.ToInt32(boxlocation.X + boxscale.X));
+            v.Y = r.Next(Convert.ToInt32(boxlocation.Y), Convert.ToInt32(boxlocation.Y + boxscale.Y));
+
+            Log.debug(v.ToString());
+
+            return v;
+        }
+
         #endregion
 
         #region Converts

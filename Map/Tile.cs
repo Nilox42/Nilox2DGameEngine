@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 //
 using Nilox2DGameEngine.Util;
-using Nilox2DGameEngine.Character;
+using Nilox2DGameEngine.Objects;
 
 namespace Nilox2DGameEngine.Map
 {
@@ -164,9 +164,17 @@ namespace Nilox2DGameEngine.Map
                         break;
 
                     case "enemie":
-                        Log.info("[Tile]  -  startspawned enemie");
-                        gm.spawnActorFromClass(new Vector2(vector.X,vector.Y), Class.enemie);
-                        break;
+                        {
+                            Log.info("[Tile]  -  startspawned enemie");
+                            gm.spawnActorFromClass(new Vector2(vector.X, vector.Y), Class.enemie);
+                            break;
+                        }
+                    case "boss":
+                        {
+                            Log.info("[Tile]  -  startspawned BOSS");
+                            gm.spawnActorFromClass(new Vector2(vector.X, vector.Y), Class.boss);
+                            break;
+                        }
                 }
             }
 

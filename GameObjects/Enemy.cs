@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Util;
 
-namespace Nilox2DGameEngine.Character
+namespace Nilox2DGameEngine.Objects
 {
     public class Enemy : Actor
     {
@@ -29,11 +29,19 @@ namespace Nilox2DGameEngine.Character
         int shootcoundown = 100;
 
         //Vector2 playerlocation = Vector2.Zero();
-        public Enemy(Sprite2D sprite0, Vector2 location0, GameMode gm0)
+        public Enemy(Sprite2D sprite0, GameMode gm0)
         {
-            sprite = sprite0;
-            setActorLocation(location0);
+            //setup
             gm = gm0;
+
+            //sprite setup
+            sprite = sprite0;
+            sprite.actor = this;
+
+            //actor setup
+            clas = Class.enemie;
+
+
 
             if (sprite.isCollidingWithTag("collider") != null)
             {
@@ -45,8 +53,8 @@ namespace Nilox2DGameEngine.Character
         //
         //
         //
-        #region abstract functions
-        public override void destroy()
+        #region overrides
+        public override void destroy(string reason = "")
         {
             Log.info("[ENEMIE] - [DIED] - " + sprite.name);
 

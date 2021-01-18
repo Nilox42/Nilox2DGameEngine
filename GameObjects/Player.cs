@@ -7,7 +7,7 @@ using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.Core;
 using System.Windows.Forms;
 
-namespace Nilox2DGameEngine.Character
+namespace Nilox2DGameEngine.Objects
 {
     public class Player : Actor
     {
@@ -24,11 +24,16 @@ namespace Nilox2DGameEngine.Character
 
         public Player(Sprite2D sprite0, GameMode gm0)
         {
-            sprite = sprite0;
+            //setup
             gm = gm0;
 
-            clas = Class.player;
+            //sprite setup
+            sprite = sprite0;
             sprite.actor = this;
+
+            //Actor setup
+            clas = Class.player;
+ 
         }
         #endregion
         //
@@ -89,8 +94,10 @@ namespace Nilox2DGameEngine.Character
             Log.warning("[PLAYER]  -  Took Damage");
         }
 
-        public override void destroy()
+        public override void destroy(string reason = "")
         {
+
+
             gm.destroyActor(this);
         }
 

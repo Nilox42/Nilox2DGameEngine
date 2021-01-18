@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Util;
 
-namespace Nilox2DGameEngine.Character
+namespace Nilox2DGameEngine.Objects
 {
     public class Projectile:Actor
     {
@@ -22,14 +22,22 @@ namespace Nilox2DGameEngine.Character
 
         int damagepotential = 100;
 
-        public Projectile(Sprite2D sprite0, Vector2 location0, Vector2 direction0, int speed0, GameMode gm0, Actor owner0): base ()
+        public Projectile(Sprite2D sprite0, Vector2 direction0, int speed0, GameMode gm0, Actor owner0): base ()
         {
-            sprite = sprite0;
-            setActorLocation(location0);
-            direction = direction0;
-            speed = speed0;
+            //setup
             gm = gm0;
             owner = owner0;
+            direction = direction0;
+            speed = speed0;
+
+            //sprite setup
+            sprite = sprite0;
+            sprite.actor = this;
+
+            //actor setup
+            clas = Class.projectile;
+
+
 
             sec = new System.Timers.Timer(lifespan * 1000);
             sec.Elapsed += sec_Elapsed;
@@ -40,8 +48,14 @@ namespace Nilox2DGameEngine.Character
         //
         //
         #region overrides
-        public override void destroy()
+        public override void destroy(string reason = "")
         {
+            Log.debug(reason);
+            if (sec != null)
+            {
+                sec.Stop();
+                sec.Close();
+            }
             sprite.destroySelf();
             gm.destroyActor(this);
         }
@@ -55,7 +69,7 @@ namespace Nilox2DGameEngine.Character
             // collider collision
             if (sprite.isCollidingWithTag("collider") != null)
             {
-                destroy();
+                destroy("collision collider");
             }
 
             // projectile collision
@@ -64,7 +78,7 @@ namespace Nilox2DGameEngine.Character
             {
                 Projectile projectile = (Projectile)p.actor;
                 projectile.destroy();
-                destroy();
+                destroy("collision projectile");
             }
 
             // enemie collision
@@ -74,7 +88,7 @@ namespace Nilox2DGameEngine.Character
                 Enemy enemy = (Enemy)e.actor;
                 enemy.damge(this, damagepotential);
                 damagepotential = 0;
-                destroy();
+                destroy("collision enemie");
             }
 
             //damage player
@@ -82,7 +96,17 @@ namespace Nilox2DGameEngine.Character
             {
                 gm.player.damge(this, damagepotential);
                 damagepotential = 0;
-                destroy();
+                destroy("collision player");
+            }
+
+            // enemie collision
+            Sprite2D b = sprite.isCollidingWithTag("boss");
+            if (b != null && owner.clas == Class.player)
+            {
+                Boss boss = (Boss)b.actor;
+                boss.damge(this, damagepotential);
+                damagepotential = 0;
+                destroy("collision enemie");
             }
 
         }
@@ -90,12 +114,12 @@ namespace Nilox2DGameEngine.Character
         //
         //
         //
-        #region dunctions
+        #region functions
         private void sec_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             sec.Stop();
             sec = null;
-            this.destroy();
+            this.destroy("lifetime");
         }
 
         public void move()

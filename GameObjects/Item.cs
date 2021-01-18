@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Nilox2DGameEngine.Util;
 using Nilox2DGameEngine.Core;
 
-namespace Nilox2DGameEngine.Character
+namespace Nilox2DGameEngine.Objects
 {
     public class Item : Actor
     {
@@ -15,8 +15,15 @@ namespace Nilox2DGameEngine.Character
 
         public Item(Sprite2D sprite0, GameMode GM)
         {
-            sprite = sprite0;
+            //setup
             tgm = GM;
+
+            //sprite setup
+            sprite = sprite0;
+            sprite.actor = this;
+
+            //actor setup
+            clas = Class.item;
 
             if (sprite.isCollidingWithTag("collider") != null)
             {
@@ -32,7 +39,7 @@ namespace Nilox2DGameEngine.Character
         {
         }
 
-        public override void destroy()
+        public override void destroy(string reason = "")
         {
             tgm.destroyActor(this);
         }
