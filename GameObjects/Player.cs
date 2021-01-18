@@ -186,25 +186,25 @@ namespace Nilox2DGameEngine.Objects
         {
             if (facing == "up")
             {
-                Projectile p =  (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile, this);
+                Projectile p =  (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 5), Class.projectile, this);
                 p.direction = new Vector2(0,-1);
                 p.speed = 20;
             }
             if (facing == "down")
             {
-                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile, this);
+                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 5), Class.projectile, this);
                 p.direction = new Vector2(0,1);
                 p.speed = 20;
             }
             if (facing == "right")
             {
-                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile, this);
+                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 5), Class.projectile, this);
                 p.direction = new Vector2(1,0);
                 p.speed = 20;
             }
             if (facing == "left")
             {
-                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 2), Class.projectile, this);
+                Projectile p = (Projectile)gm.spawnActorFromClass(getActorLocation() + (getActorScale2D() / 5), Class.projectile, this);
                 p.direction = new Vector2(-1,0);
                 p.speed = 20;
             }

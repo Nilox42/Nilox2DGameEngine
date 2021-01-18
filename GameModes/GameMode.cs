@@ -20,7 +20,7 @@ namespace Nilox2DGameEngine
         //
         #region Init
 
-        Controller cr = null;
+        public Controller cr = null;
 
         //Level
         public Level currentLevel = null;
@@ -81,7 +81,10 @@ namespace Nilox2DGameEngine
         public override void onUpdate()
         {
             #region Player
-            player.update();
+            if (player != null)
+            {
+                player.update();
+            }
             #endregion
             //
             //
@@ -224,10 +227,10 @@ namespace Nilox2DGameEngine
 
             Log.save("[LOGGING]    -   Saving took " + sp.ElapsedMilliseconds.ToString());
 
+            cr.closeGame();
+
             sw.Dispose();
             sw = null;
-
-            cr.closeGame();
         }
 
         public override void keyDown(KeyEventArgs e)
@@ -304,7 +307,7 @@ namespace Nilox2DGameEngine
             // Set level varibles
             ismoving = false;
             canmoveon = false;
-            canmoveback = false;
+            canmoveback = true;
 
             // enable Player
             resetPlayer();
@@ -384,7 +387,9 @@ namespace Nilox2DGameEngine
         //engine related
         public void endGame()
         {
-            Window.Close();
+            unloadCurrentTile();
+            disablerenderer = false;
+            listfordestruction();
         }
         #endregion
         //

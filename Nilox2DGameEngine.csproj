@@ -115,6 +115,7 @@
     <Compile Include="Core\Shape2D.cs" />
     <Compile Include="Util\NLoad.cs" />
     <Compile Include="Util\NSave.cs" />
+    <Compile Include="Util\Trace.cs" />
     <Compile Include="Util\Vector2.cs" />
     <Compile Include="GameModes\GameMode.cs" />
     <Compile Include="Util\Log.cs" />

@@ -92,6 +92,7 @@ namespace Nilox2DGameEngine.Core
 
         //Engine varibles
         public static bool disablerenderer = true;
+        private static bool shoulddestroy = false;
         public static int frametime = 20;
         private Thread gameLoopThread = null;
 
@@ -135,6 +136,9 @@ namespace Nilox2DGameEngine.Core
 
         public Engine(Vector2 screenSize0, string title)
         {
+            //safe
+            shoulddestroy = false;
+
             //SessionKey
             sessionkey = keygerator.Next(0, keyrange).ToString();
             Log.load("[SESSION]    -    KEY:" + sessionkey);
@@ -313,6 +317,10 @@ namespace Nilox2DGameEngine.Core
         {
             Window.lbcoins.Text = coins.ToString();
         }
+        public void listfordestruction()
+        {
+            shoulddestroy = true;
+        }
         #endregion
 
         private void window_FormClosing(object sender, FormClosingEventArgs e)
@@ -379,12 +387,6 @@ namespace Nilox2DGameEngine.Core
                 g.TranslateTransform(cameraPos.X, cameraPos.Y);
                 g.RotateTransform(cameraAngle);
 
-                //Draw all Shapes
-                foreach (Shape2D shape in allShapes)
-                {
-                    g.FillRectangle(new SolidBrush(Color.Red), shape.location.X, shape.location.Y, shape.Scale.X, shape.Scale.Y);
-                }
-
                 //Draw all sprites
                 try
                 {
@@ -406,22 +408,48 @@ namespace Nilox2DGameEngine.Core
                             }
                             catch
                             {
-                                Log.error("Failed to Draw sprite:" + sprite.name + "    " + sprite.location.ToString());
+                                Log.error("Failed to Draw SPRITES:" + sprite.name + "    " + sprite.location.ToString());
                             }
+                        }
+                        else
+                        {
+
                         }
                     }
                 }
                 catch
                 {
-                    Log.error("Could not draw " + frameCount);
+                    Log.error("Could not draw Sprites " + frameCount);
                 }
+
+
+                //Draw all Shapes
+                try
+                {
+                    foreach (Shape2D shape in allShapes)
+                    {
+                        try
+                        {
+                            g.FillRectangle(new SolidBrush(Color.Red), shape.location.X, shape.location.Y, shape.Scale.X, shape.Scale.Y);
+
+                        }
+                        catch
+                        {
+                            Log.error("Failed to Draw SHAPES:" + shape.location.ToString());
+                        }
+                    }
+                }
+                catch
+                {
+                    Log.error("Could not draw SHAPES " + frameCount);
+                }
+
 
                 //Draw all Polygons
                 foreach (Polygon p in allPolygons)
                 {
                     g.DrawPolygon(new Pen(p.color), p.points);
                 }
-
                 #endregion
             }
             
@@ -431,6 +459,12 @@ namespace Nilox2DGameEngine.Core
 
             //update ui
             updateUi();
+
+            if (shoulddestroy == true)
+            {
+                Window.Close();
+                Log.warning("[CORE]  -  ENGINE IS BEING DESTROYED");
+            }
 
             //Count Frame
             ++frameCount;

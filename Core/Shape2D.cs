@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Nilox2DGameEngine.Util;
 
 namespace Nilox2DGameEngine.Core
@@ -14,6 +15,8 @@ namespace Nilox2DGameEngine.Core
         public Vector2 Scale = null;
         public string Tag = "";
         public bool editor = false;
+
+        Timer death;
 
         public Shape2D(Vector2 postition0, Vector2 scale0 , string tag0 ,bool editor0 = false)
         {
@@ -38,7 +41,12 @@ namespace Nilox2DGameEngine.Core
             }
         }
 
+        public void setlifetime()
+        {
+            death = new Timer();
+            death.Enabled = true;
 
+        }
 
 
     }

@@ -148,35 +148,46 @@ namespace Nilox2DGameEngine.Map
         {
             Log.info("[Tile]  -  spawning start enemie");
             string[] list = enemies.Split('|');             //Split enemies
-            foreach (string s in list)                      //Loop each enemie code
+            if (list.Length > 0 && list[0] != "")
             {
-                string[] enemie = s.Split(':');             //Split the Name+Location
-
-                //make spawnlocation
-                Vector2 vector = Vector2.zero();
-                vector.X = Convert.ToInt32(enemie[1].Split(',')[0]);
-                vector.Y = Convert.ToInt32(enemie[1].Split(',')[1]);
-
-                switch (enemie[0])
+                foreach (string s in list)                      //Loop each enemie code
                 {
-                    default:
-                        Log.error($"[Tile]  -  Enemietype doenst exist!  ({enemie[0]})");
-                        break;
+                    string[] enemie = s.Split(':');             //Split the Name+Location
 
-                    case "enemie":
-                        {
-                            Log.info("[Tile]  -  startspawned enemie");
-                            gm.spawnActorFromClass(new Vector2(vector.X, vector.Y), Class.enemie);
+                    //make spawnlocation
+                    Vector2 vector = Vector2.zero();
+                    vector.X = Convert.ToInt32(enemie[1].Split(',')[0]);
+                    vector.Y = Convert.ToInt32(enemie[1].Split(',')[1]);
+
+                    switch (enemie[0])
+                    {
+                        default:
+                            Log.error($"[Tile]  -  Enemietype doenst exist!  ({enemie[0]})");
                             break;
-                        }
-                    case "boss":
-                        {
-                            Log.info("[Tile]  -  startspawned BOSS");
-                            gm.spawnActorFromClass(new Vector2(vector.X, vector.Y), Class.boss);
-                            break;
-                        }
+
+                        case "enemie":
+                            {
+                                Log.info("[Tile]  -  startspawned enemie");
+                                gm.spawnActorFromClass(new Vector2(vector.X, vector.Y), Class.enemie);
+                                break;
+                            }
+                        case "boss":
+                            {
+                                Log.info("[Tile]  -  startspawned BOSS");
+                                gm.spawnActorFromClass(new Vector2(vector.X, vector.Y), Class.boss);
+                                break;
+                            }
+                    }
                 }
+
             }
+            else
+            {
+                Log.warning("[Tile]  -  no enemies where loaded");
+            }
+
+
+
 
         }
         #endregion

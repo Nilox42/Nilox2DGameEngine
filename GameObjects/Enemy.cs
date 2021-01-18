@@ -14,23 +14,26 @@ namespace Nilox2DGameEngine.Objects
     {
         #region Init
         GameMode gm = null;
+        public bool canseeplayer = true;
 
         double health = 100;
         bool alive = true;
 
-        double maxwalkspeed = 0.01;
+        double maxwalkspeed = 0.1;
         bool hastarget = true;
         int damagepotential = 10;
 
-        //int index = 0;
-
         Vector2 laspos = Vector2.zero();
 
+        #region cooldowns
         int shootcoundown = 0;
         int shootcoundownmax = 100;
 
         int meleecouldown = 400;
         int meleecouldownmax = 500;
+
+        int lookcooldown = 5;
+        #endregion
 
         //Vector2 playerlocation = Vector2.Zero();
         public Enemy(Sprite2D sprite0, GameMode gm0)
@@ -44,7 +47,6 @@ namespace Nilox2DGameEngine.Objects
 
             //actor setup
             clas = Class.enemie;
-
 
 
             if (sprite.isCollidingWithTag("collider") != null)
@@ -67,49 +69,75 @@ namespace Nilox2DGameEngine.Objects
         //
         public override void update()
         {
-            Sprite2D player = gm.player.sprite;
-            //Movement
-            if (sprite.isCollidingWithTag("collider") == null && hastarget == true)
+            if (lookcooldown > 5)
             {
-                if (Vector2.lenght(getActorLocation() - player.location) > 10)
+                canseeplayer = canSeeActor(gm.player, false);
+
+                if (canseeplayer)
                 {
-                    Vector2 direction = Vector2.normalize(getActorLocation() - player.location);
-
-                    addActorLocation(direction * maxwalkspeed * -1);
+                    sprite.draw = true;
                 }
-                laspos = getActorLocation();
+                else
+                {
+                    sprite.draw = false;
+                    shootcoundown = Convert.ToInt32(shootcoundownmax * 0.8);
+                }
+
+                lookcooldown = 0;
             }
-            else
+            lookcooldown++;
+
+
+
+            if (canseeplayer == true)
             {
-                setActorLocation(laspos);
+                #region collision
+                Sprite2D player = gm.player.sprite;
+                //Movement
+                if (sprite.isCollidingWithTag("collider") == null && hastarget == true)
+                {
+                    if (Vector2.lenght(getActorLocation() - player.location) > 10)
+                    {
+                        Vector2 direction = Vector2.normalize(getActorLocation() - player.location);
+
+                        addActorLocation(direction * maxwalkspeed * -1);
+                    }
+                    laspos = getActorLocation();
+                }
+                else
+                {
+                    setActorLocation(laspos);
+                }
+
+                //kill player if colliding
+                if (sprite.isCollidingWithSprite(player, sprite) && meleecouldown > meleecouldownmax)
+                {
+                    //damage
+                    player.actor.damge(this, damagepotential);
+                    damagepotential = 0;
+
+                    //countdow
+                    meleecouldown = 0;
+                }
+                meleecouldown++;
+                #endregion
+                //
+                //
+                #region fighting
+                //shoot tick
+                if (shootcoundown > shootcoundownmax)
+                {
+                    shoot();
+
+                    Random r = new Random();
+                    shootcoundownmax = r.Next(70, 200);
+                    r = null;
+
+                    shootcoundown = 0;
+                }
+                shootcoundown++;
+                #endregion
             }
-
-            //kill player if colliding
-            if (sprite.isCollidingWithSprite(player,sprite) && meleecouldown > meleecouldownmax)
-            {
-                //damage
-                player.actor.damge(this,damagepotential);
-                damagepotential = 0;
-
-                //countdow
-                meleecouldown = 0;
-            }
-             meleecouldown++;
-            
-
-            //shoot tick
-            if (shootcoundown > shootcoundownmax)
-            {
-                shoot();
-
-                Random r = new Random();
-                shootcoundownmax = r.Next(70,200);
-                r = null;
-
-                shootcoundown = 0;
-            }
-            shootcoundown++;
-            
         }
         //
         public override void damge(Actor instigator, int damage)

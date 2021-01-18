@@ -17,22 +17,8 @@ namespace Nilox2DGameEngine.Objects
         boss
     }
 
-    public struct TraceResult
-    {
-        public TraceResult(Vector2 start0, Vector2 target0, Vector2 hitlocation0)
-        {
-            start = start0;
-            target = target0;
-
-            hitlocation = hitlocation0;
-        }
-
-        public Vector2 start;
-        public Vector2 target;
-
-        public Vector2 hitlocation;
-
-    }
+    
+    
 
     public abstract class Actor
     {
@@ -44,9 +30,10 @@ namespace Nilox2DGameEngine.Objects
         //
         //
         //
-        #region core
+        #region absracts
         public abstract void destroy(string reason = "");
-        public abstract void update();
+        public abstract void update(); 
+        public abstract void damge(Actor instigator, int damage);
         #endregion
         //
         //
@@ -75,21 +62,24 @@ namespace Nilox2DGameEngine.Objects
         }
 
         //
-        public TraceResult lineTraceByTag(Vector2 start, Vector2 target, string tag)
-        {
-            Vector2 hitlocation = Vector2.zero();
-
-
-
-
-            return new TraceResult(start, target, hitlocation);
-        }
         #endregion
         //
         //
         //
-        #region Damage
-        public abstract void damge(Actor instigator, int damage);
+        #region functions
+        public bool canSeeActor(Actor a, bool debugvisual = false)
+        {
+            TraceResult trt = Trace.lineByTag(getActorCenterLocation(), a.getActorCenterLocation(), "collider", 100, debugvisual);
+
+            if (trt.hit == true)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         #endregion
     }
 }

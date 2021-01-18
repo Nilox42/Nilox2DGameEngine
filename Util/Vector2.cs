@@ -47,7 +47,7 @@ namespace Nilox2DGameEngine.Util
         public static float Distance(Vector2 v0, Vector2 v1)
         {
             float f = ((v0.X - v1.X) * (v0.X - v1.X) + (v0.Y - v1.Y) * (v0.Y - v1.Y));
-            return f;
+            return  (float)Math.Sqrt(Convert.ToDouble(f));
         }
 
 

@@ -13,13 +13,15 @@ namespace Nilox2DGameEngine.Map
     public class Level 
     {
         #region Init
+        GameMode gm;
+
         public string worldname = null;
         string directory = null;
         public Vector2 currentlocation = new Vector2(0,0);
 
         public List<Tile> tiles = new List<Tile>();
 
-        GameMode gm;
+        bool hasendet = false;
 
         /*
         public string[,] Map =
