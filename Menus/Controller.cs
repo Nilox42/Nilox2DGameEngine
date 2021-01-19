@@ -41,7 +41,7 @@ namespace Nilox2DGameEngine.Menus
 
             await Task.Delay(10);
             this.Hide();
-            showConsole();
+            showMainMenu();
 
             hideConsole();
         }

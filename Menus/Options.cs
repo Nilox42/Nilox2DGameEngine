@@ -22,7 +22,6 @@ namespace Nilox2DGameEngine.Menus
         private void Options_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
-            this.Dispose();
             cr.showMainMenu();
         }
 
