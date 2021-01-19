@@ -93,7 +93,7 @@ namespace Nilox2DGameEngine.Core
         //Engine varibles
         public static bool disablerenderer = true;
         private static bool shoulddestroy = false;
-        public static int frametime = 20;
+        public static int frametime = 30;
         private Thread gameLoopThread = null;
 
         //Infi
