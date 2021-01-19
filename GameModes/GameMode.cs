@@ -38,7 +38,7 @@ namespace Nilox2DGameEngine
         private bool right;
         private bool up;
         private bool down;
-        private float maxspeed = 7;
+        private float speed = 5;
         //
         //Fighting
         private bool space;
@@ -110,25 +110,25 @@ namespace Nilox2DGameEngine
                 {
                     //player.sprite.location.Y -= maxspeed;
                     //player.setLocation(new Vector2 (player.location.X, player.location.Y - maxspeed));
-                    player.move(new Vector2(0, maxspeed * -1));
+                    player.move(new Vector2(0, speed * -1));
                 }
                 if (down && player != null)
                 {
                     //player.sprite.location.Y += maxspeed;
                     //player.setLocation(new Vector2(player.location.X, player.location.Y + maxspeed));
-                    player.move(new Vector2(0, maxspeed));
+                    player.move(new Vector2(0, speed));
                 }
                 if (left && player != null)
                 {
                     //player.sprite.location.X -= maxspeed;
                     //player.setLocation(new Vector2(player.location.X - maxspeed, player.location.Y));
-                    player.move(new Vector2(maxspeed * -1, 0));
+                    player.move(new Vector2(speed * -1, 0));
                 }
                 if (right && player != null)
                 {
                     //player.sprite.location.X += maxspeed;
                     //player.setLocation(new Vector2(player.location.X + maxspeed, player.location.Y));
-                    player.move(new Vector2(maxspeed, 0));
+                    player.move(new Vector2(speed, 0));
                 }
             }
             #endregion

@@ -20,7 +20,7 @@ namespace Nilox2DGameEngine.Util
                 if (File.Exists(directory0))
                 {
                     StreamWriter writer = new StreamWriter(directory0 + @"\" + tile.name + ".txt");
-                    writer.WriteLine(Converts.TileToString(tile));
+                    writer.WriteLine(Converts.tileToString(tile));
                     writer.WriteLine(tile.enemies);
                     writer.Dispose();
                 }
@@ -36,7 +36,7 @@ namespace Nilox2DGameEngine.Util
                 Log.save("[Tile]  -  Name:" + tile0.name + "  -  URL:" + directory0 + @"\" + tile0.name + ".txt");
 
                 StreamWriter writer = new StreamWriter(directory0 + @"\" + tile0.name + ".txt");
-                writer.WriteLine(Converts.TileToString(tile0));
+                writer.WriteLine(Converts.tileToString(tile0));
                 writer.WriteLine(tile0.enemies);
                 writer.Dispose();
             }

@@ -47,7 +47,7 @@ namespace Nilox2DGameEngine.Util
         //
         //
         #region String Tiel Converts
-        public static Tile StringToTile(string s0)
+        public static Tile stringToTile(string s0)
         {
             Tile t = new Tile();
             string[] s = s0.Split('|');
@@ -62,7 +62,7 @@ namespace Nilox2DGameEngine.Util
 
             return t;
         }
-        public static string TileToString(Tile t0)
+        public static string tileToString(Tile t0)
         {
             string result = null;
 

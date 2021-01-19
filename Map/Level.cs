@@ -21,8 +21,6 @@ namespace Nilox2DGameEngine.Map
 
         public List<Tile> tiles = new List<Tile>();
 
-        bool hasendet = false;
-
         /*
         public string[,] Map =
         {

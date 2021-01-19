@@ -21,7 +21,6 @@ namespace Nilox2DGameEngine.Objects
         float maxwalkspeed = 0.2f;
 
         int health = 1000;
-        int maxhealth = 1000;
 
         int shootcooldown = 0;
 

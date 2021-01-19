@@ -21,7 +21,7 @@ namespace Nilox2DGameEngine.Core
     public class Canvas : Form
     {
         private PictureBox pictureBox1;
-        public Label lbcoins;
+        public  Label lbcoins;
 
         public Canvas()
         {
@@ -93,7 +93,7 @@ namespace Nilox2DGameEngine.Core
         //Engine varibles
         public static bool disablerenderer = true;
         private static bool shoulddestroy = false;
-        public static int frametime = 30;
+        public static int frametime = 20;
         private Thread gameLoopThread = null;
 
         //Infi

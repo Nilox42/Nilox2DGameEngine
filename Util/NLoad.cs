@@ -31,7 +31,7 @@ namespace Nilox2DGameEngine.Util
         public static Tile tileL(string directory0)
         {
             //Load Tile a
-            Tile tile = Converts.StringToTile(readLine(directory0, 0));
+            Tile tile = Converts.stringToTile(readLine(directory0, 0));
             //Loadenemies
             tile.enemies = readLine(directory0, 1);
 
