@@ -307,7 +307,7 @@ namespace Nilox2DGameEngine
             // Set level varibles
             ismoving = false;
             canmoveon = false;
-            canmoveback = true;
+            canmoveback = false;
 
             // enable Player
             resetPlayer();

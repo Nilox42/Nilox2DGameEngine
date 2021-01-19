@@ -43,7 +43,7 @@ namespace Nilox2DGameEngine.Menus
             this.Hide();
             showConsole();
 
-            showMainMenu();
+            hideConsole();
         }
         public static void exit()
         {
