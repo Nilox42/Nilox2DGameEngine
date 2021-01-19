@@ -100,14 +100,17 @@ namespace Nilox2DGameEngine.Core
         Stopwatch sw = new Stopwatch();
         public static int frameCount = 0;
 
-      //Engine lists
+        //Engine lists
         //Shapes
+        public static List<Shape2D> shapestoad = new List<Shape2D>();
         public static List<Shape2D> allShapes = new List<Shape2D>();
         public static List<Shape2D> shapestoremove = new List<Shape2D>();
         //Sprites
+        public static List<Sprite2D> spritestoadd = new List<Sprite2D>();
         public static List<Sprite2D> allSprites = new List<Sprite2D>();
         private static List<Sprite2D> spritestoremove = new List<Sprite2D>();
         //Polygons
+        public static List<Polygon> polygonestoadd = new List<Polygon>();
         public static List<Polygon> allPolygons = new List<Polygon>();
         public static List<Polygon> polygonstoremove = new List<Polygon>();
 
@@ -166,7 +169,7 @@ namespace Nilox2DGameEngine.Core
             Window.Text = this.Title;
             Window.FormBorderStyle = FormBorderStyle.Sizable;
 
-            Window.Paint += renderer;
+            Window.Paint += renderFrame;
             Window.KeyDown += window_KeyDown;
             Window.KeyUp += window_KeyUp;
             Window.FormClosing += window_FormClosing;
@@ -199,7 +202,7 @@ namespace Nilox2DGameEngine.Core
         #region Functions
         //Remove marked Sprite2D Polygons Shape2D and BaseImage
         #region TrashRemoval
-        private void trashRemoval()
+        private void removeTrash()
         {
             //Sprite Trash Removal
             if (spritestoremove.Count > 0)
@@ -250,6 +253,38 @@ namespace Nilox2DGameEngine.Core
             }
         }
 
+        private void addNew()
+        {
+
+            if (spritestoadd.Count > 0)
+            {
+                foreach(Sprite2D s in spritestoadd)
+                {
+                    allSprites.Add(s);
+                }
+                spritestoadd.Clear();
+            }
+
+            if (shapestoad.Count > 0)
+            {
+                foreach (Shape2D s in shapestoad)
+                {
+                    allShapes.Add(s);
+                }
+                shapestoad.Clear();
+            }
+
+            if (polygonestoadd.Count > 0)
+            {
+                foreach (Polygon s in polygonestoadd)
+                {
+                    allPolygons.Add(s);
+                }
+                polygonestoadd.Clear();
+            }
+
+        }
+
         public static void clearAllSprite2Ds()
         {
             foreach (Sprite2D sprite in allSprites)
@@ -268,21 +303,23 @@ namespace Nilox2DGameEngine.Core
         #region Registration 
         public static void registerShape(Shape2D shape)
         {
-            allShapes.Add(shape);
+            shapestoad.Add(shape);
+            Log.info($"[SPRITE2D]  -  ({shape.Tag}  X:{shape.location.X}  Y:{shape.location.Y} ) - Has been registered!  -  now: {allShapes.Count}");
         }
         public static void registerSprite(Sprite2D sprite)
         {
-            allSprites.Add(sprite);
+            spritestoadd.Add(sprite);
             Log.info($"[SPRITE2D]  -  ({sprite.name}  X:{sprite.location.X}  Y:{sprite.location.Y} ) - Has been registered!  -  now: {allSprites.Count}");
         }
         public static void registerImage(BaseImage image)
         {
             allimages.Add(image);
-            Log.load($"[BASEIMAGE]  -  ({image.name}  Tag:{image.tag}  loaded from  [{image.url}]  -  now: {allSprites.Count}  -  now: {allSprites.Count}");
+            Log.load($"[BASEIMAGE]  -  ({image.name}  Tag:{image.tag}  loaded from  [{image.url}]  -  now: {allSprites.Count}  -  now: {allimages.Count}");
         }
         public static void registerPolygon(Polygon polygon)
         {
-            allPolygons.Add(polygon);
+            polygonestoadd.Add(polygon);
+            Log.info($"[POLYGON]  -  Has been registered!  -  now: {allPolygons.Count}");
         }
         #endregion
 
@@ -295,9 +332,7 @@ namespace Nilox2DGameEngine.Core
 
             //allSprites.Remove(sprite);
             spritestoremove.Add(sprite);
-
             Log.info($"[SPRITE2D][REMOVED]({sprite.name} @  X:{sprite.location.X}  Y:{sprite.location.Y}) - Has been marked for destruction!");
-            sprite = null;
         }
         public static void unRegisterShape(Shape2D shape)
         {
@@ -361,7 +396,6 @@ namespace Nilox2DGameEngine.Core
                         Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
                         onUpdate();
                     }
-                    
 
                     Thread.Sleep(frametime);
                 }
@@ -372,11 +406,11 @@ namespace Nilox2DGameEngine.Core
             }
         }
 
-        private void renderer(object sender, PaintEventArgs e)
+        private void renderFrame(object sender, PaintEventArgs e)
         {
-            //Stopwatch restart
-            sw.Restart();
-
+            //add new 
+            addNew();
+            
             if (disablerenderer == false)
             {
                 #region rendercore
@@ -452,10 +486,9 @@ namespace Nilox2DGameEngine.Core
                 }
                 #endregion
             }
-            
 
             //Call Trashremoval
-            trashRemoval();
+            removeTrash();
 
             //update ui
             updateUi();
@@ -468,10 +501,6 @@ namespace Nilox2DGameEngine.Core
 
             //Count Frame
             ++frameCount;
-
-            //Stop Stopwatch
-            sw.Stop();
-            //Log.Error("[PIPELINE]  -  Missiseconds:" + (SW.ElapsedMilliseconds));
         }
         #endregion
         //

@@ -45,7 +45,6 @@ namespace Nilox2DGameEngine.Core
         {
             death = new Timer();
             death.Enabled = true;
-
         }
 
 
