@@ -19,9 +19,10 @@ namespace Nilox2DGameEngine.Objects
         double health = 100;
         bool alive = true;
 
-        double maxwalkspeed = 0.1;
-        bool hastarget = true;
+        double maxwalkspeed = 1;
         int damagepotential = 10;
+        Vector2 target = Vector2.zero();
+        List<Vector2> walkpoints = new List<Vector2>();
 
         Vector2 laspos = Vector2.zero();
 
@@ -72,6 +73,7 @@ namespace Nilox2DGameEngine.Objects
             if (lookcooldown > 5)
             {
                 canseeplayer = canSeeActor(gm.player, false);
+                canseeplayer = true;
 
                 if (canseeplayer)
                 {
@@ -88,17 +90,16 @@ namespace Nilox2DGameEngine.Objects
             lookcooldown++;
 
 
-
             if (canseeplayer == true)
             {
                 #region collision
                 Sprite2D player = gm.player.sprite;
                 //Movement
-                if (sprite.isCollidingWithTag("collider") == null && hastarget == true)
+                if (sprite.isCollidingWithTag("collider") == null)
                 {
-                    if (Vector2.lenght(getActorLocation() - player.location) > 10)
+                    if (Vector2.lenght(getActorLocation() - target) > 10)
                     {
-                        Vector2 direction = Vector2.normalize(getActorLocation() - player.location);
+                        Vector2 direction = Vector2.normalize(getActorLocation() - target);
 
                         addActorLocation(direction * maxwalkspeed * -1);
                     }
@@ -108,7 +109,7 @@ namespace Nilox2DGameEngine.Objects
                 {
                     setActorLocation(laspos);
                 }
-
+                //
                 //kill player if colliding
                 if (sprite.isCollidingWithSprite(player, sprite) && meleecouldown > meleecouldownmax)
                 {
@@ -164,8 +165,13 @@ namespace Nilox2DGameEngine.Objects
         public void shoot()
         {
             Projectile projectile = (Projectile)gm.spawnActorFromClass(getActorCenterLocation(), Class.projectile, this);
-            projectile.direction = (Vector2.normalize(getActorCenterLocation() - gm.player.getActorCenterLocation())* -1);
-    }
+            projectile.direction = (Vector2.normalize(getActorCenterLocation() - target)* -1);
+        }
+
+        private void nexPoint()
+        {
+
+        }
         #endregion
 
     }

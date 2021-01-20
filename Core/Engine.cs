@@ -237,6 +237,7 @@ namespace Nilox2DGameEngine.Core
 
                 shapestoremove.Clear();
             }
+            allShapes.Clear();
 
             //Polygon TrashRemoval
             if (polygonstoremove.Count > 0)
@@ -255,32 +256,55 @@ namespace Nilox2DGameEngine.Core
 
         private void addNew()
         {
-
-            if (spritestoadd.Count > 0)
+            //Try sprites
+            try
             {
-                foreach(Sprite2D s in spritestoadd)
+                if (spritestoadd.Count > 0)
                 {
-                    allSprites.Add(s);
+                    foreach (Sprite2D s in spritestoadd)
+                    {
+                        allSprites.Add(s);
+                    }
+                    spritestoadd.Clear();
                 }
-                spritestoadd.Clear();
+            }
+            catch
+            {
+                Log.error($"[ADDRORENDERER]  -  FAILED TO ADD SPRITES");
             }
 
-            if (shapestoad.Count > 0)
+            //try shapes
+            try
             {
-                foreach (Shape2D s in shapestoad)
+                if (shapestoad.Count > 0)
                 {
-                    allShapes.Add(s);
+                    foreach (Shape2D s in shapestoad)
+                    {
+                        allShapes.Add(s);
+                    }
+                    shapestoad.Clear();
                 }
-                shapestoad.Clear();
+            }
+            catch
+            {
+                Log.error($"[ADDRORENDERER]  -  FAILED TO ADD SHAPES");
             }
 
-            if (polygonestoadd.Count > 0)
+            //try polygones
+            try
             {
-                foreach (Polygon s in polygonestoadd)
+                if (polygonestoadd.Count > 0)
                 {
-                    allPolygons.Add(s);
+                    foreach (Polygon s in polygonestoadd)
+                    {
+                        allPolygons.Add(s);
+                    }
+                    polygonestoadd.Clear();
                 }
-                polygonestoadd.Clear();
+            }
+            catch
+            {
+                Log.error($"[ADDRORENDERER]  -  FAILED TO ADD Polygones");
             }
 
         }

@@ -18,18 +18,23 @@ namespace Nilox2DGameEngine.Core
 
         Timer death;
 
-        public Shape2D(Vector2 postition0, Vector2 scale0 , string tag0 ,bool editor0 = false)
+        public Shape2D(Vector2 postition0, Vector2 scale0 , string tag0 = "debug", bool editor0 = false)
         {
-            this.location = postition0;
-            this.Scale = scale0;
-            this.Tag = tag0;
-            this.editor = editor0;
+            location = postition0;
+            Scale = scale0;
+            Tag = tag0;
+            editor = editor0;
 
             Log.info($"[SHAPE2D]({Tag}) - Has been registered!");
             if (editor == false)
             {
                 Engine.registerShape(this);
             }
+        }
+
+        private void Death_Tick(object sender, EventArgs e)
+        {
+            DestroySelf();
         }
 
         public void DestroySelf()

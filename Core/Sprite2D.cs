@@ -112,6 +112,7 @@ namespace Nilox2DGameEngine.Core
                     return true;
                 }
             }
+
             return false;
         }
 
