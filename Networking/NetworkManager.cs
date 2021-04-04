@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Net;
+using System.Net.Sockets;
 
 using NiloxUniversalLib.SQL;
 using NiloxUniversalLib.Logging;
-using System.Net.Sockets;
+using NiloxUniversalLib.Networking.Server;
+using NiloxUniversalLib.Networking.Client;
 
 namespace Nilox2DGameEngine.Networking
 {
@@ -16,7 +18,8 @@ namespace Nilox2DGameEngine.Networking
     {
         private ESession session;
 
-        private Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        private Server server;
+        private Client client;
 
         public NetworkManager()
         {
@@ -26,7 +29,18 @@ namespace Nilox2DGameEngine.Networking
         #region Controlls
         public bool CreateSession(int maxpalyer = 2)
         {
-            return entlistSession(ESession.Create(getpublicIP(), maxpalyer));
+            bool entlist = entlistSession(ESession.Create(getpublicIP(), maxpalyer));
+            if (server != null)
+            {
+                Log.Networking("Server already exists");
+            }
+            else
+            {
+                server = new Server();
+                server.Init();
+            }
+
+            return entlist;
         }
 
         public List<ESession> FindSesions()
@@ -36,15 +50,16 @@ namespace Nilox2DGameEngine.Networking
 
         public bool JoinSession(ESession e)
         {
-            if (client.Connected == true)
+            if (client != null)
             {
-                Log.Networking("Socket already connected!");
+                Log.Networking("Client already exists");
                 return false;
             }
 
-            client.Connect(e.ip , 3306);
+            client = new Client(e.ip, 100);
+            client.Init(); 
 
-            if (client.Connected == true)
+            if (client.socket.Connected == true)
             {
                 Log.Networking("Socket connected!");
                 return true;
