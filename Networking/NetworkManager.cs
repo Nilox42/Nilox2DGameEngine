@@ -14,12 +14,18 @@ using NiloxUniversalLib.Networking.Client;
 
 namespace Nilox2DGameEngine.Networking
 {
+    public enum nmstate
+    {
+        offline,client,server
+    }
+
     public class NetworkManager
     {
-        private ESession session;
+        private ESession currentsession;
+        public nmstate state = nmstate.offline;
 
-        private Server server;
-        private Client client;
+        public GameServer server;
+        public  GameClient client;
 
         public NetworkManager()
         {
@@ -29,25 +35,27 @@ namespace Nilox2DGameEngine.Networking
         #region Controlls
         public bool CreateSession(int maxpalyer = 2)
         {
-            bool entlist = entlistSession(ESession.Create(getpublicIP(), maxpalyer));
+            ESession session = ESession.Create(getpublicIP(), maxpalyer);
+            bool entlist = entlistSession(session);
             if (server != null)
             {
                 Log.Networking("Server already exists");
             }
             else
             {
-                server = new Server();
+                server = new GameServer();
                 server.Init();
+
+                currentsession = session;
+                state = nmstate.server;
             }
 
             return entlist;
         }
-
         public List<ESession> FindSesions()
         {
             return getAvailableSession();
         }
-
         public bool JoinSession(ESession e)
         {
             if (client != null)
@@ -56,18 +64,28 @@ namespace Nilox2DGameEngine.Networking
                 return false;
             }
 
-            client = new Client(e.ip, 100);
-            client.Init(); 
+            client = new GameClient(e.ip, 100);
+            client.Init();
 
-            if (client.socket.Connected == true)
+            currentsession = e;
+            state = nmstate.client;
+
+            return true;
+        }
+        public void destroySession()
+        {
+            if (server != null)
             {
-                Log.Networking("Socket connected!");
-                return true;
+                server.destroy();
+                server = null;
+            }
+            if (client != null)
+            {
+                client.destroy();
+                client = null;
             }
 
-            Log.Networking("Connection failed!");
-
-            return false;
+            state = nmstate.offline;
         }
         #endregion
 

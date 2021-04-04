@@ -140,6 +140,8 @@
       <DependentUpon>Options.cs</DependentUpon>
     </Compile>
     <Compile Include="Networking\ESession.cs" />
+    <Compile Include="Networking\GameClient.cs" />
+    <Compile Include="Networking\GameServer.cs" />
     <Compile Include="Networking\NetworkManager.cs" />
     <Compile Include="Old\BaseGameMode.cs" />
     <Compile Include="Editor\LevelEditor.cs">

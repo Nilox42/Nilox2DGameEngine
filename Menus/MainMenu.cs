@@ -69,5 +69,10 @@ namespace Nilox2DGameEngine.Menus
             bool i = nm.CreateSession();
             Log.Networking(i.ToString());
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            nm.client.Send("TEST");
+        }
     }
 }
