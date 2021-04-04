@@ -14,9 +14,12 @@ namespace Nilox2DGameEngine.Networking
 
         public GameClient(string ip, int port) : base(ip, port)
         {
-
+            OnReceivedResponse += handleServerResponse;
         }
 
-
+        private void handleServerResponse(object sender, ReceivedServerResponseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
