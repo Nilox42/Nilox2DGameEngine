@@ -10,6 +10,9 @@ namespace Nilox2DGameEngine.Menus
 {
     public partial class MainMenu : Form
     {
+        NetworkManager nm = new NetworkManager();
+
+
         #region Init
         Controller cr = null;
 
@@ -57,9 +60,14 @@ namespace Nilox2DGameEngine.Menus
 
         private void button1_Click(object sender, EventArgs e)
         {
-            NetworkManager nm = new NetworkManager();
             List<ESession> sessions = nm.FindSesions();
             nm.JoinSession(sessions[0]);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            bool i = nm.CreateSession();
+            Log.Networking(i.ToString());
         }
     }
 }
