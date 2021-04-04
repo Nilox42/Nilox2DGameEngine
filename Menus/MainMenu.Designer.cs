@@ -33,6 +33,7 @@
             this.bteditor = new System.Windows.Forms.Button();
             this.btoptions = new System.Windows.Forms.Button();
             this.btexit = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -92,6 +93,17 @@
             this.btexit.UseVisualStyleBackColor = false;
             this.btexit.Click += new System.EventHandler(this.btexit_Click);
             // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(232, 310);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(165, 51);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Find Session";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -99,6 +111,7 @@
             this.BackgroundImage = global::Nilox2DGameEngine.Properties.Resources.MMBI;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btexit);
             this.Controls.Add(this.btoptions);
             this.Controls.Add(this.bteditor);
@@ -122,5 +135,6 @@
         private System.Windows.Forms.Button bteditor;
         private System.Windows.Forms.Button btoptions;
         private System.Windows.Forms.Button btexit;
+        private System.Windows.Forms.Button button1;
     }
 }

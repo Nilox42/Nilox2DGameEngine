@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+
+using Nilox2DGameEngine.Networking;
+
+using NiloxUniversalLib.Logging;
 
 namespace Nilox2DGameEngine.Menus
 {
@@ -47,8 +52,14 @@ namespace Nilox2DGameEngine.Menus
 
 
 
+
         #endregion
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            NetworkManager nm = new NetworkManager();
+            List<ESession> sessions = nm.FindSesions();
+            nm.JoinSession(sessions[0]);
+        }
     }
 }
