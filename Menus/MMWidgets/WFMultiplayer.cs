@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using Nilox2DGameEngine.Networking;
 using Nilox2DGameEngine.Core;
 
+using NiloxUniversalLib.Logging;
+
 namespace Nilox2DGameEngine.Menus
 {
     public partial class WFMultiplayer : Form
@@ -25,12 +27,6 @@ namespace Nilox2DGameEngine.Menus
         #region Input   
         private void button1_Click(object sender, EventArgs e)
         {
-            Update();
-        }
-        #endregion
-
-        public void Update()
-        {
             sessions = GlobalData.networkmanager.FindSesions();
 
             dgv.Rows.Clear();
@@ -39,7 +35,6 @@ namespace Nilox2DGameEngine.Menus
                 dgv.Rows.Add(s.ip, s.playercount, s.maxplayer);
             }
         }
-
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 3)
@@ -55,7 +50,29 @@ namespace Nilox2DGameEngine.Menus
 
         private void btcreatesession_Click(object sender, EventArgs e)
         {
-            GlobalData.networkmanager.CreateSession();
+            int maxp = 0;
+            string servername = "";
+
+            try
+            {
+                maxp = (int)nudmaxplayer.Value;
+                servername = tbservername.Text;
+
+                GlobalData.networkmanager.CreateSession(servername, maxp);
+            }
+            catch
+            {
+                Log.Networking("[WFMULTIPLAYER] - Failed to convert Session options using standart settings to create Session");
+                GlobalData.networkmanager.CreateSession();
+            }
+
+        }
+
+        #endregion
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GlobalData.networkmanager.destroySession();
         }
     }
 }

@@ -33,24 +33,37 @@ namespace Nilox2DGameEngine.Networking
 
 
         #region Controlls
-        public bool CreateSession(int maxpalyer = 2)
+        public bool CreateSession(string servername = "TestServerOf" + "USERNAME", int maxpalyer = 2)
         {
-            ESession session = ESession.Create(getpublicIP(), maxpalyer);
-            bool entlist = entlistSession(session);
+            if (client != null)
+            {
+                Log.Networking("This is already a client");
+                return false;
+            }
             if (server != null)
             {
                 Log.Networking("Server already exists");
+                return false;
             }
             else
             {
+                ESession session = ESession.Create(getpublicIP(), maxpalyer);
+                bool entlist = entlistSession(session);
+
+                if (entlist == false)
+                {
+                    return false;
+                }
+
                 server = new GameServer();
                 server.Init();
 
                 currentsession = session;
                 state = nmstate.server;
+                Log.Networking("[NETWORK MANAGER] - State --> server");
             }
 
-            return entlist;
+            return true;
         }
         public List<ESession> FindSesions()
         {
@@ -76,6 +89,7 @@ namespace Nilox2DGameEngine.Networking
         {
             if (server != null)
             {
+                removeIpfromList();
                 server.destroy();
                 server = null;
             }
@@ -86,11 +100,12 @@ namespace Nilox2DGameEngine.Networking
             }
 
             state = nmstate.offline;
+
+            Log.Networking("[NETWORKMANAGER] - State --> offline");
         }
         #endregion
 
         #region SQL
-
         private List<ESession> getAvailableSession()
         {
             List<ESession> sessions = new List<ESession>();
@@ -130,7 +145,6 @@ namespace Nilox2DGameEngine.Networking
 
             return sessions;
         }
-
         private bool entlistSession(ESession session)
         {
             string url = "nilox.network";
@@ -138,18 +152,43 @@ namespace Nilox2DGameEngine.Networking
 
             if (d.IsConnect())
             {
-                string query = $"INSERT INTO `test`(`ip`, `currentplayer`, `maxplayer`) VALUES('{session.ip}','srtring','{session.maxplayer}')";
+                string query = $"INSERT INTO `test`(`ip`, `currentplayer`, `maxplayer`) VALUES('{session.ip}','{session.playercount}','{session.maxplayer}')";
                 MySqlCommand cmd = new MySqlCommand(query, d.Connection);
                 var res = cmd.ExecuteNonQuery();
 
-                Log.Networking("RESULT" + res.ToString());
-
                 if (res == 1)
                 {
+                    Log.Networking("[NETWORK MANAGER] - Added Server to List");
                     return true;
                 }
                 else
                 {
+                    Log.Networking("[NETWORK MANAGER] - Couldnt add Server to List");
+                    return false;
+                }
+            }
+
+            return false;
+        }
+        private bool removeIpfromList()
+        {
+            string url = "nilox.network";
+            DBConnection d = new DBConnection(url, "server");
+
+            if (d.IsConnect())
+            {
+                string query = $"DELETE FROM `test` WHERE `ip` = '{getpublicIP()}'";
+                MySqlCommand cmd = new MySqlCommand(query, d.Connection);
+                var res = cmd.ExecuteNonQuery();
+
+                if (res == 1)
+                {
+                    Log.Networking("[NETWORK MANAGER] - Removed from SQL List");
+                    return true;
+                }
+                else
+                {
+                    Log.Networking("[NETWORK MANAGER] - Couldnt remove IP from List");
                     return false;
                 }
             }

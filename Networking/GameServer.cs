@@ -12,7 +12,7 @@ namespace Nilox2DGameEngine.Networking
 {
     public class GameServer:Server
     {
-        public GameServer()
+        public GameServer() : base()
         {
             OnReceiveRequest += handleClientRequest;
         }
@@ -27,7 +27,6 @@ namespace Nilox2DGameEngine.Networking
             {
                 SendResponse(response, client);
             }
-
         }
 
 
