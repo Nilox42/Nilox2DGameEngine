@@ -8,6 +8,7 @@ using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Menus;
 using Nilox2DGameEngine.Editor;
 using Nilox2DGameEngine.Networking;
+using Nilox2DGameEngine.GUI.Debug;
 
 namespace Nilox2DGameEngine.Core
 {
@@ -23,6 +24,9 @@ namespace Nilox2DGameEngine.Core
         //Menus
         public static MainMenu mainmenu;
         public static Options options;
+
+        //Debug GUI
+        public static DebugController debugcontroller;
 
         //Networking
         public static NetworkManager networkmanager;

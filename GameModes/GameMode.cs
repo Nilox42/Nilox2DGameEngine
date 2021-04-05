@@ -20,8 +20,6 @@ namespace Nilox2DGameEngine
         //
         #region Init
 
-        public Controller cr = null;
-
         //Level
         public Level currentLevel = null;
         public bool canmoveon = false;
@@ -58,9 +56,9 @@ namespace Nilox2DGameEngine
         public static List<string> logs = new List<string>();
 
 
-        public GameMode(Controller cr0) : base(new Vector2(1280, 720), "Engine Demo")
+        public GameMode() : base(new Vector2(1280, 720), "Nilox 2D GameEngine")
         {
-            cr = cr0;
+            
         }
         #endregion
         //
@@ -227,7 +225,7 @@ namespace Nilox2DGameEngine
 
             Log.save("[LOGGING]    -   Saving took " + sp.ElapsedMilliseconds.ToString());
 
-            cr.closeGame();
+            GlobalData.controller.closeGame();
 
             sw.Dispose();
             sw = null;

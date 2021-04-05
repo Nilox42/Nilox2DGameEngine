@@ -5,6 +5,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
+using Nilox2DGameEngine.Core;
+
 using NiloxUniversalLib.Networking.Server;
 using NiloxUniversalLib.Logging;
 
@@ -30,6 +32,36 @@ namespace Nilox2DGameEngine.Networking
         }
 
 
+        protected override void OnClientConnects(Socket socket)
+        {
+            SendResponse(NetworkMessage.S_newClient(getPlayerIDofSocket(socket)), socket);
+        }
+
+
+        public int getPlayerIDofSocket(Socket socket)
+        {
+            return clientsockets.IndexOf(socket) + 1;
+        }
+
+        public void travel(string target)
+        {
+            switch (target)
+            {
+                default:
+                    break;
+
+                case "game":
+                    {
+                        GlobalData.controller.initiateGame();
+                        break;
+                    }
+                case "mainmenu":
+                    {
+                        GlobalData.controller.showMainMenu();
+                        break;
+                    }
+            }
+        }
 
     }
 }

@@ -1794,8 +1794,6 @@ namespace Nilox2DGameEngine.Editor
         // //
         //
         #region Init
-        Controller cr = null;
-
         public List<Tile> allTiles = new List<Tile>();
         public List<Sprite2D> allSprite2Ds = new List<Sprite2D>();
 
@@ -1810,9 +1808,8 @@ namespace Nilox2DGameEngine.Editor
         public string loadedlevelname = string.Empty;
 
 
-        public LevelEditor(Controller cr0)
+        public LevelEditor()
         {
-            cr = cr0;
 
             foreach (string sl in allcontentlocations)
             {
@@ -1823,7 +1820,7 @@ namespace Nilox2DGameEngine.Editor
         }
         public void exitLeveleditor(object sender, FormClosingEventArgs e)
         {
-            cr.closeEditor();
+            GlobalData.controller.closeEditor();
         }
         #endregion
         //

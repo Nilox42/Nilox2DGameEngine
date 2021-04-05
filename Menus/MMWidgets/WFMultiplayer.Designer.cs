@@ -41,7 +41,6 @@ namespace Nilox2DGameEngine.Menus
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbservername = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudmaxplayer)).BeginInit();
             this.SuspendLayout();
@@ -149,25 +148,12 @@ namespace Nilox2DGameEngine.Menus
             this.tbservername.Size = new System.Drawing.Size(120, 20);
             this.tbservername.TabIndex = 7;
             // 
-            // button2
-            // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.SystemColors.Control;
-            this.button2.Location = new System.Drawing.Point(532, 646);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(287, 62);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Destroy Session";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // WFMultiplayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.tbservername);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -200,6 +186,5 @@ namespace Nilox2DGameEngine.Menus
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbservername;
-        private System.Windows.Forms.Button button2;
     }
 }

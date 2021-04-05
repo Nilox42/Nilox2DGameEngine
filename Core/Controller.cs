@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 using Nilox2DGameEngine.Core;
 using Nilox2DGameEngine.Networking;
+using Nilox2DGameEngine.GUI.Debug;
 
 namespace Nilox2DGameEngine.Menus
 {
@@ -27,10 +28,12 @@ namespace Nilox2DGameEngine.Menus
         #endregion
         //
         #region Init
-        public Controller()
+        public Controller() 
         {
             GlobalData.controller = this;
             GlobalData.networkmanager = new NetworkManager();
+            GlobalData.debugcontroller = new DebugController();
+            GlobalData.debugcontroller.showDebug();
             InitializeComponent();
         }
 
@@ -43,6 +46,7 @@ namespace Nilox2DGameEngine.Menus
             showMainMenu();
 
             showConsole();
+
         }
         public static void exit()
         {
@@ -129,7 +133,7 @@ namespace Nilox2DGameEngine.Menus
             if (GlobalData.gameMode == null && GlobalData.editor == null)
             {
                 Log.control("Gamemode initialising");
-                GlobalData.gameMode = new GameMode(this);
+                GlobalData.gameMode = new GameMode();
             }
             else
             {
@@ -150,7 +154,7 @@ namespace Nilox2DGameEngine.Menus
             if (GlobalData.editor == null && GlobalData.gameMode == null)
             {
                 Log.control("Level Editor initialising");
-                GlobalData.editor = new LevelEditor(this);
+                GlobalData.editor = new LevelEditor();
             }
             else
             {

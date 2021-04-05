@@ -451,9 +451,9 @@ namespace Nilox2DGameEngine.Core
                         }
                     }
                 }
-                catch
+                catch (Exception error)
                 {
-                    Log.error("Could not draw Sprites " + frameCount);
+                    Log.error("Could not draw Sprites " + frameCount + "Exeption: " + error.Message);
                 }
 
 
