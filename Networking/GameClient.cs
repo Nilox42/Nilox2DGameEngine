@@ -19,7 +19,13 @@ namespace Nilox2DGameEngine.Networking
 
         private void handleServerResponse(object sender, ReceivedServerResponseEventArgs e)
         {
-            throw new NotImplementedException();
+            string message = e.message;
+            
+        }
+
+        public void SendRequest(string s)
+        {
+            Send(s);
         }
     }
 }

@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
 
+using Nilox2DGameEngine.Core;
+
 namespace Nilox2DGameEngine.Menus
 {
     public partial class Options : Form
     {
         #region Init
-        Controller cr = null;
 
-        public Options(Controller cr0)
+        public Options()
         {
-            cr = cr0;
-
             InitializeComponent();
         }
 
@@ -22,24 +21,21 @@ namespace Nilox2DGameEngine.Menus
         private void Options_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
-            cr.showMainMenu();
+            GlobalData.controller.showMainMenu();
         }
-
-
         #endregion
-
-       
 
         private void cbconsolevisibility_CheckedChanged(object sender, EventArgs e)
         {
             if (cbconsolevisibility.Checked)
             {
-                cr.showConsole();
+                GlobalData.controller.showConsole();
             }
             else
             {
-                cr.hideConsole();
+                GlobalData.controller.hideConsole();
             }
         }
+
     }
 }

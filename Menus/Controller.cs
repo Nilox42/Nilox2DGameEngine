@@ -6,6 +6,9 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Nilox2DGameEngine.Core;
+using Nilox2DGameEngine.Networking;
+
 namespace Nilox2DGameEngine.Menus
 {
     public partial class Controller : Form
@@ -24,14 +27,10 @@ namespace Nilox2DGameEngine.Menus
         #endregion
         //
         #region Init
-        MainMenu MM = null;
-        Options OP = null;
-
-        GameMode GM = null;
-        LevelEditor LE = null;
-
         public Controller()
         {
+            GlobalData.controller = this;
+            GlobalData.networkmanager = new NetworkManager();
             InitializeComponent();
         }
 
@@ -73,16 +72,16 @@ namespace Nilox2DGameEngine.Menus
             hideOptions();
             hideMainMenu();
             
-            MM = new MainMenu(this);
-            MM.Show();
+            GlobalData.mainmenu = new MainMenu(this);
+            GlobalData.mainmenu.Show();
         }
         public void hideMainMenu()
         {
-            if (MM != null)
+            if (GlobalData.mainmenu != null)
             {
-                MM.Hide();
-                MM.Dispose();
-                MM = null;
+                GlobalData.mainmenu.Hide();
+                GlobalData.mainmenu.Dispose();
+                GlobalData.mainmenu = null;
 
                 Log.control("Mainmenu hidden");
             }
@@ -100,16 +99,16 @@ namespace Nilox2DGameEngine.Menus
             hideOptions();
             
 
-            OP = new Options(this);
-            OP.Show();
+            GlobalData.options = new Options();
+            GlobalData.options.Show();
         }
         public void hideOptions()
         {
-            if (OP != null)
+            if (GlobalData.options != null)
             {
-                OP.Hide();
-                OP.Dispose();
-                OP = null;
+                GlobalData.options.Hide();
+                GlobalData.options.Dispose();
+                GlobalData.options = null;
 
                 Log.control("Options hidden");
             }
@@ -127,10 +126,10 @@ namespace Nilox2DGameEngine.Menus
         public void initiateGame()
         {
             hideMainMenu();
-            if (GM == null &&  LE == null)
+            if (GlobalData.gameMode == null && GlobalData.editor == null)
             {
                 Log.control("Gamemode initialising");
-                GM = new GameMode(this);
+                GlobalData.gameMode = new GameMode(this);
             }
             else
             {
@@ -140,7 +139,7 @@ namespace Nilox2DGameEngine.Menus
         }
         public void closeGame()
         {
-            GM = null;
+            GlobalData.gameMode = null;
             showMainMenu();
             Log.control("closed game");
         }
@@ -148,10 +147,10 @@ namespace Nilox2DGameEngine.Menus
         public void initiateEditor()
         {
             hideMainMenu();
-            if (LE == null && GM == null)
+            if (GlobalData.editor == null && GlobalData.gameMode == null)
             {
                 Log.control("Level Editor initialising");
-                LE = new LevelEditor(this);
+                GlobalData.editor = new LevelEditor(this);
             }
             else
             {
@@ -161,7 +160,7 @@ namespace Nilox2DGameEngine.Menus
         }
         public void closeEditor()
         {
-            LE = null;
+            GlobalData.editor = null;
             showMainMenu();
             Log.control("closed editor");
         }

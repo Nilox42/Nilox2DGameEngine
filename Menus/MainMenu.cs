@@ -10,12 +10,10 @@ namespace Nilox2DGameEngine.Menus
 {
     public partial class MainMenu : Form
     {
-        NetworkManager nm = new NetworkManager();
-
 
         #region Init
         Controller cr = null;
-
+        Form[] openedForms = new Form[10];
         public MainMenu(Controller cr0)
         {
             InitializeComponent();
@@ -25,7 +23,7 @@ namespace Nilox2DGameEngine.Menus
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-
+            switchtomain();
         }
         private void MainMenuForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -38,41 +36,51 @@ namespace Nilox2DGameEngine.Menus
         #endregion
 
 
-        #region Input
-        private void bt_startgame_Click(object sender, EventArgs e)
+
+        #region WidgetSwitcher
+        public void switchtomain()
         {
-            cr.initiateGame();
-        }
+            int index = 0;
 
-        private void bteditor_Click(object sender, EventArgs e)
+            if (openedForms[index] != null)
+            {
+                openedForms[index].BringToFront();
+                openedForms[index].Show();
+            }
+            else
+            {
+                CreateForm(new WFMain(), index);
+                openedForms[index].BringToFront();
+                openedForms[index].Show();
+            }
+        }
+        public void switchtomultiplayer()
         {
-            cr.initiateEditor();
+            int index = 1;
+
+            if (openedForms[index] != null)
+            {
+                openedForms[index].BringToFront();
+                openedForms[index].Show();
+            }
+            else
+            {
+                CreateForm(new WFMultiplayer(), index);
+                openedForms[index].BringToFront();
+                openedForms[index].Show();
+            }
         }
-        private void btoptions_Click(object sender, EventArgs e)
+        
+
+        private void CreateForm(Form newForm, int index)
         {
-            cr.showOptions();
+            openedForms.SetValue(newForm, index);
+            newForm.TopLevel = false;
+            newForm.FormBorderStyle = FormBorderStyle.None;
+            newForm.Dock = DockStyle.Fill;
+            pnmain.Controls.Add(newForm);
+            pnmain.Tag = newForm;
         }
-
-
-
-
         #endregion
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            List<ESession> sessions = nm.FindSesions();
-            nm.JoinSession(sessions[0]);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            bool i = nm.CreateSession();
-            Log.Networking(i.ToString());
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            nm.client.Send("TEST");
-        }
     }
 }

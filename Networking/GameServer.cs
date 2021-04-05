@@ -25,9 +25,7 @@ namespace Nilox2DGameEngine.Networking
 
             if (message == "test")
             {
-                byte[] buffer = Encoding.ASCII.GetBytes(message);
-                Log.Networking("[SENDING] - " + response);
-                client.Send(buffer, 0, buffer.Length, SocketFlags.None);
+                SendResponse(response, client);
             }
 
         }

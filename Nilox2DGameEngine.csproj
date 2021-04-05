@@ -116,6 +116,7 @@
     <Compile Include="Component1.Designer.cs">
       <DependentUpon>Component1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\GlobalData.cs" />
     <Compile Include="GameObjects\Actor.cs" />
     <Compile Include="GameObjects\Boss.cs" />
     <Compile Include="GameObjects\Enemy.cs" />
@@ -132,6 +133,18 @@
     </Compile>
     <Compile Include="Menus\Controller.Designer.cs">
       <DependentUpon>Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\MMWidgets\WFMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\MMWidgets\WFMain.Designer.cs">
+      <DependentUpon>WFMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\MMWidgets\WFMultiplayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\MMWidgets\WFMultiplayer.Designer.cs">
+      <DependentUpon>WFMultiplayer.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\Options.cs">
       <SubType>Form</SubType>
@@ -200,6 +213,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\MMWidgets\WFMain.resx">
+      <DependentUpon>WFMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\MMWidgets\WFMultiplayer.resx">
+      <DependentUpon>WFMultiplayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
