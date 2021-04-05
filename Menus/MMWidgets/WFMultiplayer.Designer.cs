@@ -35,6 +35,7 @@ namespace Nilox2DGameEngine.Menus
             this.maxplayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.join = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btcreatesession = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,12 +85,25 @@ namespace Nilox2DGameEngine.Menus
             this.join.HeaderText = "join";
             this.join.Name = "join";
             // 
+            // btcreatesession
+            // 
+            this.btcreatesession.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btcreatesession.ForeColor = System.Drawing.SystemColors.Control;
+            this.btcreatesession.Location = new System.Drawing.Point(151, 236);
+            this.btcreatesession.Name = "btcreatesession";
+            this.btcreatesession.Size = new System.Drawing.Size(443, 34);
+            this.btcreatesession.TabIndex = 2;
+            this.btcreatesession.Text = "CreateSession";
+            this.btcreatesession.UseVisualStyleBackColor = true;
+            this.btcreatesession.Click += new System.EventHandler(this.btcreatesession_Click);
+            // 
             // WFMultiplayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.btcreatesession);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgv);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -108,5 +122,6 @@ namespace Nilox2DGameEngine.Menus
         private System.Windows.Forms.DataGridViewTextBoxColumn maxplayer;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewButtonColumn join;
+        private System.Windows.Forms.Button btcreatesession;
     }
 }

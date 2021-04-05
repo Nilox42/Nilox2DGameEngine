@@ -52,5 +52,10 @@ namespace Nilox2DGameEngine.Menus
                 GlobalData.networkmanager.JoinSession(ESession.Create(ip, Convert.ToInt32(current), Convert.ToInt32(max))); ;
             }
         }
+
+        private void btcreatesession_Click(object sender, EventArgs e)
+        {
+            GlobalData.networkmanager.CreateSession();
+        }
     }
 }
