@@ -101,7 +101,7 @@ namespace Nilox2DGameEngine.Networking
 
             state = nmstate.offline;
 
-            Log.Networking("[NETWORKMANAGER] - State --> offline");
+            Log.Networking("[NETWORK MANAGER] - State --> offline");
         }
         #endregion
 
@@ -125,6 +125,12 @@ namespace Nilox2DGameEngine.Networking
                     res += reader.GetString(0) + ",";
                     res += reader.GetString(1) + ",";
                     res += reader.GetString(2) + ";";
+                }
+
+                if (res == "")
+                {
+                    Log.Networking("[NETWORK MANAGER] - No sessions found");
+                    return null;
                 }
 
                 res.Remove(res.Length - 1, 1);

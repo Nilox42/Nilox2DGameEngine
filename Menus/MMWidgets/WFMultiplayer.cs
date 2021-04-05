@@ -29,6 +29,11 @@ namespace Nilox2DGameEngine.Menus
         {
             sessions = GlobalData.networkmanager.FindSesions();
 
+            if (sessions == null)
+            {
+                return;
+            }
+
             dgv.Rows.Clear();
             foreach (ESession s in sessions)
             {
