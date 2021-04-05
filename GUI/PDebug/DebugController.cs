@@ -33,16 +33,26 @@ namespace Nilox2DGameEngine.GUI.Debug
 
         private void Tick_Tick(object sender, EventArgs e)
         {
-            foreach (IDebugUpdate du in forms)
+            try
             {
-                try
+                foreach (IDebugUpdate du in forms)
                 {
-                    du.DebugUpdate();
+                    try
+                    {
+                        du.DebugUpdate();
+                    }
+                    catch
+                    {
+                        forms.Remove(du);
+                    }
+                    
                 }
-                catch
-                {
-                    Log.Debug("[DEBUG CONTROLLER] - Update faield");
-                }
+
+            
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("[DEBUG CONTROLLER] - Update faield / " + ex.Message);
             }
         }
 

@@ -34,13 +34,18 @@ namespace Nilox2DGameEngine.Networking
 
         protected override void OnClientConnects(Socket socket)
         {
-            SendResponse(NetworkMessage.S_newClient(getPlayerIDofSocket(socket)), socket);
+            SendResponse(NetworkMessage.S_Clientnew(getPlayerIDofSocket(socket)), socket);
         }
 
 
         public int getPlayerIDofSocket(Socket socket)
         {
             return clientsockets.IndexOf(socket) + 1;
+        }
+
+        public int getPlayerCount()
+        {
+            return clientsockets.Count;
         }
 
         public void travel(string target)

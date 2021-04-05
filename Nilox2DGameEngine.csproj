@@ -144,10 +144,22 @@
     <Compile Include="GUI\PDebug\DebugController.Designer.cs">
       <DependentUpon>DebugController.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\PDebug\DGNetworking.cs">
+    <Compile Include="GUI\PDebug\Networking\DGGameClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\PDebug\DGNetworking.Designer.cs">
+    <Compile Include="GUI\PDebug\Networking\DGGameClient.Designer.cs">
+      <DependentUpon>DGGameClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PDebug\Networking\DGGameServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PDebug\Networking\DGGameServer.Designer.cs">
+      <DependentUpon>DGGameServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PDebug\Networking\DGNetworking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PDebug\Networking\DGNetworking.Designer.cs">
       <DependentUpon>DGNetworking.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\MMWidgets\WFLobby.cs">
@@ -237,7 +249,13 @@
     <EmbeddedResource Include="GUI\PDebug\DebugController.resx">
       <DependentUpon>DebugController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\PDebug\DGNetworking.resx">
+    <EmbeddedResource Include="GUI\PDebug\Networking\DGGameClient.resx">
+      <DependentUpon>DGGameClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PDebug\Networking\DGGameServer.resx">
+      <DependentUpon>DGGameServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PDebug\Networking\DGNetworking.resx">
       <DependentUpon>DGNetworking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\MainMenu.resx">
