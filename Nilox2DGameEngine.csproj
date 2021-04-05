@@ -138,16 +138,16 @@
     <Compile Include="Core\Controller.Designer.cs">
       <DependentUpon>Controller.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Debug\DebugController.cs">
+    <Compile Include="GUI\PDebug\DebugController.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Debug\DebugController.Designer.cs">
+    <Compile Include="GUI\PDebug\DebugController.Designer.cs">
       <DependentUpon>DebugController.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Debug\DGNetworking.cs">
+    <Compile Include="GUI\PDebug\DGNetworking.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Debug\DGNetworking.Designer.cs">
+    <Compile Include="GUI\PDebug\DGNetworking.Designer.cs">
       <DependentUpon>DGNetworking.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\MMWidgets\WFLobby.cs">
@@ -234,10 +234,10 @@
     <EmbeddedResource Include="Core\Controller.resx">
       <DependentUpon>Controller.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Debug\DebugController.resx">
+    <EmbeddedResource Include="GUI\PDebug\DebugController.resx">
       <DependentUpon>DebugController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Debug\DGNetworking.resx">
+    <EmbeddedResource Include="GUI\PDebug\DGNetworking.resx">
       <DependentUpon>DGNetworking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\MainMenu.resx">
