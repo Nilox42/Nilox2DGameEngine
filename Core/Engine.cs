@@ -440,9 +440,9 @@ namespace Nilox2DGameEngine.Core
                                 //Draw Sprite
                                 g.DrawImage(sprite.bitmap, sprite.location.X, sprite.location.Y, sprite.scale.X, sprite.scale.Y);
                             }
-                            catch
+                            catch (Exception ex)
                             {
-                                Log.error("Failed to Draw SPRITES:" + sprite.name + "    " + sprite.location.ToString());
+                                Log.error("Failed to Draw SPRITES:" + sprite.name + "    " + sprite.location.ToString() + "/" + ex.Message);
                             }
                         }
                         else
@@ -469,7 +469,7 @@ namespace Nilox2DGameEngine.Core
                         }
                         catch
                         {
-                            Log.error("Failed to Draw SHAPES:" + shape.location.ToString());
+                            Log.error("Failed to Draw SHAPES:" + shape.location.ToString() + "/" + ex.Message);
                         }
                     }
                 }
