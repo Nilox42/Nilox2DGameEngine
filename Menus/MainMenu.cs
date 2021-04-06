@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
+using Nilox2DGameEngine.Menus.MMWidgets;
 using Nilox2DGameEngine.Networking;
 
 using NiloxUniversalLib.Logging;
@@ -70,7 +70,22 @@ namespace Nilox2DGameEngine.Menus
                 openedForms[index].Show();
             }
         }
-        
+        public void switchtomultolobby()
+        {
+            int index = 2;
+
+            if (openedForms[index] != null)
+            {
+                openedForms[index].BringToFront();
+                openedForms[index].Show();
+            }
+            else
+            {
+                CreateForm(new WFLobby(), index);
+                openedForms[index].BringToFront();
+                openedForms[index].Show();
+            }
+        }
 
         private void CreateForm(Form newForm, int index)
         {

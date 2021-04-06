@@ -51,7 +51,11 @@ namespace Nilox2DGameEngine.Menus
                 string current = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
                 string max = dgv.Rows[e.RowIndex].Cells[3].Value.ToString();
 
-                GlobalData.networkmanager.JoinSession(ESession.Create(ip, servername, Convert.ToInt32(current), Convert.ToInt32(max)));
+                bool succes = GlobalData.networkmanager.JoinSession(ESession.Create(ip, servername, Convert.ToInt32(current), Convert.ToInt32(max)));
+                if (succes)
+                {
+                    GlobalData.mainmenu.switchtomultolobby();
+                }
             }
         }
 
@@ -59,6 +63,7 @@ namespace Nilox2DGameEngine.Menus
         {
             int maxp = (int)nudmaxplayer.Value;
             string servername = tbservername.Text;
+            bool socces = false;
 
             //Servername Checks
             {
@@ -103,14 +108,18 @@ namespace Nilox2DGameEngine.Menus
                 maxp = (int)nudmaxplayer.Value;
                 servername = tbservername.Text;
 
-                GlobalData.networkmanager.CreateSession(servername, maxp);
+                socces = GlobalData.networkmanager.CreateSession(servername, maxp);                
             }
             catch
             {
                 Log.Networking("[WFMULTIPLAYER] - Failed to convert Session options using standart settings to create Session");
-                GlobalData.networkmanager.CreateSession(servername);
+                socces = GlobalData.networkmanager.CreateSession(servername);
             }
 
+            if (socces)
+            {
+                GlobalData.mainmenu.switchtomultolobby();
+            }
         }
 
 

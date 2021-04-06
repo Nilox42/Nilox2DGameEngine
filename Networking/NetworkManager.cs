@@ -11,6 +11,7 @@ using NiloxUniversalLib.SQL;
 using NiloxUniversalLib.Logging;
 using NiloxUniversalLib.Networking.Server;
 using NiloxUniversalLib.Networking.Client;
+using Nilox2DGameEngine.Core;
 
 namespace Nilox2DGameEngine.Networking
 {
@@ -111,6 +112,7 @@ namespace Nilox2DGameEngine.Networking
                 client = null;
             }
 
+            GlobalData.controller.showMainMenu();
             state = nmstate.offline;
 
             Log.Networking("[NETWORK MANAGER] - State --> offline");

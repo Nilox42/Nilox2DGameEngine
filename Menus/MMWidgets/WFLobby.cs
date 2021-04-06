@@ -40,7 +40,7 @@ namespace Nilox2DGameEngine.Menus.MMWidgets
                 }
             }
 
-            GlobalData.networkmanager.ChatSend("PLAYER INDEX" + message);
+            GlobalData.networkmanager.ChatSend("PLAYER INDEX:    " + message);
         }
 
     }
