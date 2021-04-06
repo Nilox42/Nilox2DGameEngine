@@ -467,7 +467,7 @@ namespace Nilox2DGameEngine.Core
                             g.FillRectangle(new SolidBrush(Color.Red), shape.location.X, shape.location.Y, shape.Scale.X, shape.Scale.Y);
 
                         }
-                        catch
+                        catch (Exception ex)
                         {
                             Log.error("Failed to Draw SHAPES:" + shape.location.ToString() + "/" + ex.Message);
                         }

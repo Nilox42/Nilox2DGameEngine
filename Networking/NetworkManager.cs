@@ -47,7 +47,7 @@ namespace Nilox2DGameEngine.Networking
             }
             else
             {
-                ESession session = ESession.Create(getpublicIP(), maxpalyer);
+                ESession session = ESession.Create(getpublicIP(), servername, maxpalyer);
                 bool entlist = entlistSession(session);
 
                 if (entlist == false)
@@ -125,6 +125,7 @@ namespace Nilox2DGameEngine.Networking
                     res += reader.GetString(0) + ",";
                     res += reader.GetString(1) + ",";
                     res += reader.GetString(2) + ";";
+                    res += reader.GetString(3) + ";";
                 }
 
                 if (res == "")
@@ -143,7 +144,7 @@ namespace Nilox2DGameEngine.Networking
 
                     string[] sess = s.Split(',');
 
-                    sessions.Add(ESession.Create(sess[0], Convert.ToInt32(sess[1]), Convert.ToInt32(sess[2])));
+                    sessions.Add(ESession.Create(sess[0], sess[1], Convert.ToInt32(sess[2]), Convert.ToInt32(sess[3])));
                 }
 
                 d.Close();
@@ -158,7 +159,7 @@ namespace Nilox2DGameEngine.Networking
 
             if (d.IsConnect())
             {
-                string query = $"INSERT INTO `test`(`ip`, `currentplayer`, `maxplayer`) VALUES('{session.ip}','{session.playercount}','{session.maxplayer}')";
+                string query = $"INSERT INTO `test`(`ip`, `serername`, `currentplayer`, `maxplayer`) VALUES('{session.ip}','{session.servername}','{session.playercount}','{session.maxplayer}')";
                 MySqlCommand cmd = new MySqlCommand(query, d.Connection);
                 var res = cmd.ExecuteNonQuery();
 
