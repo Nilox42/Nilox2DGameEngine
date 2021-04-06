@@ -37,19 +37,20 @@ namespace Nilox2DGameEngine.Menus
             dgv.Rows.Clear();
             foreach (ESession s in sessions)
             {
-                dgv.Rows.Add(s.ip, s.playercount, s.maxplayer);
+                dgv.Rows.Add(s.ip, s.servername, s.playercount, s.maxplayer);
             }
         }
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 //get name
                 string ip = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
-                string current = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
-                string max = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string servername = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string current = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string max = dgv.Rows[e.RowIndex].Cells[3].Value.ToString();
 
-                GlobalData.networkmanager.JoinSession(ESession.Create(ip, Convert.ToInt32(current), Convert.ToInt32(max))); ;
+                GlobalData.networkmanager.JoinSession(ESession.Create(ip, servername, Convert.ToInt32(current), Convert.ToInt32(max)));
             }
         }
 
