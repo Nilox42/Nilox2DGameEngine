@@ -35,6 +35,7 @@ namespace Nilox2DGameEngine.Networking
                         if (command[1] == "client")
                         {
                             SendToAll(NetworkMessage.S_ChatMessahe(command[2]));
+                            GlobalData.networkmanager.ChatReceived(command[2]);
                         }
                         break;
                     }
