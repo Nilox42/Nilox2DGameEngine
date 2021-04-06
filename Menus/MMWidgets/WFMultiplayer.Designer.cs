@@ -30,6 +30,11 @@ namespace Nilox2DGameEngine.Menus
         private void InitializeComponent()
         {
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.ip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.servername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.playercount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxplayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.join = new System.Windows.Forms.DataGridViewButtonColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.btcreatesession = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,11 +42,8 @@ namespace Nilox2DGameEngine.Menus
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbservername = new System.Windows.Forms.TextBox();
-            this.ip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.servername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.playercount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxplayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.join = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lberror = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudmaxplayer)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +62,32 @@ namespace Nilox2DGameEngine.Menus
             this.dgv.Size = new System.Drawing.Size(545, 656);
             this.dgv.TabIndex = 0;
             this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
+            // 
+            // ip
+            // 
+            this.ip.HeaderText = "ip";
+            this.ip.Name = "ip";
+            // 
+            // servername
+            // 
+            this.servername.HeaderText = "servername";
+            this.servername.Name = "servername";
+            // 
+            // playercount
+            // 
+            this.playercount.HeaderText = "playercount";
+            this.playercount.Name = "playercount";
+            // 
+            // maxplayer
+            // 
+            this.maxplayer.HeaderText = "maxplayer";
+            this.maxplayer.Name = "maxplayer";
+            // 
+            // join
+            // 
+            this.join.HeaderText = "join";
+            this.join.Name = "join";
+            this.join.Text = "join";
             // 
             // button1
             // 
@@ -102,11 +130,16 @@ namespace Nilox2DGameEngine.Menus
             this.nudmaxplayer.Name = "nudmaxplayer";
             this.nudmaxplayer.Size = new System.Drawing.Size(120, 20);
             this.nudmaxplayer.TabIndex = 4;
+            this.nudmaxplayer.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
             // label2
             // 
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(17, 193);
+            this.label2.Location = new System.Drawing.Point(60, 193);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 20);
             this.label2.TabIndex = 5;
@@ -116,7 +149,7 @@ namespace Nilox2DGameEngine.Menus
             // label3
             // 
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(17, 168);
+            this.label3.Location = new System.Drawing.Point(60, 168);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 20);
             this.label3.TabIndex = 6;
@@ -129,32 +162,27 @@ namespace Nilox2DGameEngine.Menus
             this.tbservername.Name = "tbservername";
             this.tbservername.Size = new System.Drawing.Size(120, 20);
             this.tbservername.TabIndex = 7;
+            this.tbservername.Text = "MyServer";
             // 
-            // ip
+            // lberror
             // 
-            this.ip.HeaderText = "ip";
-            this.ip.Name = "ip";
+            this.lberror.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lberror.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lberror.Location = new System.Drawing.Point(12, 620);
+            this.lberror.Name = "lberror";
+            this.lberror.Size = new System.Drawing.Size(705, 23);
+            this.lberror.TabIndex = 8;
             // 
-            // servername
+            // label4
             // 
-            this.servername.HeaderText = "servername";
-            this.servername.Name = "servername";
-            // 
-            // playercount
-            // 
-            this.playercount.HeaderText = "playercount";
-            this.playercount.Name = "playercount";
-            // 
-            // maxplayer
-            // 
-            this.maxplayer.HeaderText = "maxplayer";
-            this.maxplayer.Name = "maxplayer";
-            // 
-            // join
-            // 
-            this.join.HeaderText = "join";
-            this.join.Name = "join";
-            this.join.Text = "join";
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(15, 140);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(284, 28);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Settings:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // WFMultiplayer
             // 
@@ -162,6 +190,8 @@ namespace Nilox2DGameEngine.Menus
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lberror);
             this.Controls.Add(this.tbservername);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -195,5 +225,7 @@ namespace Nilox2DGameEngine.Menus
         private System.Windows.Forms.DataGridViewTextBoxColumn playercount;
         private System.Windows.Forms.DataGridViewTextBoxColumn maxplayer;
         private System.Windows.Forms.DataGridViewButtonColumn join;
+        private System.Windows.Forms.Label lberror;
+        private System.Windows.Forms.Label label4;
     }
 }

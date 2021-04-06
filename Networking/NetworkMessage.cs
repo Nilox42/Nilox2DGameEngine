@@ -28,5 +28,25 @@ namespace Nilox2DGameEngine.Networking
             return "client,joined," + playerid.ToString();
         }
 
+        /// <summary>
+        /// When client send chatmessage to server ()
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static string C_ChatMessage(string message)
+        {
+            return "chat,client," + message;
+        }
+
+        /// <summary>
+        /// when server send chatmessage to clients (MULTICAST)
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static string S_ChatMessahe(string message)
+        {
+            return "chat,server," + message;
+        }
+
     }
 }

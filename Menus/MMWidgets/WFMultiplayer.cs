@@ -31,6 +31,7 @@ namespace Nilox2DGameEngine.Menus
 
             if (sessions == null)
             {
+                dgv.Rows.Clear();
                 return;
             }
 
@@ -42,7 +43,7 @@ namespace Nilox2DGameEngine.Menus
         }
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 4 && e.RowIndex != dgv.Rows.Count -1)
             {
                 //get name
                 string ip = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -56,9 +57,47 @@ namespace Nilox2DGameEngine.Menus
 
         private void btcreatesession_Click(object sender, EventArgs e)
         {
-            int maxp = 0;
-            string servername = "";
+            int maxp = (int)nudmaxplayer.Value;
+            string servername = tbservername.Text;
 
+            //Servername Checks
+            {
+                if (servername == "")
+                {
+                    lberror.Text = "Servername cannot be empty";
+                    return;
+                }
+                if (servername.Length > 20)
+                {
+                    lberror.Text = "Servername cannot be longer than 20 characters";
+                    return;
+                }
+                if (servername.Length < 5)
+                {
+                    lberror.Text = "Servername must atleast 5 characters";
+                    return;
+                }
+            }
+            //maxplayer Checks
+            {
+                if (maxp.GetType() != 42.GetType())
+                {
+                    lberror.Text = "Maxplayer must be an integer";
+                    return;
+                }
+                if (maxp > 5)
+                {
+                    lberror.Text = "Maxplayer cannot be over 5";
+                    return;
+                }
+                if (maxp < 2)
+                {
+                    lberror.Text = "Maxplayer must at least be 2";
+                    return;
+                }
+            }
+
+            lberror.Text = "";
             try
             {
                 maxp = (int)nudmaxplayer.Value;
@@ -69,13 +108,13 @@ namespace Nilox2DGameEngine.Menus
             catch
             {
                 Log.Networking("[WFMULTIPLAYER] - Failed to convert Session options using standart settings to create Session");
-                GlobalData.networkmanager.CreateSession();
+                GlobalData.networkmanager.CreateSession(servername);
             }
 
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

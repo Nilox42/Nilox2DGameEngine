@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Nilox2DGameEngine.Core;
 using NiloxUniversalLib.Logging;
 using NiloxUniversalLib.Networking.Client;
 
@@ -33,6 +34,11 @@ namespace Nilox2DGameEngine.Networking
                         C_Client(command);
                         break;
                     }
+                case "chat":
+                    {
+                        C_Chat(command);
+                        break;
+                    }
             }
 
         }
@@ -53,6 +59,20 @@ namespace Nilox2DGameEngine.Networking
                 case "joined":
                     {
                         Log.Networking($"[GAME CLIENT] - player {command[2]} joined");
+                        break;
+                    }
+            }
+        }
+        public void C_Chat(string[] command)
+        {
+            switch (command[1])
+            {
+                default:
+                    break;
+
+                case "server":
+                    {
+                        GlobalData.networkmanager.ChatReceived(command[2]);
                         break;
                     }
             }

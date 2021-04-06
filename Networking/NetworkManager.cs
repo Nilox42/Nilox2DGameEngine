@@ -18,11 +18,18 @@ namespace Nilox2DGameEngine.Networking
     {
         offline,client,server
     }
+    public enum nmfgamestate
+    {
+        menu, lobby, ingame
+    }
 
     public class NetworkManager
     {
         private ESession currentsession;
         public nmstate state = nmstate.offline;
+        public nmfgamestate gamestate = nmfgamestate.menu;
+
+        public event ReceivedServerResponseEventHandler OnRecieveChatMessage; // uses this handler because its good for messages no more no less
 
         public GameServer server;
         public  GameClient client;
@@ -33,7 +40,7 @@ namespace Nilox2DGameEngine.Networking
 
 
         #region Controlls
-        public bool CreateSession(string servername = "TestServerOf" + "USERNAME", int maxpalyer = 2)
+        public bool CreateSession(string servername, int maxpalyer = 2)
         {
             if (client != null)
             {
@@ -74,6 +81,11 @@ namespace Nilox2DGameEngine.Networking
             if (client != null)
             {
                 Log.Networking("Client already exists");
+                return false;
+            }
+            if (server != null)
+            {
+                Log.Networking("There is already a server");
                 return false;
             }
 
@@ -124,8 +136,8 @@ namespace Nilox2DGameEngine.Networking
                 {
                     res += reader.GetString(0) + ",";
                     res += reader.GetString(1) + ",";
-                    res += reader.GetString(2) + ";";
-                    res += reader.GetString(3) + ";";
+                    res += reader.GetString(2) + ",";
+                    res += reader.GetString(3);
                 }
 
                 if (res == "")
@@ -159,7 +171,7 @@ namespace Nilox2DGameEngine.Networking
 
             if (d.IsConnect())
             {
-                string query = $"INSERT INTO `test`(`ip`, `serername`, `currentplayer`, `maxplayer`) VALUES('{session.ip}','{session.servername}','{session.playercount}','{session.maxplayer}')";
+                string query = $"INSERT INTO `test`(`ip`, `servername`, `currentplayer`, `maxplayer`) VALUES('{session.ip}','{session.servername}','{session.playercount}','{session.maxplayer}')";
                 MySqlCommand cmd = new MySqlCommand(query, d.Connection);
                 var res = cmd.ExecuteNonQuery();
 
@@ -211,6 +223,31 @@ namespace Nilox2DGameEngine.Networking
             Uri uri = new Uri("http://nilox.network/open/PHP/generall/getip.php");
 
             return wr.DownloadString(uri);
+        }
+        #endregion
+
+        #region Chat
+        public void ChatSend(string message)
+        {
+            if (state == nmstate.client)
+            {
+                client.SendRequest(NetworkMessage.C_ChatMessage(message)); 
+            }
+            else
+            {
+                server.SendToAll(message);
+                ChatReceived(message);
+            }
+        }
+        public void ChatReceived(string message)
+        {
+
+            ReceivedServerResponseEventHandler handler = OnRecieveChatMessage;
+            if (handler != null)
+            {
+                handler(this, new ReceivedServerResponseEventArgs(message));
+            }
+
         }
         #endregion
 
