@@ -51,6 +51,7 @@ namespace Nilox2DGameEngine.Menus
         public static void exit()
         {
             Log.control("Controller exit");
+            GlobalData.controller.Close();
             Application.Exit();
         }
         #endregion

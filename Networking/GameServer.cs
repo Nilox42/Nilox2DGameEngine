@@ -21,13 +21,23 @@ namespace Nilox2DGameEngine.Networking
 
         private void handleClientRequest(object sender, ReceivedClientRequestEventArgs e)
         {
-            string message = e.message;
-            string response = "response";
+            string[] command = e.message.Split(',');
+            string response = "";
             Socket client = e.socket;
 
-            if (message == "test")
+            switch (command[0])
             {
-                SendResponse(response, client);
+                default:
+                    break;
+
+                case "chat":
+                    {
+                        if (command[1] == "client")
+                        {
+                            SendToAll(NetworkMessage.S_ChatMessahe(command[2]));
+                        }
+                        break;
+                    }
             }
         }
 
