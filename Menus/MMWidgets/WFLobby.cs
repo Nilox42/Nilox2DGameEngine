@@ -13,15 +13,30 @@ namespace Nilox2DGameEngine.Menus.MMWidgets
 {
     public partial class WFLobby : Form
     {
+        public static string chat = "";
+        Timer tick = new Timer();
+
         public WFLobby()
         {
             InitializeComponent();
             GlobalData.networkmanager.OnRecieveChatMessage += Networkmanager_OnRecieveChatMessage;
+
+            tick.Interval = 400;
+            tick.Tick += Tick_Tick;
+            tick.Start();
+        }
+
+        private void Tick_Tick(object sender, EventArgs e)
+        {
+            if (chat != rtbchat.Text)
+            {
+                rtbchat.Text = chat;
+            }
         }
 
         private void Networkmanager_OnRecieveChatMessage(object sender, NiloxUniversalLib.Networking.Client.ReceivedServerResponseEventArgs e)
         {
-            rtbchat.Text += e.message + "\n";
+            chat += e.message + "\n";
         }
 
         private void btsend_Click(object sender, EventArgs e)
