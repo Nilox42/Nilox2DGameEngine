@@ -69,7 +69,7 @@ namespace Nilox2DGameEngine.Objects
         #region functions
         public bool canSeeActor(Actor a, bool debugvisual = true)
         {
-            TraceResult trt = Trace.lineByTag(getActorCenterLocation(), a.getActorCenterLocation(), "collider", 100, true);
+            TraceResult trt = Trace.lineByTag(getActorCenterLocation(), a.getActorCenterLocation(), "collider", 100);
 
             if (trt.hit == true)
             {
