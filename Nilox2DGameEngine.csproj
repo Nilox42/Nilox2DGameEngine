@@ -288,12 +288,6 @@
     <None Include="bin\Debug\Content\Menus\coin.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NiloxUniversalLib\NiloxUniversalLib\NiloxUniversalLib.csproj">
-      <Project>{c87028e2-9586-44e8-acd5-5874ba645018}</Project>
-      <Name>NiloxUniversalLib</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="NNLogoIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
