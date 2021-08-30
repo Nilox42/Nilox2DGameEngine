@@ -1,4 +1,5 @@
 ﻿
+/*
 namespace Nilox2DGameEngine.Menus
 {
     partial class WFMultiplayer
@@ -229,3 +230,4 @@ namespace Nilox2DGameEngine.Menus
         private System.Windows.Forms.Label label4;
     }
 }
+*/

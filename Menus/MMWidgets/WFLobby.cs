@@ -19,7 +19,7 @@ namespace Nilox2DGameEngine.Menus.MMWidgets
         public WFLobby()
         {
             InitializeComponent();
-            GlobalData.networkmanager.OnRecieveChatMessage += Networkmanager_OnRecieveChatMessage;
+            //GlobalData.networkmanager.OnRecieveChatMessage += Networkmanager_OnRecieveChatMessage;
 
             tick.Interval = 400;
             tick.Tick += Tick_Tick;
@@ -55,7 +55,7 @@ namespace Nilox2DGameEngine.Menus.MMWidgets
                 }
             }
 
-            GlobalData.networkmanager.ChatSend("PLAYER INDEX:    " + message);
+            //GlobalData.networkmanager.ChatSend("PLAYER INDEX:    " + message);
         }
 
     }

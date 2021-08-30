@@ -31,7 +31,7 @@ namespace Nilox2DGameEngine.Menus
         public Controller() 
         {
             GlobalData.controller = this;
-            GlobalData.networkmanager = new NetworkManager();
+            //GlobalData.networkmanager = new NetworkManager();
             GlobalData.debugcontroller = new DebugController();
             GlobalData.debugcontroller.showDebug();
             InitializeComponent();

@@ -65,7 +65,7 @@ namespace Nilox2DGameEngine.Menus
             }
             else
             {
-                CreateForm(new WFMultiplayer(), index);
+                CreateForm(null, index);
                 openedForms[index].BringToFront();
                 openedForms[index].Show();
             }

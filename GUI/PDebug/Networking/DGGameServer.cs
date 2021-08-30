@@ -23,14 +23,7 @@ namespace Nilox2DGameEngine.GUI.Debug
         {
             try
             {
-                if (GlobalData.networkmanager.server != null)
-                {
-                    lbplayercount.Text = GlobalData.networkmanager.server.getPlayerCount().ToString();
-                }
-                else
-                {
-                    Close();
-                }
+                
             }
             catch
             {

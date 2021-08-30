@@ -1,4 +1,4 @@
-﻿
+﻿/*
 namespace Nilox2DGameEngine.GUI.Debug
 {
     partial class DGNetworking
@@ -134,3 +134,4 @@ namespace Nilox2DGameEngine.GUI.Debug
         private System.Windows.Forms.Button button2;
     }
 }
+*/

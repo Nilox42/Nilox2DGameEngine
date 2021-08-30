@@ -213,7 +213,10 @@ namespace Nilox2DGameEngine.Core
                 {
                     foreach (Sprite2D sprite in spritestoremove)
                     {
-                        allSprites.Remove(sprite);
+                        lock (allSprites)
+                        {
+                            allSprites.Remove(sprite);
+                        }
                         ++index;
                     }
                     spritestoremove.Clear();
@@ -231,7 +234,10 @@ namespace Nilox2DGameEngine.Core
 
                 foreach (Shape2D shape in shapestoremove)
                 {
-                    allShapes.Remove(shape);
+                    lock (allShapes)
+                    {
+                        allShapes.Remove(shape);
+                    }
                     ++index;
                 }
 
@@ -245,7 +251,10 @@ namespace Nilox2DGameEngine.Core
 
                 foreach (Polygon polygon in polygonstoremove)
                 {
-                    allPolygons.Remove(polygon);
+                    lock (allPolygons)
+                    {
+                        allPolygons.Remove(polygon);
+                    }
                     ++index;
                 }
 
@@ -260,7 +269,10 @@ namespace Nilox2DGameEngine.Core
             {
                 foreach(Sprite2D s in spritestoadd)
                 {
-                    allSprites.Add(s);
+                    lock (allSprites)
+                    {
+                        allSprites.Add(s);
+                    }
                 }
                 spritestoadd.Clear();
             }
@@ -269,7 +281,10 @@ namespace Nilox2DGameEngine.Core
             {
                 foreach (Shape2D s in shapestoad)
                 {
-                    allShapes.Add(s);
+                    lock (allShapes)
+                    {
+                        allShapes.Add(s);
+                    }
                 }
                 shapestoad.Clear();
             }
@@ -278,7 +293,10 @@ namespace Nilox2DGameEngine.Core
             {
                 foreach (Polygon s in polygonestoadd)
                 {
-                    allPolygons.Add(s);
+                    lock (allPolygons)
+                    {
+                        allPolygons.Add(s);
+                    }
                 }
                 polygonestoadd.Clear();
             }
