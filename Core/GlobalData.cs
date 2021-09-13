@@ -29,6 +29,6 @@ namespace Nilox2DGameEngine.Core
         public static DebugController debugcontroller;
 
         //Networking
-        public static NetworkManager networkmanager;
+        //public static NetworkManager networkmanager;
     }
 }

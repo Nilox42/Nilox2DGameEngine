@@ -72,7 +72,7 @@ namespace Nilox2DGameEngine.Networking
 
                 case "server":
                     {
-                        GlobalData.networkmanager.ChatReceived(command[2]);
+                       // GlobalData.networkmanager.ChatReceived(command[2]);
                         break;
                     }
             }

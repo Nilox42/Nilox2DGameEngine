@@ -1,4 +1,5 @@
-﻿using NiloxUniversalLib.Logging;
+﻿
+using NiloxUniversalLib.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace Nilox2DGameEngine.GUI.Debug
 
     public partial class DebugController : Form
     {
-        DGNetworking networking;
+        //DGNetworking networking;
         Timer tick = new Timer();
         List<IDebugUpdate> forms = new List<IDebugUpdate>();
 
@@ -58,6 +59,7 @@ namespace Nilox2DGameEngine.GUI.Debug
 
         public void showDebug()
         {
+            /*
             if (networking == null)
             {
                 networking = new DGNetworking();
@@ -68,14 +70,17 @@ namespace Nilox2DGameEngine.GUI.Debug
             {
                 networking.Show();
             }
+            */
         }
 
         public void hideDebug()
         {
+            /*
             if (networking != null)
             {
                 networking.Hide();
             }
+            */
         }
 
         private async void DebugController_Load(object sender, EventArgs e)

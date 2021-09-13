@@ -79,6 +79,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NiloxUniversalLib\NiloxUniversalLib\bin\Debug\NiloxUniversalLib.dll</HintPath>
     </Reference>
+    <Reference Include="NiloxUniversalLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NiloxUniversalLib\NiloxUniversalLib\bin\Debug\NiloxUniversalLib.dll</HintPath>
+    </Reference>
     <Reference Include="Renci.SshNet, Version=2020.0.1.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>packages\SSH.NET.2020.0.1\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
@@ -157,9 +161,7 @@
     <Compile Include="GUI\PDebug\Networking\DGGameServer.Designer.cs">
       <DependentUpon>DGGameServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\PDebug\Networking\DGNetworking.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="GUI\PDebug\Networking\DGNetworking.cs" />
     <Compile Include="GUI\PDebug\Networking\DGNetworking.Designer.cs">
       <DependentUpon>DGNetworking.cs</DependentUpon>
     </Compile>
@@ -175,9 +177,7 @@
     <Compile Include="Menus\MMWidgets\WFMain.Designer.cs">
       <DependentUpon>WFMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menus\MMWidgets\WFMultiplayer.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Menus\MMWidgets\WFMultiplayer.cs" />
     <Compile Include="Menus\MMWidgets\WFMultiplayer.Designer.cs">
       <DependentUpon>WFMultiplayer.cs</DependentUpon>
     </Compile>
@@ -187,11 +187,11 @@
     <Compile Include="Menus\Options.Designer.cs">
       <DependentUpon>Options.cs</DependentUpon>
     </Compile>
-    <Compile Include="Networking\ESession.cs" />
-    <Compile Include="Networking\GameClient.cs" />
-    <Compile Include="Networking\GameServer.cs" />
-    <Compile Include="Networking\NetworkManager.cs" />
-    <Compile Include="Networking\NetworkMessage.cs" />
+    <Compile Include="Old\Networking\ESession.cs" />
+    <Compile Include="Old\Networking\GameClient.cs" />
+    <Compile Include="Old\Networking\GameServer.cs" />
+    <Compile Include="Old\Networking\NetworkManager.cs" />
+    <Compile Include="Old\Networking\NetworkMessage.cs" />
     <Compile Include="Old\BaseGameMode.cs" />
     <Compile Include="Editor\LevelEditor.cs">
       <SubType>Form</SubType>
