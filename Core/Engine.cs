@@ -445,9 +445,9 @@ namespace Nilox2DGameEngine.Core
                     foreach (Sprite2D sprite in allSprites)
                     {
                         //Check if Sprite is on screen and only draw it if it is
-                        if (sprite.location.X < cameraPos.X + Window.Width - 200 &&
+                        if (sprite.location.X < cameraPos.X + Window.Width &&
                             sprite.location.X + sprite.scale.X> cameraPos.X &&
-                            sprite.location.Y < cameraPos.Y + Window.Height - 200 &&
+                            sprite.location.Y < cameraPos.Y + Window.Height &&
                             sprite.location.Y + sprite.scale.Y > cameraPos.Y &&
 
                             //Check if sprite should be drawn
