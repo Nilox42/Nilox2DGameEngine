@@ -46,7 +46,7 @@ namespace Nilox2DGameEngine.Core
             this.lbcoins.Text = "0";
             // 
             // pictureBox1
-            // 
+            /*
             this.pictureBox1.BackgroundImage = global::Nilox2DGameEngine.Properties.Resources.coin;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
@@ -54,7 +54,7 @@ namespace Nilox2DGameEngine.Core
             this.pictureBox1.Size = new System.Drawing.Size(38, 45);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
+            */ 
             // Canvas
             // 
             this.ClientSize = new System.Drawing.Size(834, 441);
