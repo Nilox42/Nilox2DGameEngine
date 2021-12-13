@@ -173,7 +173,12 @@ namespace Nilox2DGameEngine
             //
             //
             #region AI Tick
-            foreach (Actor a in allactors)
+            List<Actor> allactorsCP = new List<Actor>();
+            lock(allactors)
+            {
+                allactorsCP.AddRange(allactors);
+            }
+            foreach (Actor a in allactorsCP)
             {
                 //Update all Actors
                 a.update();
@@ -195,6 +200,11 @@ namespace Nilox2DGameEngine
             }
 
             //ProjectileMovement
+            List<Projectile> allprojectilesCP = new List<Projectile>();
+            lock (allprojectiles)
+            {
+                allprojectilesCP.AddRange(allprojectiles);
+            }
             foreach (Projectile p in allprojectiles)
             {
                 p.move();
@@ -263,7 +273,6 @@ namespace Nilox2DGameEngine
                 }
             }
         }
-
         public override void keyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W) { up = false; }

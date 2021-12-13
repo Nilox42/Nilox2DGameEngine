@@ -417,9 +417,9 @@ namespace Nilox2DGameEngine.Core
 
                     Thread.Sleep(frametime);
                 }
-                catch
+                catch (Exception e)
                 {
-                    Log.error("Window has not been found...");
+                    Log.error("Gameloop Errror: " + e.Message);
                 }
             }
         }

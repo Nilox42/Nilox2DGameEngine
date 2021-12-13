@@ -85,7 +85,5 @@ namespace Nilox2DGameEngine.Util
             return File.ReadLines(directory).Skip(line).Take(1).First();
         }
         #endregion
-
-
     }
 }

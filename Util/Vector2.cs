@@ -1,10 +1,4 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Nilox2DGameEngine.Util;
 using System.Drawing;
 
 namespace Nilox2DGameEngine.Util
@@ -32,16 +26,16 @@ namespace Nilox2DGameEngine.Util
             return new Vector2(0,0);
         }
 
-        public static Vector2 normalize(Vector2 v0)
+        public static Vector2 normalize(Vector2 v)
         {
-            double distance = Math.Sqrt(v0.X * v0.X + v0.Y * v0.Y);
+            double distance = Math.Sqrt(v.X * v.X + v.Y * v.Y);
 
-            return new Vector2(v0.X / (float)distance, v0.Y / (float)distance);
+            return new Vector2(v.X / (float)distance, v.Y / (float)distance);
         }
 
-        public static float lenght(Vector2 v0)
+        public static float lenght(Vector2 v)
         {
-            return (float)Math.Sqrt(v0.X * v0.X + v0.Y * v0.Y);
+            return (float)Math.Sqrt(v.X * v.X + v.Y * v.Y);
         }
 
         public static float Distance(Vector2 v0, Vector2 v1)
