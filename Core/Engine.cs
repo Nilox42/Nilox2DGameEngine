@@ -406,6 +406,7 @@ namespace Nilox2DGameEngine.Core
 
             while (gameLoopThread.IsAlive)
             {
+                /*
                 try
                 {
                     if (disablerenderer == false)
@@ -419,8 +420,20 @@ namespace Nilox2DGameEngine.Core
                 }
                 catch (Exception e)
                 {
-                    Log.error("Gameloop Errror: " + e.Message);
+                    Log.error("Gameloop Errror: \n" +
+                        "in Object: " + e.Source + "\n"+
+                        "in Function: " + e.TargetSite.Name + "\n" +
+                        "Message:" + e.Message);
                 }
+                */
+                if (disablerenderer == false)
+                {
+                    onDraw();
+                    Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
+                    onUpdate();
+                }
+
+                Thread.Sleep(frametime);
             }
         }
 

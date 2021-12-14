@@ -119,7 +119,9 @@ namespace Nilox2DGameEngine.Core
         {
             if (isleveleditor == false)
             {
-                foreach (Sprite2D s in Engine.allSprites)
+                List<Sprite2D> allSpriteCP = new List<Sprite2D>();
+                allSpriteCP.AddRange(Engine.allSprites);
+                foreach (Sprite2D s in allSpriteCP)
                 {
                     if (s.tag == tag)
                     {

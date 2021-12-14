@@ -67,7 +67,8 @@ namespace Nilox2DGameEngine.Util
                 points.Add(v);
 
                 //loop throug Sprites
-                List<Sprite2D> check = Engine.allSprites;
+                List<Sprite2D> check = new List<Sprite2D>();
+                check.AddRange(Engine.allSprites);
                 foreach (Sprite2D s in check)
                 {
                     if (s.tag == tag)
