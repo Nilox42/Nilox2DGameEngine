@@ -1,3 +1,3 @@
 # Nilox2DGameEngine
 
-HI BENNI
+A very simple 2D GameEngine with a Demo Game.
