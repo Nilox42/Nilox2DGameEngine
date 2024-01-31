@@ -280,6 +280,9 @@
     <None Include="bin\Debug\Content\Menus\coin.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NiloxUniversalLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="NNLogoIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
